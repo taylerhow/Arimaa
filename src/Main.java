@@ -11,6 +11,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Main {
+	String p1name = "Player 1";
+	String p2name = "Player 2";
 
 	public static void main(String[] args) {
 	    ImagePanel panel = new ImagePanel(new ImageIcon("resources/board.jpg").getImage());
