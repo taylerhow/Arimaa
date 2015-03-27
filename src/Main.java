@@ -38,6 +38,7 @@ public class Main {
 	    frame.setVisible(true);
 	    panel.setVisible(true);
 	    newGameButton.setVisible(true);
+	    loadGameButton.setVisible(true);
 	  }
 	}
 
