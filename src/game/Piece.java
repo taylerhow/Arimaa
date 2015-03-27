@@ -1,3 +1,4 @@
+package game;
 import java.awt.Image;
 
 public class Piece {
