@@ -26,7 +26,7 @@ public class TestBoardState {
 	
 	@Test 
 	public void testInializesWithCorrectValuesUsingBoardState(){
-		char[][] map = new char[8][8];
+		char[][] map = new char[7][7];
 		map[1][1] = 'E';
 		map[2][2] = 'C';
 		map[3][3] = 'D';
