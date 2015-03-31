@@ -4,14 +4,12 @@ import static org.junit.Assert.*;
 import game.BoardState;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+
 
 /**
  * @author shellajt
  *
  */
-@RunWith(Parameterized.class)
 public class TestBoardState {
 
 	@Test
@@ -34,11 +32,11 @@ public class TestBoardState {
 		map[3][3] = 'D';
 		map[4][4] = 'c';
 		BoardState bs = new BoardState(map, 1);
-		assertEquals('E', bs.getBoardArray[1][1]);
-		assertEquals('C', bs.getBoardArray[2][2]);
-		assertEquals('D', bs.getBoardArray[3][3]);
-		assertEquals('c', bs.getBoardArray[4][4]);
-		assertEquals(1, bs.getTurnNumber);
+		assertEquals('E', bs.getBoardArray()[1][1]);
+		assertEquals('C', bs.getBoardArray()[2][2]);
+		assertEquals('D', bs.getBoardArray()[3][3]);
+		assertEquals('c', bs.getBoardArray()[4][4]);
+		assertEquals(1, bs.getTurnNumber());
 	}
 
 }

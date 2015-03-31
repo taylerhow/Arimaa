@@ -17,10 +17,27 @@ public class BoardState {
 	private int turnNumber;
 	
 	public BoardState(char[][] map, int turnNumber){
-		
+		this.boardArray = map;
+		this.turnNumber = turnNumber;
 	}
 	
 	public BoardState(BoardState prevState, ArrayList<String> moveList){
 		
+	}
+
+	public char[][] getBoardArray() {
+		return boardArray;
+	}
+
+	public void setBoardArray(char[][] boardArray) {
+		this.boardArray = boardArray;
+	}
+
+	public int getTurnNumber() {
+		return turnNumber;
+	}
+
+	public void setTurnNumber(int turnNumber) {
+		this.turnNumber = turnNumber;
 	}
 }
