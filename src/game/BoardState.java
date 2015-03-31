@@ -21,9 +21,9 @@ public class BoardState {
 		this.turnNumber = turnNumber;
 	}
 	
-	public BoardState(BoardState prevState, ArrayList<String> moveList){
-		
-	}
+//	public BoardState(BoardState prevState, ArrayList<String> moveList){
+//		
+//	}
 
 	public char[][] getBoardArray() {
 		return boardArray;
