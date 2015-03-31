@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class BoardState {
 	//Fields
-	char[][] boardArray; //Represents the current state of the board
-	int turnNumber;
+	private char[][] boardArray; //Represents the current state of the board
+	private int turnNumber;
 	
 	public BoardState(char[][] map, int turnNumber){
 		
