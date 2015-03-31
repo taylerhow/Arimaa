@@ -3,8 +3,6 @@ package game;
  * 
  */
 
-import java.util.ArrayList;
-
 /**
  * This class represents the states of the board.
  * 
