@@ -16,5 +16,11 @@ public class TestBoardState {
 		BoardState bs = new BoardState(new char[1][1], 0);
 		assertNotNull(bs);
 	}
+	
+	@Test
+	public void testInitializesGivenPrevState(){
+		BoardState bs = new BoardState(new BoardState(new char[1][1], 0), null);
+		assertNotNull(bs);
+	}
 
 }
