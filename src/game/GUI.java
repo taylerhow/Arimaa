@@ -1,4 +1,5 @@
 package game;
+
 import java.awt.Color;
 
 import javax.swing.JButton;
@@ -14,7 +15,16 @@ import javax.swing.ImageIcon;
 public class GUI {
 	private String p1name;
 	private String p2name;
-
+	private JFrame mainFrame;
+	
+	public GUI(){
+		this.p1name = "Player 1";
+		this.p2name = "Player 2";
+		this.mainFrame = new JFrame();
+		this.mainFrame.setTitle("Welcome to Arimaa!");
+		this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
 	public static void main(String[] args) {
 	    ImagePanel panel = new ImagePanel(new ImageIcon("resources/board.jpg").getImage());
 
@@ -43,6 +53,30 @@ public class GUI {
 	    newGameButton.setVisible(true);
 	    loadGameButton.setVisible(true);
 	  }
+
+	public String getP1name() {
+		return p1name;
+	}
+
+	public void setP1name(String p1name) {
+		this.p1name = p1name;
+	}
+
+	public String getP2name() {
+		return p2name;
+	}
+
+	public void setP2name(String p2name) {
+		this.p2name = p2name;
+	}
+
+	public JFrame getMainFrame() {
+		return mainFrame;
+	}
+
+	public void setMainFrame(JFrame mainFrame) {
+		this.mainFrame = mainFrame;
+	}
 	}
 
 	class ImagePanel extends JPanel {
