@@ -25,13 +25,13 @@ public class TestPiece {
 	public void testThatPieceInitializesWithValues() {
 		Image img = null;
 		try {
+			//Don't have piece images yet...using board as placeholder
 			img = ImageIO.read(new File("resources/board.jpg"));
-		} catch (IOException e) {
-		}
+		} catch (IOException e) { }
 		Piece p = new Piece(PieceType.Camel, img);
 		assertNotNull(p);
-		assertEquals(PieceType.Camel, p.getPieceType());
-		assertEquals(img, p.getImage());
+		assertEquals(PieceType.Camel, p.getType());
+		assertEquals(img, p.getImg());
 	}
 
 }
