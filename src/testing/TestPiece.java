@@ -1,6 +1,13 @@
 package testing;
 
 import static org.junit.Assert.*;
+
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import game.Piece;
 import game.Piece.PieceType;
 
@@ -12,6 +19,19 @@ public class TestPiece {
 	public void testThatPieceInitializes() {
 		Piece p = new Piece(PieceType.Camel, null);
 		assertNotNull(p);
+	}
+	
+	@Test
+	public void testThatPieceInitializesWithValues() {
+		Image img = null;
+		try {
+			img = ImageIO.read(new File("resources/board.jpg"));
+		} catch (IOException e) {
+		}
+		Piece p = new Piece(PieceType.Camel, img);
+		assertNotNull(p);
+		assertEquals(PieceType.Camel, p.getPieceType());
+		assertEquals(img, p.getImage());
 	}
 
 }
