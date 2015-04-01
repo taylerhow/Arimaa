@@ -20,7 +20,7 @@ public class TestGUI {
 	public void testThatGUIInitializesWithCorrectDefaultValues() {
 		GUI testGUI = new GUI();
 		assertEquals(testGUI.getP1name(), "Player 1");
-		assertEquals(testGUI.getP1name(), "Player 2");
+		assertEquals(testGUI.getP2name(), "Player 2");
 		assertNotNull(testGUI.getMainFrame());
 		assertEquals(testGUI.getMainFrame().getTitle(), "Welcome to Arimaa!");
 		assertEquals(testGUI.getMainFrame().getDefaultCloseOperation(), JFrame.EXIT_ON_CLOSE);
