@@ -35,14 +35,14 @@ public class GUI {
 	    frame.pack();
 	    
 	    JButton newGameButton = new JButton();
-	    newGameButton.setBackground(Color.DARK_GRAY);
+//	    newGameButton.setBackground(Color.DARK_GRAY);
 	    newGameButton.setSize(100, 50);
 	    newGameButton.setText("New Game");
 	    newGameButton.setLocation((panel.getWidth()/4)-35, (panel.getHeight()/2)-25);
 	    panel.add(newGameButton);
 	    
 	    JButton loadGameButton = new JButton();
-	    loadGameButton.setBackground(Color.DARK_GRAY);
+//	    loadGameButton.setBackground(Color.DARK_GRAY);
 	    loadGameButton.setSize(100, 50);
 	    loadGameButton.setText("Load Game");
 	    loadGameButton.setLocation((panel.getWidth()/4)*3-65, (panel.getHeight()/2)-25);
