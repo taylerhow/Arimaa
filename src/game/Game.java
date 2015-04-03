@@ -12,7 +12,7 @@ public class Game {
 	int p2TimeBank =0;
 	
 	public Game(BoardState b) {
-		// TODO Auto-generated constructor stub
+		currentBoard = b;
 	}
 	/**
 	 * 
