@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Game {
 	//fields
 	ArrayList<BoardState> boards= new ArrayList<BoardState>();
-	BoardState currentBoard=null;
+	public BoardState currentBoard=null;
 	int numMovesLeft =0;
 	int moveTimer =0;
 	int p1TimeBank=0;

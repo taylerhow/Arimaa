@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
  
 
+
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.runners.Parameterized;
@@ -21,14 +22,29 @@ public class TestGame {
 
 	@Test
 	public void testInitializes() {
-		Game g =new Game();
+		Game g =new Game(null);
 		assertNotNull(g);
 	}
 	
 	@Test
-	public void testMove(){
-		BoardState b = new BoardState(null, 0);
+	public void testInitializesWithBoardState(){
+		BoardState b = new BoardState(new char[][] {
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				}, 0);
 		Game g= new Game(b);
+		
+		assertEquals(g.currentBoard.getBoardArray()[5][5], ' ');
+		assertEquals(g.currentBoard.getBoardArray()[6][4], ' ');
+		assertEquals(g.currentBoard.getBoardArray()[7][3], ' ');
+		assertEquals(g.currentBoard.getBoardArray()[1][0], ' ');
 	}
 
 }
