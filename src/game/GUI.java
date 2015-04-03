@@ -106,6 +106,7 @@ public class GUI {
 		public void actionPerformed(ActionEvent e) {
 			JFrame settingsFrame = new JFrame();
 			settingsFrame.setTitle("New Game Options");
+			settingsFrame.setLocation(650/2-324/2+5,650/2-324/2+44);
 			settingsFrame.setVisible(true);
 
 			ImagePanel panel = new ImagePanel(new ImageIcon(
