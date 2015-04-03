@@ -29,4 +29,15 @@ public class Piece {
 	public void setImg(Image img) {
 		this.image = img;
 	}
+	
+	
+	public boolean equals(Object p2){
+		if((p2 instanceof Piece)){
+			if(((Piece) p2).getType()==this.getType()){
+				return true;
+			}
+		}
+		return false;
+		
+	}
 }

@@ -1,4 +1,6 @@
 package game;
+import game.Piece.PieceType;
+
 import java.util.ArrayList;
 
 
@@ -25,7 +27,7 @@ public class Game {
 	 * @return
 	 */
 	public Piece getSpace(int x, int y){
-		return null;
+		return new Piece(PieceType.Camel,null);
 	}
 	/**
 	 * 
