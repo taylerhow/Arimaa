@@ -32,6 +32,7 @@ public class TestGame {
 			{' ',' ',' ',' ',' ',' ','K','R'},
 			}, 0);
 	
+	
 	@Test
 	public void testInitializes() {
 		Game g =new Game(null);
@@ -52,8 +53,12 @@ public class TestGame {
 	public void testGetPieceExists() {
 		Game g= new Game(b);
 		assertEquals(g.getSpace(4, 3), new Piece(PieceType.Camel, null));
-		
 	}
-
+	
+	@Test
+	public void testGetPieceNotExists() {
+		Game g= new Game(b);
+		assertEquals(g.getSpace(0, 0), null);
+	}
 }
 
