@@ -32,6 +32,6 @@ public class BoardState {
 	}
 	
 	public void incrementTurn(){
-		
+		this.turnNumber++;
 	}
 }
