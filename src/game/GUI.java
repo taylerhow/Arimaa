@@ -120,6 +120,7 @@ public class GUI {
 
 			// Set up Player 1 Name Label and Text Field
 			JLabel p1NameLabel = new JLabel();
+			//On Mac, the bolded text causes layout issues
 			p1NameLabel.setText("<html><b>Player 1 Name:</b><html>");
 			p1NameLabel.setForeground(Color.WHITE);
 			Font p1NameFont = p1NameLabel.getFont();
@@ -214,9 +215,10 @@ public class GUI {
 			JButton startGameButton = new JButton();
 			startGameButton.setSize(110, 25);
 			startGameButton.setText("Start Game");
-			startGameButton.setLocation((panel.getWidth() / 2) - 110,
+			startGameButton.setLocation((panel.getWidth() / 2) - startGameButton.getWidth(),
 					(panel.getHeight() / 2) + (2*startGameButton.getHeight()));
 			panel.add(startGameButton);
+			startGameButton.addActionListener(new startGameListener());
 			startGameButton.setVisible(true);
 			
 			//Set up Cancel Button
@@ -226,6 +228,7 @@ public class GUI {
 			cancelButton.setLocation((panel.getWidth() / 2),
 					(panel.getHeight() / 2) + (2*cancelButton.getHeight()));
 			panel.add(cancelButton);
+			cancelButton.addActionListener(new cancelListener());
 			cancelButton.setVisible(true);
 		}
 	}
@@ -246,7 +249,7 @@ public class GUI {
 		}
 	}
 
-	class cancelButtonListener implements ActionListener {
+	class cancelListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -256,7 +259,7 @@ public class GUI {
 		}
 	}
 	
-	class startGameButtonListener implements ActionListener {
+	class startGameListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -278,6 +281,8 @@ public class GUI {
 			activeFrames.get(0).getContentPane().add(panel);
 			activeFrames.get(0).pack();
 			panel.setVisible(true);
+			
+			gameFrame.setVisible(true);
 		}
 	}
 }
