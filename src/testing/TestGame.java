@@ -33,18 +33,17 @@ public class TestGame {
 				{' ',' ',' ',' ',' ',' ',' ',' '},
 				{' ',' ',' ',' ',' ',' ',' ',' '},
 				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ','C','E',' ',' ',' '},
 				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ','D',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ','K','R'},
 				}, 0);
 		Game g= new Game(b);
 		
-		assertEquals(g.currentBoard.getBoardArray()[5][5], ' ');
-		assertEquals(g.currentBoard.getBoardArray()[6][4], ' ');
+		assertEquals(g.currentBoard.getBoardArray()[4][3], 'C');
+		assertEquals(g.currentBoard.getBoardArray()[4][4], 'E');
 		assertEquals(g.currentBoard.getBoardArray()[7][3], ' ');
-		assertEquals(g.currentBoard.getBoardArray()[1][0], ' ');
+		assertEquals(g.currentBoard.getBoardArray()[7][7], 'R');
 	}
 
 }
