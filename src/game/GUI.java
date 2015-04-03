@@ -5,7 +5,9 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -46,8 +48,8 @@ public class GUI {
 		JButton newGameButton = new JButton();
 		newGameButton.setSize(150, 75);
 		newGameButton.setText("New Game");
-		Font font = newGameButton.getFont();
-		newGameButton.setFont(new Font(font.getName(), 4, 20));
+		Font newGameFont = newGameButton.getFont();
+		newGameButton.setFont(new Font(newGameFont.getName(), 4, 20));
 		newGameButton.setLocation((panel.getWidth() / 4) - 35,
 				(panel.getHeight() / 2) - 37);
 		panel.add(newGameButton);
@@ -60,8 +62,8 @@ public class GUI {
 		JButton loadGameButton = new JButton();
 		loadGameButton.setSize(150, 75);
 		loadGameButton.setText("Load Game");
-		Font font2 = loadGameButton.getFont();
-		loadGameButton.setFont(new Font(font2.getName(), 4, 20));
+		Font loadGameFont = loadGameButton.getFont();
+		loadGameButton.setFont(new Font(loadGameFont.getName(), 4, 20));
 		loadGameButton.setLocation((panel.getWidth() / 4) * 3 - 110,
 				(panel.getHeight() / 2) - 37);
 		panel.add(loadGameButton);
@@ -102,9 +104,6 @@ public class GUI {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JFrame settingsFrame = new JFrame();
-//			activeFrame.dispose();
-//			activeFrame = gameFrame;
-//			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			settingsFrame.setTitle("New Game Options");
 			settingsFrame.setVisible(true);
 			
@@ -113,6 +112,44 @@ public class GUI {
 			settingsFrame.getContentPane().add(panel);
 			settingsFrame.pack();
 			panel.setVisible(true);
+			
+			//Set up Player 1 Name Label and Text Field
+			JLabel p1NameLabel = new JLabel();
+			p1NameLabel.setText("Player 1 Name:");
+			Font p1NameFont = p1NameLabel.getFont();
+			p1NameLabel.setFont(new Font(p1NameFont.getName(), 4, 14));
+			p1NameLabel.setSize(110, 25);
+			panel.add(p1NameLabel);
+			p1NameLabel.setLocation(panel.getWidth()/2-p1NameLabel.getWidth(), panel.getHeight()/2-p1NameLabel.getHeight()*2);
+			p1NameLabel.setVisible(true);
+			
+			JTextField p1NameField = new JTextField();
+			p1NameField.setSize(110, 25);
+			Font p1FieldFont = p1NameField.getFont();
+			p1NameLabel.setFont(new Font(p1FieldFont.getName(), 4, 14));
+			panel.add(p1NameField);
+			p1NameField.setLocation(panel.getWidth()/2, panel.getHeight()/2-p1NameField.getHeight()*2);
+			p1NameField.setVisible(true);
+			
+			//Set up Player 2 Name Label and Text Field
+			JLabel p2NameLabel = new JLabel();
+			p2NameLabel.setText("Player 2 Name:");
+			Font p2NameFont = p2NameLabel.getFont();
+			p2NameLabel.setFont(new Font(p2NameFont.getName(), 4, 14));
+			p2NameLabel.setSize(110, 25);
+			panel.add(p2NameLabel);
+			p2NameLabel.setLocation(panel.getWidth()/2-p2NameLabel.getWidth(), panel.getHeight()/2-p2NameLabel.getHeight());
+			p2NameLabel.setVisible(true);
+			
+			JTextField p2NameField = new JTextField();
+			p2NameField.setSize(110, 25);
+			Font p2FieldFont = p2NameField.getFont();
+			p2NameLabel.setFont(new Font(p2FieldFont.getName(), 4, 14));
+			panel.add(p2NameField);
+			p2NameField.setLocation(panel.getWidth()/2, panel.getHeight()/2-p2NameField.getHeight());
+			p2NameField.setVisible(true);
+			
+			//Set up Turn Timer Label and Text Field
 		}
 	}
 	
