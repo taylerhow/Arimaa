@@ -15,7 +15,7 @@ public class Piece {
 	}
 
 	public PieceType getType() {
-		return null;
+		return this.type;
 	}
 
 	public void setType(PieceType type) {
