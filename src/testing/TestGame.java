@@ -77,5 +77,13 @@ public class TestGame {
 		assertEquals(null,g.getSpace(7, 7));
 	}
 	
+//	@Test
+//	public void testMoveLegalAgain(){
+//		Game g = new Game(b);
+//		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),g.getSpace(7, 7));
+//		assertTrue(g.move(7, 6, 3));
+//		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),g.getSpace(6, 7));
+//		assertEquals(null,g.getSpace(7, 7));
+//	}
 }
 
