@@ -43,4 +43,14 @@ public class TestPiece {
 		Piece p = new Piece(PieceType.Camel, img);
 		assertEquals(p.getType(), PieceType.Camel);
 	}
+	
+	@Test
+	public void testThatImageCanBeGotten() {
+		Image img = null;
+		try {
+			img = ImageIO.read(new File("resources/White rabbit.jpg"));
+		} catch (IOException e) { }
+		Piece p = new Piece(PieceType.Camel, img);
+		assertEquals(p.getImg(), img);
+	}
 }
