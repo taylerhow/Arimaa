@@ -40,7 +40,24 @@ public class Game {
 	 * @return
 	 */
 	public boolean move(int x, int y, int dir){
-		return false;
+		switch(dir){
+		case 0:
+			switchPiece(x,y,x,y-1);
+		case 1:
+			switchPiece(x,y,x+1,y);
+		case 2:
+			switchPiece(x,y,x,y+1);
+		case 3:
+			switchPiece(x,y,x+1,y);
+		default:
+			return false;
+		}
+	}
+	//helper for move
+	private void switchPiece(int x, int y, int x2, int i) {
+		char[][] boardArray = currentBoard.getBoardArray();
+		char temp = boardArray[x][y];
+		currentBoard.setBoardArray(boardArray);
 	}
 	/**
 	 * 
