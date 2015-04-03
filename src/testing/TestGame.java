@@ -75,5 +75,11 @@ public class TestGame {
 		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),g.getSpace(6, 7));
 		assertEquals(null,g.getSpace(7, 7));
 	}
+	
+	@Test
+	public void testEmptyCreateConstructor(){
+		Game g = new Game();
+		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(1, 1));
+	}
 }
 
