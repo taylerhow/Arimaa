@@ -11,18 +11,22 @@ import org.junit.Test;
  *
  */
 public class TestBoardState {
+	BoardState b = new BoardState(new char[][] {
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ','C','E',' ',' ',' '},
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ','D',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ',' ','K','R'},
+			}, 0);
 
 	@Test
 	public void testInitializes() {
 		BoardState bs = new BoardState(new char[1][1], 0);
 		assertNotNull(bs);
 	}
-	
-//	@Test
-//	public void testInitializesGivenPrevState(){
-//		BoardState bs = new BoardState(new BoardState(new char[1][1], 0), null);
-//		assertNotNull(bs);
-//	}
 	
 	@Test 
 	public void testInializesWithCorrectValuesUsingBoardState(){

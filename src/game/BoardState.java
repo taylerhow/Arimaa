@@ -14,10 +14,6 @@ public class BoardState {
 		this.boardArray = map;
 		this.turnNumber = turnNumber;
 	}
-	
-//	public BoardState(BoardState prevState, ArrayList<String> moveList){
-//		
-//	}
 
 	public char[][] getBoardArray() {
 		return boardArray;
