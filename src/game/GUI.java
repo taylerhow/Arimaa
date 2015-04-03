@@ -18,19 +18,21 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
 public class GUI {
 	private String p1name;
 	private String p2name;
-	private JFrame activeFrame;
+	private ArrayList<JFrame> activeFrames;
 
 	public GUI() {
 		this.p1name = "Player 1";
 		this.p2name = "Player 2";
+		this.activeFrames = new ArrayList<JFrame>();
 		JFrame mainMenuFrame = new JFrame();
-		this.activeFrame = mainMenuFrame;
+		this.activeFrames.add(mainMenuFrame);
 		mainMenuFrame.setTitle("Welcome to Arimaa!");
 		mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -41,8 +43,8 @@ public class GUI {
 		// Add MAIN MENU panel with appropriate background image
 		ImagePanel panel = new ImagePanel(new ImageIcon(
 				"resources/BoardStoneBig.jpg").getImage());
-		g.activeFrame.getContentPane().add(panel);
-		g.activeFrame.pack();
+		g.activeFrames.get(0).getContentPane().add(panel);
+		g.activeFrames.get(0).pack();
 		panel.setVisible(true);
 
 		// Add the NEW GAME button to the Main Menu
@@ -73,7 +75,7 @@ public class GUI {
 		// Setup ActionListener for the LOAD GAME button
 		loadGameButton.addActionListener(g.new loadGameListener());
 
-		g.activeFrame.setVisible(true);
+		g.activeFrames.get(0).setVisible(true);
 	}
 
 	public String getP1name() {
@@ -92,12 +94,12 @@ public class GUI {
 		this.p2name = p2name;
 	}
 
-	public JFrame getActiveFrame() {
-		return activeFrame;
+	public ArrayList<JFrame> getActiveFrames() {
+		return activeFrames;
 	}
 
-	public void setActiveFrame(JFrame activeFrame) {
-		this.activeFrame = activeFrame;
+	public void setActiveFrames(ArrayList<JFrame> frames) {
+		this.activeFrames = frames;
 	}
 
 	class newGameListener implements ActionListener {
@@ -105,8 +107,10 @@ public class GUI {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JFrame settingsFrame = new JFrame();
+			activeFrames.add(settingsFrame);
 			settingsFrame.setTitle("New Game Options");
-			settingsFrame.setLocation(650/2-324/2+5,650/2-324/2+44);
+			settingsFrame.setLocation(650 / 2 - 324 / 2 + 5, 650 / 2 - 324 / 2
+					+ 44);
 			settingsFrame.setVisible(true);
 
 			ImagePanel panel = new ImagePanel(new ImageIcon(
@@ -172,8 +176,8 @@ public class GUI {
 					panel.getHeight() / 2);
 			turnTimerLabel.setVisible(true);
 
-			String[] turnTimerPresets = { "0:30", "0:45", "1:00", "1:15", "1:30",
-					"1:45", "2:00", "M:SS" };
+			String[] turnTimerPresets = { "0:30", "0:45", "1:00", "1:15",
+					"1:30", "1:45", "2:00", "M:SS" };
 			JComboBox<String> turnTimerComboBox = new JComboBox<String>(
 					turnTimerPresets);
 			turnTimerComboBox.setEditable(true);
@@ -196,8 +200,8 @@ public class GUI {
 					panel.getHeight() / 2 + timeBankLabel.getHeight());
 			timeBankLabel.setVisible(true);
 
-			String[] timeBankPresets = { "0:30", "0:45", "1:00", "1:15", "1:30",
-					"1:45", "2:00", "M:SS" };
+			String[] timeBankPresets = { "0:30", "0:45", "1:00", "1:15",
+					"1:30", "1:45", "2:00", "M:SS" };
 			JComboBox<String> timeBankComboBox = new JComboBox<String>(
 					timeBankPresets);
 			timeBankComboBox.setEditable(true);
@@ -234,7 +238,7 @@ public class GUI {
 			JFileChooser fileChooser = new JFileChooser();
 			fileChooser.setCurrentDirectory(new File(System
 					.getProperty("user.home")));
-			int result = fileChooser.showOpenDialog(activeFrame);
+			int result = fileChooser.showOpenDialog(activeFrames.get(0));
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File selectedFile = fileChooser.getSelectedFile();
 				System.out.println("Selected file: "
@@ -243,6 +247,40 @@ public class GUI {
 		}
 	}
 
+	class cancelButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFrame settingsFrame = activeFrames.get(1);
+			activeFrames.remove(1);
+			settingsFrame.dispose();
+		}
+	}
+	
+	class startGameButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFrame settings = activeFrames.get(1);
+			activeFrames.remove(1);
+			settings.dispose();
+			
+			JFrame mainMenu = activeFrames.get(0);
+			activeFrames.remove(0);
+			mainMenu.dispose();
+			
+			JFrame gameFrame = new JFrame();
+			activeFrames.add(gameFrame);
+			gameFrame.setTitle("Let's Play!");
+			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			ImagePanel panel = new ImagePanel(new ImageIcon(
+					"resources/BoardStoneBig.jpg").getImage());
+			activeFrames.get(0).getContentPane().add(panel);
+			activeFrames.get(0).pack();
+			panel.setVisible(true);
+		}
+	}
 }
 
 class ImagePanel extends JPanel {
