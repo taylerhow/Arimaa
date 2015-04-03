@@ -3,6 +3,7 @@ package game;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -12,6 +13,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 
@@ -59,6 +61,9 @@ public class GUI {
 				(panel.getHeight() / 2) - 25);
 		panel.add(loadGameButton);
 		loadGameButton.setVisible(true);
+		
+		//Setup ActionListener for the LOAD GAME button
+		loadGameButton.addActionListener(g.new loadGameListener());
 
 		g.activeFrame.setVisible(true);
 	}
@@ -94,9 +99,24 @@ public class GUI {
 			JFrame gameFrame = new JFrame();
 			activeFrame.dispose();
 			activeFrame = gameFrame;
+			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			gameFrame.setSize(400, 400);
 			gameFrame.setTitle("Arimaa");
 			gameFrame.setVisible(true);
+		}
+	}
+	
+	class loadGameListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+			int result = fileChooser.showOpenDialog(activeFrame);
+			if (result == JFileChooser.APPROVE_OPTION) {
+			    File selectedFile = fileChooser.getSelectedFile();
+			    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+			}
 		}
 	}
 	
