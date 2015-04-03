@@ -60,5 +60,10 @@ public class TestGame {
 		Game g= new Game(b);
 		assertEquals(g.getSpace(0, 0), null);
 	}
+	@Test
+	public void testGetPieceExistsAgain() {
+		Game g= new Game(b);
+		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null));
+	}
 }
 
