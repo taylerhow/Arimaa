@@ -3,7 +3,7 @@ import java.awt.Image;
 
 public class Piece {
 	private PieceType type;
-	private Image img;
+	private Image image;
 	
 	public enum PieceType{
 		Elephant, Camel, Horse, Dog, Cat, Rabbit
@@ -11,7 +11,7 @@ public class Piece {
 	
 	public Piece(PieceType t, Image i){
 		this.type = t;
-		this.img = i;
+		this.image = i;
 	}
 
 	public PieceType getType() {
@@ -19,11 +19,11 @@ public class Piece {
 	}
 
 	public void setType(PieceType type) {
-		this.type = type;
+		this.type = type; 
 	}
 
-	public Image getImg() {
-		return this.img;
+	public Image getImage() {
+		return this.image;
 	}
 
 	public void setImg(Image img) {

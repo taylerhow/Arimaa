@@ -51,7 +51,7 @@ public class TestPiece {
 			img = ImageIO.read(new File("resources/White rabbit.jpg"));
 		} catch (IOException e) { }
 		Piece p = new Piece(PieceType.Camel, img);
-		assertEquals(p.getImg(), img);
+		assertEquals(p.getImage(), img);
 	}
 	
 	@Test
@@ -63,5 +63,22 @@ public class TestPiece {
 		Piece p = new Piece(PieceType.Camel, img);
 		p.setType(PieceType.Elephant);
 		assertEquals(p.getType(), PieceType.Elephant);
+	}
+	
+	@Test
+	public void testThatImageCanBeSet(){
+		Image img = null;
+		Image img2 = null;
+		try {
+			img = ImageIO.read(new File("resources/White rabbit.jpg"));
+		} catch (IOException e) { }
+		
+		try {
+			img = ImageIO.read(new File("resources/White cat.jpg"));
+		} catch (IOException e) { }
+		
+		Piece p = new Piece(PieceType.Camel, img);
+		p.setImg(img2);
+		assertEquals(p.getImage(), img2);
 	}
 }
