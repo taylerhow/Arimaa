@@ -62,13 +62,13 @@ public class Game {
 	private void switchPiece(int x, int y, int x2, int y2) {
 		//System.out.println(x+" "+ y+"  "+x2+" "+y2);
 		char[][] boardArray = currentBoard.getBoardArray();
-		//System.out.println(Arrays.deepToString(boardArray));
+//		System.out.println(Arrays.deepToString(boardArray));
 		char temp = boardArray[y][x];
 		//System.out.println(temp+" "	+boardArray[y][x]+" "+boardArray[y2][x2]);
 		boardArray[y][x]=boardArray[y2][x2];
 		boardArray[y2][x2]=temp;
 
-		//System.out.println(Arrays.deepToString(boardArray));
+//		System.out.println(Arrays.deepToString(boardArray));
 		//System.out.println("SWITCH "+temp+" "	+boardArray[x][y]+" "+boardArray[x2][y2]);
 		currentBoard.setBoardArray(boardArray);
 	}

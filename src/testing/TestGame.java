@@ -75,6 +75,7 @@ public class TestGame {
 		assertTrue(g.move(7, 7, 0));
 		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),g.getSpace(6, 7));
 		assertEquals(null,g.getSpace(7, 7));
+		
 	}
 	
 //	@Test
