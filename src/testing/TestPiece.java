@@ -21,17 +21,26 @@ public class TestPiece {
 		assertNotNull(p);
 	}
 	
+//	@Test
+//	public void testThatPieceInitializesWithValues() {
+//		Image img = null;
+//		try {
+//			//Don't have piece images yet...using board as placeholder
+//			img = ImageIO.read(new File("resources/board.jpg"));
+//		} catch (IOException e) { }
+//		Piece p = new Piece(PieceType.Camel, img);
+//		assertNotNull(p);
+//		assertEquals(PieceType.Camel, p.getType());
+//		assertEquals(img, p.getImg());
+//	}
+	
 	@Test
-	public void testThatPieceInitializesWithValues() {
+	public void testThatTypeCanBeGotten() {
 		Image img = null;
 		try {
-			//Don't have piece images yet...using board as placeholder
-			img = ImageIO.read(new File("resources/board.jpg"));
+			img = ImageIO.read(new File("resources/White rabbit.jpg"));
 		} catch (IOException e) { }
 		Piece p = new Piece(PieceType.Camel, img);
-		assertNotNull(p);
-		assertEquals(PieceType.Camel, p.getType());
-		assertEquals(img, p.getImg());
+		assertEquals(p.getType(), PieceType.Camel);
 	}
-
 }

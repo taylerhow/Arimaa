@@ -15,18 +15,18 @@ public class Piece {
 	}
 
 	public PieceType getType() {
-		return type;
+		return null;
 	}
 
 	public void setType(PieceType type) {
-		this.type = type;
+		
 	}
 
 	public Image getImg() {
-		return img;
+		return null;
 	}
 
 	public void setImg(Image img) {
-		this.img = img;
+		
 	}
 }

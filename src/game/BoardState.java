@@ -1,9 +1,5 @@
 package game;
 /**
- * 
- */
-
-/**
  * This class represents the states of the board.
  * 
  * @author shellajt
