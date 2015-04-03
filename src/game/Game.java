@@ -10,6 +10,10 @@ public class Game {
 	int moveTimer =0;
 	int p1TimeBank=0;
 	int p2TimeBank =0;
+	
+	public Game(BoardState b) {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * 
 	 */
