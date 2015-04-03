@@ -69,10 +69,10 @@ public class TestGame {
 	@Test
 	public void testMoveLegal(){
 		Game g = new Game(b);
+		assertEquals(new Piece(PieceType.Rabbit, null),g.getSpace(7, 7));
 		assertTrue(g.move(7, 7, 0));
-		assertEquals(g.getSpace(7, 6), new Piece(PieceType.Rabbit, null));
-
-		assertEquals(g.getSpace(7, 6), null);
+		assertEquals(new Piece(PieceType.Rabbit, null),g.getSpace(6, 7));
+		assertEquals(null,g.getSpace(7, 7));
 	}
 }
 
