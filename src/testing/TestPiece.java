@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import game.Piece;
+import game.Piece.Owner;
 import game.Piece.PieceType;
 
 import org.junit.Test;
@@ -35,14 +36,14 @@ public class TestPiece {
 	public void testThatTypeCanBeGotten() {
 		Image img = new BufferedImage(1,1,1);
 		Piece p = new Piece(PieceType.Camel, img);
-		assertEquals(p.getType(), PieceType.Camel);
+		assertEquals(PieceType.Camel, p.getType());
 	}
 	
 	@Test
 	public void testThatImageCanBeGotten() {
 		Image img = new BufferedImage(1,1,1);
 		Piece p = new Piece(PieceType.Camel, img);
-		assertEquals(p.getImage(), img);
+		assertEquals(img, p.getImage());
 	}
 	
 	@Test
@@ -50,7 +51,7 @@ public class TestPiece {
 		Image img = new BufferedImage(1,1,1);
 		Piece p = new Piece(PieceType.Camel, img);
 		p.setType(PieceType.Elephant);
-		assertEquals(p.getType(), PieceType.Elephant);
+		assertEquals(PieceType.Elephant, p.getType());
 	}
 	
 	@Test
@@ -59,6 +60,7 @@ public class TestPiece {
 		Image img2 = new BufferedImage(50,50,2);
 		Piece p = new Piece(PieceType.Camel, img);
 		p.setImg(img2);
-		assertEquals(p.getImage(), img2);
+		assertEquals(img2, p.getImage());
 	}
+	
 }
