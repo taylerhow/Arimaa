@@ -2,6 +2,7 @@ package game;
 import game.Piece.PieceType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Game {
@@ -43,20 +44,32 @@ public class Game {
 		switch(dir){
 		case 0:
 			switchPiece(x,y,x,y-1);
+			return true;
 		case 1:
 			switchPiece(x,y,x+1,y);
+			return true;
 		case 2:
 			switchPiece(x,y,x,y+1);
+			return true;
 		case 3:
 			switchPiece(x,y,x+1,y);
+			return true;
 		default:
 			return false;
 		}
 	}
 	//helper for move
-	private void switchPiece(int x, int y, int x2, int i) {
+	private void switchPiece(int x, int y, int x2, int y2) {
+		//System.out.println(x+" "+ y+"  "+x2+" "+y2);
 		char[][] boardArray = currentBoard.getBoardArray();
-		char temp = boardArray[x][y];
+		//System.out.println(Arrays.deepToString(boardArray));
+		char temp = boardArray[y][x];
+		//System.out.println(temp+" "	+boardArray[y][x]+" "+boardArray[y2][x2]);
+		boardArray[y][x]=boardArray[y2][x2];
+		boardArray[y2][x2]=temp;
+
+		//System.out.println(Arrays.deepToString(boardArray));
+		//System.out.println("SWITCH "+temp+" "	+boardArray[x][y]+" "+boardArray[x2][y2]);
 		currentBoard.setBoardArray(boardArray);
 	}
 	/**
