@@ -18,6 +18,21 @@ public class Game {
 		currentBoard = b;
 	}
 	/**
+	 * Creates a board with a default starting layout
+	 */
+	public Game(){
+		currentBoard=new BoardState(new char[][]{
+				{'K','D','H','C','E','H','D','K'},
+				{'R','R','R','R','R','R','R','R'},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{'r','r','r','r','r','r','r','r'},
+				{'k','d','h','c','e','h','d','k'},
+		},0);
+	}
+	/**
 	 * 
 	 */
 	public void render(){}
@@ -41,6 +56,8 @@ public class Game {
 	 * @return
 	 */
 	public boolean move(int x, int y, int dir){
+		boards.add(currentBoard);
+		currentBoard=currentBoard.clone();
 		switch(dir){
 		case 0:
 			switchPiece(x,y,x,y-1);

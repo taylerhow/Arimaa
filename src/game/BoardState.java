@@ -34,4 +34,7 @@ public class BoardState {
 	public void incrementTurn(){
 		this.turnNumber++;
 	}
+	public BoardState clone(){
+		return new BoardState(boardArray, turnNumber);
+	}
 }

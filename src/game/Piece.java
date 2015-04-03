@@ -17,21 +17,51 @@ public class Piece {
 		switch(c){
 		case 'E':
 			this.type=PieceType.Elephant;
+			this.owner=Owner.Player1;
 			break;
 		case 'C':
 			this.type=PieceType.Camel;
+			this.owner=Owner.Player1;
 			break;
 		case 'H':
 			this.type=PieceType.Horse;
+			this.owner=Owner.Player1;
 			break;
 		case 'D':
 			this.type=PieceType.Dog;
+			this.owner=Owner.Player1;
 			break;
 		case 'K':
 			this.type=PieceType.Cat;
+			this.owner=Owner.Player1;
 			break;
 		case 'R':
 			this.type=PieceType.Rabbit;
+			this.owner=Owner.Player1;
+			break;
+		case 'e':
+			this.type=PieceType.Elephant;
+			this.owner=Owner.Player2;
+			break;
+		case 'c':
+			this.type=PieceType.Camel;
+			this.owner=Owner.Player2;
+			break;
+		case 'h':
+			this.type=PieceType.Horse;
+			this.owner=Owner.Player2;
+			break;
+		case 'd':
+			this.type=PieceType.Dog;
+			this.owner=Owner.Player2;
+			break;
+		case 'k':
+			this.type=PieceType.Cat;
+			this.owner=Owner.Player2;
+			break;
+		case 'r':
+			this.type=PieceType.Rabbit;
+			this.owner=Owner.Player2;
 			break;
 		default:
 		}
