@@ -36,9 +36,10 @@ public class Piece {
 		default:
 		}
 	}
-	public Piece(PieceType t, Image i){
+	public Piece(PieceType t, Image i, Owner o){
 		this.type = t;
 		this.image = i;
+		this.owner = o;
 	}
 
 	public PieceType getType() {

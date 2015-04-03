@@ -52,7 +52,7 @@ public class TestGame {
 	@Test
 	public void testGetPieceExists() {
 		Game g= new Game(b);
-		assertEquals(g.getSpace(4, 3), new Piece(PieceType.Camel, null));
+		assertEquals(g.getSpace(4, 3), new Piece(PieceType.Camel, null, Piece.Owner.Player1));
 	}
 	
 	@Test
@@ -63,7 +63,7 @@ public class TestGame {
 	@Test
 	public void testGetPieceExistsAgain() {
 		Game g= new Game(b);
-		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null));
+		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null, Piece.Owner.Player1));
 	}
 }
 
