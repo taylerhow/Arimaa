@@ -30,4 +30,8 @@ public class BoardState {
 	public void setTurnNumber(int turnNumber) {
 		this.turnNumber = turnNumber;
 	}
+	
+	public void incrementTurn(){
+		
+	}
 }

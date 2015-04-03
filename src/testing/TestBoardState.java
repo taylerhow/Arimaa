@@ -42,5 +42,14 @@ public class TestBoardState {
 		assertEquals('c', bs.getBoardArray()[4][4]);
 		assertEquals(1, bs.getTurnNumber());
 	}
+	
+	@Test
+	public void testTurnNumberIncrements(){
+		b.incrementTurn();
+		assertEquals(1, b.getTurnNumber());
+		b.incrementTurn();
+		b.incrementTurn();
+		assertEquals(3, b.getTurnNumber());
+	}
 
 }
