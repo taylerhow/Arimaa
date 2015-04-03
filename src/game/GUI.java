@@ -206,6 +206,24 @@ public class GUI {
 			timeBankComboBox.setLocation(panel.getWidth() / 2,
 					panel.getHeight() / 2 + timeBankComboBox.getHeight());
 			timeBankComboBox.setVisible(true);
+			
+			//Set up Start Game Button
+			JButton startGameButton = new JButton();
+			startGameButton.setSize(110, 25);
+			startGameButton.setText("Load Game");
+			startGameButton.setLocation((panel.getWidth() / 2) - 110,
+					(panel.getHeight() / 2) + (2*startGameButton.getHeight()));
+			panel.add(startGameButton);
+			startGameButton.setVisible(true);
+			
+			//Set up Cancel Button
+			JButton cancelButton = new JButton();
+			cancelButton.setSize(110, 25);
+			cancelButton.setText("Load Game");
+			cancelButton.setLocation((panel.getWidth() / 2),
+					(panel.getHeight() / 2) + (2*cancelButton.getHeight()));
+			panel.add(cancelButton);
+			cancelButton.setVisible(true);
 		}
 	}
 

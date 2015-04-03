@@ -5,7 +5,6 @@ import game.BoardState;
 
 import org.junit.Test;
 
-
 /**
  * @author shellajt
  *
