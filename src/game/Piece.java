@@ -27,6 +27,6 @@ public class Piece {
 	}
 
 	public void setImg(Image img) {
-		
+		this.image = img;
 	}
 }
