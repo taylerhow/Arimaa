@@ -97,11 +97,11 @@ public class GUI {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JFrame gameFrame = new JFrame();
-			activeFrame.dispose();
-			activeFrame = gameFrame;
-			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//			activeFrame.dispose();
+//			activeFrame = gameFrame;
+//			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			gameFrame.setSize(400, 400);
-			gameFrame.setTitle("Arimaa");
+			gameFrame.setTitle("New Game Options");
 			gameFrame.setVisible(true);
 		}
 	}
