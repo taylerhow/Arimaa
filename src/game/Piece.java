@@ -23,7 +23,7 @@ public class Piece {
 	}
 
 	public Image getImg() {
-		return null;
+		return this.img;
 	}
 
 	public void setImg(Image img) {
