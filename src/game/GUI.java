@@ -36,7 +36,7 @@ public class GUI {
 		GUI g = new GUI();
 
 		// Add MAIN MENU panel with appropriate background image
-		ImagePanel panel = g.new ImagePanel(
+		ImagePanel panel = new ImagePanel(
 				new ImageIcon("resources/BoardStoneBig.jpg").getImage());
 		g.activeFrame.getContentPane().add(panel);
 		g.activeFrame.pack();
@@ -101,13 +101,18 @@ public class GUI {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JFrame gameFrame = new JFrame();
+			JFrame settingsFrame = new JFrame();
 //			activeFrame.dispose();
 //			activeFrame = gameFrame;
 //			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			gameFrame.setSize(400, 400);
-			gameFrame.setTitle("New Game Options");
-			gameFrame.setVisible(true);
+			settingsFrame.setTitle("New Game Options");
+			settingsFrame.setVisible(true);
+			
+			ImagePanel panel = new ImagePanel(
+					new ImageIcon("resources/BoardStoneBigCropped.jpg").getImage());
+			settingsFrame.getContentPane().add(panel);
+			settingsFrame.pack();
+			panel.setVisible(true);
 		}
 	}
 	
@@ -125,27 +130,28 @@ public class GUI {
 		}
 	}
 	
-	class ImagePanel extends JPanel {
+}
 
-		private Image img;
+class ImagePanel extends JPanel {
 
-		public ImagePanel(String img) {
-			this(new ImageIcon(img).getImage());
-		}
+	private Image img;
 
-		public ImagePanel(Image img) {
-			this.img = img;
-			Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-			setPreferredSize(size);
-			setMinimumSize(size);
-			setMaximumSize(size);
-			setSize(size);
-			setLayout(null);
-		}
-
-		public void paintComponent(Graphics g) {
-			g.drawImage(img, 0, 0, null);
-		}
-
+	public ImagePanel(String img) {
+		this(new ImageIcon(img).getImage());
 	}
+
+	public ImagePanel(Image img) {
+		this.img = img;
+		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+		setPreferredSize(size);
+		setMinimumSize(size);
+		setMaximumSize(size);
+		setSize(size);
+		setLayout(null);
+	}
+
+	public void paintComponent(Graphics g) {
+		g.drawImage(img, 0, 0, null);
+	}
+
 }

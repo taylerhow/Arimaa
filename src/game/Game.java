@@ -1,15 +1,21 @@
 package game;
+import game.Piece.PieceType;
+
 import java.util.ArrayList;
 
 
 public class Game {
 	//fields
 	ArrayList<BoardState> boards= new ArrayList<BoardState>();
-	BoardState currentBoard=null;
+	public BoardState currentBoard=null;
 	int numMovesLeft =0;
 	int moveTimer =0;
 	int p1TimeBank=0;
 	int p2TimeBank =0;
+	
+	public Game(BoardState b) {
+		currentBoard = b;
+	}
 	/**
 	 * 
 	 */
@@ -21,7 +27,10 @@ public class Game {
 	 * @return
 	 */
 	public Piece getSpace(int x, int y){
-		return null;
+		if(currentBoard.getBoardArray()[x][y]==' ')
+			return null;
+		return new Piece(currentBoard.getBoardArray()[x][y]);
+		
 	}
 	/**
 	 * 
