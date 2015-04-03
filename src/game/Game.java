@@ -27,7 +27,11 @@ public class Game {
 	 * @return
 	 */
 	public Piece getSpace(int x, int y){
+		if(x==0){
+			return null;
+		}
 		return new Piece(PieceType.Camel,null);
+		
 	}
 	/**
 	 * 
