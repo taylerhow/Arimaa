@@ -1,11 +1,12 @@
 package testing;
 import static org.junit.Assert.*;
 import game.*;
-import game.Piece.PieceType;
+import game.Piece.*;
 
 import java.util.Arrays;
 import java.util.Collection;
  
+
 
 
 
@@ -64,15 +65,15 @@ public class TestGame {
 	public void testGetPieceExistsAgain() {
 		Game g= new Game(b);
 		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null, Piece.Owner.Player1));
-		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null));
+		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null, Owner.Player1));
 	}
 	
 	@Test
 	public void testMoveLegal(){
 		Game g = new Game(b);
-		assertEquals(new Piece(PieceType.Rabbit, null),g.getSpace(7, 7));
+		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),g.getSpace(7, 7));
 		assertTrue(g.move(7, 7, 0));
-		assertEquals(new Piece(PieceType.Rabbit, null),g.getSpace(6, 7));
+		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),g.getSpace(6, 7));
 		assertEquals(null,g.getSpace(7, 7));
 	}
 }
