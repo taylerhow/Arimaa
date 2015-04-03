@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -36,17 +37,19 @@ public class GUI {
 
 		// Add MAIN MENU panel with appropriate background image
 		ImagePanel panel = g.new ImagePanel(
-				new ImageIcon("resources/board.jpg").getImage());
+				new ImageIcon("resources/BoardStoneBig.jpg").getImage());
 		g.activeFrame.getContentPane().add(panel);
 		g.activeFrame.pack();
 		panel.setVisible(true);
 
 		// Add the NEW GAME button to the Main Menu
 		JButton newGameButton = new JButton();
-		newGameButton.setSize(100, 50);
+		newGameButton.setSize(150, 75);
 		newGameButton.setText("New Game");
+		Font font = newGameButton.getFont();
+		newGameButton.setFont(new Font(font.getName(), 4, 20));
 		newGameButton.setLocation((panel.getWidth() / 4) - 35,
-				(panel.getHeight() / 2) - 25);
+				(panel.getHeight() / 2) - 37);
 		panel.add(newGameButton);
 		newGameButton.setVisible(true);
 
@@ -55,10 +58,12 @@ public class GUI {
 
 		// Add the LOAD GAME button to the Main Menu
 		JButton loadGameButton = new JButton();
-		loadGameButton.setSize(100, 50);
+		loadGameButton.setSize(150, 75);
 		loadGameButton.setText("Load Game");
-		loadGameButton.setLocation((panel.getWidth() / 4) * 3 - 65,
-				(panel.getHeight() / 2) - 25);
+		Font font2 = loadGameButton.getFont();
+		loadGameButton.setFont(new Font(font2.getName(), 4, 20));
+		loadGameButton.setLocation((panel.getWidth() / 4) * 3 - 110,
+				(panel.getHeight() / 2) - 37);
 		panel.add(loadGameButton);
 		loadGameButton.setVisible(true);
 		
