@@ -76,5 +76,6 @@ public class TestGame {
 		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),g.getSpace(6, 7));
 		assertEquals(null,g.getSpace(7, 7));
 	}
+	
 }
 
