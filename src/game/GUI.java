@@ -3,6 +3,7 @@ package game;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,8 +39,8 @@ public class GUI {
 		GUI g = new GUI();
 
 		// Add MAIN MENU panel with appropriate background image
-		ImagePanel panel = new ImagePanel(
-				new ImageIcon("resources/BoardStoneBig.jpg").getImage());
+		ImagePanel panel = new ImagePanel(new ImageIcon(
+				"resources/BoardStoneBig.jpg").getImage());
 		g.activeFrame.getContentPane().add(panel);
 		g.activeFrame.pack();
 		panel.setVisible(true);
@@ -68,8 +69,8 @@ public class GUI {
 				(panel.getHeight() / 2) - 37);
 		panel.add(loadGameButton);
 		loadGameButton.setVisible(true);
-		
-		//Setup ActionListener for the LOAD GAME button
+
+		// Setup ActionListener for the LOAD GAME button
 		loadGameButton.addActionListener(g.new loadGameListener());
 
 		g.activeFrame.setVisible(true);
@@ -106,67 +107,123 @@ public class GUI {
 			JFrame settingsFrame = new JFrame();
 			settingsFrame.setTitle("New Game Options");
 			settingsFrame.setVisible(true);
-			
-			ImagePanel panel = new ImagePanel(
-					new ImageIcon("resources/BoardStoneBigCropped.jpg").getImage());
+
+			ImagePanel panel = new ImagePanel(new ImageIcon(
+					"resources/BoardStoneBigCropped.jpg").getImage());
 			settingsFrame.getContentPane().add(panel);
 			settingsFrame.pack();
 			panel.setVisible(true);
-			
-			//Set up Player 1 Name Label and Text Field
+
+			// Set up Player 1 Name Label and Text Field
 			JLabel p1NameLabel = new JLabel();
 			p1NameLabel.setText("Player 1 Name:");
+			p1NameLabel.setForeground(Color.WHITE);
 			Font p1NameFont = p1NameLabel.getFont();
 			p1NameLabel.setFont(new Font(p1NameFont.getName(), 4, 14));
 			p1NameLabel.setSize(110, 25);
 			panel.add(p1NameLabel);
-			p1NameLabel.setLocation(panel.getWidth()/2-p1NameLabel.getWidth(), panel.getHeight()/2-p1NameLabel.getHeight()*2);
+			p1NameLabel.setLocation(
+					panel.getWidth() / 2 - p1NameLabel.getWidth(),
+					panel.getHeight() / 2 - p1NameLabel.getHeight() * 2);
 			p1NameLabel.setVisible(true);
-			
+
 			JTextField p1NameField = new JTextField();
 			p1NameField.setSize(110, 25);
 			Font p1FieldFont = p1NameField.getFont();
 			p1NameLabel.setFont(new Font(p1FieldFont.getName(), 4, 14));
 			panel.add(p1NameField);
-			p1NameField.setLocation(panel.getWidth()/2, panel.getHeight()/2-p1NameField.getHeight()*2);
+			p1NameField.setLocation(panel.getWidth() / 2, panel.getHeight() / 2
+					- p1NameField.getHeight() * 2);
 			p1NameField.setVisible(true);
-			
-			//Set up Player 2 Name Label and Text Field
+
+			// Set up Player 2 Name Label and Text Field
 			JLabel p2NameLabel = new JLabel();
 			p2NameLabel.setText("Player 2 Name:");
+			p2NameLabel.setForeground(Color.WHITE);
 			Font p2NameFont = p2NameLabel.getFont();
 			p2NameLabel.setFont(new Font(p2NameFont.getName(), 4, 14));
 			p2NameLabel.setSize(110, 25);
 			panel.add(p2NameLabel);
-			p2NameLabel.setLocation(panel.getWidth()/2-p2NameLabel.getWidth(), panel.getHeight()/2-p2NameLabel.getHeight());
+			p2NameLabel.setLocation(
+					panel.getWidth() / 2 - p2NameLabel.getWidth(),
+					panel.getHeight() / 2 - p2NameLabel.getHeight());
 			p2NameLabel.setVisible(true);
-			
+
 			JTextField p2NameField = new JTextField();
 			p2NameField.setSize(110, 25);
 			Font p2FieldFont = p2NameField.getFont();
 			p2NameLabel.setFont(new Font(p2FieldFont.getName(), 4, 14));
 			panel.add(p2NameField);
-			p2NameField.setLocation(panel.getWidth()/2, panel.getHeight()/2-p2NameField.getHeight());
+			p2NameField.setLocation(panel.getWidth() / 2, panel.getHeight() / 2
+					- p2NameField.getHeight());
 			p2NameField.setVisible(true);
-			
-			//Set up Turn Timer Label and Text Field
+
+			// Set up Turn Timer Label and Text Field
+			JLabel turnTimerLabel = new JLabel();
+			turnTimerLabel.setText("Turn Timer:");
+			turnTimerLabel.setForeground(Color.WHITE);
+			Font turnTimerFont = turnTimerLabel.getFont();
+			turnTimerLabel.setFont(new Font(turnTimerFont.getName(), 4, 14));
+			turnTimerLabel.setSize(110, 25);
+			panel.add(turnTimerLabel);
+			turnTimerLabel.setLocation(
+					panel.getWidth() / 2 - turnTimerLabel.getWidth(),
+					panel.getHeight() / 2);
+			turnTimerLabel.setVisible(true);
+
+			String[] turnTimerPresets = { "0:30", "0:45", "1:00", "1:15", "1:30",
+					"1:45", "2:00", "M:SS" };
+			JComboBox<String> turnTimerComboBox = new JComboBox<String>(
+					turnTimerPresets);
+			turnTimerComboBox.setEditable(true);
+			turnTimerComboBox.setSize(110, 25);
+			panel.add(turnTimerComboBox);
+			turnTimerComboBox.setLocation(panel.getWidth() / 2,
+					panel.getHeight() / 2);
+			turnTimerComboBox.setVisible(true);
+
+			// Set up Turn Timer Label and Text Field
+			JLabel timeBankLabel = new JLabel();
+			timeBankLabel.setText("Time Bank Cap:");
+			timeBankLabel.setForeground(Color.WHITE);
+			Font timeBankFont = timeBankLabel.getFont();
+			timeBankLabel.setFont(new Font(timeBankFont.getName(), 4, 14));
+			timeBankLabel.setSize(110, 25);
+			panel.add(timeBankLabel);
+			timeBankLabel.setLocation(
+					panel.getWidth() / 2 - timeBankLabel.getWidth(),
+					panel.getHeight() / 2 + timeBankLabel.getHeight());
+			timeBankLabel.setVisible(true);
+
+			String[] timeBankPresets = { "0:30", "0:45", "1:00", "1:15", "1:30",
+					"1:45", "2:00", "M:SS" };
+			JComboBox<String> timeBankComboBox = new JComboBox<String>(
+					timeBankPresets);
+			timeBankComboBox.setEditable(true);
+			timeBankComboBox.setSize(110, 25);
+			panel.add(timeBankComboBox);
+			timeBankComboBox.setLocation(panel.getWidth() / 2,
+					panel.getHeight() / 2 + timeBankComboBox.getHeight());
+			timeBankComboBox.setVisible(true);
 		}
 	}
-	
+
 	class loadGameListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JFileChooser fileChooser = new JFileChooser();
-			fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+			fileChooser.setCurrentDirectory(new File(System
+					.getProperty("user.home")));
 			int result = fileChooser.showOpenDialog(activeFrame);
 			if (result == JFileChooser.APPROVE_OPTION) {
-			    File selectedFile = fileChooser.getSelectedFile();
-			    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+				File selectedFile = fileChooser.getSelectedFile();
+				System.out.println("Selected file: "
+						+ selectedFile.getAbsolutePath());
 			}
 		}
 	}
-	
+
 }
 
 class ImagePanel extends JPanel {
