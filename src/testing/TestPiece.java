@@ -40,20 +40,14 @@ public class TestPiece {
 	
 	@Test
 	public void testThatImageCanBeGotten() {
-		Image img = null;
-		try {
-			img = ImageIO.read(new File("resources/White rabbit.jpg"));
-		} catch (IOException e) { }
+		Image img = new BufferedImage(1,1,1);
 		Piece p = new Piece(PieceType.Camel, img);
 		assertEquals(p.getImage(), img);
 	}
 	
 	@Test
 	public void testThatTypeCanBeSet(){
-		Image img = null;
-		try {
-			img = ImageIO.read(new File("resources/White rabbit.jpg"));
-		} catch (IOException e) { }
+		Image img = new BufferedImage(1,1,1);
 		Piece p = new Piece(PieceType.Camel, img);
 		p.setType(PieceType.Elephant);
 		assertEquals(p.getType(), PieceType.Elephant);
@@ -61,16 +55,8 @@ public class TestPiece {
 	
 	@Test
 	public void testThatImageCanBeSet(){
-		Image img = null;
-		Image img2 = null;
-		try {
-			img = ImageIO.read(new File("resources/White rabbit.jpg"));
-		} catch (IOException e) { }
-		
-		try {
-			img = ImageIO.read(new File("resources/White cat.jpg"));
-		} catch (IOException e) { }
-		
+		Image img = new BufferedImage(1,1,1);
+		Image img2 = new BufferedImage(50,50,2);
 		Piece p = new Piece(PieceType.Camel, img);
 		p.setImg(img2);
 		assertEquals(p.getImage(), img2);
