@@ -27,10 +27,9 @@ public class Game {
 	 * @return
 	 */
 	public Piece getSpace(int x, int y){
-		if(x==0){
+		if(currentBoard.getBoardArray()[x][y]==' ')
 			return null;
-		}
-		return new Piece(PieceType.Camel,null);
+		return new Piece(currentBoard.getBoardArray()[x][y]);
 		
 	}
 	/**
