@@ -53,4 +53,15 @@ public class TestPiece {
 		Piece p = new Piece(PieceType.Camel, img);
 		assertEquals(p.getImg(), img);
 	}
+	
+	@Test
+	public void testThatTypeCanBeSet(){
+		Image img = null;
+		try {
+			img = ImageIO.read(new File("resources/White rabbit.jpg"));
+		} catch (IOException e) { }
+		Piece p = new Piece(PieceType.Camel, img);
+		p.setType(PieceType.Elephant);
+		assertEquals(p.getType(), PieceType.Elephant);
+	}
 }
