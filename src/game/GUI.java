@@ -121,7 +121,7 @@ public class GUI {
 
 			// Set up Player 1 Name Label and Text Field
 			JLabel p1NameLabel = new JLabel();
-			p1NameLabel.setText("Player 1 Name:");
+			p1NameLabel.setText("<html><b>Player 1 Name:</b><html>");
 			p1NameLabel.setForeground(Color.WHITE);
 			Font p1NameFont = p1NameLabel.getFont();
 			p1NameLabel.setFont(new Font(p1NameFont.getName(), 4, 14));
@@ -143,7 +143,7 @@ public class GUI {
 
 			// Set up Player 2 Name Label and Text Field
 			JLabel p2NameLabel = new JLabel();
-			p2NameLabel.setText("Player 2 Name:");
+			p2NameLabel.setText("<html><b>Player 2 Name:</b></hmtl>");
 			p2NameLabel.setForeground(Color.WHITE);
 			Font p2NameFont = p2NameLabel.getFont();
 			p2NameLabel.setFont(new Font(p2NameFont.getName(), 4, 14));
@@ -165,7 +165,7 @@ public class GUI {
 
 			// Set up Turn Timer Label and Text Field
 			JLabel turnTimerLabel = new JLabel();
-			turnTimerLabel.setText("Turn Timer:");
+			turnTimerLabel.setText("<html><b>Turn Timer:</b></html>");
 			turnTimerLabel.setForeground(Color.WHITE);
 			Font turnTimerFont = turnTimerLabel.getFont();
 			turnTimerLabel.setFont(new Font(turnTimerFont.getName(), 4, 14));
@@ -189,7 +189,7 @@ public class GUI {
 
 			// Set up Turn Timer Label and Text Field
 			JLabel timeBankLabel = new JLabel();
-			timeBankLabel.setText("Time Bank Cap:");
+			timeBankLabel.setText("<html> <b>Time Bank Cap:</b></html>");
 			timeBankLabel.setForeground(Color.WHITE);
 			Font timeBankFont = timeBankLabel.getFont();
 			timeBankLabel.setFont(new Font(timeBankFont.getName(), 4, 14));
@@ -214,7 +214,7 @@ public class GUI {
 			//Set up Start Game Button
 			JButton startGameButton = new JButton();
 			startGameButton.setSize(110, 25);
-			startGameButton.setText("Load Game");
+			startGameButton.setText("Start Game");
 			startGameButton.setLocation((panel.getWidth() / 2) - 110,
 					(panel.getHeight() / 2) + (2*startGameButton.getHeight()));
 			panel.add(startGameButton);
@@ -223,7 +223,7 @@ public class GUI {
 			//Set up Cancel Button
 			JButton cancelButton = new JButton();
 			cancelButton.setSize(110, 25);
-			cancelButton.setText("Load Game");
+			cancelButton.setText("Cancel");
 			cancelButton.setLocation((panel.getWidth() / 2),
 					(panel.getHeight() / 2) + (2*cancelButton.getHeight()));
 			panel.add(cancelButton);
