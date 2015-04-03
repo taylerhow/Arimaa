@@ -59,10 +59,11 @@ public class Piece {
 	}
 
 	public Owner getOwner() {
-		return null;
+		return this.owner;
 	}
 
 	public void setOwner(Owner owner) {
+		this.owner = owner;
 	}
 	
 	public boolean equals(Object p2){

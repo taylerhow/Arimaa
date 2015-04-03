@@ -60,7 +60,7 @@ public class TestPiece {
 	}
 	
 	@Test
-	public void testThatOwnerCanBeSet(){
+	public void testThatOwnerCanBeSetAndGotten(){
 		Image img = new BufferedImage(1,1,1);
 		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
 		p.setOwner(Owner.Player2);
