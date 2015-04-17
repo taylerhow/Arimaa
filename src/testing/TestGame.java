@@ -64,8 +64,8 @@ public class TestGame {
 	@Test
 	public void testMoveIllegal(){
 		Game g = new Game(b);
-		System.out.println(g.getSpace(7,7).getType());
 		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(7, 7));
+		assertFalse(g.move(7, 7, 2));
 		
 	}
 	
