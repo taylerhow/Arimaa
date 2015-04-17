@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Color;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -17,6 +18,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -25,6 +27,23 @@ public class GUI {
 	private String p1name;
 	private String p2name;
 	private ArrayList<JFrame> activeFrames;
+	
+	//White pieces belong to Player1, at the top of the board
+	private Image whiteRabbitImage = null;
+	private Image whiteCatImage = null;
+	private Image whiteDogImage = null;
+	private Image whiteHorseImage = null;
+	private Image whiteCamelImage = null;
+	private Image whiteElephantImage = null;
+	
+	//Black pieces belong to Player2, at the bottom of the board
+	private Image blackRabbitImage = null;
+	private Image blackCatImage = null;
+	private Image blackDogImage = null;
+	private Image blackHorseImage = null;
+	private Image blackCamelImage = null;
+	private Image blackElephantImage = null;
+	
 
 	public GUI() {
 		this.p1name = "Player 1";
@@ -34,6 +53,49 @@ public class GUI {
 		this.activeFrames.add(mainMenuFrame);
 		mainMenuFrame.setTitle("Welcome to Arimaa!");
 		mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Setting images
+		try {
+			File whiteRabbitFile = new File("resources/White rabbit.png");
+			whiteRabbitImage = ImageIO.read(whiteRabbitFile);
+			
+			File whiteCatFile = new File("resources/White cat.png");
+			whiteCatImage = ImageIO.read(whiteCatFile);
+			
+			File whiteDogFile = new File("resources/White dog.png");
+			whiteDogImage = ImageIO.read(whiteDogFile);
+			
+			File whiteHorseFile = new File("resources/White horse.png");
+			whiteHorseImage = ImageIO.read(whiteHorseFile);
+			
+			File whiteCamelFile = new File("resources/White camel.png");
+			whiteCamelImage = ImageIO.read(whiteCamelFile);
+			
+			File whiteElephantFile = new File("resources/White elephant.png");
+			whiteElephantImage = ImageIO.read(whiteElephantFile);
+			
+			File blackRabbitFile = new File("resources/Black rabbit.png");
+			blackRabbitImage = ImageIO.read(blackRabbitFile);
+			
+			File blackCatFile = new File("resources/Black cat.png");
+			blackCatImage = ImageIO.read(blackCatFile);
+			
+			File blackDogFile = new File("resources/Black dog.png");
+			blackDogImage = ImageIO.read(blackDogFile);
+			
+			File blackHorseFile = new File("resources/Black horse.png");
+			blackHorseImage = ImageIO.read(blackHorseFile);
+			
+			File blackCamelFile = new File("resources/Black camel.png");
+			blackCamelImage = ImageIO.read(blackCamelFile);
+			
+			File blackElephantFile = new File("resources/Black elephant.png");
+			blackElephantImage = ImageIO.read(blackElephantFile);
+		}
+		catch (IOException e){
+			System.out.println("Setting Files in GUI Constructor Went Horrible Wrong!");
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {
@@ -283,6 +345,8 @@ public class GUI {
 			panel.setVisible(true);
 			
 			gameFrame.setVisible(true);
+			//Begin placing pieces
+			
 		}
 	}
 }

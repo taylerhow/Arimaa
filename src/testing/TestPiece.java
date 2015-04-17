@@ -71,6 +71,6 @@ public class TestPiece {
 	public void testComparatorChecksOwners(){
 		assertNotEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
 		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2), new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
-
 	}
+
 }
