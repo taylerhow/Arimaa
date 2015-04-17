@@ -64,7 +64,7 @@ public class TestGame {
 	@Test
 	public void testMoveIllegalDown(){
 		Game g = new Game();
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2), g.getSpace(7, 7));
+		assertEquals(new Piece(PieceType.Cat, null, Piece.Owner.Player2), g.getSpace(7, 7));
 		assertFalse(g.move(7, 7, 2));
 		
 	}
@@ -73,8 +73,14 @@ public class TestGame {
 	public void testMoveIllegalUp(){
 		Game g = new Game();
 		assertEquals(new Piece(PieceType.Cat, null, Piece.Owner.Player1), g.getSpace(0, 0));
-		assertFalse(g.move(7, 7, 1));
+		assertFalse(g.move(0, 0, 0));
 		
+	}
+	
+	@Test 
+	public void testMoveIllegalRight(){
+		Game g = new Game();
+		assertFalse(g.move(7, 7, 1));
 	}
 	
 	
