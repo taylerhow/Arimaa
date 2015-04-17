@@ -60,8 +60,11 @@ public class Game {
 		currentBoard=currentBoard.clone();
 		switch(dir){
 		case 0:
-			switchPiece(x,y,x,y-1);
-			return true;
+			if (y - 1 > 0) {
+				switchPiece(x, y, x, y - 1);
+				return true;
+			}
+			return false;
 		case 1:
 			switchPiece(x,y,x+1,y);
 			return true;
