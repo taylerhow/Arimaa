@@ -103,18 +103,18 @@ public class Game {
 		currentBoard.setBoardArray(boardArray);
 	}
 	/**
-	 * 
+	 * 0: up, 1: right, 2: down, 3: left
 	 * @param x
 	 * @param y
-	 * @param dir1
-	 * @param dir2
+	 * @param dir1 the direction the pushing piece will move
+	 * @param dir2 the direction the pushed piece will move
 	 * @return
 	 */
 	public boolean push(int x, int y, int dir1, int dir2){
 		return false;
 	}
 	/**
-	 * 
+	 * 0: up, 1: right, 2: down, 3: left
 	 * @param x
 	 * @param y
 	 * @param dir1
