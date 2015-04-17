@@ -131,6 +131,7 @@ public class TestGame {
 		Game g=new Game(b);
 		assertFalse(g.push(3, 3, 0, 0));
 		assertTrue(g.push(4, 3, 1, 1));
+		assertFalse(g.push(4,3,1,0));
 	}
 }
 
