@@ -78,8 +78,11 @@ public class Game {
 			}
 			return false;
 		case 3:
-			switchPiece(x,y,x+1,y);
-			return true;
+			if (x - 1 > 0) {
+				switchPiece(x, y, x - 1, y);
+				return true;
+			}
+			return false;
 		default:
 			return false;
 		}
