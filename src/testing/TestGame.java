@@ -124,5 +124,12 @@ public class TestGame {
 		Game g = new Game();
 		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(1, 1));
 	}
+	
+	
+	@Test
+	public void testPushValid(){
+		Game g=new Game(b);
+		assertFalse(g.push(3, 3, 0, 0));
+	}
 }
 
