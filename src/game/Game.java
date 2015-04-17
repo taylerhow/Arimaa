@@ -1,8 +1,5 @@
 package game;
-import game.Piece.PieceType;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class Game {
