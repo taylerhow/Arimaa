@@ -3,22 +3,7 @@ import static org.junit.Assert.*;
 import game.*;
 import game.Piece.PieceType;
 
-import java.util.Arrays;
-import java.util.Collection;
- 
-
-
-
 import org.junit.Test;
-import org.junit.Before;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-import org.junit.runner.RunWith;
-
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 
 public class TestGame {
 	BoardState b = new BoardState(new char[][] {
@@ -74,6 +59,14 @@ public class TestGame {
 		assertTrue(g.move(7, 7, 0));
 		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),g.getSpace(6, 7));
 		assertEquals(null,g.getSpace(7, 7));
+	}
+	
+	@Test
+	public void testMoveIllegal(){
+		Game g = new Game(b);
+		System.out.println(g.getSpace(7,7).getType());
+		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(7, 7));
+		
 	}
 	
 	@Test

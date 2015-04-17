@@ -66,4 +66,11 @@ public class TestPiece {
 		p.setOwner(Owner.Player2);
 		assertEquals(Owner.Player2, p.getOwner());
 	}
+	
+	@Test
+	public void testComparatorChecksOwners(){
+		assertNotEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
+		assertNotEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2), new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
+
+	}
 }
