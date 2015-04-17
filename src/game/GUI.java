@@ -30,20 +30,20 @@ public class GUI {
 	private Game game;
 	
 	//White pieces belong to Player1, at the top of the board
-	private Image whiteRabbitImage = null;
-	private Image whiteCatImage = null;
-	private Image whiteDogImage = null;
-	private Image whiteHorseImage = null;
-	private Image whiteCamelImage = null;
-	private Image whiteElephantImage = null;
+	private ImagePanel whiteRabbitPanel = null;
+	private ImagePanel whiteCatPanel = null;
+	private ImagePanel whiteDogPanel = null;
+	private ImagePanel whiteHorsePanel = null;
+	private ImagePanel whiteCamelPanel = null;
+	private ImagePanel whiteElephantPanel = null;
 	
 	//Black pieces belong to Player2, at the bottom of the board
-	private Image blackRabbitImage = null;
-	private Image blackCatImage = null;
-	private Image blackDogImage = null;
-	private Image blackHorseImage = null;
-	private Image blackCamelImage = null;
-	private Image blackElephantImage = null;
+	private ImagePanel blackRabbitPanel = null;
+	private ImagePanel blackCatPanel = null;
+	private ImagePanel blackDogPanel = null;
+	private ImagePanel blackHorsePanel = null;
+	private ImagePanel blackCamelPanel = null;
+	private ImagePanel blackElephantPanel = null;
 	
 
 	public GUI() {
@@ -56,48 +56,18 @@ public class GUI {
 		mainMenuFrame.setTitle("Welcome to Arimaa!");
 		mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//Setting images
-		try {
-			File whiteRabbitFile = new File("resources/White rabbit.png");
-			whiteRabbitImage = ImageIO.read(whiteRabbitFile);
-			
-			File whiteCatFile = new File("resources/White cat.png");
-			whiteCatImage = ImageIO.read(whiteCatFile);
-			
-			File whiteDogFile = new File("resources/White dog.png");
-			whiteDogImage = ImageIO.read(whiteDogFile);
-			
-			File whiteHorseFile = new File("resources/White horse.png");
-			whiteHorseImage = ImageIO.read(whiteHorseFile);
-			
-			File whiteCamelFile = new File("resources/White camel.png");
-			whiteCamelImage = ImageIO.read(whiteCamelFile);
-			
-			File whiteElephantFile = new File("resources/White elephant.png");
-			whiteElephantImage = ImageIO.read(whiteElephantFile);
-			
-			File blackRabbitFile = new File("resources/Black rabbit.png");
-			blackRabbitImage = ImageIO.read(blackRabbitFile);
-			
-			File blackCatFile = new File("resources/Black cat.png");
-			blackCatImage = ImageIO.read(blackCatFile);
-			
-			File blackDogFile = new File("resources/Black dog.png");
-			blackDogImage = ImageIO.read(blackDogFile);
-			
-			File blackHorseFile = new File("resources/Black horse.png");
-			blackHorseImage = ImageIO.read(blackHorseFile);
-			
-			File blackCamelFile = new File("resources/Black camel.png");
-			blackCamelImage = ImageIO.read(blackCamelFile);
-			
-			File blackElephantFile = new File("resources/Black elephant.png");
-			blackElephantImage = ImageIO.read(blackElephantFile);
-		}
-		catch (IOException e){
-			System.out.println("Setting Files in GUI Constructor Went Horribly Wrong!");
-			e.printStackTrace();
-		}
+		whiteRabbitPanel = new ImagePanel(new ImageIcon("resources/White rabbit.png").getImage());
+		whiteCatPanel = new ImagePanel(new ImageIcon("resources/White cat.png").getImage());
+		whiteDogPanel = new ImagePanel(new ImageIcon("resources/White dog.png").getImage());
+		whiteHorsePanel = new ImagePanel(new ImageIcon("resources/White horse.png").getImage());
+		whiteCamelPanel = new ImagePanel(new ImageIcon("resources/White camel.png").getImage());
+		whiteElephantPanel = new ImagePanel(new ImageIcon("resources/White elephant.png").getImage());
+		blackRabbitPanel = new ImagePanel(new ImageIcon("resources/Black rabbit.png").getImage());
+		blackCatPanel = new ImagePanel(new ImageIcon("resources/Black cat.png").getImage());
+		blackDogPanel = new ImagePanel(new ImageIcon("resources/Black dog.png").getImage());
+		blackHorsePanel = new ImagePanel(new ImageIcon("resources/Black horse.png").getImage());
+		blackCamelPanel = new ImagePanel(new ImageIcon("resources/Black camel.png").getImage());
+		blackElephantPanel = new ImagePanel(new ImageIcon("resources/Black elephant.png").getImage());
 	}
 
 	public static void main(String[] args) {
