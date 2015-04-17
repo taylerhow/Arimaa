@@ -1,5 +1,8 @@
 package game;
 
+import game.Piece.Owner;
+import game.Piece.PieceType;
+
 import java.awt.Color;
 
 import javax.imageio.ImageIO;
@@ -44,6 +47,8 @@ public class GUI {
 	private ImagePanel blackHorsePanel = null;
 	private ImagePanel blackCamelPanel = null;
 	private ImagePanel blackElephantPanel = null;
+	
+	private ImagePanel gameBoardPanel = null;
 	
 
 	public GUI() {
@@ -133,6 +138,102 @@ public class GUI {
 
 	public void setActiveFrames(ArrayList<JFrame> frames) {
 		this.activeFrames = frames;
+	}
+	
+	public void renderBoard(){
+		char[][] boardArray = this.game.currentBoard.getBoardArray();
+		for(int row = 0; row < 8; row++){
+			for(int column = 0; column < 8; column++){
+				char c = boardArray[row][column];
+				switch(c){
+				case 'E':
+					this.gameBoardPanel.add(this.whiteElephantPanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsE = new Coordinates(row, column);
+					this.whiteElephantPanel.setLocation(coordsE.getX(), coordsE.getY());
+					this.whiteElephantPanel.setVisible(true);
+					break;
+				case 'C':
+					this.gameBoardPanel.add(this.whiteCamelPanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsC = new Coordinates(row, column);
+					this.whiteCamelPanel.setLocation(coordsC.getX(), coordsC.getY());
+					this.whiteCamelPanel.setVisible(true);
+					break;
+				case 'H':
+					this.gameBoardPanel.add(this.whiteHorsePanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsH = new Coordinates(row, column);
+					this.whiteHorsePanel.setLocation(coordsH.getX(), coordsH.getY());
+					this.whiteHorsePanel.setVisible(true);
+					break;
+				case 'D':
+					this.gameBoardPanel.add(this.whiteDogPanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsD = new Coordinates(row, column);
+					this.whiteDogPanel.setLocation(coordsD.getX(), coordsD.getY());
+					this.whiteDogPanel.setVisible(true);
+					break;
+				case 'K':
+					this.gameBoardPanel.add(this.whiteCatPanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsK = new Coordinates(row, column);
+					this.whiteCatPanel.setLocation(coordsK.getX(), coordsK.getY());
+					this.whiteCatPanel.setVisible(true);
+					break;
+				case 'R':
+					this.gameBoardPanel.add(this.whiteRabbitPanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsR = new Coordinates(row, column);
+					this.whiteRabbitPanel.setLocation(coordsR.getX(), coordsR.getY());
+					this.whiteRabbitPanel.setVisible(true);
+					break;
+				case 'e':
+					this.gameBoardPanel.add(this.blackElephantPanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordse = new Coordinates(row, column);
+					this.blackElephantPanel.setLocation(coordse.getX(), coordse.getY());
+					this.blackElephantPanel.setVisible(true);
+					break;
+				case 'c':
+					this.gameBoardPanel.add(this.blackCamelPanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsc = new Coordinates(row, column);
+					this.blackCamelPanel.setLocation(coordsc.getX(), coordsc.getY());
+					this.blackCamelPanel.setVisible(true);
+					break;
+				case 'h':
+					this.gameBoardPanel.add(this.blackHorsePanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsh = new Coordinates(row, column);
+					this.blackHorsePanel.setLocation(coordsh.getX(), coordsh.getY());
+					this.blackHorsePanel.setVisible(true);
+					break;
+				case 'd':
+					this.gameBoardPanel.add(this.blackDogPanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsd = new Coordinates(row, column);
+					this.blackDogPanel.setLocation(coordsd.getX(), coordsd.getY());
+					this.blackDogPanel.setVisible(true);
+					break;
+				case 'k':
+					this.gameBoardPanel.add(this.blackCatPanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsk = new Coordinates(row, column);
+					this.blackCatPanel.setLocation(coordsk.getX(), coordsk.getY());
+					this.blackCatPanel.setVisible(true);
+					break;
+				case 'r':
+					this.gameBoardPanel.add(this.blackRabbitPanel);
+//					this.activeFrames.get(0).pack();
+					Coordinates coordsr = new Coordinates(row, column);
+					this.blackRabbitPanel.setLocation(coordsr.getX(), coordsr.getY());
+					this.blackRabbitPanel.setVisible(true);
+					break;
+				default:
+				}
+			}
+		}
 	}
 
 	class newGameListener implements ActionListener {
@@ -315,12 +416,11 @@ public class GUI {
 			activeFrames.get(0).getContentPane().add(panel);
 			activeFrames.get(0).pack();
 			panel.setVisible(true);
+			gameBoardPanel = panel;
 			
 			gameFrame.setVisible(true);
 			//Begin placing pieces
-			panel.add(whiteCatPanel);
-			whiteCatPanel.setLocation(10, 10);
-			whiteCatPanel.setVisible(true);
+			renderBoard();
 		}
 	}
 }
