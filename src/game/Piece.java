@@ -98,7 +98,7 @@ public class Piece {
 	
 	public boolean equals(Object p2){
 		if((p2 instanceof Piece)){
-			if(((Piece) p2).getType()==this.getType()){
+			if(((Piece) p2).getType()==this.getType() && (((Piece) p2).getOwner()==this.getOwner())){
 				return true;
 			}
 		}

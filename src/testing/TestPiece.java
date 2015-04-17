@@ -70,7 +70,7 @@ public class TestPiece {
 	@Test
 	public void testComparatorChecksOwners(){
 		assertNotEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
-		assertNotEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2), new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
+		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2), new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
 
 	}
 }
