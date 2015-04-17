@@ -62,20 +62,11 @@ public class TestGame {
 	}
 	
 	@Test
-	public void testMoveIllegal(){
+	public void testMoveIllegalDown(){
 		Game g = new Game(b);
 		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(7, 7));
 		assertFalse(g.move(7, 7, 2));
-	}
 		
-	@Test
-	public void testCannotMoveOntoOccupiedSpace(){
-		Game g = new Game(b);
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(7, 7));
-		assertEquals(new Piece(PieceType.Cat, null, Piece.Owner.Player1), g.getSpace(7, 6));
-		assertFalse(g.move(7, 7, 3));
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(7, 7));
-		assertEquals(new Piece(PieceType.Cat, null, Piece.Owner.Player1), g.getSpace(7, 6));
 	}
 	
 	@Test
