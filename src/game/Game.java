@@ -68,7 +68,7 @@ public class Game {
 			return false;
 		case 1:
 			//Moving RIGHT
-			if (column + 1 <= 7) {
+			if (column + 1 <= 7 && currentBoard.getBoardArray()[row][column+1] == '_') {
 				switchPiece(row, column, row, column+1);
 				return true;
 			}
