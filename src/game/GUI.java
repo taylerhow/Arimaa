@@ -1,11 +1,6 @@
 package game;
 
-import game.Piece.Owner;
-import game.Piece.PieceType;
-
 import java.awt.Color;
-
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -13,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -21,9 +15,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 public class GUI {
@@ -31,10 +23,8 @@ public class GUI {
 	private String p2name;
 	private ArrayList<JFrame> activeFrames;
 	private Game game;
-	
 	private ImagePanel gameBoardPanel = null;
-	private ImagePanel[][] boardPieces; 
-	
+	private ImagePanel[][] boardPieces;
 
 	public GUI() {
 		this.p1name = "Player 1";
@@ -46,7 +36,7 @@ public class GUI {
 		this.activeFrames.add(mainMenuFrame);
 		mainMenuFrame.setTitle("Welcome to Arimaa!");
 		mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 	}
 
 	public static void main(String[] args) {
@@ -113,108 +103,148 @@ public class GUI {
 	public void setActiveFrames(ArrayList<JFrame> frames) {
 		this.activeFrames = frames;
 	}
-	
-	public void renderInitialBoard(){
+
+	public void renderInitialBoard() {
 		char[][] boardArray = this.game.currentBoard.getBoardArray();
-		for(int row = 0; row < 8; row++){
-			for(int column = 0; column < 8; column++){
+		for (int row = 0; row < 8; row++) {
+			for (int column = 0; column < 8; column++) {
 				char c = boardArray[row][column];
-				switch(c){
+				switch (c) {
 				case 'E':
-					ImagePanel whiteElephantPanel = new ImagePanel(new ImageIcon("resources/White elephant.png").getImage());
+					ImagePanel whiteElephantPanel = new ImagePanel(
+							new ImageIcon("resources/White elephant.png")
+									.getImage());
 					this.gameBoardPanel.add(whiteElephantPanel);
 					whiteElephantPanel.setRow(row);
 					whiteElephantPanel.setColumn(column);
-					whiteElephantPanel.setLocation(whiteElephantPanel.getPixelX(), whiteElephantPanel.getPixelY());
+					whiteElephantPanel.setLocation(
+							whiteElephantPanel.getPixelX(),
+							whiteElephantPanel.getPixelY());
 					whiteElephantPanel.setVisible(true);
 					this.boardPieces[row][column] = whiteElephantPanel;
 					break;
 				case 'C':
-					ImagePanel whiteCamelPanel = new ImagePanel(new ImageIcon("resources/White camel.png").getImage());
+					ImagePanel whiteCamelPanel = new ImagePanel(new ImageIcon(
+							"resources/White camel.png").getImage());
 					this.gameBoardPanel.add(whiteCamelPanel);
 					whiteCamelPanel.setRow(row);
 					whiteCamelPanel.setColumn(column);
-					whiteCamelPanel.setLocation(whiteCamelPanel.getPixelX(), whiteCamelPanel.getPixelY());
+					whiteCamelPanel.setLocation(whiteCamelPanel.getPixelX(),
+							whiteCamelPanel.getPixelY());
 					whiteCamelPanel.setVisible(true);
 					this.boardPieces[row][column] = whiteCamelPanel;
 					break;
 				case 'H':
-					ImagePanel whiteHorsePanel = new ImagePanel(new ImageIcon("resources/White horse.png").getImage());
+					ImagePanel whiteHorsePanel = new ImagePanel(new ImageIcon(
+							"resources/White horse.png").getImage());
 					this.gameBoardPanel.add(whiteHorsePanel);
 					whiteHorsePanel.setRow(row);
 					whiteHorsePanel.setColumn(column);
-					whiteHorsePanel.setLocation(whiteHorsePanel.getPixelX(), whiteHorsePanel.getPixelY());
+					whiteHorsePanel.setLocation(whiteHorsePanel.getPixelX(),
+							whiteHorsePanel.getPixelY());
 					whiteHorsePanel.setVisible(true);
 					this.boardPieces[row][column] = whiteHorsePanel;
 					break;
 				case 'D':
-					ImagePanel whiteDogPanel = new ImagePanel(new ImageIcon("resources/White dog.png").getImage());
+					ImagePanel whiteDogPanel = new ImagePanel(new ImageIcon(
+							"resources/White dog.png").getImage());
 					this.gameBoardPanel.add(whiteDogPanel);
 					whiteDogPanel.setRow(row);
 					whiteDogPanel.setColumn(column);
-					whiteDogPanel.setLocation(whiteDogPanel.getPixelX(), whiteDogPanel.getPixelY());
+					whiteDogPanel.setLocation(whiteDogPanel.getPixelX(),
+							whiteDogPanel.getPixelY());
 					whiteDogPanel.setVisible(true);
 					this.boardPieces[row][column] = whiteDogPanel;
 					break;
 				case 'K':
-					ImagePanel whiteCatPanel = new ImagePanel(new ImageIcon("resources/White cat.png").getImage());
+					ImagePanel whiteCatPanel = new ImagePanel(new ImageIcon(
+							"resources/White cat.png").getImage());
 					this.gameBoardPanel.add(whiteCatPanel);
 					whiteCatPanel.setRow(row);
 					whiteCatPanel.setColumn(column);
-					whiteCatPanel.setLocation(whiteCatPanel.getPixelX(), whiteCatPanel.getPixelY());
+					whiteCatPanel.setLocation(whiteCatPanel.getPixelX(),
+							whiteCatPanel.getPixelY());
 					whiteCatPanel.setVisible(true);
 					this.boardPieces[row][column] = whiteCatPanel;
 					break;
 				case 'R':
-					ImagePanel whiteRabbitPanel = new ImagePanel(new ImageIcon("resources/White rabbit.png").getImage());
+					ImagePanel whiteRabbitPanel = new ImagePanel(new ImageIcon(
+							"resources/White rabbit.png").getImage());
 					this.gameBoardPanel.add(whiteRabbitPanel);
 					whiteRabbitPanel.setRow(row);
 					whiteRabbitPanel.setColumn(column);
-					whiteRabbitPanel.setLocation(whiteRabbitPanel.getPixelX(), whiteRabbitPanel.getPixelY());
+					whiteRabbitPanel.setLocation(whiteRabbitPanel.getPixelX(),
+							whiteRabbitPanel.getPixelY());
 					whiteRabbitPanel.setVisible(true);
 					this.boardPieces[row][column] = whiteRabbitPanel;
 					break;
 				case 'e':
-					this.gameBoardPanel.add(this.blackElephantPanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordse = new Coordinates(row, column);
-					this.blackElephantPanel.setLocation(coordse.getX(), coordse.getY());
-					this.blackElephantPanel.setVisible(true);
+					ImagePanel blackElephantPanel = new ImagePanel(
+							new ImageIcon("resources/Black elephant.png")
+									.getImage());
+					this.gameBoardPanel.add(blackElephantPanel);
+					blackElephantPanel.setRow(row);
+					blackElephantPanel.setColumn(column);
+					blackElephantPanel.setLocation(
+							blackElephantPanel.getPixelX(),
+							blackElephantPanel.getPixelY());
+					blackElephantPanel.setVisible(true);
+					this.boardPieces[row][column] = blackElephantPanel;
 					break;
 				case 'c':
-					this.gameBoardPanel.add(this.blackCamelPanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsc = new Coordinates(row, column);
-					this.blackCamelPanel.setLocation(coordsc.getX(), coordsc.getY());
-					this.blackCamelPanel.setVisible(true);
+					ImagePanel blackCamelPanel = new ImagePanel(new ImageIcon(
+							"resources/Black camel.png").getImage());
+					this.gameBoardPanel.add(blackCamelPanel);
+					blackCamelPanel.setRow(row);
+					blackCamelPanel.setColumn(column);
+					blackCamelPanel.setLocation(blackCamelPanel.getPixelX(),
+							blackCamelPanel.getPixelY());
+					blackCamelPanel.setVisible(true);
+					this.boardPieces[row][column] = blackCamelPanel;
 					break;
 				case 'h':
-					this.gameBoardPanel.add(this.blackHorsePanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsh = new Coordinates(row, column);
-					this.blackHorsePanel.setLocation(coordsh.getX(), coordsh.getY());
-					this.blackHorsePanel.setVisible(true);
+					ImagePanel blackHorsePanel = new ImagePanel(new ImageIcon(
+							"resources/Black horse.png").getImage());
+					this.gameBoardPanel.add(blackHorsePanel);
+					blackHorsePanel.setRow(row);
+					blackHorsePanel.setColumn(column);
+					blackHorsePanel.setLocation(blackHorsePanel.getPixelX(),
+							blackHorsePanel.getPixelY());
+					blackHorsePanel.setVisible(true);
+					this.boardPieces[row][column] = blackHorsePanel;
 					break;
 				case 'd':
-					this.gameBoardPanel.add(this.blackDogPanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsd = new Coordinates(row, column);
-					this.blackDogPanel.setLocation(coordsd.getX(), coordsd.getY());
-					this.blackDogPanel.setVisible(true);
+					ImagePanel blackDogPanel = new ImagePanel(new ImageIcon(
+							"resources/Black dog.png").getImage());
+					this.gameBoardPanel.add(blackDogPanel);
+					blackDogPanel.setRow(row);
+					blackDogPanel.setColumn(column);
+					blackDogPanel.setLocation(blackDogPanel.getPixelX(),
+							blackDogPanel.getPixelY());
+					blackDogPanel.setVisible(true);
+					this.boardPieces[row][column] = blackDogPanel;
 					break;
 				case 'k':
-					this.gameBoardPanel.add(this.blackCatPanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsk = new Coordinates(row, column);
-					this.blackCatPanel.setLocation(coordsk.getX(), coordsk.getY());
-					this.blackCatPanel.setVisible(true);
+					ImagePanel blackCatPanel = new ImagePanel(new ImageIcon(
+							"resources/Black cat.png").getImage());
+					this.gameBoardPanel.add(blackCatPanel);
+					blackCatPanel.setRow(row);
+					blackCatPanel.setColumn(column);
+					blackCatPanel.setLocation(blackCatPanel.getPixelX(),
+							blackCatPanel.getPixelY());
+					blackCatPanel.setVisible(true);
+					this.boardPieces[row][column] = blackCatPanel;
 					break;
 				case 'r':
-					this.gameBoardPanel.add(this.blackRabbitPanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsr = new Coordinates(row, column);
-					this.blackRabbitPanel.setLocation(coordsr.getX(), coordsr.getY());
-					this.blackRabbitPanel.setVisible(true);
+					ImagePanel blackRabbitPanel = new ImagePanel(new ImageIcon(
+							"resources/Black rabbit.png").getImage());
+					this.gameBoardPanel.add(blackRabbitPanel);
+					blackRabbitPanel.setRow(row);
+					blackRabbitPanel.setColumn(column);
+					blackRabbitPanel.setLocation(blackRabbitPanel.getPixelX(),
+							blackRabbitPanel.getPixelY());
+					blackRabbitPanel.setVisible(true);
+					this.boardPieces[row][column] = blackRabbitPanel;
 					break;
 				default:
 				}
@@ -241,7 +271,7 @@ public class GUI {
 
 			// Set up Player 1 Name Label and Text Field
 			JLabel p1NameLabel = new JLabel();
-			//On Mac, the bolded text causes layout issues
+			// On Mac, the bolded text causes layout issues
 			p1NameLabel.setText("<html><b>Player 1 Name:</b><html>");
 			p1NameLabel.setForeground(Color.WHITE);
 			Font p1NameFont = p1NameLabel.getFont();
@@ -331,23 +361,24 @@ public class GUI {
 			timeBankComboBox.setLocation(panel.getWidth() / 2,
 					panel.getHeight() / 2 + timeBankComboBox.getHeight());
 			timeBankComboBox.setVisible(true);
-			
-			//Set up Start Game Button
+
+			// Set up Start Game Button
 			JButton startGameButton = new JButton();
 			startGameButton.setSize(110, 25);
 			startGameButton.setText("Start Game");
-			startGameButton.setLocation((panel.getWidth() / 2) - startGameButton.getWidth(),
-					(panel.getHeight() / 2) + (2*startGameButton.getHeight()));
+			startGameButton.setLocation((panel.getWidth() / 2)
+					- startGameButton.getWidth(), (panel.getHeight() / 2)
+					+ (2 * startGameButton.getHeight()));
 			panel.add(startGameButton);
 			startGameButton.addActionListener(new startGameListener());
 			startGameButton.setVisible(true);
-			
-			//Set up Cancel Button
+
+			// Set up Cancel Button
 			JButton cancelButton = new JButton();
 			cancelButton.setSize(110, 25);
 			cancelButton.setText("Cancel");
 			cancelButton.setLocation((panel.getWidth() / 2),
-					(panel.getHeight() / 2) + (2*cancelButton.getHeight()));
+					(panel.getHeight() / 2) + (2 * cancelButton.getHeight()));
 			panel.add(cancelButton);
 			cancelButton.addActionListener(new cancelListener());
 			cancelButton.setVisible(true);
@@ -379,7 +410,7 @@ public class GUI {
 			settingsFrame.dispose();
 		}
 	}
-	
+
 	class startGameListener implements ActionListener {
 
 		@Override
@@ -387,26 +418,26 @@ public class GUI {
 			JFrame settings = activeFrames.get(1);
 			activeFrames.remove(1);
 			settings.dispose();
-			
+
 			JFrame mainMenu = activeFrames.get(0);
 			activeFrames.remove(0);
 			mainMenu.dispose();
-			
+
 			JFrame gameFrame = new JFrame();
 			activeFrames.add(gameFrame);
 			gameFrame.setTitle("Let's Play!");
 			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
+
 			ImagePanel panel = new ImagePanel(new ImageIcon(
 					"resources/BoardStoneBig.jpg").getImage());
 			activeFrames.get(0).getContentPane().add(panel);
 			activeFrames.get(0).pack();
 			panel.setVisible(true);
 			gameBoardPanel = panel;
-			
+
 			gameFrame.setVisible(true);
-			//Begin placing pieces
-			renderBoard();
+			// Begin placing pieces
+			renderInitialBoard();
 		}
 	}
 }
@@ -434,29 +465,29 @@ class ImagePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		g.drawImage(img, 0, 0, null);
 	}
-	
-	public void setRow(int row){
+
+	public void setRow(int row) {
 		this.row = row;
 	}
-	
-	public int getRow(){
+
+	public int getRow() {
 		return this.row;
 	}
-	
-	public void setColumn(int column){
+
+	public void setColumn(int column) {
 		this.column = column;
 	}
-	
-	public int getColumn(){
+
+	public int getColumn() {
 		return this.column;
 	}
-	
-	public int getPixelX(){
-		return this.column*80+10;
+
+	public int getPixelX() {
+		return this.column * 80 + 10;
 	}
-	
-	public int getPixelY(){
-		return this.row*80+10;
+
+	public int getPixelY() {
+		return this.row * 80 + 10;
 	}
 
 }
