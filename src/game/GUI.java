@@ -32,47 +32,21 @@ public class GUI {
 	private ArrayList<JFrame> activeFrames;
 	private Game game;
 	
-	//White pieces belong to Player1, at the top of the board
-	private ImagePanel whiteRabbitPanel = null;
-	private ImagePanel whiteCatPanel = null;
-	private ImagePanel whiteDogPanel = null;
-	private ImagePanel whiteHorsePanel = null;
-	private ImagePanel whiteCamelPanel = null;
-	private ImagePanel whiteElephantPanel = null;
-	
-	//Black pieces belong to Player2, at the bottom of the board
-	private ImagePanel blackRabbitPanel = null;
-	private ImagePanel blackCatPanel = null;
-	private ImagePanel blackDogPanel = null;
-	private ImagePanel blackHorsePanel = null;
-	private ImagePanel blackCamelPanel = null;
-	private ImagePanel blackElephantPanel = null;
-	
 	private ImagePanel gameBoardPanel = null;
+	private ImagePanel[][] boardPieces; 
 	
 
 	public GUI() {
 		this.p1name = "Player 1";
 		this.p2name = "Player 2";
 		this.game = new Game();
+		this.boardPieces = new ImagePanel[8][8];
 		this.activeFrames = new ArrayList<JFrame>();
 		JFrame mainMenuFrame = new JFrame();
 		this.activeFrames.add(mainMenuFrame);
 		mainMenuFrame.setTitle("Welcome to Arimaa!");
 		mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		whiteRabbitPanel = new ImagePanel(new ImageIcon("resources/White rabbit.png").getImage());
-		whiteCatPanel = new ImagePanel(new ImageIcon("resources/White cat.png").getImage());
-		whiteDogPanel = new ImagePanel(new ImageIcon("resources/White dog.png").getImage());
-		whiteHorsePanel = new ImagePanel(new ImageIcon("resources/White horse.png").getImage());
-		whiteCamelPanel = new ImagePanel(new ImageIcon("resources/White camel.png").getImage());
-		whiteElephantPanel = new ImagePanel(new ImageIcon("resources/White elephant.png").getImage());
-		blackRabbitPanel = new ImagePanel(new ImageIcon("resources/Black rabbit.png").getImage());
-		blackCatPanel = new ImagePanel(new ImageIcon("resources/Black cat.png").getImage());
-		blackDogPanel = new ImagePanel(new ImageIcon("resources/Black dog.png").getImage());
-		blackHorsePanel = new ImagePanel(new ImageIcon("resources/Black horse.png").getImage());
-		blackCamelPanel = new ImagePanel(new ImageIcon("resources/Black camel.png").getImage());
-		blackElephantPanel = new ImagePanel(new ImageIcon("resources/Black elephant.png").getImage());
 	}
 
 	public static void main(String[] args) {
@@ -140,53 +114,65 @@ public class GUI {
 		this.activeFrames = frames;
 	}
 	
-	public void renderBoard(){
+	public void renderInitialBoard(){
 		char[][] boardArray = this.game.currentBoard.getBoardArray();
 		for(int row = 0; row < 8; row++){
 			for(int column = 0; column < 8; column++){
 				char c = boardArray[row][column];
 				switch(c){
 				case 'E':
-					this.gameBoardPanel.add(this.whiteElephantPanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsE = new Coordinates(row, column);
-					this.whiteElephantPanel.setLocation(coordsE.getX(), coordsE.getY());
-					this.whiteElephantPanel.setVisible(true);
+					ImagePanel whiteElephantPanel = new ImagePanel(new ImageIcon("resources/White elephant.png").getImage());
+					this.gameBoardPanel.add(whiteElephantPanel);
+					whiteElephantPanel.setRow(row);
+					whiteElephantPanel.setColumn(column);
+					whiteElephantPanel.setLocation(whiteElephantPanel.getPixelX(), whiteElephantPanel.getPixelY());
+					whiteElephantPanel.setVisible(true);
+					this.boardPieces[row][column] = whiteElephantPanel;
 					break;
 				case 'C':
-					this.gameBoardPanel.add(this.whiteCamelPanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsC = new Coordinates(row, column);
-					this.whiteCamelPanel.setLocation(coordsC.getX(), coordsC.getY());
-					this.whiteCamelPanel.setVisible(true);
+					ImagePanel whiteCamelPanel = new ImagePanel(new ImageIcon("resources/White camel.png").getImage());
+					this.gameBoardPanel.add(whiteCamelPanel);
+					whiteCamelPanel.setRow(row);
+					whiteCamelPanel.setColumn(column);
+					whiteCamelPanel.setLocation(whiteCamelPanel.getPixelX(), whiteCamelPanel.getPixelY());
+					whiteCamelPanel.setVisible(true);
+					this.boardPieces[row][column] = whiteCamelPanel;
 					break;
 				case 'H':
-					this.gameBoardPanel.add(this.whiteHorsePanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsH = new Coordinates(row, column);
-					this.whiteHorsePanel.setLocation(coordsH.getX(), coordsH.getY());
-					this.whiteHorsePanel.setVisible(true);
+					ImagePanel whiteHorsePanel = new ImagePanel(new ImageIcon("resources/White horse.png").getImage());
+					this.gameBoardPanel.add(whiteHorsePanel);
+					whiteHorsePanel.setRow(row);
+					whiteHorsePanel.setColumn(column);
+					whiteHorsePanel.setLocation(whiteHorsePanel.getPixelX(), whiteHorsePanel.getPixelY());
+					whiteHorsePanel.setVisible(true);
+					this.boardPieces[row][column] = whiteHorsePanel;
 					break;
 				case 'D':
-					this.gameBoardPanel.add(this.whiteDogPanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsD = new Coordinates(row, column);
-					this.whiteDogPanel.setLocation(coordsD.getX(), coordsD.getY());
-					this.whiteDogPanel.setVisible(true);
+					ImagePanel whiteDogPanel = new ImagePanel(new ImageIcon("resources/White dog.png").getImage());
+					this.gameBoardPanel.add(whiteDogPanel);
+					whiteDogPanel.setRow(row);
+					whiteDogPanel.setColumn(column);
+					whiteDogPanel.setLocation(whiteDogPanel.getPixelX(), whiteDogPanel.getPixelY());
+					whiteDogPanel.setVisible(true);
+					this.boardPieces[row][column] = whiteDogPanel;
 					break;
 				case 'K':
-					this.gameBoardPanel.add(this.whiteCatPanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsK = new Coordinates(row, column);
-					this.whiteCatPanel.setLocation(coordsK.getX(), coordsK.getY());
-					this.whiteCatPanel.setVisible(true);
+					ImagePanel whiteCatPanel = new ImagePanel(new ImageIcon("resources/White cat.png").getImage());
+					this.gameBoardPanel.add(whiteCatPanel);
+					whiteCatPanel.setRow(row);
+					whiteCatPanel.setColumn(column);
+					whiteCatPanel.setLocation(whiteCatPanel.getPixelX(), whiteCatPanel.getPixelY());
+					whiteCatPanel.setVisible(true);
+					this.boardPieces[row][column] = whiteCatPanel;
 					break;
 				case 'R':
-					this.gameBoardPanel.add(this.whiteRabbitPanel);
-//					this.activeFrames.get(0).pack();
-					Coordinates coordsR = new Coordinates(row, column);
-					this.whiteRabbitPanel.setLocation(coordsR.getX(), coordsR.getY());
-					this.whiteRabbitPanel.setVisible(true);
+					ImagePanel whiteRabbitPanel = new ImagePanel(new ImageIcon("resources/White rabbit.png").getImage());
+					this.gameBoardPanel.add(whiteRabbitPanel);
+					whiteRabbitPanel.setRow(row);
+					whiteRabbitPanel.setColumn(column);
+					whiteRabbitPanel.setLocation(whiteRabbitPanel.getPixelX(), whiteRabbitPanel.getPixelY());
+					whiteRabbitPanel.setVisible(true);
+					this.boardPieces[row][column] = whiteRabbitPanel;
 					break;
 				case 'e':
 					this.gameBoardPanel.add(this.blackElephantPanel);
@@ -425,27 +411,11 @@ public class GUI {
 	}
 }
 
-class Coordinates {
-	private int x;
-	private int y;
-	
-	public Coordinates(int row, int column){
-		this.x = row*80+10;
-		this.y = column*80+10;
-	}
-	
-	public int getX(){
-		return this.x;
-	}
-	
-	public int getY(){
-		return this.y;
-	}
-}
-
 class ImagePanel extends JPanel {
 
 	private Image img;
+	private int row;
+	private int column;
 
 	public ImagePanel(String img) {
 		this(new ImageIcon(img).getImage());
@@ -463,6 +433,30 @@ class ImagePanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(img, 0, 0, null);
+	}
+	
+	public void setRow(int row){
+		this.row = row;
+	}
+	
+	public int getRow(){
+		return this.row;
+	}
+	
+	public void setColumn(int column){
+		this.column = column;
+	}
+	
+	public int getColumn(){
+		return this.column;
+	}
+	
+	public int getPixelX(){
+		return this.column*80+10;
+	}
+	
+	public int getPixelY(){
+		return this.row*80+10;
 	}
 
 }
