@@ -66,8 +66,11 @@ public class Game {
 			}
 			return false;
 		case 1:
-			switchPiece(x,y,x+1,y);
-			return true;
+			if (x + 1 < 8) {
+				switchPiece(x, y, x + 1, y);
+				return true;
+			}
+			return false;
 		case 2:
 			if (y + 1 < 8) {
 				switchPiece(x, y, x, y + 1);
