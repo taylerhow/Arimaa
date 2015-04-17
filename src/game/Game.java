@@ -111,7 +111,7 @@ public class Game {
 	 * @return
 	 */
 	public boolean push(int x, int y, int dir1, int dir2){
-		if(dir1 !=0)
+		if(dir1 !=0&&dir2!=0)
 			return true;
 		return false;
 	}

@@ -17,6 +17,17 @@ public class TestGame {
 			{' ',' ',' ',' ',' ',' ','K','R'},
 			}, 0);
 	
+	BoardState b2 = new BoardState(new char[][] {
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ',' ','k',' ',' ',' '},
+			{' ',' ',' ','C','E','d',' ',' '},
+			{' ',' ',' ',' ','r',' ',' ',' '},
+			{' ',' ',' ','D',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ',' ','K','R'},
+			}, 0);
+	
 	
 	@Test
 	public void testInitializes() {
@@ -128,7 +139,7 @@ public class TestGame {
 	
 	@Test
 	public void testPushValid(){
-		Game g=new Game(b);
+		Game g=new Game(b2);
 		assertFalse(g.push(3, 3, 0, 0));
 		assertTrue(g.push(4, 3, 1, 1));
 		assertFalse(g.push(4,3,1,0));
