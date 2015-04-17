@@ -75,7 +75,7 @@ public class Game {
 			return false;
 		case 2:
 			//Moving DOWN
-			if (row + 1 <= 7) {
+			if (row + 1 <= 7 && currentBoard.getBoardArray()[row+1][column] == ' ') {
 				switchPiece(row, column, row + 1, column);
 				return true;
 			}
