@@ -88,13 +88,21 @@ public class TestGame {
 	}
 	
 	@Test
+	public void testCannotMoveRightIntoOccupiedSpace(){
+		Game g = new Game();
+		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1), g.getSpace(0, 1));
+		assertFalse(g.move(0, 1, 1));
+		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1), g.getSpace(0, 1));
+	}
+	
+	@Test
 	public void testCannotMoveLeftIntoOccupiedSpace(){
 		Game g = new Game();
 		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1), g.getSpace(0, 1));
 		assertFalse(g.move(0, 1, 3));
 		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1), g.getSpace(0, 1));
 	}
-	
+
 	@Test
 	public void testEmptyCreateConstructor(){
 		Game g = new Game();
