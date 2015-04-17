@@ -318,8 +318,6 @@ public class GUI {
 			
 			gameFrame.setVisible(true);
 			//Begin placing pieces
-			ImagePanel whiteCatPanel = new ImagePanel(new ImageIcon(
-					"resources/White cat.png").getImage());
 			panel.add(whiteCatPanel);
 			whiteCatPanel.setLocation(10, 10);
 			whiteCatPanel.setVisible(true);
