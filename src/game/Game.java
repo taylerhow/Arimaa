@@ -82,7 +82,7 @@ public class Game {
 			return false;
 		case 3:
 			//Moving LEFT
-			if (column - 1 >= 0) {
+			if (column - 1 >= 0 && currentBoard.getBoardArray()[row][column-1] == '_') {
 				switchPiece(row, column, row, column - 1);
 				return true;
 			}
