@@ -27,6 +27,7 @@ public class GUI {
 	private String p1name;
 	private String p2name;
 	private ArrayList<JFrame> activeFrames;
+	private Game game;
 	
 	//White pieces belong to Player1, at the top of the board
 	private Image whiteRabbitImage = null;
@@ -48,6 +49,7 @@ public class GUI {
 	public GUI() {
 		this.p1name = "Player 1";
 		this.p2name = "Player 2";
+		this.game = new Game();
 		this.activeFrames = new ArrayList<JFrame>();
 		JFrame mainMenuFrame = new JFrame();
 		this.activeFrames.add(mainMenuFrame);
@@ -93,7 +95,7 @@ public class GUI {
 			blackElephantImage = ImageIO.read(blackElephantFile);
 		}
 		catch (IOException e){
-			System.out.println("Setting Files in GUI Constructor Went Horrible Wrong!");
+			System.out.println("Setting Files in GUI Constructor Went Horribly Wrong!");
 			e.printStackTrace();
 		}
 	}
@@ -346,8 +348,30 @@ public class GUI {
 			
 			gameFrame.setVisible(true);
 			//Begin placing pieces
-			
+			ImagePanel whiteCatPanel = new ImagePanel(new ImageIcon(
+					"resources/White cat.png").getImage());
+			panel.add(whiteCatPanel);
+			whiteCatPanel.setLocation(10, 10);
+			whiteCatPanel.setVisible(true);
 		}
+	}
+}
+
+class Coordinates {
+	private int x;
+	private int y;
+	
+	public Coordinates(int row, int column){
+		this.x = row*80+10;
+		this.y = column*80+10;
+	}
+	
+	public int getX(){
+		return this.x;
+	}
+	
+	public int getY(){
+		return this.y;
 	}
 }
 
