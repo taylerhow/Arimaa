@@ -61,7 +61,7 @@ public class Game {
 		switch(dir){
 		case 0:
 			//Moving UP
-			if (row - 1 >= 0) {
+			if (row - 1 >= 0 && currentBoard.getBoardArray()[row-1][column] == '_') {
 				switchPiece(row, column, row-1, column);
 				return true;
 			}
