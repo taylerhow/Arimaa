@@ -83,6 +83,12 @@ public class TestGame {
 		assertFalse(g.move(7, 7, 1));
 	}
 	
+	@Test 
+	public void testMoveIllegalLeft(){
+		Game g= new Game();
+		assertFalse(g.move(0,0,3));
+	}
+	
 	
 	@Test
 	public void testEmptyCreateConstructor(){
