@@ -188,8 +188,7 @@ public class Game {
 			}
 			return false;
 		case 2:
-			if(row+1 <= 7){
-				move(row, column, direction);
+			if(move(row, column, direction)){
 				move(row - 1, column, direction);
 				return true;
 			}
