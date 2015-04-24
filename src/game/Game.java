@@ -194,8 +194,7 @@ public class Game {
 			}
 			return false;
 		case 3:
-			if (column - 1 >= 0) {
-				move(row, column, direction);
+			if (move(row, column, direction)) {
 				move(row, column + 1, direction);
 				return true;
 			}
