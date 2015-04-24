@@ -176,10 +176,12 @@ public class TestGame {
 	@Test
 	public void testPushLeft(){
 		Game g=new Game(b2);
-		assertTrue(g.push(7, 7, 3, 3));
 		assertTrue(g.push(7, 6, 3, 3));
-		assertFalse(g.push(7, 5, 3, 3));
-		assertFalse(g.push(7, 4, 3, 3));
+		assertTrue(g.push(7, 5, 3, 3));
+		assertTrue(g.push(7, 4, 3, 3));
+		assertTrue(g.push(7, 3, 3, 3));
+		assertTrue(g.push(7, 2, 3, 3));
+		assertFalse(g.push(7, 1, 3, 3));
 	}
 }
 

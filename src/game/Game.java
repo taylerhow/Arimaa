@@ -150,7 +150,7 @@ public class Game {
 			break;
 		case 3:
 			//System.out.println("Case 3");
-			if(move(x-1,y,dir2)){
+			if(move(x,y-1,dir2)){
 				//System.out.println("("+x+","+y+") trying move "+dir2);
 				//should always be true
 				boolean move = move(x,y,dir1);
@@ -183,16 +183,17 @@ public class Game {
 			}
 			break;
 		case 1:
-			System.out.println("Case 1");
-			if(move(x+1,y,dir2)){System.out.println("("+x+","+y+"trying move "+dir2);
+			//System.out.println("Case 1");
+			if(move(x+1,y,dir2)){
+				System.out.println("("+x+","+y+"trying move "+dir2);
 			//should always be true
 				return move(x,y,dir1);
 			}
 			break;
 		case 2:
-			System.out.println("Case 2");
+			//System.out.println("Case 2");
 			if(move(x,y+1,dir2)){
-				System.out.println("("+x+","+y+"trying move "+dir2);
+				//System.out.println("("+x+","+y+"trying move "+dir2);
 				//should always be true
 				return move(x,y,dir1);
 			}
