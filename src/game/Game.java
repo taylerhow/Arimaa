@@ -184,6 +184,10 @@ public class Game {
 			move(row, column, direction);
 			move(row-1, column, direction);
 			return true;
+		case 3:
+			move(row, column, direction);
+			move(row, column+1, direction);
+			return true;
 		}
 		return false;
 	}
