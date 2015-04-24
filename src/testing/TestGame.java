@@ -148,9 +148,12 @@ public class TestGame {
 		assertFalse(g.push(4,3,1,0));
 	}
 	@Test
-	public void testPushValid(){
+	public void testPush2(){
 		Game g=new Game(b2);
 		assertTrue(g.push(4, 4, 0, 0));
+		assertTrue(g.push(3, 4, 0, 0));
+		assertTrue(g.push(2, 4, 0, 0));
+		assertFalse(g.push(1, 4, 0, 0));
 		//System.out.println(Arrays.deepToString(g.currentBoard.getBoardArray()));
 	}
 }
