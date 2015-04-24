@@ -264,6 +264,11 @@ public class GUI {
 			//Moving UP
 			if (row - 1 >= 0 && boardPieces[row-1][column] == null) {
 				switchPiece(row, column, row-1, column);
+				boardPieces[row-1][column].setRow(row-1);
+				boardPieces[row-1][column].setColumn(column);
+				boardPieces[row-1][column].setLocation(boardPieces[row-1][column].getPixelX(), 
+						boardPieces[row-1][column].getPixelY());
+				boardPieces[row-1][column].setVisible(true);
 				return true;
 			}
 			return false;
@@ -271,6 +276,11 @@ public class GUI {
 			//Moving RIGHT
 			if (column + 1 <= 7 && boardPieces[row][column+1] == null) {
 				switchPiece(row, column, row, column+1);
+				boardPieces[row][column+1].setRow(row);
+				boardPieces[row][column+1].setColumn(column+1);
+				boardPieces[row][column+1].setLocation(boardPieces[row][column+1].getPixelX(), 
+						boardPieces[row][column+1].getPixelY());
+				boardPieces[row][column+1].setVisible(true);
 				return true;
 			}
 			return false;
@@ -278,6 +288,11 @@ public class GUI {
 			//Moving DOWN
 			if (row + 1 <= 7 && boardPieces[row+1][column] == null) {
 				switchPiece(row, column, row + 1, column);
+				boardPieces[row+1][column].setRow(row+1);
+				boardPieces[row+1][column].setColumn(column);
+				boardPieces[row+1][column].setLocation(boardPieces[row+1][column].getPixelX(), 
+						boardPieces[row+1][column].getPixelY());
+				boardPieces[row+1][column].setVisible(true);
 				return true;
 			}
 			return false;
@@ -285,6 +300,11 @@ public class GUI {
 			//Moving LEFT
 			if (column - 1 >= 0 && boardPieces[row][column-1] == null) {
 				switchPiece(row, column, row, column - 1);
+				boardPieces[row][column-1].setRow(row);
+				boardPieces[row][column-1].setColumn(column-1);
+				boardPieces[row][column-1].setLocation(boardPieces[row][column-1].getPixelX(), 
+						boardPieces[row][column-1].getPixelY());
+				boardPieces[row-1][column].setVisible(true);
 				return true;
 			}
 			return false;
@@ -490,7 +510,7 @@ public class GUI {
 			gameBoardPanel = panel;
 
 			gameFrame.setVisible(true);
-			// Begin placing pieces
+
 			renderInitialBoard();
 		}
 	}
