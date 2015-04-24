@@ -175,6 +175,11 @@ public class Game {
 		case 0:
 			move(row, column, direction);
 			move(row+1, column, direction);
+			return true;
+		case 1:
+			move(row, column, direction);
+			move(row, column-1, direction);
+			return true;
 		case 2:
 			move(row, column, direction);
 			move(row-1, column, direction);
