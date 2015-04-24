@@ -513,7 +513,7 @@ public class GUI {
 			activeFrames.get(0).pack();
 			panel.setVisible(true);
 			gameBoardPanel = panel;
-			gameBoardPanel.addMouseListener(new MouseEventDemo());
+			gameBoardPanel.addMouseListener(new MouseEventListener());
 	
 			gameFrame.setVisible(true);
 
@@ -521,13 +521,17 @@ public class GUI {
 		}
 	}
 	
-	public class MouseEventDemo implements MouseListener {
-		// where initialization occurs:
-		// Register for mouse events on blankArea and the panel.
+	private class MouseEventListener implements MouseListener {
+		boolean pieceSelectedFlag;
+		
+		private MouseEventListener(){
+			pieceSelectedFlag = true;;
+		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
 			//Not needed
+			System.out.println("asdg");
 		}
 
 		@Override
@@ -547,7 +551,26 @@ public class GUI {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			//Hardcore Logic here
+			//Starting Hardcore Logic here...
+			
+			boolean pieceClickedFlag = false;
+			
+			int sourceX = (int) e.getPoint().getX();
+			int sourceY = (int) e.getPoint().getY();
+			
+			//Get rid of X and Y ASAP!!!
+			int rowClicked = (sourceY - 10) / 80;
+			int columnClicked = (sourceX - 10) / 80;
+			
+			ImagePanel selectedPiece = null;
+			
+			if(boardPieces[rowClicked][columnClicked] != null){
+				pieceClickedFlag = true;
+				selectedPiece = boardPieces[rowClicked][columnClicked];
+				
+			}
+			
+			
 		}
 	}
 }
