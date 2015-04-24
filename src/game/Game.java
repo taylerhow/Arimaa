@@ -111,8 +111,50 @@ public class Game {
 	 * @return
 	 */
 	public boolean push(int x, int y, int dir1, int dir2){
-		if(dir1 !=0&&dir2!=0)
-			return true;
+		if(getSpace(x, y)==null)
+			return false;//trying to push with an empty square
+		switch(dir1){
+		case 0:
+			System.out.println("Case 0");
+			if(move(x,y-1,dir2)){
+				System.out.println("("+x+","+y+"trying move "+dir2);
+				//should always be true
+				boolean move = move(x,y,dir1);
+				System.out.println(move);
+				return move;
+			}
+			break;
+		case 1:
+			System.out.println("Case 1");
+			if(move(x+1,y,dir2)){System.out.println("("+x+","+y+"trying move "+dir2);
+			//should always be true
+			boolean move = move(x,y,dir1);
+			System.out.println(move);
+			return move;
+			}
+			break;
+		case 2:
+			System.out.println("Case 2");
+			if(move(x,y+1,dir2)){
+				System.out.println("("+x+","+y+"trying move "+dir2);
+				//should always be true
+				boolean move = move(x,y,dir1);
+				System.out.println(move);
+				return move;
+			}
+			break;
+		case 3:
+			System.out.println("Case 3");
+			if(move(x-1,y,dir2)){
+				System.out.println("("+x+","+y+") trying move "+dir2);
+				//should always be true
+				boolean move = move(x,y,dir1);
+				System.out.println(move);
+				return move;
+			}
+			break;
+		
+		}
 		return false;
 	}
 	/**
@@ -124,6 +166,42 @@ public class Game {
 	 * @return
 	 */
 	public boolean pull(int x, int y, int dir1, int dir2){
+		if(getSpace(x, y)==null)
+			return false;//trying to push with an empty square
+		switch(dir1){
+		case 0:
+			System.out.println("Case 0");
+			if(move(x,y-1,dir2)){
+				System.out.println("("+x+","+y+"trying move "+dir2);
+				//should always be true
+				return move(x,y,dir1);
+			}
+			break;
+		case 1:
+			System.out.println("Case 1");
+			if(move(x+1,y,dir2)){System.out.println("("+x+","+y+"trying move "+dir2);
+			//should always be true
+				return move(x,y,dir1);
+			}
+			break;
+		case 2:
+			System.out.println("Case 2");
+			if(move(x,y+1,dir2)){
+				System.out.println("("+x+","+y+"trying move "+dir2);
+				//should always be true
+				return move(x,y,dir1);
+			}
+			break;
+		case 3:
+			System.out.println("Case 3");
+			if(move(x-1,y,dir2)){
+				System.out.println("("+x+","+y+") trying move "+dir2);
+				//should always be true
+				return move(x,y,dir1);
+			}
+			break;
+		
+		}
 		return false;
 	}
 }

@@ -138,11 +138,17 @@ public class TestGame {
 	
 	
 	@Test
-	public void testPushValid(){
+	public void testPushInvalid(){
 		Game g=new Game(b2);
 		assertFalse(g.push(3, 3, 0, 0));
-		assertTrue(g.push(4, 3, 1, 1));
+		assertFalse(g.push(4, 3, 1, 1));
 		assertFalse(g.push(4,3,1,0));
+	}
+	@Test
+	public void testPushValid(){
+		Game g=new Game(b2);
+		assertTrue(g.push(4, 4, 0, 0));
+		
 	}
 }
 
