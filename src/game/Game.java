@@ -124,7 +124,7 @@ public class Game {
 				//should always be true
 				boolean move = move(x,y,dir1);
 				//System.out.println(move);
-				System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
+				//System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
 				return move;
 			}
 			break;
