@@ -243,5 +243,11 @@ public class TestGame {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(7, 0, 3));
 	}
+	
+	@Test
+	public void testPullOffBoard3(){
+		Game g = new Game(pullTestingBoard);
+		assertFalse(g.pull(0, 7, 0));
+	}
 }
 
