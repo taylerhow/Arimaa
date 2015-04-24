@@ -269,6 +269,12 @@ public class TestGame {
 		assertFalse(g.pull(1, 1, 1));
 	}
 	
+	@Test
+	public void testPullDownIntoOccupiedSpace(){
+		Game g = new Game(pullTestingBoard);
+		assertFalse(g.pull(1, 1, 2));
+	}
+	
 	
 	
 }
