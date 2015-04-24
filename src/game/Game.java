@@ -194,7 +194,7 @@ public class Game {
 			}
 			return false;
 		case 3:
-			if (move(row, column, direction)) {
+			if (getSpace(row, column+1)!=null && move(row, column, direction)) {
 				move(row, column + 1, direction);
 				return true;
 			}
