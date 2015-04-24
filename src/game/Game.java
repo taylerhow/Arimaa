@@ -120,41 +120,41 @@ public class Game {
 		case 0:
 			System.out.println("Case 0");
 			if(move(x-1,y,dir2)){
-				System.out.println("("+x+","+y+") trying move "+dir2);
+				//System.out.println("("+x+","+y+") trying move "+dir2);
 				//should always be true
 				boolean move = move(x,y,dir1);
-				System.out.println(move);
+				//System.out.println(move);
 				System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
 				return move;
 			}
 			break;
 		case 1:
-			System.out.println("Case 1");
-			if(move(x+1,y,dir2)){
-				System.out.println("("+x+","+y+"trying move "+dir2);
+			//System.out.println("Case 1");
+			if(move(x,y+1,dir2)){
+				//System.out.println("("+x+","+y+"trying move "+dir2);
 			//should always be true
 			boolean move = move(x,y,dir1);
-			System.out.println(move);
+			//System.out.println(move);
 			return move;
 			}
 			break;
 		case 2:
-			System.out.println("Case 2");
-			if(move(x,y+1,dir2)){
-				System.out.println("("+x+","+y+"trying move "+dir2);
+			//System.out.println("Case 2");
+			if(move(x+1,y,dir2)){
+				//System.out.println("("+x+","+y+"trying move "+dir2);
 				//should always be true
 				boolean move = move(x,y,dir1);
-				System.out.println(move);
+				//System.out.println(move);
 				return move;
 			}
 			break;
 		case 3:
-			System.out.println("Case 3");
+			//System.out.println("Case 3");
 			if(move(x-1,y,dir2)){
-				System.out.println("("+x+","+y+") trying move "+dir2);
+				//System.out.println("("+x+","+y+") trying move "+dir2);
 				//should always be true
 				boolean move = move(x,y,dir1);
-				System.out.println(move);
+				//System.out.println(move);
 				return move;
 			}
 			break;
