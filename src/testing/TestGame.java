@@ -30,11 +30,12 @@ public class TestGame {
 			{' ',' ',' ','D',' ',' ',' ',' '},
 			{' ',' ',' ',' ',' ','r','K','R'},
 			}, 0);
+	
 	BoardState pullTestingBoard = new BoardState(new char[][] {
-			{' ',' ',' ',' ',' ',' ','R','e'},
-			{' ',' ',' ',' ',' ',' ',' ','R'},
-			{' ',' ',' ',' ',' ','r',' ',' '},
-			{' ',' ',' ',' ',' ','E',' ',' '},
+			{' ','r',' ',' ',' ',' ','R','e'},
+			{'r','E','E',' ',' ',' ',' ','R'},
+			{' ','E','E','r',' ','r',' ',' '},
+			{' ',' ','r',' ',' ','E',' ',' '},
 			{' ',' ',' ','r','E',' ','E','r'},
 			{' ',' ',' ',' ',' ','E',' ',' '},
 			{'r',' ',' ',' ',' ','r',' ',' '},
@@ -229,31 +230,40 @@ public class TestGame {
 	@Test
 	public void testPullWithNullPiece(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 1, 2));
+		assertFalse(g.pull(0, 4, 3));
 	}
 	
 	@Test
-	public void testPullOffBoard(){
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(7, 0, 2));
-	}
-	
-	@Test
-	public void testPullOffBoard2(){
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(7, 0, 3));
-	}
-	
-	@Test
-	public void testPullOffBoard3(){
+	public void testPullUpOffBoard(){
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(0, 7, 0));
 	}
 	
 	@Test
-	public void testPullOffBoard4(){
+	public void testPullRightOffBoard(){
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(0, 7, 1));
 	}
+	
+	@Test
+	public void testPullDownOffBoard(){
+		Game g = new Game(pullTestingBoard);
+		assertFalse(g.pull(7, 0, 2));
+	}
+	
+	@Test
+	public void testPullLeftOffBoard(){
+		Game g = new Game(pullTestingBoard);
+		assertFalse(g.pull(7, 0, 3));
+	}
+	
+	@Test
+	public void testPullUpIntoOccupiedSpace(){
+		Game g = new Game(pullTestingBoard);
+		assertFalse(g.pull(2, 2, 0));
+	}
+	
+	
+	
 }
 
