@@ -172,6 +172,9 @@ public class Game {
 	 */
 	public boolean pull(int row, int column, int direction){
 		switch(direction){
+		case 0:
+			move(row, column, direction);
+			move(row+1, column, direction);
 		case 2:
 			move(row, column, direction);
 			move(row-1, column, direction);
