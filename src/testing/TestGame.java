@@ -165,5 +165,13 @@ public class TestGame {
 		assertFalse(g.push(7, 4, 2, 2));
 		//System.out.println(Arrays.deepToString(g.currentBoard.getBoardArray()));
 	}
+	@Test
+	public void testPushRight(){
+		Game g=new Game(b2);
+		assertTrue(g.push(4, 4, 1, 1));
+		assertTrue(g.push(4, 5, 1, 1));
+		assertFalse(g.push(4, 6, 1,1));
+		assertFalse(g.push(4, 7, 1, 1));
+	}
 }
 
