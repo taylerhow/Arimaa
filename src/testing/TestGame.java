@@ -28,7 +28,7 @@ public class TestGame {
 			{' ',' ',' ','C','E','d',' ',' '},
 			{' ',' ',' ',' ','r',' ',' ',' '},
 			{' ',' ',' ','D',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ','K','R'},
+			{' ',' ',' ',' ',' ','r','K','R'},
 			}, 0);
 	
 	
@@ -172,6 +172,14 @@ public class TestGame {
 		assertTrue(g.push(4, 5, 1, 1));
 		assertFalse(g.push(4, 6, 1,1));
 		assertFalse(g.push(4, 7, 1, 1));
+	}
+	@Test
+	public void testPushLeft(){
+		Game g=new Game(b2);
+		assertTrue(g.push(7, 7, 3, 3));
+		assertTrue(g.push(7, 6, 3, 3));
+		assertFalse(g.push(7, 5, 3, 3));
+		assertFalse(g.push(7, 4, 3, 3));
 	}
 }
 
