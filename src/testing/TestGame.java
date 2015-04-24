@@ -33,7 +33,7 @@ public class TestGame {
 	
 	BoardState pullTestingBoard = new BoardState(new char[][] {
 			{' ','r',' ',' ',' ',' ','R','e'},
-			{'r','E','E',' ',' ',' ',' ','R'},
+			{'r','E','E',' ','E',' ',' ','R'},
 			{' ','E','E','r',' ','r',' ',' '},
 			{' ',' ','r',' ',' ','E',' ',' '},
 			{' ',' ',' ','r','E',' ','E','r'},
@@ -281,6 +281,11 @@ public class TestGame {
 		assertFalse(g.pull(2, 2, 3));
 	}
 	
+	@Test
+	public void testPullNothingUp(){
+		Game g = new Game(pullTestingBoard);
+		assertFalse(g.pull(1, 4, 0));
+	}
 	
 	
 }
