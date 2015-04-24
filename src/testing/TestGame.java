@@ -226,5 +226,10 @@ public class TestGame {
 		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 	}
 	
+	@Test
+	public void testPullWithEmptyPiece(){
+		Game g = new Game(pullTestingBoard);
+		assertFalse(g.pull(1, 1, 2));
+	}
 }
 
