@@ -1,5 +1,8 @@
 package testing;
 import static org.junit.Assert.*;
+
+import java.util.Arrays;
+
 import game.*;
 import game.Piece.PieceType;
 
@@ -148,7 +151,7 @@ public class TestGame {
 	public void testPushValid(){
 		Game g=new Game(b2);
 		assertTrue(g.push(4, 4, 0, 0));
-		
+		//System.out.println(Arrays.deepToString(g.currentBoard.getBoardArray()));
 	}
 }
 
