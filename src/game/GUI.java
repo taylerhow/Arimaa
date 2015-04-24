@@ -309,7 +309,7 @@ public class GUI {
 				boardPieces[row][column-1].setColumn(column-1);
 				boardPieces[row][column-1].setLocation(boardPieces[row][column-1].getPixelX(), 
 						boardPieces[row][column-1].getPixelY());
-				boardPieces[row-1][column].setVisible(true);
+				boardPieces[row][column-1].setVisible(true);
 				return true;
 			}
 			return false;
@@ -587,9 +587,9 @@ public class GUI {
 				//Using move to check for valid move
 				if(game.move(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection)){
 					movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
-					this.selectedPiece = null;
-					this.pieceSelectedFlag = false;
 				}
+				this.selectedPiece = null;
+				this.pieceSelectedFlag = false;
 			}
 			else{
 				this.selectedPiece = null;
