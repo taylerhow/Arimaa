@@ -35,9 +35,9 @@ public class TestGame {
 			{' ',' ',' ',' ',' ',' ',' ',' '},
 			{' ',' ',' ',' ',' ','r',' ',' '},
 			{' ',' ',' ',' ',' ','E',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ','r','E',' ','E','r'},
+			{' ',' ',' ',' ',' ','E',' ',' '},
+			{' ',' ',' ',' ',' ','r',' ',' '},
 			{' ',' ',' ',' ',' ',' ',' ',' '},
 			}, 0);
 	
@@ -192,6 +192,14 @@ public class TestGame {
 		assertTrue(g.push(7, 3, 3, 3));
 		assertTrue(g.push(7, 2, 3, 3));
 		assertFalse(g.push(7, 1, 3, 3));
+	}
+	
+	@Test
+	public void testBasicPullUp(){
+		Game g = new Game(pullTestingBoard);
+		assertTrue(g.pull(5, 5, 0));
+		assertTrue(g.getSpace(5, 5).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 	}
 	
 	@Test
