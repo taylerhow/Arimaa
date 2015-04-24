@@ -531,7 +531,7 @@ public class GUI {
 		}
 
 		@Override
-		public void mousePressed(MouseEvent e) {
+		public void mouseClicked(MouseEvent e) {
 			//Not needed
 		}
 
@@ -551,7 +551,7 @@ public class GUI {
 		}
 
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void mousePressed(MouseEvent e) {
 			//Starting Hardcore Logic here...
 			
 			ArrayList<Integer> directions = new ArrayList<Integer>();
@@ -564,10 +564,14 @@ public class GUI {
 			int rowClicked = (sourceY - 10) / 80;
 			int columnClicked = (sourceX - 10) / 80;
 			
+			System.out.println("Row: " + rowClicked + ", Column: " + columnClicked);
+			if(selectedPiece != null) System.out.println("Piece Row: " + selectedPiece.getRow() + ", Piece Column: "+ selectedPiece.getColumn());
+			
+			
 			if(boardPieces[rowClicked][columnClicked] != null && this.pieceSelectedFlag == false){
 				this.pieceSelectedFlag = true;
 				this.selectedPiece = boardPieces[rowClicked][columnClicked];
-				//...
+				//...?
 			}	
 			
 			else if(this.selectedPiece != null && this.pieceSelectedFlag == true){
@@ -581,6 +585,7 @@ public class GUI {
 				if(selectedPiece.getColumn() -1 == columnClicked && selectedPiece.getRow() == rowClicked) 
 					calculatedDirection = 3; 
 				
+				//Using move to check for valid move
 				if(game.move(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection)){
 					movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
 				}
