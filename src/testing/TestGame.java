@@ -299,6 +299,10 @@ public class TestGame {
 		assertFalse(g.pull(1, 4, 2));
 	}
 	
-	
+	@Test
+	public void testPullNothingLeft(){
+		Game g = new Game(pullTestingBoard);
+		assertFalse(g.pull(1, 4, 3));
+	}
 }
 
