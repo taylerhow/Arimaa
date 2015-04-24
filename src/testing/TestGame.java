@@ -203,6 +203,14 @@ public class TestGame {
 	}
 	
 	@Test
+	public void testBasicPullRight(){
+		Game g = new Game(pullTestingBoard);
+		assertTrue(g.pull(4, 4, 1));
+		assertTrue(g.getSpace(4, 4).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+	}
+	
+	@Test
 	public void testBasicPullDown(){
 		Game g = new Game(pullTestingBoard);
 		assertTrue(g.pull(3, 5, 2));
