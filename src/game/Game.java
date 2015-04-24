@@ -162,52 +162,6 @@ public class Game {
 		}
 		return false;
 	}
-	/**
-	 * 0: up, 1: right, 2: down, 3: left
-	 * @param x
-	 * @param y
-	 * @param dir1
-	 * @param dir2
-	 * @return
-	 */
-	public boolean pull(int x, int y, int dir1, int dir2){
-		if(getSpace(x, y)==null)
-			return false;//trying to push with an empty square
-		switch(dir1){
-		case 0:
-			System.out.println("Case 0");
-			if(move(x,y-1,dir2)){
-				System.out.println("("+x+","+y+"trying move "+dir2);
-				//should always be true
-				return move(x,y,dir1);
-			}
-			break;
-		case 1:
-			//System.out.println("Case 1");
-			if(move(x+1,y,dir2)){
-				System.out.println("("+x+","+y+"trying move "+dir2);
-			//should always be true
-				return move(x,y,dir1);
-			}
-			break;
-		case 2:
-			//System.out.println("Case 2");
-			if(move(x,y+1,dir2)){
-				//System.out.println("("+x+","+y+"trying move "+dir2);
-				//should always be true
-				return move(x,y,dir1);
-			}
-			break;
-		case 3:
-			System.out.println("Case 3");
-			if(move(x-1,y,dir2)){
-				System.out.println("("+x+","+y+") trying move "+dir2);
-				//should always be true
-				return move(x,y,dir1);
-			}
-			break;
-		
-		}
-		return false;
-	}
+	
+	
 }
