@@ -571,10 +571,9 @@ public class GUI {
 			if(boardPieces[rowClicked][columnClicked] != null && this.pieceSelectedFlag == false){
 				this.pieceSelectedFlag = true;
 				this.selectedPiece = boardPieces[rowClicked][columnClicked];
-				//...?
 			}	
 			
-			else if(this.selectedPiece != null && this.pieceSelectedFlag == true){
+			else if(this.selectedPiece != null && boardPieces[rowClicked][columnClicked] == null){
 				int calculatedDirection = -1;
 				if(selectedPiece.getRow() -1 == rowClicked && selectedPiece.getColumn() == columnClicked) 
 					calculatedDirection = 0;
@@ -588,6 +587,8 @@ public class GUI {
 				//Using move to check for valid move
 				if(game.move(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection)){
 					movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
+					this.selectedPiece = null;
+					this.pieceSelectedFlag = false;
 				}
 			}
 			else{
