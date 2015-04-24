@@ -296,18 +296,12 @@ public class GUI {
 	// helper for movePieceIcon
 	//Switches pieces in row1, column1 and row2,column2
 	private void switchPiece(int row1, int column1, int row2, int column2) {
-		// System.out.println(x+" "+ y+"  "+x2+" "+y2);
 		ImagePanel[][] boardArray = boardPieces;
-		// System.out.println(Arrays.deepToString(boardArray));
 		ImagePanel temp = boardArray[row1][column1];
-		// System.out.println(temp+" "
-		// +boardArray[y][x]+" "+boardArray[y2][x2]);
+
 		boardArray[row1][column1] = boardArray[row2][column2];
 		boardArray[row2][column2] = temp;
 
-		// System.out.println(Arrays.deepToString(boardArray));
-		// System.out.println("SWITCH "+temp+" "
-		// +boardArray[x][y]+" "+boardArray[x2][y2]);
 		boardPieces = boardArray;
 	}
 
@@ -330,6 +324,7 @@ public class GUI {
 
 			// Set up Player 1 Name Label and Text Field
 			JLabel p1NameLabel = new JLabel();
+			
 			// On Mac, the bolded text causes layout issues
 			p1NameLabel.setText("<html><b>Player 1 Name:</b><html>");
 			p1NameLabel.setForeground(Color.WHITE);
