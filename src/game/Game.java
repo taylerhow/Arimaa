@@ -171,6 +171,9 @@ public class Game {
 	 * @return True if pull succeeds, False if it fails
 	 */
 	public boolean pull(int row, int column, int direction){
+		//There's no piece here to pull with, nimrod
+		if(getSpace(row, column)==null) return false;
+		
 		switch(direction){
 		case 0:
 			move(row, column, direction);

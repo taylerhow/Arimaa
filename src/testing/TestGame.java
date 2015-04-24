@@ -227,7 +227,7 @@ public class TestGame {
 	}
 	
 	@Test
-	public void testPullWithEmptyPiece(){
+	public void testPullWithNullPiece(){
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 1, 2));
 	}
