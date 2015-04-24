@@ -104,7 +104,7 @@ public class GUI {
 		this.activeFrames = frames;
 	}
 
-	public void renderInitialBoard() {
+	private void renderInitialBoard() {
 		char[][] boardArray = this.game.currentBoard.getBoardArray();
 		for (int row = 0; row < 8; row++) {
 			for (int column = 0; column < 8; column++) {
@@ -250,6 +250,65 @@ public class GUI {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * @param row
+	 * @param column
+	 * @param dir 0: up, 1: right, 2: down, 3: left
+	 */
+	//Helper fuction for the action listener handling piece move
+	private boolean movePieceIcon(int row, int column, int dir){
+		switch(dir){
+		case 0:
+			//Moving UP
+			if (row - 1 >= 0 && boardPieces[row-1][column] == null) {
+				switchPiece(row, column, row-1, column);
+				return true;
+			}
+			return false;
+		case 1:
+			//Moving RIGHT
+			if (column + 1 <= 7 && boardPieces[row][column+1] == null) {
+				switchPiece(row, column, row, column+1);
+				return true;
+			}
+			return false;
+		case 2:
+			//Moving DOWN
+			if (row + 1 <= 7 && boardPieces[row+1][column] == null) {
+				switchPiece(row, column, row + 1, column);
+				return true;
+			}
+			return false;
+		case 3:
+			//Moving LEFT
+			if (column - 1 >= 0 && boardPieces[row][column-1] == null) {
+				switchPiece(row, column, row, column - 1);
+				return true;
+			}
+			return false;
+		default:
+			return false;
+		}
+	}
+
+	// helper for movePieceIcon
+	//Switches pieces in row1, column1 and row2,column2
+	private void switchPiece(int row1, int column1, int row2, int column2) {
+		// System.out.println(x+" "+ y+"  "+x2+" "+y2);
+		ImagePanel[][] boardArray = boardPieces;
+		// System.out.println(Arrays.deepToString(boardArray));
+		ImagePanel temp = boardArray[row1][column1];
+		// System.out.println(temp+" "
+		// +boardArray[y][x]+" "+boardArray[y2][x2]);
+		boardArray[row1][column1] = boardArray[row2][column2];
+		boardArray[row2][column2] = temp;
+
+		// System.out.println(Arrays.deepToString(boardArray));
+		// System.out.println("SWITCH "+temp+" "
+		// +boardArray[x][y]+" "+boardArray[x2][y2]);
+		boardPieces = boardArray;
 	}
 
 	class newGameListener implements ActionListener {
