@@ -130,7 +130,7 @@ public class Game {
 			break;
 		case 1:
 			//System.out.println("Case 1");
-			if(move(x+1,y+1,dir2)){
+			if(move(x,y+1,dir2)){
 				//System.out.println("("+x+","+y+"trying move "+dir2);
 			//should always be true
 			boolean move = move(x,y,dir1);
