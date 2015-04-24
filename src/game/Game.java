@@ -176,7 +176,7 @@ public class Game {
 		
 		switch(direction){
 		case 0:
-			if (move(row, column, direction)) {
+			if (getSpace(row+1, column)!=null && move(row, column, direction)) {
 				move(row + 1, column, direction);
 				return true;
 			}
