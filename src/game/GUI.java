@@ -513,7 +513,7 @@ public class GUI {
 			activeFrames.get(0).pack();
 			panel.setVisible(true);
 			gameBoardPanel = panel;
-			gameBoardPanel.addMouseListener(new MouseEventListener());
+			gameBoardPanel.addMouseListener(new MovementListener());
 	
 			gameFrame.setVisible(true);
 
@@ -521,17 +521,18 @@ public class GUI {
 		}
 	}
 	
-	private class MouseEventListener implements MouseListener {
+	private class MovementListener implements MouseListener {
 		boolean pieceSelectedFlag;
+		ImagePanel selectedPiece;
 		
-		private MouseEventListener(){
-			pieceSelectedFlag = true;;
+		private MovementListener(){
+			this.pieceSelectedFlag = true;
+			this.selectedPiece = null;
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
 			//Not needed
-			System.out.println("asdg");
 		}
 
 		@Override
@@ -553,7 +554,8 @@ public class GUI {
 		public void mouseClicked(MouseEvent e) {
 			//Starting Hardcore Logic here...
 			
-			boolean pieceClickedFlag = false;
+			ArrayList<Integer> directions = new ArrayList<Integer>();
+			for(int i=0; i<4; i++) directions.add(i);
 			
 			int sourceX = (int) e.getPoint().getX();
 			int sourceY = (int) e.getPoint().getY();
@@ -562,15 +564,31 @@ public class GUI {
 			int rowClicked = (sourceY - 10) / 80;
 			int columnClicked = (sourceX - 10) / 80;
 			
-			ImagePanel selectedPiece = null;
+			if(boardPieces[rowClicked][columnClicked] != null && this.pieceSelectedFlag == false){
+				this.pieceSelectedFlag = true;
+				this.selectedPiece = boardPieces[rowClicked][columnClicked];
+				//...
+			}	
 			
-			if(boardPieces[rowClicked][columnClicked] != null){
-				pieceClickedFlag = true;
-				selectedPiece = boardPieces[rowClicked][columnClicked];
+			else if(this.selectedPiece != null && this.pieceSelectedFlag == true){
+				int calculatedDirection = -1;
+				if(selectedPiece.getRow() -1 == rowClicked && selectedPiece.getColumn() == columnClicked) 
+					calculatedDirection = 0;
+				if(selectedPiece.getColumn() +1 == columnClicked && selectedPiece.getRow() == rowClicked) 
+					calculatedDirection = 1;
+				if(selectedPiece.getRow() +1 == rowClicked && selectedPiece.getColumn() == columnClicked) 
+					calculatedDirection = 2;
+				if(selectedPiece.getColumn() -1 == columnClicked && selectedPiece.getRow() == rowClicked) 
+					calculatedDirection = 3; 
 				
+				if(game.move(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection)){
+					movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
+				}
 			}
-			
-			
+			else{
+				this.selectedPiece = null;
+				this.pieceSelectedFlag = false;
+			}
 		}
 	}
 }
