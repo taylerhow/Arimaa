@@ -163,5 +163,20 @@ public class Game {
 		return false;
 	}
 	
-	
+	/**
+	 * 0: up, 1: right, 2: down, 3: left
+	 * @param row: row that contains the pulling piece
+	 * @param column: column that contains the pulling piece
+	 * @param direction: direction the pulling piece will move
+	 * @return True if pull succeeds, False if it fails
+	 */
+	public boolean pull(int row, int column, int direction){
+		switch(direction){
+		case 2:
+			move(row, column, direction);
+			move(row-1, column, direction);
+			return true;
+		}
+		return false;
+	}
 }
