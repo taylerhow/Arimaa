@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -8,14 +9,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 public class GUI {
@@ -508,10 +513,41 @@ public class GUI {
 			activeFrames.get(0).pack();
 			panel.setVisible(true);
 			gameBoardPanel = panel;
-
+			gameBoardPanel.addMouseListener(new MouseEventDemo());
+	
 			gameFrame.setVisible(true);
 
 			renderInitialBoard();
+		}
+	}
+	
+	public class MouseEventDemo implements MouseListener {
+		// where initialization occurs:
+		// Register for mouse events on blankArea and the panel.
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			//Not needed
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			//Not needed		
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			//Not needed
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			//Not needed
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			//Hardcore Logic here
 		}
 	}
 }
