@@ -39,7 +39,7 @@ public class TestGame {
 			{' ',' ',' ','r','E',' ','E','r'},
 			{' ',' ',' ',' ',' ','E',' ',' '},
 			{'r',' ',' ',' ',' ','r',' ',' '},
-			{'E','r',' ',' ',' ',' ',' ',' '},
+			{'E','r',' ','E','R',' ',' ',' '},
 			}, 0);
 	
 	
@@ -303,6 +303,12 @@ public class TestGame {
 	public void testPullNothingLeft(){
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 4, 3));
+	}
+	
+	@Test
+	public void testPullOwnPiece(){
+		Game g= new Game(pullTestingBoard);
+		assertFalse(g.pull(7, 3, 3));
 	}
 }
 
