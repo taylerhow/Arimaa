@@ -75,43 +75,45 @@ public class TestPiece {
 	
 	@Test
 	public void testIsElephantStrongerThanCamel(){
-		Piece p1 = new Piece(PieceType.Elephant, null, Owner.Player1);
-		Piece p2 = new Piece(PieceType.Camel, null, Owner.Player2);
+		Piece p1 = new Piece('E');
+		Piece p2 = new Piece('c');
 		assertTrue(p1.isStrongerThan(p2));
 	}
 	
 	@Test
 	public void testIsElephantStrongerThanElephant(){
-		Piece p1 = new Piece(PieceType.Elephant, null, Owner.Player1);
-		Piece p2 = new Piece(PieceType.Elephant, null, Owner.Player2);
+		Piece p1 = new Piece('E');
+		Piece p2 = new Piece('e');
 		assertFalse(p1.isStrongerThan(p2));
 	}
 	
 	@Test
 	public void testIsCamelStrongerThanCamel(){
-		Piece p1 = new Piece(PieceType.Camel, null, Owner.Player1);
-		Piece p2 = new Piece(PieceType.Camel, null, Owner.Player2);
+		Piece p1 = new Piece('C');
+		Piece p2 = new Piece('c');
 		assertFalse(p1.isStrongerThan(p2));
 	}
 	
 	@Test
 	public void testIsCamelStrongerThanHorse(){
-		Piece p1 = new Piece(PieceType.Camel, null, Owner.Player1);
-		Piece p2 = new Piece(PieceType.Horse, null, Owner.Player2);
+		Piece p1 = new Piece('C');
+		Piece p2 = new Piece('h');
 		assertTrue(p1.isStrongerThan(p2));
 	}
 	
 	@Test
 	public void testIsHorseStrongerThanDog(){
-		Piece p1 = new Piece(PieceType.Horse, null, Owner.Player1);
-		Piece p2 = new Piece(PieceType.Dog, null, Owner.Player2);
+		Piece p1 = new Piece('H');
+		Piece p2 = new Piece('d');
+		System.out.println(p1.getRank());
+		System.out.println(p2.getRank());
 		assertTrue(p1.isStrongerThan(p2));
 	}
 	
 	@Test
 	public void testIsDogStrongerThanDog(){
-		Piece p1 = new Piece(PieceType.Dog, null, Owner.Player1);
-		Piece p2 = new Piece(PieceType.Dog, null, Owner.Player2);
+		Piece p1 = new Piece('D');
+		Piece p2 = new Piece('d');
 		assertFalse(p1.isStrongerThan(p2));
 	}
 }
