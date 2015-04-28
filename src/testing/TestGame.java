@@ -306,7 +306,7 @@ public class TestGame {
 	}
 	
 	@Test
-	public void testPullOwnPiece(){
+	public void testPullOwnPieceLeft(){
 		Game g= new Game(pullTestingBoard);
 		assertFalse(g.pull(7, 3, 3));
 	}
