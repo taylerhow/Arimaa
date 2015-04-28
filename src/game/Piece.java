@@ -105,4 +105,8 @@ public class Piece {
 		return false;
 		
 	}
+	
+	public boolean isStrongerThan(Piece p2){
+		return false;
+	}
 }

@@ -72,5 +72,11 @@ public class TestPiece {
 		assertNotEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
 		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2), new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
 	}
-
+	
+	@Test
+	public void testIsElephantStrongerThanCamel(){
+		Piece p1 = new Piece(PieceType.Elephant, null, Owner.Player1);
+		Piece p2 = new Piece(PieceType.Camel, null, Owner.Player2);
+		assertTrue(p1.isStrongerThan(p2));
+	}
 }
