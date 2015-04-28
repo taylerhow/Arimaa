@@ -182,27 +182,26 @@ public class Game {
 				move(row + 1, column, direction);
 				return true;
 			}
-			return false;
+			break;
 		case 1:
 			if (getSpace(row, column-1)!=null && move(row, column, direction)) {
 				move(row, column - 1, direction);
 				return true;
 			}
-			return false;
+			break;
 		case 2:
 			if(getSpace(row-1, column)!=null && move(row, column, direction)){
 				move(row - 1, column, direction);
 				return true;
 			}
-			return false;
+			break;
 		case 3:
 			if (getSpace(row, column+1)!=null && move(row, column, direction)) {
 				move(row, column + 1, direction);
 				return true;
 			}
-			return false;
-		default:
-			return false;
+			break;
 		}
+		return false;
 	}
 }
