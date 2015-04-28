@@ -87,4 +87,11 @@ public class TestPiece {
 		assertFalse(p1.isStrongerThan(p2));
 	}
 	
+	@Test
+	public void testIsCamelStrongerThanCamel(){
+		Piece p1 = new Piece(PieceType.Camel, null, Owner.Player1);
+		Piece p2 = new Piece(PieceType.Camel, null, Owner.Player2);
+		assertFalse(p1.isStrongerThan(p2));
+	}
+	
 }
