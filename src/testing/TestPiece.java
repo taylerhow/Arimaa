@@ -107,4 +107,11 @@ public class TestPiece {
 		Piece p2 = new Piece(PieceType.Dog, null, Owner.Player2);
 		assertTrue(p1.isStrongerThan(p2));
 	}
+	
+	@Test
+	public void testIsDogStrongerThanDog(){
+		Piece p1 = new Piece(PieceType.Dog, null, Owner.Player1);
+		Piece p2 = new Piece(PieceType.Dog, null, Owner.Player2);
+		assertFalse(p1.isStrongerThan(p2));
+	}
 }
