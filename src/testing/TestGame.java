@@ -318,6 +318,12 @@ public class TestGame {
 	}
 	
 	@Test
+	public void testPullOwnPieceDown(){
+		Game g= new Game(pullTestingBoard);
+		assertFalse(g.pull(1, 6, 2));
+	}
+	
+	@Test
 	public void testPullOwnPieceLeft(){
 		Game g= new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 6, 3));
