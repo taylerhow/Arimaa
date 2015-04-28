@@ -170,7 +170,7 @@ public class Game {
 	 * @param direction: direction the pulling piece will move
 	 * @return True if pull succeeds, False if it fails
 	 */
-	//Still need to test player ownership comparison and piece strength comparison
+	//Still need to test piece strength comparison
 	public boolean pull(int row, int column, int direction){
 		//There's no piece here to pull with, nimrod
 		if(getSpace(row, column)==null) return false;
