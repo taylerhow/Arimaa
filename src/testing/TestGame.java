@@ -309,24 +309,28 @@ public class TestGame {
 	public void testPullOwnPieceUp(){
 		Game g= new Game(pullTestingBoard);
 		assertFalse(g.pull(6, 1, 0));
+		assertTrue(g.getSpace(5, 1)==null);
 	}
 	
 	@Test
 	public void testPullOwnPieceRight(){
 		Game g= new Game(pullTestingBoard);
 		assertFalse(g.pull(6, 1, 1));
+		assertTrue(g.getSpace(6, 2)==null);
 	}
 	
 	@Test
 	public void testPullOwnPieceDown(){
 		Game g= new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 6, 2));
+		assertTrue(g.getSpace(2, 6)==null);
 	}
 	
 	@Test
 	public void testPullOwnPieceLeft(){
 		Game g= new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 6, 3));
+		assertTrue(g.getSpace(1, 5)==null);
 	}
 }
 
