@@ -196,7 +196,7 @@ public class Game {
 			}
 			break;
 		case 3:
-			if (getSpace(row, column+1)!=null && move(row, column, direction)) {
+			if (getSpace(row, column+1)!=null && getSpace(row, column).getOwner() != getSpace(row, column+1).getOwner() && move(row, column, direction)) {
 				move(row, column + 1, direction);
 				return true;
 			}
