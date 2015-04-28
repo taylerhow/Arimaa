@@ -107,6 +107,7 @@ public class Piece {
 	}
 	
 	public boolean isStrongerThan(Piece p2){
+		if(p2.getType()==PieceType.Elephant) return false;
 		return true;
 	}
 }
