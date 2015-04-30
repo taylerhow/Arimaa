@@ -186,7 +186,9 @@ public class Game {
 				
 		//Get direction that pulled piece will move
 		int direction2 = getDirection(row2, column2, row1, column1);
-		if(direction2 == -1) return false;
+		
+		//Check that getDirection didn't fail
+//		if(direction2 == -1) return false;
 		
 		//Attempt to perform move operations on both pieces
 		switch(direction1){
@@ -229,11 +231,11 @@ public class Game {
 	public int getDirection(int row1, int column1, int row2, int column2){
 		if(row1 == row2){
 			if(column1 - 1 == column2) return 3;
-			if(column1 + 1 == column2) return 1;
+			else if(column1 + 1 == column2) return 1;
 		}
 		if(column1 == column2){
 			if(row1 - 1 == row2) return 0;
-			if(row1 + 1 == row2) return 2;
+			else if(row1 + 1 == row2) return 2;
 		}
 		return -1;
 	}
