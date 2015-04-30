@@ -419,7 +419,13 @@ public class TestGame {
 	@Test
 	public void testGetDirectionUp(){
 		Game g = new Game();
-		assertEquals(0, g.getDirection(1, 0, 0, 0));
+		assertEquals(0, g.getDirection(1, 1, 0, 1));
+	}
+	
+	@Test
+	public void testGetDirectionRight(){
+		Game g = new Game();
+		assertEquals(1, g.getDirection(1, 1, 1, 2));
 	}
 }
 
