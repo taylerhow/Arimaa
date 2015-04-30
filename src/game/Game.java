@@ -38,7 +38,7 @@ public class Game {
 	 * @return
 	 */
 	public Piece getSpace(int row, int column){
-		if(row < 0) return null;
+		if(row < 0 || row > 7) return null;
 		if(currentBoard.getBoardArray()[row][column]==' ')
 			return null;
 		return new Piece(currentBoard.getBoardArray()[row][column]);
