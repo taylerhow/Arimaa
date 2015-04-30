@@ -177,9 +177,6 @@ public class Game {
 	 */
 	//Still need to test piece strength comparison
 	public boolean pull(int row1, int column1, int row2, int column2, int direction1){
-		//Check for invalid coordinates
-		if(row1 < 0 || row1 > 7 || column1 < 0 || column1 > 7) return false;
-		
 		//Check that both pieces exist
 		if(getSpace(row1, column1)==null || getSpace(row2, column2)==null) return false;
 		
