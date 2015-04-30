@@ -70,6 +70,12 @@ public class TestGame {
 	}
 	
 	@Test
+	public void testGetSpaceInvalidRow2() {
+		Game g= new Game();
+		assertNull(g.getSpace(8, 0));
+	}
+	
+	@Test
 	public void testMoveLegal(){
 		Game g = new Game(b);
 		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),g.getSpace(7, 7));
