@@ -112,10 +112,10 @@ public class Game {
 		
 		switch (dir1) {
 		case 0:
-			Piece pushingPiece = getSpace(row,column);
-			Piece pushedPiece = getSpace(row - 1, column);
-			if (pushedPiece != null && pushingPiece.isStrongerThan(pushedPiece)) {
-				if (row - 1 >= 0) {
+			if (row - 1 >= 0) {
+				Piece pushingPiece = getSpace(row, column);
+				Piece pushedPiece = getSpace(row - 1, column);
+				if (pushedPiece != null&& pushingPiece.isStrongerThan(pushedPiece)) {
 					if (getSpace(row, column).getOwner() != getSpace(row - 1,column).getOwner()
 							&& move(row - 1, column, dir2)) {
 						// should always be true
@@ -131,6 +131,7 @@ public class Game {
 				if (pushedPiece2 != null&& pushingPiece2.isStrongerThan(pushedPiece2)) {
 					if (getSpace(row, column).getOwner() != getSpace(row,column + 1).getOwner()
 							&& move(row, column + 1, dir2)) {
+						// should always be true
 						return move(row, column, dir1);
 					}
 				}
