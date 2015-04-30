@@ -116,7 +116,7 @@ public class Game {
 		switch (dir1) {
 		case 0:
 //			 System.out.println("Case 0");
-			if (move(row - 1, column, dir2)) {
+			if (getSpace(row,column).getOwner() != getSpace(row-1, column).getOwner() && move(row - 1, column, dir2)) {
 				// System.out.println("("+row+","+y+") trying move "+dir2);
 				// should always be true
 				boolean move = move(row, column, dir1);
