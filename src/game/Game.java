@@ -105,24 +105,24 @@ public class Game {
 	}
 	/**
 	 * 0: up, 1: right, 2: down, 3: left
-	 * @param x
-	 * @param y
+	 * @param row
+	 * @param column
 	 * @param dir1 the direction the pushing piece will move
 	 * @param dir2 the direction the pushed piece will move
 	 * @return
 	 */
-	public boolean push(int x, int y, int dir1, int dir2){
+	public boolean push(int row, int column, int dir1, int dir2){
 
 		//System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
-		if(getSpace(x, y)==null)
+		if(getSpace(row, column)==null)
 			return false;//trying to push with an empty square
 		switch(dir1){
 		case 0:
 			//System.out.println("Case 0");
-			if(move(x-1,y,dir2)){
-				//System.out.println("("+x+","+y+") trying move "+dir2);
+			if(move(row-1,column,dir2)){
+				//System.out.println("("+row+","+y+") trying move "+dir2);
 				//should always be true
-				boolean move = move(x,y,dir1);
+				boolean move = move(row,column,dir1);
 				//System.out.println(move);
 				//System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
 				return move;
@@ -130,30 +130,30 @@ public class Game {
 			break;
 		case 1:
 			//System.out.println("Case 1");
-			if(move(x,y+1,dir2)){
-				//System.out.println("("+x+","+y+"trying move "+dir2);
+			if(move(row,column+1,dir2)){
+				//System.out.println("("+row+","+y+"trying move "+dir2);
 			//should always be true
-			boolean move = move(x,y,dir1);
+			boolean move = move(row,column,dir1);
 			//System.out.println(move);
 			return move;
 			}
 			break;
 		case 2:
 			//System.out.println("Case 2");
-			if(move(x+1,y,dir2)){
-				//System.out.println("("+x+","+y+"trying move "+dir2);
+			if(move(row+1,column,dir2)){
+				//System.out.println("("+row+","+column+"trying move "+dir2);
 				//should always be true
-				boolean move = move(x,y,dir1);
+				boolean move = move(row,column,dir1);
 				//System.out.println(move);
 				return move;
 			}
 			break;
 		case 3:
 			//System.out.println("Case 3");
-			if(move(x,y-1,dir2)){
-				//System.out.println("("+x+","+y+") trying move "+dir2);
+			if(move(row,column-1,dir2)){
+				//System.out.println("("+row+","+column+") trying move "+dir2);
 				//should always be true
-				boolean move = move(x,y,dir1);
+				boolean move = move(row,column,dir1);
 				//System.out.println(move);
 				return move;
 			}
