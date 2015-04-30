@@ -197,6 +197,6 @@ public class Game {
 	}
 	
 	public int getDirection(int row1, int column1, int row2, int column2){
-		return -1;
+		return 0;
 	}
 }
