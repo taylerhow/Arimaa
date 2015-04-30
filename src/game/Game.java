@@ -37,10 +37,10 @@ public class Game {
 	 * @param y
 	 * @return
 	 */
-	public Piece getSpace(int x, int y){
-		if(currentBoard.getBoardArray()[x][y]==' ')
+	public Piece getSpace(int row, int column){
+		if(currentBoard.getBoardArray()[row][column]==' ')
 			return null;
-		return new Piece(currentBoard.getBoardArray()[x][y]);
+		return new Piece(currentBoard.getBoardArray()[row][column]);
 		
 	}
 	/**
@@ -109,53 +109,52 @@ public class Game {
 	 * @return
 	 */
 	public boolean push(int row, int column, int dir1, int dir2){
-
 		//System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
-		if(getSpace(row, column)==null)
-			return false;//trying to push with an empty square
-		switch(dir1){
+		if (getSpace(row, column) == null){
+			return false; // trying to push with an empty square
+		}
+		switch (dir1) {
 		case 0:
-			//System.out.println("Case 0");
-			if(move(row-1,column,dir2)){
-				//System.out.println("("+row+","+y+") trying move "+dir2);
-				//should always be true
-				boolean move = move(row,column,dir1);
-				//System.out.println(move);
-				//System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
+//			 System.out.println("Case 0");
+			if (move(row - 1, column, dir2)) {
+				// System.out.println("("+row+","+y+") trying move "+dir2);
+				// should always be true
+				boolean move = move(row, column, dir1);
+				// System.out.println(move);
+				// System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
 				return move;
 			}
 			break;
 		case 1:
-			//System.out.println("Case 1");
-			if(move(row,column+1,dir2)){
-				//System.out.println("("+row+","+y+"trying move "+dir2);
-			//should always be true
-			boolean move = move(row,column,dir1);
-			//System.out.println(move);
-			return move;
+//			 System.out.println("Case 1");
+			if (move(row, column + 1, dir2)) {
+				// System.out.println("("+row+","+y+"trying move "+dir2);
+				// should always be true
+				boolean move = move(row, column, dir1);
+				// System.out.println(move);
+				return move;
 			}
 			break;
 		case 2:
-			//System.out.println("Case 2");
-			if(move(row+1,column,dir2)){
-				//System.out.println("("+row+","+column+"trying move "+dir2);
-				//should always be true
-				boolean move = move(row,column,dir1);
-				//System.out.println(move);
+//			System.out.println("Case 2");
+			if (move(row + 1, column, dir2)) {
+				// System.out.println("("+row+","+column+"trying move "+dir2);
+				// should always be true
+				boolean move = move(row, column, dir1);
+				// System.out.println(move);
 				return move;
 			}
 			break;
 		case 3:
-			//System.out.println("Case 3");
-			if(move(row,column-1,dir2)){
-				//System.out.println("("+row+","+column+") trying move "+dir2);
-				//should always be true
-				boolean move = move(row,column,dir1);
-				//System.out.println(move);
+//			 System.out.println("Case 3");
+			if (move(row, column - 1, dir2)) {
+				// System.out.println("("+row+","+column+") trying move "+dir2);
+				// should always be true
+				boolean move = move(row, column, dir1);
+				// System.out.println(move);
 				return move;
 			}
 			break;
-		
 		}
 		return false;
 	}

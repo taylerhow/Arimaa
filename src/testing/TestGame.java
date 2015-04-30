@@ -196,6 +196,18 @@ public class TestGame {
 	}
 	
 	@Test
+	public void testPushWithDifferentDirections(){
+		Game g = new Game(pullTestingBoard);
+		assertTrue(g.push(2, 2, 2, 1));
+		assertTrue(g.getSpace(3, 2).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(4, 3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		
+		assertTrue(g.push(3,2,1,1));
+		assertTrue(g.getSpace(3,3).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(4,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+	}
+	
+	@Test
 	public void testBasicPullUp(){
 		Game g = new Game(pullTestingBoard);
 		assertTrue(g.pull(5, 5, 0));
