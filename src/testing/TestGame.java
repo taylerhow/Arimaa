@@ -431,7 +431,7 @@ public class TestGame {
 	@Test
 	public void testGetDirectionDown(){
 		Game g = new Game();
-		assertEquals(1, g.getDirection(1, 1, 2, 1));
+		assertEquals(2, g.getDirection(1, 1, 2, 1));
 	}
 }
 
