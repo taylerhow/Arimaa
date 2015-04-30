@@ -522,12 +522,12 @@ public class GUI {
 	}
 	
 	private class MovementListener implements MouseListener {
-		boolean pieceSelectedFlag;
 		ImagePanel selectedPiece;
+		ImagePanel secondSelectedPiece;
 		
 		private MovementListener(){
-			this.pieceSelectedFlag = true;
 			this.selectedPiece = null;
+			this.secondSelectedPiece = null;
 		}
 
 		@Override
@@ -552,8 +552,6 @@ public class GUI {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			//Starting Hardcore Logic here...
-			
 			ArrayList<Integer> directions = new ArrayList<Integer>();
 			for(int i=0; i<4; i++) directions.add(i);
 			
@@ -564,27 +562,28 @@ public class GUI {
 			int rowClicked = (sourceY - 10) / 80;
 			int columnClicked = (sourceX - 10) / 80;
 			
+			// Beginning movement, nothing yet selected
+			// Selecting piece to interact with
 			if (rowClicked <= 7 && rowClicked >= 0 && columnClicked <= 7
 					&& columnClicked >= 0) {
-				if (boardPieces[rowClicked][columnClicked] != null
-						&& this.pieceSelectedFlag == false) {
-					this.pieceSelectedFlag = true;
+				if (boardPieces[rowClicked][columnClicked] != null) {
 					this.selectedPiece = boardPieces[rowClicked][columnClicked];
 				}
-
-				else if (this.selectedPiece != null
+				// If a piece is selected and an empty space is clicked
+				// AKA move
+				else if (this.selectedPiece != null && this.secondSelectedPiece == null
 						&& boardPieces[rowClicked][columnClicked] == null) {
 					int calculatedDirection = -1;
 					if (selectedPiece.getRow() - 1 == rowClicked
 							&& selectedPiece.getColumn() == columnClicked)
 						calculatedDirection = 0;
-					if (selectedPiece.getColumn() + 1 == columnClicked
+					else if (selectedPiece.getColumn() + 1 == columnClicked
 							&& selectedPiece.getRow() == rowClicked)
 						calculatedDirection = 1;
-					if (selectedPiece.getRow() + 1 == rowClicked
+					else if (selectedPiece.getRow() + 1 == rowClicked
 							&& selectedPiece.getColumn() == columnClicked)
 						calculatedDirection = 2;
-					if (selectedPiece.getColumn() - 1 == columnClicked
+					else if (selectedPiece.getColumn() - 1 == columnClicked
 							&& selectedPiece.getRow() == rowClicked)
 						calculatedDirection = 3;
 
@@ -595,10 +594,21 @@ public class GUI {
 								selectedPiece.getColumn(), calculatedDirection);
 					}
 					this.selectedPiece = null;
-					this.pieceSelectedFlag = false;
-				} else {
+					this.secondSelectedPiece = null;
+					}
+				
+				// Piece already selected, clicked a second piece
+				else if(this.selectedPiece != null && this.secondSelectedPiece == null
+						&& boardPieces[rowClicked][columnClicked] != null){		
+					this.secondSelectedPiece = boardPieces[rowClicked][columnClicked];
+				} else if (this.selectedPiece != null && this.secondSelectedPiece != null 
+						&& boardPieces[rowClicked][columnClicked] == null){
+					
+				}
+				
+				else {
 					this.selectedPiece = null;
-					this.pieceSelectedFlag = false;
+					this.secondSelectedPiece = null;
 				}
 			}
 		}
@@ -607,6 +617,10 @@ public class GUI {
 
 class ImagePanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Image img;
 	private int row;
 	private int column;
