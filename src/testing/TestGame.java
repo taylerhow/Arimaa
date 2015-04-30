@@ -42,6 +42,16 @@ public class TestGame {
 			{'E','r',' ',' ',' ',' ',' ',' '},
 			}, 0);
 	
+	BoardState pushTestingBoard = new BoardState(new char[][] {
+			{' ','r',' ',' ',' ',' ','R','e'},
+			{'r',' ','R',' ','E',' ','E','R'},
+			{' ','R','E','R',' ','r',' ',' '},
+			{' ',' ','R',' ',' ','E',' ',' '},
+			{' ',' ',' ','r','E',' ','E','r'},
+			{' ',' ',' ',' ',' ','E',' ',' '},
+			{'r','e',' ',' ',' ','r',' ',' '},
+			{'E','r',' ',' ',' ',' ',' ',' '},
+			}, 0);
 	
 	@Test
 	public void testInitializes() {
@@ -205,6 +215,14 @@ public class TestGame {
 		assertTrue(g.push(3,2,1,1));
 		assertTrue(g.getSpace(3,3).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 		assertTrue(g.getSpace(4,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+	}
+	
+	@Test 
+	public void testPushUpWithSamePlayersPieces(){
+		Game g = new Game(pushTestingBoard);
+		assertFalse(g.push(2, 2, 0, 0));
+		assertTrue(g.getSpace(2, 2).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(1,2).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
 	}
 	
 	@Test
