@@ -197,9 +197,14 @@ public class Game {
 	}
 	
 	public int getDirection(int row1, int column1, int row2, int column2){
-		if(column2==0) return 3;
-		if(row2==2) return 2;
-		if(column2==2) return 1;
-		return 0;
+		if(row1 == row2){
+			if(column1 - 1 == column2) return 3;
+			if(column1 + 1 == column2) return 1;
+		}
+		if(column1 == column2){
+			if(row1 - 1 == row2) return 0;
+			if(row1 + 1 == row2) return 2;
+		}
+		return -1;
 	}
 }
