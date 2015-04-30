@@ -30,10 +30,7 @@ public class Game {
 				{'k','d','h','c','e','h','d','k'},
 		},0);
 	}
-	/**
-	 * 
-	 */
-	public void render(){}
+
 	/**
 	 * 
 	 * @param x
