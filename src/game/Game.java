@@ -51,6 +51,7 @@ public class Game {
 	 * @return
 	 */
 	public boolean move(int row, int column, int dir){
+		if(getSpace(row,column) == null) return false;
 		boards.add(currentBoard);
 		currentBoard=currentBoard.clone();
 		switch(dir){
