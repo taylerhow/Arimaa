@@ -444,6 +444,16 @@ public class TestGame {
 	}
 	
 	@Test
+	public void testBidirectionalPullLeftUp(){
+		Game g = new Game(pullTestingBoard);
+		Piece p1 = g.getSpace(5, 5);
+		Piece p2 = g.getSpace(6, 5);
+		assertTrue(g.pull(5, 5, 6, 5, 2));
+		assertTrue(g.getSpace(5, 4).equals(p1));
+		assertTrue(g.getSpace(5, 5).equals(p2));
+	}
+	
+	@Test
 	public void testPullPieceOfGreaterStrength(){
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(7, 3, 7, 4, 3));
