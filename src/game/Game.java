@@ -115,24 +115,31 @@ public class Game {
 		}
 		switch (dir1) {
 		case 0:
-//			 System.out.println("Case 0");
-			if (getSpace(row,column).getOwner() != getSpace(row-1, column).getOwner() && move(row - 1, column, dir2)) {
-				// System.out.println("("+row+","+y+") trying move "+dir2);
-				// should always be true
-				boolean move = move(row, column, dir1);
-				// System.out.println(move);
-				// System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
-				return move;
+			// System.out.println("Case 0");
+			if (row - 1 >= 0) {
+				if (getSpace(row, column).getOwner() != getSpace(row - 1,column).getOwner()
+						&& move(row - 1, column, dir2)) {
+					// System.out.println("("+row+","+y+") trying move "+dir2);
+					// should always be true
+					boolean move = move(row, column, dir1);
+					// System.out.println(move);
+					// System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
+					return move;
+				}
 			}
 			break;
 		case 1:
-//			 System.out.println("Case 1");
-			if (move(row, column + 1, dir2)) {
-				// System.out.println("("+row+","+y+"trying move "+dir2);
-				// should always be true
-				boolean move = move(row, column, dir1);
-				// System.out.println(move);
-				return move;
+			// System.out.println("Case 1");
+			if (column + 1 <= 7) {
+				if (getSpace(row, column).getOwner() != getSpace(row,
+						column + 1).getOwner()
+						&& move(row, column + 1, dir2)) {
+					// System.out.println("("+row+","+y+"trying move "+dir2);
+					// should always be true
+					boolean move = move(row, column, dir1);
+					// System.out.println(move);
+					return move;
+				}
 			}
 			break;
 		case 2:
