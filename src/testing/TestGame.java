@@ -251,7 +251,7 @@ public class TestGame {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(3, 6, 0, 0));
 		assertTrue(g.getSpace(6,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		assertTrue(g.getSpace(6,2).equals(new Piece(PieceType.Camel, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(6,2).equals(new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
 	}
 	
 	@Test

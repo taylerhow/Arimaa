@@ -114,11 +114,15 @@ public class Game {
 		}
 		switch (dir1) {
 		case 0:
-			if (row - 1 >= 0) {
-				if (getSpace(row, column).getOwner() != getSpace(row - 1,column).getOwner()
-						&& move(row - 1, column, dir2)) {
-					// should always be true
-					return move(row, column, dir1);
+			Piece pushingPiece = getSpace(row,column);
+			Piece pushedPiece = getSpace(row - 1, column);
+			if (pushingPiece.isStrongerThan(pushedPiece)) {
+				if (row - 1 >= 0) {
+					if (getSpace(row, column).getOwner() != getSpace(row - 1,column).getOwner()
+							&& move(row - 1, column, dir2)) {
+						// should always be true
+						return move(row, column, dir1);
+					}
 				}
 			}
 			break;
