@@ -146,6 +146,12 @@ public class TestGame {
 		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(1, 1));
 	}
 	
+	@Test 
+	public void testNullMove(){
+		Game g = new Game();
+		assertFalse(g.move(4, 4, 0));
+	}
+	
 	//Testing push method
 	@Test
 	public void testPushInvalid(){
