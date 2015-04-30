@@ -1,8 +1,5 @@
 package testing;
 import static org.junit.Assert.*;
-
-import java.util.Arrays;
-
 import game.*;
 import game.Piece.PieceType;
 
@@ -36,10 +33,10 @@ public class TestGame {
 			{'r',' ','R',' ','E',' ','E','R'},
 			{' ','R','E','R',' ','r',' ',' '},
 			{' ',' ','R',' ',' ','E',' ',' '},
-			{' ',' ',' ','r','E',' ','E','r'},
-			{' ',' ',' ',' ',' ','E',' ',' '},
-			{'r','e',' ',' ',' ','r',' ',' '},
-			{'E','r',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ',' ','E',' ','E','r'},
+			{' ',' ',' ','C',' ','E',' ',' '},
+			{'r',' ','C','r','C',' ',' ',' '},
+			{'E','r',' ','C',' ',' ',' ',' '},
 			}, 0);
 	
 	@Test
@@ -164,7 +161,6 @@ public class TestGame {
 		assertTrue(g.push(3, 4, 0, 0));
 		assertTrue(g.push(2, 4, 0, 0));
 		assertFalse(g.push(1, 4, 0, 0));
-		//System.out.println(Arrays.deepToString(g.currentBoard.getBoardArray()));
 	}
 	@Test
 	public void testPushDown(){
@@ -173,7 +169,6 @@ public class TestGame {
 		assertTrue(g.push(5, 4, 2, 2));
 		assertFalse(g.push(6, 4, 2, 2));
 		assertFalse(g.push(7, 4, 2, 2));
-		//System.out.println(Arrays.deepToString(g.currentBoard.getBoardArray()));
 	}
 	@Test
 	public void testPushRight(){
@@ -250,6 +245,14 @@ public class TestGame {
 			{'r','e',' ',' ',' ','r',' ',' '},
 			{'E','r',' ',' ',' ',' ',' ',' '},
 			}, 0);
+	
+	@Test
+	public void testThatPiecesMustBeStrongerToPushUp(){
+		Game g = new Game(pushTestingBoard);
+		assertFalse(g.push(3, 6, 0, 0));
+		assertTrue(g.getSpace(6,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(6,2).equals(new Piece(PieceType.Camel, null, Piece.Owner.Player2)));
+	}
 	
 	@Test
 	public void testBasicPullUp(){
