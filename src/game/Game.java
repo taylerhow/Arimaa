@@ -165,6 +165,7 @@ public class Game {
 	public boolean pull(int row1, int column1, int row2, int column2, int direction1){
 		//There's no piece here to pull with, nimrod
 		if(getSpace(row1, column1)==null || getSpace(row2, column2)==null) return false;
+		if(!getSpace(row1, column1).isStrongerThan(getSpace(row2, column2))) return false;
 		
 		//Get direction that pulled piece will move
 		int direction2 = getDirection(row2, column2, row1, column1);
