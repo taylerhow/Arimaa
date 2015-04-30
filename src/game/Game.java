@@ -200,6 +200,14 @@ public class Game {
 		return false;
 	}
 	
+	/**
+	 * 0: up, 1: right, 2: down, 3: left
+	 * @param row1: row of space1
+	 * @param column1: column of space1
+	 * @param row2: row of space2
+	 * @param column2: column of space2
+	 * @return integer representing the direction required to move from space1 to space2
+	 */
 	public int getDirection(int row1, int column1, int row2, int column2){
 		if(row1 == row2){
 			if(column1 - 1 == column2) return 3;

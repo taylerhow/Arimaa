@@ -263,8 +263,8 @@ public class TestGame {
 			{' ',' ','r',' ',' ','E',' ',' '},
 			{' ',' ',' ','r','E',' ','E','r'},
 			{' ',' ',' ',' ',' ','E',' ',' '},
-			{'r','e',' ',' ',' ','r',' ',' '},
-			{'E','r',' ',' ',' ',' ',' ',' '},
+			{'r','e',' ','E','e','r',' ',' '},
+			{'E','r',' ','R','e',' ',' ',' '},
 			}, 0);
 	
 	@Test
@@ -405,15 +405,21 @@ public class TestGame {
 		assertTrue(g.getSpace(1, 5)==null);
 	}
 	
-//	@Test
-//	public void testBidirectionalPullUpRight(){
-//		Game g = new Game(pullTestingBoard);
-//		Piece p1 = g.getSpace(4, 4);
-//		Piece p2 = g.getSpace(4, 3);
-//		assertTrue(g.pull(4, 4, 0, 1));
-//		assertTrue(g.getSpace(3, 4).equals(p1));
-//		assertTrue(g.getSpace(4, 4).equals(p2));
-//	}
+	@Test
+	public void testBidirectionalPullUpRight(){
+		Game g = new Game(pullTestingBoard);
+		Piece p1 = g.getSpace(4, 4);
+		Piece p2 = g.getSpace(4, 3);
+		assertTrue(g.pull(4, 4, 4, 3, 0));
+		assertTrue(g.getSpace(3, 4).equals(p1));
+		assertTrue(g.getSpace(4, 4).equals(p2));
+	}
+	
+	@Test
+	public void testPullPieceOfGreaterStrength(){
+		Game g = new Game(pullTestingBoard);
+		assertFalse(g.pull(7, 3, 7, 4, 3));
+	}
 	
 	//Testing getDirection
 	@Test
