@@ -88,16 +88,12 @@ public class Game {
 	}
 	//helper for move
 	private void switchPiece(int row1, int column1, int row2, int column2) {
-		//System.out.println(x+" "+ y+"  "+x2+" "+y2);
 		char[][] boardArray = currentBoard.getBoardArray();
-//		System.out.println(Arrays.deepToString(boardArray));
 		char temp = boardArray[row1][column1];
-		//System.out.println(temp+" "	+boardArray[y][x]+" "+boardArray[y2][x2]);
+
 		boardArray[row1][column1]=boardArray[row2][column2];
 		boardArray[row2][column2]=temp;
 
-//		System.out.println(Arrays.deepToString(boardArray));
-		//System.out.println("SWITCH "+temp+" "	+boardArray[x][y]+" "+boardArray[x2][y2]);
 		currentBoard.setBoardArray(boardArray);
 	}
 	/**
