@@ -601,11 +601,14 @@ public class GUI {
 				else if(this.selectedPiece != null && this.secondSelectedPiece == null
 						&& boardPieces[rowClicked][columnClicked] != null){		
 					this.secondSelectedPiece = boardPieces[rowClicked][columnClicked];
+					
+				//Piece selected, Second peice selected, empty squre selected	
 				} else if (this.selectedPiece != null && this.secondSelectedPiece != null 
 						&& boardPieces[rowClicked][columnClicked] == null){
-					
+					//Push & Pull here
 				}
 				
+				//Invalid selection, clear data
 				else {
 					this.selectedPiece = null;
 					this.secondSelectedPiece = null;
