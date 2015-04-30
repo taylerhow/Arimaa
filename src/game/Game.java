@@ -131,8 +131,7 @@ public class Game {
 		case 1:
 			// System.out.println("Case 1");
 			if (column + 1 <= 7) {
-				if (getSpace(row, column).getOwner() != getSpace(row,
-						column + 1).getOwner()
+				if (getSpace(row, column).getOwner() != getSpace(row,column + 1).getOwner()
 						&& move(row, column + 1, dir2)) {
 					// System.out.println("("+row+","+y+"trying move "+dir2);
 					// should always be true
@@ -143,13 +142,16 @@ public class Game {
 			}
 			break;
 		case 2:
-//			System.out.println("Case 2");
-			if (move(row + 1, column, dir2)) {
-				// System.out.println("("+row+","+column+"trying move "+dir2);
-				// should always be true
-				boolean move = move(row, column, dir1);
-				// System.out.println(move);
-				return move;
+//			 System.out.println("Case 2");
+			if (row + 1 <= 7) {
+				if (getSpace(row, column).getOwner() != getSpace(row + 1,column).getOwner()
+						&& move(row + 1, column, dir2)) {
+					// System.out.println("("+row+","+column+"trying move "+dir2);
+					// should always be true
+					boolean move = move(row, column, dir1);
+					// System.out.println(move);
+					return move;
+				}
 			}
 			break;
 		case 3:
