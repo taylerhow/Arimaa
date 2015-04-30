@@ -177,7 +177,7 @@ public class Game {
 	 */
 	//Still need to test piece strength comparison
 	public boolean pull(int row1, int column1, int row2, int column2, int direction1){
-		if(row1 < 0) return false;
+		if(row1 < 0 || row1 > 7) return false;
 		//There's no piece here to pull with, nimrod
 		if(getSpace(row1, column1)==null || getSpace(row2, column2)==null) return false;
 		if(!getSpace(row1, column1).isStrongerThan(getSpace(row2, column2))) return false;
