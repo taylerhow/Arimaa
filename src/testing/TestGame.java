@@ -55,11 +55,18 @@ public class TestGame {
 		Game g= new Game(b);
 		assertEquals(g.getSpace(0, 0), null);
 	}
+	
 	@Test
 	public void testGetPieceExistsAgain() {
 		Game g= new Game(b);
 		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null, Piece.Owner.Player1));
 		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null, Piece.Owner.Player1));
+	}
+	
+	@Test
+	public void testGetSpaceInvalidRow1() {
+		Game g= new Game();
+		assertNull(g.getSpace(-1, 0));
 	}
 	
 	@Test
