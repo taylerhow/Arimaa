@@ -156,7 +156,8 @@ public class Game {
 	 * 0: up, 1: right, 2: down, 3: left
 	 * @param row: row that contains the pulling piece
 	 * @param column: column that contains the pulling piece
-	 * @param direction: direction the pulling piece will move
+	 * @param direction1: direction the pulling piece will move
+	 * @param direction2: direction the piece being pulled will move
 	 * @return True if pull succeeds, False if it fails
 	 */
 	//Still need to test piece strength comparison

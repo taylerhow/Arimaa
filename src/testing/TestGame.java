@@ -31,17 +31,6 @@ public class TestGame {
 			{' ',' ',' ',' ',' ','r','K','R'},
 			}, 0);
 	
-	BoardState pullTestingBoard = new BoardState(new char[][] {
-			{' ','r',' ',' ',' ',' ','R','e'},
-			{'r','E','E',' ','E',' ','E','R'},
-			{' ','E','E','r',' ','r',' ',' '},
-			{' ',' ','r',' ',' ','E',' ',' '},
-			{' ',' ',' ','r','E',' ','E','r'},
-			{' ',' ',' ',' ',' ','E',' ',' '},
-			{'r','e',' ',' ',' ','r',' ',' '},
-			{'E','r',' ',' ',' ',' ',' ',' '},
-			}, 0);
-	
 	BoardState pushTestingBoard = new BoardState(new char[][] {
 			{' ','r',' ',' ',' ',' ','R','e'},
 			{'r',' ','R',' ','E',' ','E','R'},
@@ -249,6 +238,19 @@ public class TestGame {
 		assertTrue(g.getSpace(2,1).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
 	}
 	
+	
+	//Testing the pull method
+	BoardState pullTestingBoard = new BoardState(new char[][] {
+			{' ','r',' ',' ',' ',' ','R','e'},
+			{'r','E','E',' ','E',' ','E','R'},
+			{' ','E','E','r',' ','r',' ',' '},
+			{' ',' ','r',' ',' ','E',' ',' '},
+			{' ',' ',' ','r','E',' ','E','r'},
+			{' ',' ',' ',' ',' ','E',' ',' '},
+			{'r','e',' ',' ',' ','r',' ',' '},
+			{'E','r',' ',' ',' ',' ',' ',' '},
+			}, 0);
+	
 	@Test
 	public void testBasicPullUp(){
 		Game g = new Game(pullTestingBoard);
@@ -385,6 +387,16 @@ public class TestGame {
 		Game g= new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 6, 3, 3));
 		assertTrue(g.getSpace(1, 5)==null);
+	}
+	
+	@Test
+	public void testBidirectionalPullUpRight(){
+		Game g = new Game(pullTestingBoard);
+		Piece p1 = g.getSpace(4, 4);
+		Piece p2 = g.getSpace(4, 3);
+		assertTrue(g.pull(4, 4, 0, 1));
+		assertTrue(g.getSpace(3, 4).equals(p1));
+		assertTrue(g.getSpace(4, 4).equals(p2));
 	}
 }
 
