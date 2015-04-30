@@ -439,5 +439,11 @@ public class TestGame {
 		Game g = new Game();
 		assertEquals(3, g.getDirection(1, 1, 1, 0));
 	}
+	
+	@Test
+	public void testGetDirectionNonAdjacent(){
+		Game g = new Game();
+		assertEquals(-1, g.getDirection(1, 1, 7, 7));
+	}
 }
 
