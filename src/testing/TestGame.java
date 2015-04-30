@@ -252,7 +252,7 @@ public class TestGame {
 	@Test
 	public void testBasicPullUp(){
 		Game g = new Game(pullTestingBoard);
-		assertTrue(g.pull(5, 5, 0));
+		assertTrue(g.pull(5, 5, 0, 0));
 		assertTrue(g.getSpace(5, 5).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 	}
@@ -260,7 +260,7 @@ public class TestGame {
 	@Test
 	public void testBasicPullRight(){
 		Game g = new Game(pullTestingBoard);
-		assertTrue(g.pull(4, 4, 1));
+		assertTrue(g.pull(4, 4, 1, 1));
 		assertTrue(g.getSpace(4, 4).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 	}
@@ -268,7 +268,7 @@ public class TestGame {
 	@Test
 	public void testBasicPullDown(){
 		Game g = new Game(pullTestingBoard);
-		assertTrue(g.pull(3, 5, 2));
+		assertTrue(g.pull(3, 5, 2, 2));
 		assertTrue(g.getSpace(3, 5).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 	}
@@ -276,7 +276,7 @@ public class TestGame {
 	@Test
 	public void testBasicPullLeft(){
 		Game g = new Game(pullTestingBoard);
-		assertTrue(g.pull(4, 6, 3));
+		assertTrue(g.pull(4, 6, 3, 3));
 		assertTrue(g.getSpace(4, 6).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 	}
@@ -284,106 +284,106 @@ public class TestGame {
 	@Test
 	public void testPullWithNullPiece(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(0, 4, 3));
+		assertFalse(g.pull(0, 4, 3, 3));
 	}
 	
 	@Test
 	public void testPullUpOffBoard(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(0, 7, 0));
+		assertFalse(g.pull(0, 7, 0, 0));
 	}
 	
 	@Test
 	public void testPullRightOffBoard(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(0, 7, 1));
+		assertFalse(g.pull(0, 7, 1, 1));
 	}
 	
 	@Test
 	public void testPullDownOffBoard(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(7, 0, 2));
+		assertFalse(g.pull(7, 0, 2, 2));
 	}
 	
 	@Test
 	public void testPullLeftOffBoard(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(7, 0, 3));
+		assertFalse(g.pull(7, 0, 3, 3));
 	}
 	
 	@Test
 	public void testPullUpIntoOccupiedSpace(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(2, 2, 0));
+		assertFalse(g.pull(2, 2, 0, 0));
 	}
 	
 	@Test
 	public void testPullRightIntoOccupiedSpace(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 1, 1));
+		assertFalse(g.pull(1, 1, 1, 1));
 	}
 	
 	@Test
 	public void testPullDownIntoOccupiedSpace(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 1, 2));
+		assertFalse(g.pull(1, 1, 2, 2));
 	}
 	
 	@Test
 	public void testPullLeftIntoOccupiedSpace(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(2, 2, 3));
+		assertFalse(g.pull(2, 2, 3, 3));
 	}
 	
 	@Test
 	public void testPullNothingUp(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 4, 0));
+		assertFalse(g.pull(1, 4, 0, 0));
 	}
 	
 	@Test
 	public void testPullNothingRight(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 4, 1));
+		assertFalse(g.pull(1, 4, 1, 1));
 	}
 	
 	@Test
 	public void testPullNothingDown(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 4, 2));
+		assertFalse(g.pull(1, 4, 2, 2));
 	}
 	
 	@Test
 	public void testPullNothingLeft(){
 		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 4, 3));
+		assertFalse(g.pull(1, 4, 3, 3));
 	}
 	
 	@Test
 	public void testPullOwnPieceUp(){
 		Game g= new Game(pullTestingBoard);
-		assertFalse(g.pull(6, 1, 0));
+		assertFalse(g.pull(6, 1, 0, 0));
 		assertTrue(g.getSpace(5, 1)==null);
 	}
 	
 	@Test
 	public void testPullOwnPieceRight(){
 		Game g= new Game(pullTestingBoard);
-		assertFalse(g.pull(6, 1, 1));
+		assertFalse(g.pull(6, 1, 1, 1));
 		assertTrue(g.getSpace(6, 2)==null);
 	}
 	
 	@Test
 	public void testPullOwnPieceDown(){
 		Game g= new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 6, 2));
+		assertFalse(g.pull(1, 6, 2, 2));
 		assertTrue(g.getSpace(2, 6)==null);
 	}
 	
 	@Test
 	public void testPullOwnPieceLeft(){
 		Game g= new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 6, 3));
+		assertFalse(g.pull(1, 6, 3, 3));
 		assertTrue(g.getSpace(1, 5)==null);
 	}
 }
