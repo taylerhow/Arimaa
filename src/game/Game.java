@@ -109,62 +109,43 @@ public class Game {
 	 * @return
 	 */
 	public boolean push(int row, int column, int dir1, int dir2){
-		//System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
 		if (getSpace(row, column) == null){
 			return false; // trying to push with an empty square
 		}
 		switch (dir1) {
 		case 0:
-			// System.out.println("Case 0");
 			if (row - 1 >= 0) {
 				if (getSpace(row, column).getOwner() != getSpace(row - 1,column).getOwner()
 						&& move(row - 1, column, dir2)) {
-					// System.out.println("("+row+","+y+") trying move "+dir2);
 					// should always be true
-					boolean move = move(row, column, dir1);
-					// System.out.println(move);
-					// System.out.println(Arrays.deepToString(this.currentBoard.getBoardArray()));
-					return move;
+					return move(row, column, dir1);
 				}
 			}
 			break;
 		case 1:
-			// System.out.println("Case 1");
 			if (column + 1 <= 7) {
 				if (getSpace(row, column).getOwner() != getSpace(row,column + 1).getOwner()
 						&& move(row, column + 1, dir2)) {
-					// System.out.println("("+row+","+y+"trying move "+dir2);
-					// should always be true
-					boolean move = move(row, column, dir1);
-					// System.out.println(move);
-					return move;
+					return move(row, column, dir1);
 				}
 			}
 			break;
 		case 2:
-//			 System.out.println("Case 2");
 			if (row + 1 <= 7) {
 				if (getSpace(row, column).getOwner() != getSpace(row + 1,column).getOwner()
 						&& move(row + 1, column, dir2)) {
-					// System.out.println("("+row+","+column+"trying move "+dir2);
 					// should always be true
-					boolean move = move(row, column, dir1);
-					// System.out.println(move);
-					return move;
+					return move(row, column, dir1);
 				}
 			}
 			break;
 		case 3:
-//			 System.out.println("Case 3");
-			if(column - 1 >= 0){
-			if (getSpace(row, column).getOwner() != getSpace(row,column - 1).getOwner()
-					&& move(row, column - 1, dir2)) {
-				// System.out.println("("+row+","+column+") trying move "+dir2);
-				// should always be true
-				boolean move = move(row, column, dir1);
-				// System.out.println(move);
-				return move;
-			}
+			if (column - 1 >= 0) {
+				if (getSpace(row, column).getOwner() != getSpace(row,column - 1).getOwner()
+						&& move(row, column - 1, dir2)) {
+					// should always be true
+					return move(row, column, dir1);
+				}
 			}
 			break;
 		}
