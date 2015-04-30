@@ -162,37 +162,41 @@ public class Game {
 	 * @return True if pull succeeds, False if it fails
 	 */
 	//Still need to test piece strength comparison
-	public boolean pull(int row, int column, int direction1, int direction2){
+	public boolean pull(int row1, int column1, int row2, int column2, int direction){
 		//There's no piece here to pull with, nimrod
-		if(getSpace(row, column)==null) return false;
+		if(getSpace(row1, column1)==null || getSpace(row2, column2)==null) return false;
 		
-		//Congratulations, you selected a valid piece!
-		switch(direction1){
+		//Attempt to perform move operations on pulling
+		switch(direction){
 		case 0:
-			if (getSpace(row+1, column)!=null && getSpace(row, column).getOwner() != getSpace(row+1, column).getOwner() && move(row, column, direction1)) {
-				move(row + 1, column, direction1);
+			if (getSpace(row1+1, column1)!=null && getSpace(row1, column1).getOwner() != getSpace(row1+1, column1).getOwner() && move(row1, column1, direction)) {
+				move(row1 + 1, column1, direction);
 				return true;
 			}
 			break;
 		case 1:
-			if (getSpace(row, column-1)!=null && getSpace(row, column).getOwner() != getSpace(row, column-1).getOwner() && move(row, column, direction1)) {
-				move(row, column - 1, direction1);
+			if (getSpace(row1, column1-1)!=null && getSpace(row1, column1).getOwner() != getSpace(row1, column1-1).getOwner() && move(row1, column1, direction)) {
+				move(row1, column1 - 1, direction);
 				return true;
 			}
 			break;
 		case 2:
-			if(getSpace(row-1, column)!=null && getSpace(row, column).getOwner() != getSpace(row-1, column).getOwner() && move(row, column, direction1)){
-				move(row - 1, column, direction1);
+			if(getSpace(row1-1, column1)!=null && getSpace(row1, column1).getOwner() != getSpace(row1-1, column1).getOwner() && move(row1, column1, direction)){
+				move(row1 - 1, column1, direction);
 				return true;
 			}
 			break;
 		case 3:
-			if (getSpace(row, column+1)!=null && getSpace(row, column).getOwner() != getSpace(row, column+1).getOwner() && move(row, column, direction1)) {
-				move(row, column + 1, direction1);
+			if (getSpace(row1, column1+1)!=null && getSpace(row1, column1).getOwner() != getSpace(row1, column1+1).getOwner() && move(row1, column1, direction)) {
+				move(row1, column1 + 1, direction);
 				return true;
 			}
 			break;
 		}
 		return false;
+	}
+	
+	public int getDirection(int row1, int column1, int row2, int column2){
+		return -1;
 	}
 }
