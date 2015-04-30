@@ -28,17 +28,6 @@ public class TestGame {
 			{' ',' ',' ',' ',' ','r','K','R'},
 			}, 0);
 	
-	BoardState pushTestingBoard = new BoardState(new char[][] {
-			{' ','r',' ',' ',' ',' ','R','e'},
-			{'r',' ','R',' ','E',' ','E','R'},
-			{' ','R','E','R',' ','r',' ',' '},
-			{' ',' ','R',' ',' ','E',' ',' '},
-			{' ',' ',' ',' ','E',' ','E','r'},
-			{' ',' ',' ','C',' ','E',' ',' '},
-			{'r',' ','C','r','C',' ',' ',' '},
-			{'E','r',' ','C',' ',' ',' ',' '},
-			}, 0);
-	
 	@Test
 	public void testInitializes() {
 		Game g =new Game(null);
@@ -153,6 +142,18 @@ public class TestGame {
 	}
 	
 	//Testing push method
+	
+	BoardState pushTestingBoard = new BoardState(new char[][] {
+			{' ','r',' ',' ',' ',' ','R','e'},
+			{'r',' ','R',' ','E',' ','E','R'},
+			{' ','R','E','R',' ',' ',' ',' '},
+			{' ',' ','R',' ',' ','d',' ',' '},
+			{' ',' ',' ',' ','k','E','c',' '},
+			{' ',' ',' ','C',' ','k',' ',' '},
+			{'r',' ','C','r','C',' ',' ',' '},
+			{'E','r',' ','C',' ',' ',' ',' '},
+			}, 0);
+	
 	@Test
 	public void testPushInvalid(){
 		Game g=new Game(b2);
@@ -197,14 +198,10 @@ public class TestGame {
 	
 	@Test
 	public void testPushWithDifferentDirections(){
-		Game g = new Game(pullTestingBoard);
-		assertTrue(g.push(2, 2, 2, 1));
-		assertTrue(g.getSpace(3, 2).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
-		assertTrue(g.getSpace(4, 3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		
-		assertTrue(g.push(3,2,1,1));
-		assertTrue(g.getSpace(3,3).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
-		assertTrue(g.getSpace(4,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		Game g = new Game(pushTestingBoard);
+		assertTrue(g.push(4, 5, 1, 0));
+		assertTrue(g.getSpace(4, 6).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(3, 6).equals(new Piece(PieceType.Camel, null, Piece.Owner.Player2)));
 	}
 	
 	@Test 

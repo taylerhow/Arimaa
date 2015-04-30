@@ -109,11 +109,12 @@ public class Game {
 		if (getSpace(row, column) == null){
 			return false; // trying to push with an empty square
 		}
+		
 		switch (dir1) {
 		case 0:
 			Piece pushingPiece = getSpace(row,column);
 			Piece pushedPiece = getSpace(row - 1, column);
-			if (pushingPiece.isStrongerThan(pushedPiece)) {
+			if (pushedPiece != null && pushingPiece.isStrongerThan(pushedPiece)) {
 				if (row - 1 >= 0) {
 					if (getSpace(row, column).getOwner() != getSpace(row - 1,column).getOwner()
 							&& move(row - 1, column, dir2)) {
@@ -125,9 +126,13 @@ public class Game {
 			break;
 		case 1:
 			if (column + 1 <= 7) {
-				if (getSpace(row, column).getOwner() != getSpace(row,column + 1).getOwner()
-						&& move(row, column + 1, dir2)) {
-					return move(row, column, dir1);
+				Piece pushingPiece2 = getSpace(row, column);
+				Piece pushedPiece2 = getSpace(row, column + 1);
+				if (pushedPiece2 != null&& pushingPiece2.isStrongerThan(pushedPiece2)) {
+					if (getSpace(row, column).getOwner() != getSpace(row,column + 1).getOwner()
+							&& move(row, column + 1, dir2)) {
+						return move(row, column, dir1);
+					}
 				}
 			}
 			break;
