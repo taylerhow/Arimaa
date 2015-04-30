@@ -260,7 +260,7 @@ public class TestGame {
 		assertFalse(g.push(6, 3, 2, 2));
 		assertFalse(g.push(6, 3, 2, 3));
 		assertTrue(g.getSpace(6,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		assertTrue(g.getSpace(7,3).equals(new Piece(PieceType.Cat, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(7,3).equals(new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
 	}
 	
 	//Testing the pull method
