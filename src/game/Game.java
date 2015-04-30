@@ -177,18 +177,20 @@ public class Game {
 	 */
 	//Still need to test piece strength comparison
 	public boolean pull(int row1, int column1, int row2, int column2, int direction1){
+		//Check for invalid coordinates
 		if(row1 < 0 || row1 > 7) return false;
-		//There's no piece here to pull with, nimrod
+		
+		//Check that both pieces exist
 		if(getSpace(row1, column1)==null || getSpace(row2, column2)==null) return false;
+		
+		//Check that pulling piece is strong than other piece
 		if(!getSpace(row1, column1).isStrongerThan(getSpace(row2, column2))) return false;
-		
-		// || row1 > 7 || column1 < 0 || column1 > 7 || row2 < 0 || row2 > 7 || column2 < 0 || column2 > 7
-		
+				
 		//Get direction that pulled piece will move
 		int direction2 = getDirection(row2, column2, row1, column1);
 		if(direction2 == -1) return false;
 		
-		//Attempt to perform move operations on pulling
+		//Attempt to perform move operations on both pieces
 		switch(direction1){
 		case 0:
 			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2).getOwner() && move(row1, column1, direction1)) {

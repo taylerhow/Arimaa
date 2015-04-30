@@ -483,6 +483,12 @@ public class TestGame {
 		assertFalse(g.pull(8, 0, 0, 0, 3));
 	}
 	
+	@Test
+	public void testPullWithWackCoordinates3(){
+		Game g = new Game(pullTestingBoard);
+		assertFalse(g.pull(0, -1, 0, 0, 3));
+	}
+	
 	//Testing getDirection
 	@Test
 	public void testGetDirectionUp(){
