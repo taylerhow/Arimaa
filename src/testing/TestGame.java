@@ -233,6 +233,14 @@ public class TestGame {
 		assertTrue(g.getSpace(2,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
 	}
 	
+	@Test 
+	public void testPushDownWithSamePlayersPieces(){
+		Game g = new Game(pushTestingBoard);
+		assertFalse(g.push(2, 2, 2, 2));
+		assertTrue(g.getSpace(2, 2).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(3,2).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
+	}
+	
 	@Test
 	public void testBasicPullUp(){
 		Game g = new Game(pullTestingBoard);
