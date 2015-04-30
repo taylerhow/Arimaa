@@ -433,5 +433,11 @@ public class TestGame {
 		Game g = new Game();
 		assertEquals(2, g.getDirection(1, 1, 2, 1));
 	}
+	
+	@Test
+	public void testGetDirectionLeft(){
+		Game g = new Game();
+		assertEquals(3, g.getDirection(1, 1, 1, 0));
+	}
 }
 
