@@ -176,7 +176,6 @@ public class Game {
 	 * @param direction2: direction the piece being pulled will move
 	 * @return True if pull succeeds, False if it fails
 	 */
-	//Still need to test piece strength comparison
 	public boolean pull(int row1, int column1, int row2, int column2, int direction1){
 		//Check that both pieces exist
 		if(getSpace(row1, column1)==null || getSpace(row2, column2)==null) return false;

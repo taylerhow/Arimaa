@@ -552,8 +552,6 @@ public class GUI {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-//			System.out.println("Selected Piece: " + this.selectedPiece);
-//			System.out.println("SecondSelectedPiece: " + this.secondSelectedPiece + "\n" );
 			int sourceX = (int) e.getPoint().getX();
 			int sourceY = (int) e.getPoint().getY();
 			
@@ -568,7 +566,6 @@ public class GUI {
 				
 				//No piece has been selected yet
 				if (boardPieces[rowClicked][columnClicked] != null && this.selectedPiece == null && this.secondSelectedPiece == null) {
-					System.out.println("setting first piece");
 					this.selectedPiece = boardPieces[rowClicked][columnClicked];
 				}
 				
@@ -576,7 +573,6 @@ public class GUI {
 				// AKA move
 				else if (this.selectedPiece != null && this.secondSelectedPiece == null
 						&& boardPieces[rowClicked][columnClicked] == null) {
-					System.out.println("moving");
 					int calculatedDirection = -1;
 					if (selectedPiece.getRow() - 1 == rowClicked
 							&& selectedPiece.getColumn() == columnClicked)
@@ -596,7 +592,6 @@ public class GUI {
 						movePieceIcon(selectedPiece.getRow(),
 								selectedPiece.getColumn(), calculatedDirection);
 					}
-					System.out.println("resetting variables");
 					this.selectedPiece = null;
 					this.secondSelectedPiece = null;
 					}
@@ -604,16 +599,13 @@ public class GUI {
 				// Piece already selected, clicked a second piece
 				else if(this.selectedPiece != null && this.secondSelectedPiece == null
 						&& boardPieces[rowClicked][columnClicked] != null && this.selectedPiece != boardPieces[rowClicked][columnClicked] ){
-					System.out.println("Selecting Second Piece");
 					this.secondSelectedPiece = boardPieces[rowClicked][columnClicked];
 					
 				//Piece selected, Second peice selected, empty squre selected	
 				} else if (this.selectedPiece != null && this.secondSelectedPiece != null 
 						&& boardPieces[rowClicked][columnClicked] == null){
-				
 					
 					if(checkForPull(rowClicked, columnClicked)){
-						
 						int calculatedDirection = -1;
 						if (selectedPiece.getRow() - 1 == rowClicked
 								&& selectedPiece.getColumn() == columnClicked)
@@ -636,16 +628,12 @@ public class GUI {
 						if(secondSelectedPiece.getColumn() == selectedPiece.getColumn()){
 							if(secondSelectedPiece.getRow() - 1 == selectedPiece.getRow()) calculatedDirection2 = 0;
 							else if(secondSelectedPiece.getRow() + 1 == selectedPiece.getRow()) calculatedDirection2 = 2;
-						}
+						}						
 						
-						if(game.pull(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), this.secondSelectedPiece.getRow(), this.secondSelectedPiece.getColumn(), calculatedDirection2)){
-							System.out.println("Pull");
-							System.out.println("Moving piece one: " + calculatedDirection);
-							System.out.println("Moving piece two: " + calculatedDirection2);
+						if(game.pull(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), this.secondSelectedPiece.getRow(), this.secondSelectedPiece.getColumn(), calculatedDirection)){
 							movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
 							movePieceIcon(secondSelectedPiece.getRow(), secondSelectedPiece.getColumn(), calculatedDirection2);
 						}
-						System.out.println("Resetting vairables");
 						this.selectedPiece = null;
 						this.secondSelectedPiece = null;
 					}
@@ -679,11 +667,9 @@ public class GUI {
 							calculatedDirection2 = 3;
 						
 						if (game.push(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), calculatedDirection1, calculatedDirection2)) {
-							System.out.println("Push");
 							movePieceIcon(secondSelectedPiece.getRow(), secondSelectedPiece.getColumn(), calculatedDirection2);
 							movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection1);
 						}
-						System.out.println("Resetting variables");
 						this.selectedPiece = null;
 						this.secondSelectedPiece = null;
 					}
