@@ -615,17 +615,17 @@ public class GUI {
 					if(checkForPull(rowClicked, columnClicked)){
 						
 						int calculatedDirection = -1;
-						if (secondSelectedPiece.getRow() - 1 == rowClicked
-								&& secondSelectedPiece.getColumn() == columnClicked)
+						if (selectedPiece.getRow() - 1 == rowClicked
+								&& selectedPiece.getColumn() == columnClicked)
 							calculatedDirection = 0;
-						else if (secondSelectedPiece.getColumn() + 1 == columnClicked
-								&& secondSelectedPiece.getRow() == rowClicked)
+						else if (selectedPiece.getColumn() + 1 == columnClicked
+								&& selectedPiece.getRow() == rowClicked)
 							calculatedDirection = 1;
-						else if (secondSelectedPiece.getRow() + 1 == rowClicked
-								&& secondSelectedPiece.getColumn() == columnClicked)
+						else if (selectedPiece.getRow() + 1 == rowClicked
+								&& selectedPiece.getColumn() == columnClicked)
 							calculatedDirection = 2;
-						else if (secondSelectedPiece.getColumn() - 1 == columnClicked
-								&& secondSelectedPiece.getRow() == rowClicked)
+						else if (selectedPiece.getColumn() - 1 == columnClicked
+								&& selectedPiece.getRow() == rowClicked)
 							calculatedDirection = 3;
 						
 						int calculatedDirection2 = -1;
@@ -640,6 +640,8 @@ public class GUI {
 						
 						if(game.pull(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), this.secondSelectedPiece.getRow(), this.secondSelectedPiece.getColumn(), calculatedDirection2)){
 							System.out.println("Pull");
+							System.out.println("Moving piece one: " + calculatedDirection);
+							System.out.println("Moving piece two: " + calculatedDirection2);
 							movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
 							movePieceIcon(secondSelectedPiece.getRow(), secondSelectedPiece.getColumn(), calculatedDirection2);
 						}
