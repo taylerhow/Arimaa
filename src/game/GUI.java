@@ -30,6 +30,8 @@ public class GUI {
 	private Game game;
 	private ImagePanel gameBoardPanel = null;
 	private ImagePanel[][] boardPieces;
+	private int numMoves;
+	private int playerTurn;
 
 	public GUI() {
 		this.p1name = "Player 1";
@@ -41,7 +43,8 @@ public class GUI {
 		this.activeFrames.add(mainMenuFrame);
 		mainMenuFrame.setTitle("Welcome to Arimaa!");
 		mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		this.playerTurn=1;
+		this.numMoves=4;
 	}
 
 	public static void main(String[] args) {
@@ -591,9 +594,11 @@ public class GUI {
 					if (game.move(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection)) {
 						movePieceIcon(selectedPiece.getRow(),
 								selectedPiece.getColumn(), calculatedDirection);
+						numMoves--;
 					}
 					this.selectedPiece = null;
 					this.secondSelectedPiece = null;
+					
 					}
 				
 				// Piece already selected, clicked a second piece
@@ -633,6 +638,7 @@ public class GUI {
 						if(game.pull(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), this.secondSelectedPiece.getRow(), this.secondSelectedPiece.getColumn(), calculatedDirection)){
 							movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
 							movePieceIcon(secondSelectedPiece.getRow(), secondSelectedPiece.getColumn(), calculatedDirection2);
+							numMoves-=2;
 						}
 						this.selectedPiece = null;
 						this.secondSelectedPiece = null;
@@ -669,6 +675,7 @@ public class GUI {
 						if (game.push(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), calculatedDirection1, calculatedDirection2)) {
 							movePieceIcon(secondSelectedPiece.getRow(), secondSelectedPiece.getColumn(), calculatedDirection2);
 							movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection1);
+							numMoves-=2;
 						}
 						this.selectedPiece = null;
 						this.secondSelectedPiece = null;
@@ -681,30 +688,53 @@ public class GUI {
 					this.secondSelectedPiece = null;
 				}
 			}
+			if(numMoves<=0){
+				System.out.println("Switched player move from "+playerTurn);
+				if(playerTurn==1){
+					playerTurn=2;
+				}
+				else{
+					playerTurn=1;
+				}
+				System.out.println(" to "+playerTurn);
+			}
 		}
 
 
 		private boolean checkForPush(int rowClicked, int columnClicked) {
-			if(this.secondSelectedPiece.getRow() + 1 == rowClicked && this.secondSelectedPiece.getColumn() == columnClicked)
+			if(this.secondSelectedPiece.getRow() + 1 == rowClicked && this.secondSelectedPiece.getColumn() == columnClicked){
+				
 				return true;
-			if(this.secondSelectedPiece.getRow() - 1 == rowClicked && this.secondSelectedPiece.getColumn() == columnClicked)
-				return true;
-			if(this.secondSelectedPiece.getRow() == rowClicked && this.secondSelectedPiece.getColumn() + 1 == columnClicked)
-				return true;
-			if(this.secondSelectedPiece.getRow() == rowClicked && this.secondSelectedPiece.getColumn() - 1 == columnClicked)
-				return true;
+				}
+			if(this.secondSelectedPiece.getRow() - 1 == rowClicked && this.secondSelectedPiece.getColumn() == columnClicked){
+				//numMoves-=2;
+				return true;}
+			if(this.secondSelectedPiece.getRow() == rowClicked && this.secondSelectedPiece.getColumn() + 1 == columnClicked){
+//				numMoves-=2;
+				return true;}
+			if(this.secondSelectedPiece.getRow() == rowClicked && this.secondSelectedPiece.getColumn() - 1 == columnClicked){
+//				numMoves-=2;
+				return true;}
 			return false;
 		}
 
 		private boolean checkForPull(int rowClicked, int columnClicked) {
-			if(this.selectedPiece.getRow() + 1 == rowClicked && this.selectedPiece.getColumn() == columnClicked)
+			if(this.selectedPiece.getRow() + 1 == rowClicked && this.selectedPiece.getColumn() == columnClicked){
+//				numMoves-=2;
 				return true;
-			if(this.selectedPiece.getRow() - 1 == rowClicked && this.selectedPiece.getColumn() == columnClicked)
+				}
+			if(this.selectedPiece.getRow() - 1 == rowClicked && this.selectedPiece.getColumn() == columnClicked){
+//				numMoves-=2;
 				return true;
-			if(this.selectedPiece.getRow() == rowClicked && this.selectedPiece.getColumn() + 1 == columnClicked)
+				}
+			if(this.selectedPiece.getRow() == rowClicked && this.selectedPiece.getColumn() + 1 == columnClicked){
+//				numMoves--;
 				return true;
-			if(this.selectedPiece.getRow() == rowClicked && this.selectedPiece.getColumn() - 1 == columnClicked)
+				}
+			if(this.selectedPiece.getRow() == rowClicked && this.selectedPiece.getColumn() - 1 == columnClicked){
+//				numMoves--;
 				return true;
+				}
 			return false;
 		}
 	}

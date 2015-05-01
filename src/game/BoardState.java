@@ -25,7 +25,7 @@ public class BoardState {
 
 	public int getTurnNumber() {
 		return turnNumber;
-	}
+//	}
 
 	public void setTurnNumber(int turnNumber) {
 		this.turnNumber = turnNumber;
