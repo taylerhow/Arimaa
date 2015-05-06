@@ -265,7 +265,7 @@ public class GUI {
 	 * @param column
 	 * @param dir 0: up, 1: right, 2: down, 3: left
 	 */
-	//Helper fuction for the action listener handling piece move
+	//Helper function for the MouseListener handling piece movement
 	private boolean movePieceIcon(int row, int column, int dir){
 		switch(dir){
 		case 0:
@@ -321,8 +321,7 @@ public class GUI {
 		}
 	}
 
-	// helper for movePieceIcon
-	//Switches pieces in row1, column1 and row2,column2
+	//Helper for movePieceIcon(): switches pieces in row1, column1 and row2, column2
 	private void switchPiece(int row1, int column1, int row2, int column2) {
 		ImagePanel[][] boardArray = boardPieces;
 		ImagePanel temp = boardArray[row1][column1];
@@ -333,6 +332,7 @@ public class GUI {
 		boardPieces = boardArray;
 	}
 	
+	//Attempt @ possible GUI refactoring...
 	private void renderBoard(){
 		for(int i=0; i<8; i++){
 			for(int k=0; k<8; k++){
@@ -344,7 +344,8 @@ public class GUI {
 		renderInitialBoard();
 	}
 
-	class newGameListener implements ActionListener {
+	//ACTION LISTENERS
+	private class newGameListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -478,7 +479,7 @@ public class GUI {
 		}
 	}
 
-	class loadGameListener implements ActionListener {
+	private class loadGameListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -494,7 +495,7 @@ public class GUI {
 		}
 	}
 
-	class cancelListener implements ActionListener {
+	private class cancelListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -504,7 +505,7 @@ public class GUI {
 		}
 	}
 
-	class startGameListener implements ActionListener {
+	private class startGameListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
