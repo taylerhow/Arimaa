@@ -332,6 +332,17 @@ public class GUI {
 
 		boardPieces = boardArray;
 	}
+	
+	private void renderBoard(){
+		for(int i=0; i<8; i++){
+			for(int k=0; k<8; k++){
+				if(this.boardPieces[i][k]!=null){
+					this.gameBoardPanel.remove(this.boardPieces[i][k]);
+				}
+			}
+		}
+		renderInitialBoard();
+	}
 
 	class newGameListener implements ActionListener {
 
@@ -592,8 +603,8 @@ public class GUI {
 
 					// Using move to check for valid move
 					if (game.move(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection)) {
-						movePieceIcon(selectedPiece.getRow(),
-								selectedPiece.getColumn(), calculatedDirection);
+						movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
+//						renderBoard();
 						numMoves--;
 					}
 					this.selectedPiece = null;
@@ -606,7 +617,7 @@ public class GUI {
 						&& boardPieces[rowClicked][columnClicked] != null && this.selectedPiece != boardPieces[rowClicked][columnClicked] ){
 					this.secondSelectedPiece = boardPieces[rowClicked][columnClicked];
 					
-				//Piece selected, Second peice selected, empty squre selected	
+				//Piece selected, Second piece selected, empty square selected	
 				} else if (this.selectedPiece != null && this.secondSelectedPiece != null 
 						&& boardPieces[rowClicked][columnClicked] == null){
 					
@@ -638,6 +649,7 @@ public class GUI {
 						if(game.pull(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), this.secondSelectedPiece.getRow(), this.secondSelectedPiece.getColumn(), calculatedDirection)){
 							movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
 							movePieceIcon(secondSelectedPiece.getRow(), secondSelectedPiece.getColumn(), calculatedDirection2);
+//							renderBoard();
 							numMoves-=2;
 						}
 						this.selectedPiece = null;
@@ -675,6 +687,7 @@ public class GUI {
 						if (game.push(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), calculatedDirection1, calculatedDirection2)) {
 							movePieceIcon(secondSelectedPiece.getRow(), secondSelectedPiece.getColumn(), calculatedDirection2);
 							movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection1);
+//							renderBoard();
 							numMoves-=2;
 						}
 						this.selectedPiece = null;
@@ -689,7 +702,7 @@ public class GUI {
 				}
 			}
 			if(numMoves<=0){
-				System.out.println("Switched player move from "+playerTurn);
+				System.out.print("Switched player move from "+playerTurn);
 				if(playerTurn==1){
 					playerTurn=2;
 				}
@@ -697,17 +710,17 @@ public class GUI {
 					playerTurn=1;
 				}
 				System.out.println(" to "+playerTurn);
+				numMoves=4;
 			}
 		}
 
 
 		private boolean checkForPush(int rowClicked, int columnClicked) {
 			if(this.secondSelectedPiece.getRow() + 1 == rowClicked && this.secondSelectedPiece.getColumn() == columnClicked){
-				
 				return true;
 				}
 			if(this.secondSelectedPiece.getRow() - 1 == rowClicked && this.secondSelectedPiece.getColumn() == columnClicked){
-				//numMoves-=2;
+//				numMoves-=2;
 				return true;}
 			if(this.secondSelectedPiece.getRow() == rowClicked && this.secondSelectedPiece.getColumn() + 1 == columnClicked){
 //				numMoves-=2;
