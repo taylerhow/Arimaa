@@ -260,85 +260,11 @@ public class GUI {
 		}
 	}
 	
-	/**
-	 * @param row
-	 * @param column
-	 * @param dir 0: up, 1: right, 2: down, 3: left
-	 */
-	//Helper function for the MouseListener handling piece movement
-	private boolean movePieceIcon(int row, int column, int dir){
-		switch(dir){
-		case 0:
-			//Moving UP
-			if (row - 1 >= 0 && boardPieces[row-1][column] == null) {
-				switchPiece(row, column, row-1, column);
-				boardPieces[row-1][column].setRow(row-1);
-				boardPieces[row-1][column].setColumn(column);
-				boardPieces[row-1][column].setLocation(boardPieces[row-1][column].getPixelX(), 
-						boardPieces[row-1][column].getPixelY());
-				boardPieces[row-1][column].setVisible(true);
-				return true;
-			}
-			return false;
-		case 1:
-			//Moving RIGHT
-			if (column + 1 <= 7 && boardPieces[row][column+1] == null) {
-				switchPiece(row, column, row, column+1);
-				boardPieces[row][column+1].setRow(row);
-				boardPieces[row][column+1].setColumn(column+1);
-				boardPieces[row][column+1].setLocation(boardPieces[row][column+1].getPixelX(), 
-						boardPieces[row][column+1].getPixelY());
-				boardPieces[row][column+1].setVisible(true);
-				return true;
-			}
-			return false;
-		case 2:
-			//Moving DOWN
-			if (row + 1 <= 7 && boardPieces[row+1][column] == null) {
-				switchPiece(row, column, row + 1, column);
-				boardPieces[row+1][column].setRow(row+1);
-				boardPieces[row+1][column].setColumn(column);
-				boardPieces[row+1][column].setLocation(boardPieces[row+1][column].getPixelX(), 
-						boardPieces[row+1][column].getPixelY());
-				boardPieces[row+1][column].setVisible(true);
-				return true;
-			}
-			return false;
-		case 3:
-			//Moving LEFT
-			if (column - 1 >= 0 && boardPieces[row][column-1] == null) {
-				switchPiece(row, column, row, column - 1);
-				boardPieces[row][column-1].setRow(row);
-				boardPieces[row][column-1].setColumn(column-1);
-				boardPieces[row][column-1].setLocation(boardPieces[row][column-1].getPixelX(), 
-						boardPieces[row][column-1].getPixelY());
-				boardPieces[row][column-1].setVisible(true);
-				return true;
-			}
-			return false;
-		default:
-			return false;
-		}
-	}
-
-	//Helper for movePieceIcon(): switches pieces in row1, column1 and row2, column2
-	private void switchPiece(int row1, int column1, int row2, int column2) {
-		ImagePanel[][] boardArray = boardPieces;
-		ImagePanel temp = boardArray[row1][column1];
-
-		boardArray[row1][column1] = boardArray[row2][column2];
-		boardArray[row2][column2] = temp;
-
-		boardPieces = boardArray;
-	}
-	
-	//Attempt @ possible GUI refactoring...
 	private void renderBoard(){
 		for(int i=0; i<8; i++){
 			for(int k=0; k<8; k++){
-				if(this.boardPieces[i][k]!=null){
-					this.gameBoardPanel.remove(this.boardPieces[i][k]);
-				}
+				if(boardPieces[i][k] != null) this.gameBoardPanel.remove(this.boardPieces[i][k]);
+				this.boardPieces[i][k] = null;		
 			}
 		}
 		renderInitialBoard();
@@ -604,8 +530,7 @@ public class GUI {
 
 					// Using move to check for valid move
 					if (game.move(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection)) {
-						movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
-//						renderBoard();
+						renderBoard();
 						numMoves--;
 					}
 					this.selectedPiece = null;
@@ -615,7 +540,8 @@ public class GUI {
 				
 				// Piece already selected, clicked a second piece
 				else if(this.selectedPiece != null && this.secondSelectedPiece == null
-						&& boardPieces[rowClicked][columnClicked] != null && this.selectedPiece != boardPieces[rowClicked][columnClicked] ){
+						&& boardPieces[rowClicked][columnClicked] != null && 
+						this.selectedPiece != boardPieces[rowClicked][columnClicked] ){
 					this.secondSelectedPiece = boardPieces[rowClicked][columnClicked];
 					
 				//Piece selected, Second piece selected, empty square selected	
@@ -637,20 +563,20 @@ public class GUI {
 								&& selectedPiece.getRow() == rowClicked)
 							calculatedDirection = 3;
 						
-						int calculatedDirection2 = -1;
 						if(secondSelectedPiece.getRow() == selectedPiece.getRow()){
-							if(secondSelectedPiece.getColumn() - 1 == selectedPiece.getColumn()) calculatedDirection2 = 3;
-							else if(secondSelectedPiece.getColumn() + 1 == selectedPiece.getColumn()) calculatedDirection2 = 1;
+							if(secondSelectedPiece.getColumn() - 1 == selectedPiece.getColumn()) {
+							} else if(secondSelectedPiece.getColumn() + 1 == selectedPiece.getColumn()) {
+							}
 						}
 						if(secondSelectedPiece.getColumn() == selectedPiece.getColumn()){
-							if(secondSelectedPiece.getRow() - 1 == selectedPiece.getRow()) calculatedDirection2 = 0;
-							else if(secondSelectedPiece.getRow() + 1 == selectedPiece.getRow()) calculatedDirection2 = 2;
+							if(secondSelectedPiece.getRow() - 1 == selectedPiece.getRow()) {
+							} else if(secondSelectedPiece.getRow() + 1 == selectedPiece.getRow()) {
+							}
 						}						
 						
-						if(game.pull(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), this.secondSelectedPiece.getRow(), this.secondSelectedPiece.getColumn(), calculatedDirection)){
-							movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection);
-							movePieceIcon(secondSelectedPiece.getRow(), secondSelectedPiece.getColumn(), calculatedDirection2);
-//							renderBoard();
+						if(game.pull(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), this.secondSelectedPiece.getRow(),
+								this.secondSelectedPiece.getColumn(), calculatedDirection)){
+							renderBoard();
 							numMoves-=2;
 						}
 						this.selectedPiece = null;
@@ -685,10 +611,9 @@ public class GUI {
 								&& secondSelectedPiece.getRow() == rowClicked)
 							calculatedDirection2 = 3;
 						
-						if (game.push(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), calculatedDirection1, calculatedDirection2)) {
-							movePieceIcon(secondSelectedPiece.getRow(), secondSelectedPiece.getColumn(), calculatedDirection2);
-							movePieceIcon(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection1);
-//							renderBoard();
+						if (game.push(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), calculatedDirection1, 
+								calculatedDirection2)) {
+							renderBoard();
 							numMoves-=2;
 						}
 						this.selectedPiece = null;
@@ -759,7 +684,7 @@ class ImagePanel extends JPanel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; //No idea what this does...but it makes eclipse happy
 	private Image img;
 	private int row;
 	private int column;
