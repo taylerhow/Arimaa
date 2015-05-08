@@ -287,7 +287,7 @@ public class Game {
 					return false;
 				}
 				String next = scanner.next();
-				if(next.equals("Q")){
+				if(next.equals("Q")||next.equals("K")){
 					scanner.close();
 					return false;
 				}
