@@ -294,6 +294,10 @@ public class Game {
 		this.currentBoard = boardToSet;
 		this.turnCounter = scanner.nextInt();
 		this.p1Name = scanner.next();
+		if(!scanner.hasNext()){
+			scanner.close();
+			return false;
+		}
 		this.p2Name = scanner.next();
 		scanner.close();
 		return true;
