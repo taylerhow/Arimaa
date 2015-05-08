@@ -75,7 +75,7 @@ public class Game {
 			return false;
 		// This may cause issues when we implement undo/redo if we try invalid
 		// moves before we undo
-		if(getSpace(row, column).getOwner()!=Owner.values()[(playerTurn-1)]&&!isPushPull)
+		if(getSpace(row, column).getOwner()!=Owner.values()[(getPlayerTurn()-1)]&&!isPushPull)
 			return false;//not your turn
 		boards.add(currentBoard);
 		currentBoard = currentBoard.clone();
@@ -132,14 +132,14 @@ public class Game {
 		checkDeaths(5, 5);
 		checkWin();
 		numMoves--;
-		if (numMoves <= 1) {
-			System.out.print("Switched player move from " + playerTurn);
-			if (playerTurn == 1) {
-				playerTurn = 2;
+		if (numMoves <= 0) {
+			System.out.print("Switched player move from " + getPlayerTurn());
+			if (getPlayerTurn() == 1) {
+				setPlayerTurn(2);
 			} else {
-				playerTurn = 1;
+				setPlayerTurn(1);
 			}
-			System.out.println(" to " + playerTurn);
+			System.out.println(" to " + getPlayerTurn());
 			numMoves = 4;
 		}
 	}
@@ -497,6 +497,20 @@ public class Game {
 	 */
 	public int getWinner() {
 		return winner;
+	}
+
+	/**
+	 * @return the playerTurn
+	 */
+	public int getPlayerTurn() {
+		return playerTurn;
+	}
+
+	/**
+	 * @param playerTurn the playerTurn to set
+	 */
+	public void setPlayerTurn(int playerTurn) {
+		this.playerTurn = playerTurn;
 	}
 
 }
