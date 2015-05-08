@@ -276,6 +276,7 @@ public class Game {
 				this.currentBoard.setBoardSpace(i, k, next);
 			}
 		}
+		this.turnCounter = scanner.nextInt();
 		scanner.close();
 	}
 	
