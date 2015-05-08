@@ -19,9 +19,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 
@@ -411,14 +413,22 @@ public class GUI {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			File selectedFile = null;
 			JFileChooser fileChooser = new JFileChooser();
 			fileChooser.setCurrentDirectory(new File(System
 					.getProperty("user.home")));
 			int result = fileChooser.showOpenDialog(activeFrames.get(0));
 			if (result == JFileChooser.APPROVE_OPTION) {
-				File selectedFile = fileChooser.getSelectedFile();
+				selectedFile = fileChooser.getSelectedFile();
 				System.out.println("Selected file: "
 						+ selectedFile.getAbsolutePath());
+			}
+			try {
+				Scanner scanner = new Scanner(selectedFile);
+				game.loadFile(scanner);
+			} catch (FileNotFoundException e1) {
+				//wont happen
+				e1.printStackTrace();
 			}
 		}
 	}
@@ -452,21 +462,23 @@ public class GUI {
 			
 
 			ImagePanel panel = new ImagePanel(new ImageIcon(
-					"resources/BoardStoneBig.jpg").getImage());
+					"resources/board.jpg").getImage());
 			activeFrames.get(0).getContentPane().add(panel);
 			activeFrames.get(0).pack();
 			panel.setVisible(true);
 			gameBoardPanel = panel;
-			gameFrame.setSize(850, 695);
+
 			gameBoardPanel.addMouseListener(new MovementListener());
+			activeFrames.get(0).setBackground(Color.BLACK);
 	
 			gameFrame.setVisible(true);
 			
+			
 			//Set up Save Game Button
 			JButton saveGameButton = new JButton();
-			saveGameButton.setSize(110, 75);
+			saveGameButton.setSize(100, 75);
 			saveGameButton.setText("Save");
-			saveGameButton.setLocation(690, gameFrame.getHeight()/2 - 75/2);
+			saveGameButton.setLocation(675, gameFrame.getHeight()/2 - 100/2);
 			gameBoardPanel.add(saveGameButton);
 			saveGameButton.addActionListener(new SaveGameListener());
 			saveGameButton.setVisible(true);
@@ -480,6 +492,8 @@ public class GUI {
 		public void actionPerformed(ActionEvent arg0) {
 			File selectedFile = null;
 			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setCurrentDirectory(new File(System
+					.getProperty("user.home")));
 			int result = fileChooser.showOpenDialog(gameBoardPanel);
 			if (result == JFileChooser.APPROVE_OPTION) {
 				selectedFile = fileChooser.getSelectedFile();
