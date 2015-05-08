@@ -346,10 +346,10 @@ public class TestGame {
 	BoardState pullTestingBoard = new BoardState(new char[][] {
 			{ ' ', 'r', ' ', ' ', ' ', ' ', 'R', 'e' },
 			{ 'r', 'E', 'E', ' ', 'E', ' ', 'E', 'R' },
-			{ ' ', 'E', 'E', 'r', ' ', 'r', ' ', ' ' },
+			{ ' ', 'E', 'E', 'r', ' ', 'r', 'r', ' ' },
 			{ ' ', ' ', 'r', ' ', ' ', 'E', ' ', ' ' },
 			{ ' ', ' ', ' ', 'r', 'E', ' ', 'E', 'r' },
-			{ ' ', ' ', ' ', ' ', ' ', 'E', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', 'E', 'r', ' ' },
 			{ 'r', 'e', ' ', 'E', 'e', 'r', ' ', ' ' },
 			{ 'E', 'r', ' ', 'R', 'e', ' ', ' ', ' ' }, }, 0);
 
@@ -376,9 +376,9 @@ public class TestGame {
 	@Test
 	public void testBasicPullDown() {
 		Game g = new Game(pullTestingBoard);
-		g.currentBoard.printBoard();
+		//g.currentBoard.printBoard();
 		assertTrue(g.pull(3, 5, 2, 5, 2));
-		g.currentBoard.printBoard();		
+		//g.currentBoard.printBoard();		
 		assertTrue(g.getSpace(3, 5).equals(
 				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(
@@ -490,8 +490,10 @@ public class TestGame {
 	@Test
 	public void testPullOwnPieceDown() {
 		Game g = new Game(pullTestingBoard);
+		//g.currentBoard.printBoard();
 		assertFalse(g.pull(1, 6, 0, 6, 2));
-		assertTrue(g.getSpace(2, 6) == null);
+		//g.currentBoard.printBoard();
+		assertFalse(g.getSpace(2, 6) == null);
 	}
 
 	@Test
@@ -526,17 +528,21 @@ public class TestGame {
 		Game g = new Game(pullTestingBoard);
 		Piece p1 = g.getSpace(4, 6);
 		Piece p2 = g.getSpace(4, 7);
-		assertTrue(g.pull(4, 6, 4, 7, 2));
-		assertTrue(g.getSpace(5, 6).equals(p1));
+		g.currentBoard.printBoard();
+		assertTrue(g.pull(4, 6, 4, 7, 0));
+		g.currentBoard.printBoard();
+		assertTrue(g.getSpace(3, 6).equals(p1));
 		assertTrue(g.getSpace(4, 6).equals(p2));
 	}
 
 	@Test
 	public void testBidirectionalPullLeftUp() {
 		Game g = new Game(pullTestingBoard);
+		//g.currentBoard.printBoard();
 		Piece p1 = g.getSpace(5, 5);
 		Piece p2 = g.getSpace(6, 5);
 		assertTrue(g.pull(5, 5, 6, 5, 3));
+		//g.currentBoard.printBoard();
 		assertTrue(g.getSpace(5, 4).equals(p1));
 		assertTrue(g.getSpace(5, 5).equals(p2));
 	}

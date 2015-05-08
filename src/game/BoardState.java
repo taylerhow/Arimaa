@@ -47,7 +47,7 @@ public class BoardState {
 	}
 	public void printBoard(){
 		for(int i=0;i<8;i++){
-			System.out.println(Arrays.toString(boardArray[i]));
+			System.out.println(i+": " +Arrays.toString(boardArray[i]));
 		}
 		System.out.println();
 	}

@@ -21,6 +21,7 @@ public class Game {
 	String p1Name= "";
 	String p2Name = "";
 
+
 	public Game(BoardState b) {
 		currentBoard = b;
 	}
@@ -261,13 +262,16 @@ public class Game {
 	public boolean pull(int row1, int column1, int row2, int column2,
 			int direction1) {
 		// Check that both pieces exist
-		if (getSpace(row1, column1) == null || getSpace(row2, column2) == null)
+		if (getSpace(row1, column1) == null || getSpace(row2, column2) == null){
+			//System.out.println("Null piece");
 			return false;
+			}
 
 		// Check that pulling piece is strong than other piece
-		if (!getSpace(row1, column1).isStrongerThan(getSpace(row2, column2)))
+		if (!getSpace(row1, column1).isStrongerThan(getSpace(row2, column2))){
+			//System.out.println("Weak piece");
 			return false;
-
+		}
 		// Get direction that pulled piece will move
 		int direction2 = getDirection(row2, column2, row1, column1);
 
