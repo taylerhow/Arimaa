@@ -77,6 +77,9 @@ public class Game {
 		// moves before we undo
 		if(getSpace(row, column).getOwner()!=Owner.values()[(getPlayerTurn()-1)]&&!isPushPull)
 			return false;//not your turn
+		
+		if((checkStrongerAdjacent(row, column)&&!checkFriendlyAdjacent(row, column))&&!isPushPull)
+			return false;//can't move
 		boards.add(currentBoard);
 		currentBoard = currentBoard.clone();
 		switch (dir) {
@@ -206,6 +209,32 @@ public class Game {
 		}
 		if(left!=null){
 			if(left.getOwner()==own)
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean checkStrongerAdjacent(int row, int col) {
+		Piece cen=this.getSpace(row, col);
+		Piece up=this.getSpace(row-1, col);
+		Piece down=this.getSpace(row+1, col);
+		Piece left=this.getSpace(row, col-1);
+		Piece right = this.getSpace(row, col+1);
+		Owner own =cen.getOwner();
+		if(up!=null){
+			if(up.getOwner()!=own&&up.isStrongerThan(cen))
+				return true;
+		}
+		if(down!=null){
+			if(down.getOwner()!=own&&down.isStrongerThan(cen))
+				return true;
+		}
+		if(right!=null){
+			if(right.getOwner()!=own&&right.isStrongerThan(cen))
+				return true;
+		}
+		if(left!=null){
+			if(left.getOwner()!=own&&left.isStrongerThan(cen))
 				return true;
 		}
 		return false;
