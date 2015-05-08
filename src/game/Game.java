@@ -175,6 +175,17 @@ public class Game {
 	private void checkDeaths(int row, int col) {
 		if(this.getSpace(row, col)==(null))
 			return;//an empty piece doesn't need to be checked
+		
+		if(checkFriendlyAdjacent(row, col)){
+			return;
+		}
+		//no adjacent friendly pieces, remove this one
+		char[][] temp= this.currentBoard.getBoardArray();
+		temp[row][col]=' ';
+		this.currentBoard.setBoardArray(temp);
+	}
+
+	private boolean checkFriendlyAdjacent(int row, int col) {
 		Piece cen=this.getSpace(row, col);
 		Piece up=this.getSpace(row-1, col);
 		Piece down=this.getSpace(row+1, col);
@@ -183,24 +194,21 @@ public class Game {
 		Owner own =cen.getOwner();
 		if(up!=null){
 			if(up.getOwner()==own)
-				return;
+				return true;
 		}
 		if(down!=null){
 			if(down.getOwner()==own)
-				return;
+				return true;
 		}
 		if(right!=null){
 			if(right.getOwner()==own)
-				return;
+				return true;
 		}
 		if(left!=null){
 			if(left.getOwner()==own)
-				return;
+				return true;
 		}
-		//no adjacent friendly pieces, remove this one
-		char[][] temp= this.currentBoard.getBoardArray();
-		temp[row][col]=' ';
-		this.currentBoard.setBoardArray(temp);
+		return false;
 	}
 
 	// helper for move
@@ -229,6 +237,8 @@ public class Game {
 		if (getSpace(row, column) == null) {
 			return false; // trying to push with an empty square
 		}
+		if(getSpace(row, column).getOwner()!=Owner.values()[(getPlayerTurn()-1)]&&!isPushPull)
+			return false;//not your turn
 		isPushPull=true;
 		switch (dir1) {
 		case 0:
@@ -305,7 +315,7 @@ public class Game {
 	 * @param direction2
 	 *            : direction the piece being pulled will move
 	 * @return True if pull succeeds, False if it fails
-	 */
+	 */ 
 	public boolean pull(int row1, int column1, int row2, int column2,
 			int direction1) {
 		// Check that both pieces exist
@@ -319,6 +329,9 @@ public class Game {
 			//System.out.println("Weak piece");
 			return false;
 		}
+		
+		if(getSpace(row1, column1).getOwner()!=Owner.values()[(getPlayerTurn()-1)]&&!isPushPull)
+			return false;//not your turn
 		// Get direction that pulled piece will move
 		int direction2 = getDirection(row2, column2, row1, column1);
 
