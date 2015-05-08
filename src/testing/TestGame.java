@@ -642,6 +642,13 @@ public class TestGame {
 		assertFalse(g.loadFile(scanner));
 	}
 	
+	@Test
+	public void testLoadFileInvalidBoardCharacters3() throws FileNotFoundException{
+		Scanner scanner = new Scanner(new File("resources/LoadInvalidBoard3.txt"));
+		Game g = new Game();
+		assertFalse(g.loadFile(scanner));
+	}
+	
 	
 	
 	//Testing remove piece checks
