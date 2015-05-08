@@ -280,6 +280,11 @@ public class Game {
 				{' ',' ',' ',' ',' ',' ',' ',' '},
 				{' ',' ',' ',' ',' ',' ',' ',' '},
 				}, 0);
+		String[] validBoardCharactersArray = {" ", "E", "C", "H", "D", "K", "R", "e", "c", "h", "d", "k", "r"};
+		ArrayList<String> vbc = new ArrayList<String>();
+		for(String s : validBoardCharactersArray){
+			vbc.add(s);
+		}
 		for(int i=0; i<8; i++){
 			for(int k=0; k<8; k++){
 				if(!scanner.hasNext()){
@@ -287,7 +292,7 @@ public class Game {
 					return false;
 				}
 				String next = scanner.next();
-				if(next.equals("Q")||next.equals("K")){
+				if(!vbc.contains(next)){
 					scanner.close();
 					return false;
 				}
