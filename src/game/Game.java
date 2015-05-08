@@ -1,6 +1,7 @@
 package game;
 
 import game.Piece.Owner;
+import game.Piece.PieceType;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,6 +21,11 @@ public class Game {
 	int turnCounter = 0;
 	String p1Name= "";
 	String p2Name = "";
+	//0 is noone, 1 is player1, 2 is player2
+	private int winner=0;
+	private int numMoves=4;
+	private int playerTurn=1;
+	private boolean isPushPull;
 
 
 	public Game(BoardState b) {
@@ -69,6 +75,8 @@ public class Game {
 			return false;
 		// This may cause issues when we implement undo/redo if we try invalid
 		// moves before we undo
+		if(getSpace(row, column).getOwner()!=Owner.values()[(playerTurn-1)]&&!isPushPull)
+			return false;//not your turn
 		boards.add(currentBoard);
 		currentBoard = currentBoard.clone();
 		switch (dir) {
@@ -122,6 +130,41 @@ public class Game {
 		checkDeaths(2, 5);
 		checkDeaths(5, 2);
 		checkDeaths(5, 5);
+		checkWin();
+		numMoves--;
+		if (numMoves <= 1) {
+			System.out.print("Switched player move from " + playerTurn);
+			if (playerTurn == 1) {
+				playerTurn = 2;
+			} else {
+				playerTurn = 1;
+			}
+			System.out.println(" to " + playerTurn);
+			numMoves = 4;
+		}
+	}
+
+	//This method checks both rows for rabbits of the opposite side
+	private void checkWin() {
+		//check top row
+		for(int i=0;i<8;i++){
+			if(getSpace(0, i)!=null){
+				if(getSpace(0, i).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2))){
+					winner=2;
+				}
+			}
+		}
+		//check bottom row
+		for(int i=0;i<8;i++){
+			if(getSpace(7, i)!=null){
+				if(getSpace(7, i).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1))){
+					winner=1;
+				}
+			}
+		}
+		//noone has won
+		if(winner!=0)
+		System.out.println("Winner: "+ winner);
 	}
 
 	/**
@@ -186,7 +229,7 @@ public class Game {
 		if (getSpace(row, column) == null) {
 			return false; // trying to push with an empty square
 		}
-
+		isPushPull=true;
 		switch (dir1) {
 		case 0:
 			if (row - 1 >= 0) {
@@ -196,6 +239,7 @@ public class Game {
 						&& pushingPiece.isStrongerThan(pushedPiece)) {
 					if (pushingPiece.getOwner() != pushedPiece.getOwner()
 							&& move(row - 1, column, dir2)) {
+						isPushPull=false;
 						// should always be true
 						return move(row, column, dir1);
 					}
@@ -210,6 +254,7 @@ public class Game {
 						&& pushingPiece2.isStrongerThan(pushedPiece2)) {
 					if (pushingPiece2.getOwner() != pushedPiece2.getOwner()
 							&& move(row, column + 1, dir2)) {
+						isPushPull=false;
 						// should always be true
 						return move(row, column, dir1);
 					}
@@ -223,6 +268,7 @@ public class Game {
 				if (pushingPiece3.isStrongerThan(pushedPiece3)) {
 					if (pushingPiece3.getOwner() != pushedPiece3.getOwner()
 							&& move(row + 1, column, dir2)) {
+						isPushPull=false;
 						// should always be true
 						return move(row, column, dir1);
 					}
@@ -236,6 +282,7 @@ public class Game {
 				if (pushingPiece4.isStrongerThan(pushedPiece4)) {
 					if (pushingPiece4.getOwner() != pushedPiece4.getOwner()
 							&& move(row, column - 1, dir2)) {
+						isPushPull=false;
 						// should always be true
 						return move(row, column, dir1);
 					}
@@ -277,13 +324,14 @@ public class Game {
 
 		// Check that getDirection didn't fail
 		// if(direction2 == -1) return false;
-
+		isPushPull=true;
 		// Attempt to perform move operations on both pieces
 		switch (direction1) {
 		case 0:
 			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
 					.getOwner() && move(row1, column1, direction1)) {
 				move(row2, column2, direction2);
+				isPushPull=false;
 				return true;
 			}
 			break;
@@ -291,6 +339,7 @@ public class Game {
 			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
 					.getOwner() && move(row1, column1, direction1)) {
 				move(row2, column2, direction2);
+				isPushPull=false;
 				return true;
 			}
 			break;
@@ -298,6 +347,7 @@ public class Game {
 			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
 					.getOwner() && move(row1, column1, direction1)) {
 				move(row2, column2, direction2);
+				isPushPull=false;
 				return true;
 			}
 			break;
@@ -305,6 +355,7 @@ public class Game {
 			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
 					.getOwner() && move(row1, column1, direction1)) {
 				move(row2, column2, direction2);
+				isPushPull=false;
 				return true;
 			}
 			break;
@@ -439,6 +490,13 @@ public class Game {
 
 	public String getP2Name() {
 		return this.p2Name;
+	}
+
+	/**
+	 * @return the winner: 0 is noone, 1 is player1, 2 is player2
+	 */
+	public int getWinner() {
+		return winner;
 	}
 
 }

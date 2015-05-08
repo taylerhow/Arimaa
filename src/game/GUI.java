@@ -34,8 +34,8 @@ public class GUI {
 	private Game game;
 	private ImagePanel gameBoardPanel = null;
 	private ImagePanel[][] boardPieces;
-	private int numMoves;
-	private int playerTurn;
+	//private int numMoves;
+	//private int playerTurn;
 
 	public GUI() {
 		this.p1name = "Player 1";
@@ -47,8 +47,8 @@ public class GUI {
 		this.activeFrames.add(mainMenuFrame);
 		mainMenuFrame.setTitle("Welcome to Arimaa!");
 		mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.playerTurn = 1;
-		this.numMoves = 4;
+//		this.playerTurn = 1;
+//		this.numMoves = 4;
 	}
 
 	public static void main(String[] args) {
@@ -664,7 +664,6 @@ public class GUI {
 					if (game.move(selectedPiece.getRow(),
 							selectedPiece.getColumn(), calculatedDirection)) {
 						renderBoard();
-						numMoves--;
 					}
 					this.selectedPiece = null;
 					this.secondSelectedPiece = null;
@@ -722,7 +721,7 @@ public class GUI {
 								this.secondSelectedPiece.getColumn(),
 								calculatedDirection)) {
 							renderBoard();
-							numMoves -= 2;
+							
 						}
 						this.selectedPiece = null;
 						this.secondSelectedPiece = null;
@@ -767,7 +766,7 @@ public class GUI {
 								this.selectedPiece.getColumn(),
 								calculatedDirection1, calculatedDirection2)) {
 							renderBoard();
-							numMoves -= 2;
+							
 						}
 						this.selectedPiece = null;
 						this.secondSelectedPiece = null;
@@ -780,16 +779,7 @@ public class GUI {
 					this.secondSelectedPiece = null;
 				}
 			}
-			if (numMoves <= 0) {
-				System.out.print("Switched player move from " + playerTurn);
-				if (playerTurn == 1) {
-					playerTurn = 2;
-				} else {
-					playerTurn = 1;
-				}
-				System.out.println(" to " + playerTurn);
-				numMoves = 4;
-			}
+			
 		}
 
 		private boolean checkForPush(int rowClicked, int columnClicked) {
