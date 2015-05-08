@@ -1,5 +1,7 @@
 package game;
 
+import game.Piece.Owner;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
@@ -123,13 +125,38 @@ public class Game {
 
 	/**
 	 * Piece death occurs when pieces are on the squares (2,2), (2,5), (5,2),
-	 * (5,5)
+	 * (5,5), and has no friendly adjacent pieces to it
+	 * 
 	 */
 	private void checkDeaths(int row, int col) {
-		char[][] temp = this.currentBoard.getBoardArray();
-
+		if(this.getSpace(row, col)==(null))
+			return;//an empty piece doesn't need to be checked
+		Piece cen=this.getSpace(row, col);
+		Piece up=this.getSpace(row-1, col);
+		Piece down=this.getSpace(row+1, col);
+		Piece left=this.getSpace(row, col-1);
+		Piece right = this.getSpace(row, col+1);
+		Owner own =cen.getOwner();
+		if(up!=null){
+			if(up.getOwner()==own)
+				return;
+		}
+		if(down!=null){
+			if(down.getOwner()==own)
+				return;
+		}
+		if(right!=null){
+			if(right.getOwner()==own)
+				return;
+		}
+		if(left!=null){
+			if(left.getOwner()==own)
+				return;
+		}
+		//no adjacent friendly pieces, remove this one
+		char[][] temp= this.currentBoard.getBoardArray();
+		temp[row][col]=' ';
 		this.currentBoard.setBoardArray(temp);
-		// Arrays.deepToString(temp);
 	}
 
 	// helper for move
