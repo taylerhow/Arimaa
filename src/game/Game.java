@@ -339,6 +339,7 @@ public class Game {
 	}
 
 	public boolean loadFile(Scanner scanner) {
+		//Setup to use Scanner
 		scanner.useDelimiter(",");
 		BoardState boardToSet = new BoardState(new char[][] {
 				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
@@ -349,6 +350,13 @@ public class Game {
 				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, }, 0);
+		String[] validBoardCharactersArray = {" ", "E", "C", "H", "D", "K", "R", "e", "c", "h", "d", "k", "r"};
+		ArrayList<String> vbc = new ArrayList<String>();
+		for(String s : validBoardCharactersArray){
+			vbc.add(s);
+		}
+		
+		//Parse boardState
 		for (int i = 0; i < 8; i++) {
 			for (int k = 0; k < 8; k++) {
 				if (!scanner.hasNext()) {
@@ -356,31 +364,37 @@ public class Game {
 					return false;
 				}
 				String next = scanner.next();
-				if (next.equals("Q") || next.equals("K")) {
+				if (!vbc.contains(next)) {
 					scanner.close();
 					return false;
 				}
 				boardToSet.setBoardSpace(i, k, next);
 			}
 		}
-		this.currentBoard = boardToSet;
 
+		//Parse turnCounter, p1Name, p2Name
 		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
-		this.turnCounter = scanner.nextInt();
+		 int turnCounter = scanner.nextInt();
 		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
-		this.p1Name = scanner.next();
+		String p1name = scanner.next();
 		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
-		this.p2Name = scanner.next();
+		String p2name = scanner.next();
 		scanner.close();
+		
+		//Successful load! Push all changes to game permanently
+		this.currentBoard = boardToSet;
+		this.turnCounter = turnCounter;
+		this.p1Name = p1name;
+		this.p2Name = p2name;
 		return true;
 	}
 
