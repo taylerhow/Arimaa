@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import game.*;
@@ -375,7 +376,9 @@ public class TestGame {
 	@Test
 	public void testBasicPullDown() {
 		Game g = new Game(pullTestingBoard);
+		g.currentBoard.printBoard();
 		assertTrue(g.pull(3, 5, 2, 5, 2));
+		g.currentBoard.printBoard();		
 		assertTrue(g.getSpace(3, 5).equals(
 				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(

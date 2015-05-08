@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Arrays;
+
 /**
  * This class represents the states of the board.
  * 
@@ -42,5 +44,11 @@ public class BoardState {
 
 	public BoardState clone() {
 		return new BoardState(boardArray, turnNumber);
+	}
+	public void printBoard(){
+		for(int i=0;i<8;i++){
+			System.out.println(Arrays.toString(boardArray[i]));
+		}
+		System.out.println();
 	}
 }
