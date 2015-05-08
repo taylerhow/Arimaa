@@ -537,15 +537,16 @@ public class TestGame {
 	
 	//Testing saveFile
 	@Test
-	public void testSaveFile(){
+	public void testSaveFile() throws IOException{
 		FileWriter fw = null;
+		File saveFile = new File("Resources/SaveTest1.txt");
 		try {
-			fw = new FileWriter(new File("resources/SaveTest1.txt"));
+			fw = new FileWriter(saveFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Game g = new Game();
+		Game g = new Game(b);
 		assertTrue(g.saveFile(fw));
 	}
 	

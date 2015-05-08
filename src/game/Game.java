@@ -311,8 +311,17 @@ public class Game {
 		return true;
 	}
 	
-	public boolean saveFile(FileWriter fw) {
-		return false;
+	public boolean saveFile(FileWriter fw) throws IOException {
+		for(int i=0; i<8; i++){
+			for(int j=0; j<8; j++){
+				String s = "" + this.currentBoard.getBoardArray()[i][j] + ",";
+				fw.write(s);
+			}
+		}
+		String s2 = "" + this.turnCounter;
+		fw.write(s2);
+		fw.close();
+		return true;
 	}
 	
 	//Getters & Setters
