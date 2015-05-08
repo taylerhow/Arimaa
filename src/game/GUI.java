@@ -545,6 +545,9 @@ public class GUI {
 			game.p1Name = p1TextField.getText();
 			game.p2Name = p2TextField.getText();
 			
+			if(game.p1Name.equals("")) game.p1Name = "Player 1";
+			if(game.p2Name.equals("")) game.p2Name = "Player 2";
+			
 			JFrame settings = activeFrames.get(1);
 			activeFrames.remove(1);
 			settings.dispose();
