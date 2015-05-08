@@ -221,22 +221,25 @@ public class Game {
 		Piece left=this.getSpace(row, col-1);
 		Piece right = this.getSpace(row, col+1);
 		Owner own =cen.getOwner();
+		boolean foo=false;
 		if(up!=null){
-			if(up.getOwner()!=own&&up.isStrongerThan(cen))
-				return true;
+			foo=checkStrong(up,cen);
 		}
 		if(down!=null){
-			if(down.getOwner()!=own&&down.isStrongerThan(cen))
-				return true;
+			foo=checkStrong(down, cen);
 		}
 		if(right!=null){
-			if(right.getOwner()!=own&&right.isStrongerThan(cen))
-				return true;
+			foo=checkStrong(right,cen);
 		}
 		if(left!=null){
-			if(left.getOwner()!=own&&left.isStrongerThan(cen))
-				return true;
+			foo=checkStrong(left,cen);
 		}
+		return foo;
+	}
+
+	private boolean checkStrong(Piece one, Piece two) {
+		if(one.getOwner()!=two.getOwner()&&one.isStrongerThan(two))
+			return true;
 		return false;
 	}
 
