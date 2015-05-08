@@ -1,4 +1,5 @@
 package testing;
+
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -15,212 +16,227 @@ import org.junit.Test;
 
 public class TestGame {
 	BoardState b = new BoardState(new char[][] {
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ','C','E',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ','D',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ','K','R'},
-			}, 0);
-	
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'C', 'E', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', 'R' }, }, 0);
+
 	BoardState b2 = new BoardState(new char[][] {
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ','k',' ',' ',' '},
-			{' ',' ',' ','C','E','d',' ',' '},
-			{' ',' ',' ',' ','r',' ',' ',' '},
-			{' ',' ',' ','D',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ','r','K','R'},
-			}, 0);
-	
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', 'r', 'K', 'R' }, }, 0);
+
 	@Test
 	public void testInitializes() {
-		Game g =new Game(null);
+		Game g = new Game(null);
 		assertNotNull(g);
 	}
-	
+
 	@Test
-	public void testInitializesWithBoardState(){
-		Game g= new Game(b);
-		
+	public void testInitializesWithBoardState() {
+		Game g = new Game(b);
+
 		assertEquals(g.currentBoard.getBoardArray()[4][3], 'C');
 		assertEquals(g.currentBoard.getBoardArray()[4][4], 'E');
 		assertEquals(g.currentBoard.getBoardArray()[7][3], ' ');
 		assertEquals(g.currentBoard.getBoardArray()[7][7], 'R');
 	}
-	
+
 	@Test
 	public void testGetPieceExists() {
-		Game g= new Game(b);
-		assertEquals(g.getSpace(4, 3), new Piece(PieceType.Camel, null, Piece.Owner.Player1));
-	}
-	
-	@Test
-	public void testGetPieceNotExists() {
-		Game g= new Game(b);
-		assertEquals(g.getSpace(0, 0), null);
-	}
-	
-	@Test
-	public void testGetPieceExistsAgain() {
-		Game g= new Game(b);
-		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null, Piece.Owner.Player1));
-		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null, Piece.Owner.Player1));
-	}
-	
-	@Test
-	public void testGetSpaceInvalidRow1() {
-		Game g= new Game();
-		assertNull(g.getSpace(-1, 0));
-	}
-	
-	@Test
-	public void testGetSpaceInvalidRow2() {
-		Game g= new Game();
-		assertNull(g.getSpace(8, 0));
-	}
-	
-	@Test
-	public void testGetSpaceInvalidColumn1() {
-		Game g= new Game();
-		assertNull(g.getSpace(0, -1));
-	}
-	
-	@Test
-	public void testGetSpaceInvalidColumn2() {
-		Game g= new Game();
-		assertNull(g.getSpace(0, 8));
-	}
-	
-	@Test
-	public void testMoveLegal(){
 		Game g = new Game(b);
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),g.getSpace(7, 7));
-		assertTrue(g.move(7, 7, 0));
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),g.getSpace(6, 7));
-		assertEquals(null,g.getSpace(7, 7));
-	}
-	
-	@Test
-	public void testMoveIllegalDown(){
-		Game g = new Game();
-		assertFalse(g.move(7, 7, 2));
-		
-	}
-	
-	@Test
-	public void testMoveIllegalUp(){
-		Game g = new Game();
-		assertFalse(g.move(0, 0, 0));
-		
-	}
-	
-	@Test 
-	public void testMoveIllegalRight(){
-		Game g = new Game();
-		assertFalse(g.move(7, 7, 1));
-	}
-	
-	@Test 
-	public void testMoveIllegalLeft(){
-		Game g= new Game();
-		assertFalse(g.move(0,0,3));
-	}
-	
-	@Test
-	public void testCannotMoveUpIntoOccupiedSpace(){
-		Game g = new Game();
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(1, 0));
-		assertFalse(g.move(1, 0, 0));
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(1, 0));
-	}
-	
-	@Test
-	public void testCannotMoveRightIntoOccupiedSpace(){
-		Game g = new Game();
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1), g.getSpace(0, 1));
-		assertFalse(g.move(0, 1, 1));
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1), g.getSpace(0, 1));
-	}
-	
-	@Test
-	public void testCannotMoveDownIntoOccupiedSpace(){
-		Game g = new Game();
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1), g.getSpace(0, 1));
-		assertFalse(g.move(0, 1, 2));
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1), g.getSpace(0, 1));
-	}
-	
-	@Test
-	public void testCannotMoveLeftIntoOccupiedSpace(){
-		Game g = new Game();
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1), g.getSpace(0, 1));
-		assertFalse(g.move(0, 1, 3));
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1), g.getSpace(0, 1));
+		assertEquals(g.getSpace(4, 3), new Piece(PieceType.Camel, null,
+				Piece.Owner.Player1));
 	}
 
 	@Test
-	public void testEmptyCreateConstructor(){
-		Game g = new Game();
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1), g.getSpace(1, 1));
+	public void testGetPieceNotExists() {
+		Game g = new Game(b);
+		assertEquals(g.getSpace(0, 0), null);
 	}
-	
-	@Test 
-	public void testNullMove(){
+
+	@Test
+	public void testGetPieceExistsAgain() {
+		Game g = new Game(b);
+		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null,
+				Piece.Owner.Player1));
+		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null,
+				Piece.Owner.Player1));
+	}
+
+	@Test
+	public void testGetSpaceInvalidRow1() {
+		Game g = new Game();
+		assertNull(g.getSpace(-1, 0));
+	}
+
+	@Test
+	public void testGetSpaceInvalidRow2() {
+		Game g = new Game();
+		assertNull(g.getSpace(8, 0));
+	}
+
+	@Test
+	public void testGetSpaceInvalidColumn1() {
+		Game g = new Game();
+		assertNull(g.getSpace(0, -1));
+	}
+
+	@Test
+	public void testGetSpaceInvalidColumn2() {
+		Game g = new Game();
+		assertNull(g.getSpace(0, 8));
+	}
+
+	@Test
+	public void testMoveLegal() {
+		Game g = new Game(b);
+		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
+				g.getSpace(7, 7));
+		assertTrue(g.move(7, 7, 0));
+		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
+				g.getSpace(6, 7));
+		assertEquals(null, g.getSpace(7, 7));
+	}
+
+	@Test
+	public void testMoveIllegalDown() {
+		Game g = new Game();
+		assertFalse(g.move(7, 7, 2));
+
+	}
+
+	@Test
+	public void testMoveIllegalUp() {
+		Game g = new Game();
+		assertFalse(g.move(0, 0, 0));
+
+	}
+
+	@Test
+	public void testMoveIllegalRight() {
+		Game g = new Game();
+		assertFalse(g.move(7, 7, 1));
+	}
+
+	@Test
+	public void testMoveIllegalLeft() {
+		Game g = new Game();
+		assertFalse(g.move(0, 0, 3));
+	}
+
+	@Test
+	public void testCannotMoveUpIntoOccupiedSpace() {
+		Game g = new Game();
+		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
+				g.getSpace(1, 0));
+		assertFalse(g.move(1, 0, 0));
+		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
+				g.getSpace(1, 0));
+	}
+
+	@Test
+	public void testCannotMoveRightIntoOccupiedSpace() {
+		Game g = new Game();
+		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+				g.getSpace(0, 1));
+		assertFalse(g.move(0, 1, 1));
+		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+				g.getSpace(0, 1));
+	}
+
+	@Test
+	public void testCannotMoveDownIntoOccupiedSpace() {
+		Game g = new Game();
+		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+				g.getSpace(0, 1));
+		assertFalse(g.move(0, 1, 2));
+		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+				g.getSpace(0, 1));
+	}
+
+	@Test
+	public void testCannotMoveLeftIntoOccupiedSpace() {
+		Game g = new Game();
+		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+				g.getSpace(0, 1));
+		assertFalse(g.move(0, 1, 3));
+		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+				g.getSpace(0, 1));
+	}
+
+	@Test
+	public void testEmptyCreateConstructor() {
+		Game g = new Game();
+		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
+				g.getSpace(1, 1));
+	}
+
+	@Test
+	public void testNullMove() {
 		Game g = new Game();
 		assertFalse(g.move(4, 4, 0));
 	}
-	
-	//Testing push method
-	
+
+	// Testing push method
+
 	BoardState pushTestingBoard = new BoardState(new char[][] {
-			{' ','r',' ',' ',' ',' ','R','e'},
-			{'r',' ','R',' ','E',' ','E','R'},
-			{' ','R','E','R',' ',' ',' ',' '},
-			{' ',' ','R',' ',' ','d',' ',' '},
-			{' ',' ',' ',' ','k','E','c',' '},
-			{' ',' ',' ','C',' ','k',' ',' '},
-			{'r',' ','C','r','C',' ',' ',' '},
-			{'E','r',' ','C',' ',' ',' ',' '},
-			}, 0);
-	
+			{ ' ', 'r', ' ', ' ', ' ', ' ', 'R', 'e' },
+			{ 'r', ' ', 'R', ' ', 'E', ' ', 'E', 'R' },
+			{ ' ', 'R', 'E', 'R', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', 'R', ' ', ' ', 'd', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'k', 'E', 'c', ' ' },
+			{ ' ', ' ', ' ', 'C', ' ', 'k', ' ', ' ' },
+			{ 'r', ' ', 'C', 'r', 'C', ' ', ' ', ' ' },
+			{ 'E', 'r', ' ', 'C', ' ', ' ', ' ', ' ' }, }, 0);
+
 	@Test
-	public void testPushInvalid(){
-		Game g=new Game(b2);
+	public void testPushInvalid() {
+		Game g = new Game(b2);
 		assertFalse(g.push(3, 3, 0, 0));
 		assertFalse(g.push(4, 3, 1, 1));
-		assertFalse(g.push(4,3,1,0));
+		assertFalse(g.push(4, 3, 1, 0));
 	}
+
 	@Test
-	public void testPushUp(){
-		Game g=new Game(b2);
+	public void testPushUp() {
+		Game g = new Game(b2);
 		assertTrue(g.push(4, 4, 0, 0));
 		assertTrue(g.push(3, 4, 0, 0));
 		assertTrue(g.push(2, 4, 0, 0));
 		assertFalse(g.push(1, 4, 0, 0));
 	}
+
 	@Test
-	public void testPushDown(){
-		Game g=new Game(b2);
+	public void testPushDown() {
+		Game g = new Game(b2);
 		assertTrue(g.push(4, 4, 2, 2));
 		assertTrue(g.push(5, 4, 2, 2));
 		assertFalse(g.push(6, 4, 2, 2));
 		assertFalse(g.push(7, 4, 2, 2));
 	}
+
 	@Test
-	public void testPushRight(){
-		Game g=new Game(b2);
+	public void testPushRight() {
+		Game g = new Game(b2);
 		assertTrue(g.push(4, 4, 1, 1));
 		assertTrue(g.push(4, 5, 1, 1));
-		assertFalse(g.push(4, 6, 1,1));
+		assertFalse(g.push(4, 6, 1, 1));
 		assertFalse(g.push(4, 7, 1, 1));
 	}
+
 	@Test
-	public void testPushLeft(){
-		Game g=new Game(b2);
+	public void testPushLeft() {
+		Game g = new Game(b2);
 		assertTrue(g.push(7, 6, 3, 3));
 		assertTrue(g.push(7, 5, 3, 3));
 		assertTrue(g.push(7, 4, 3, 3));
@@ -228,238 +244,262 @@ public class TestGame {
 		assertTrue(g.push(7, 2, 3, 3));
 		assertFalse(g.push(7, 1, 3, 3));
 	}
-	
+
 	@Test
-	public void testPushWithDifferentDirections(){
+	public void testPushWithDifferentDirections() {
 		Game g = new Game(pushTestingBoard);
 		assertTrue(g.push(4, 5, 1, 0));
-		assertTrue(g.getSpace(4, 6).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
-		assertTrue(g.getSpace(3, 6).equals(new Piece(PieceType.Camel, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(4, 6).equals(
+				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(3, 6).equals(
+				new Piece(PieceType.Camel, null, Piece.Owner.Player2)));
 	}
-	
-	@Test 
-	public void testPushUpWithSamePlayersPieces(){
+
+	@Test
+	public void testPushUpWithSamePlayersPieces() {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(2, 2, 0, 0));
-		assertTrue(g.getSpace(2, 2).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
-		assertTrue(g.getSpace(1,2).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(2, 2).equals(
+				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(1, 2).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
 	}
-	
-	@Test 
-	public void testPushRightWithSamePlayersPieces(){
+
+	@Test
+	public void testPushRightWithSamePlayersPieces() {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(2, 2, 1, 1));
-		assertTrue(g.getSpace(2, 2).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
-		assertTrue(g.getSpace(2,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(2, 2).equals(
+				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(2, 3).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
 	}
-	
-	@Test 
-	public void testPushDownWithSamePlayersPieces(){
+
+	@Test
+	public void testPushDownWithSamePlayersPieces() {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(2, 2, 2, 2));
-		assertTrue(g.getSpace(2, 2).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
-		assertTrue(g.getSpace(3,2).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(2, 2).equals(
+				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(3, 2).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
 	}
-	
-	@Test 
-	public void testPushLeftWithSamePlayersPieces(){
+
+	@Test
+	public void testPushLeftWithSamePlayersPieces() {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(2, 2, 3, 3));
-		assertTrue(g.getSpace(2, 2).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
-		assertTrue(g.getSpace(2,1).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
-	}	
-	
+		assertTrue(g.getSpace(2, 2).equals(
+				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(2, 1).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
+	}
+
 	@Test
-	public void testThatPiecesMustBeStrongerToPushUp(){
+	public void testThatPiecesMustBeStrongerToPushUp() {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(6, 3, 0, 0));
-		assertTrue(g.getSpace(6,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		assertTrue(g.getSpace(5,3).equals(new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(6, 3).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(5, 3).equals(
+				new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
 	}
-	
+
 	@Test
-	public void testThatPiecesMustBeStrongerToPushRight(){
+	public void testThatPiecesMustBeStrongerToPushRight() {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(6, 3, 1, 1));
-		assertTrue(g.getSpace(6,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		assertTrue(g.getSpace(6,4).equals(new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(6, 3).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(6, 4).equals(
+				new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
 	}
-	
+
 	@Test
-	public void testThatPiecesMustBeStrongerToPushDown(){
+	public void testThatPiecesMustBeStrongerToPushDown() {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(6, 3, 2, 0));
 		assertFalse(g.push(6, 3, 2, 1));
 		assertFalse(g.push(6, 3, 2, 2));
 		assertFalse(g.push(6, 3, 2, 3));
-		assertTrue(g.getSpace(6,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		assertTrue(g.getSpace(7,3).equals(new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(6, 3).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(7, 3).equals(
+				new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
 	}
-	
+
 	@Test
-	public void testThatPiecesMustBeStrongerToPushLeft(){
+	public void testThatPiecesMustBeStrongerToPushLeft() {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(6, 3, 3, 0));
 		assertFalse(g.push(6, 3, 3, 1));
 		assertFalse(g.push(6, 3, 3, 2));
 		assertFalse(g.push(6, 3, 3, 3));
-		assertTrue(g.getSpace(6,3).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		assertTrue(g.getSpace(6,2).equals(new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(6, 3).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(6, 2).equals(
+				new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
 	}
-	
-	
-	//Testing the pull method
+
+	// Testing the pull method
 	BoardState pullTestingBoard = new BoardState(new char[][] {
-			{' ','r',' ',' ',' ',' ','R','e'},
-			{'r','E','E',' ','E',' ','E','R'},
-			{' ','E','E','r',' ','r',' ',' '},
-			{' ',' ','r',' ',' ','E',' ',' '},
-			{' ',' ',' ','r','E',' ','E','r'},
-			{' ',' ',' ',' ',' ','E',' ',' '},
-			{'r','e',' ','E','e','r',' ',' '},
-			{'E','r',' ','R','e',' ',' ',' '},
-			}, 0);
-	
+			{ ' ', 'r', ' ', ' ', ' ', ' ', 'R', 'e' },
+			{ 'r', 'E', 'E', ' ', 'E', ' ', 'E', 'R' },
+			{ ' ', 'E', 'E', 'r', ' ', 'r', ' ', ' ' },
+			{ ' ', ' ', 'r', ' ', ' ', 'E', ' ', ' ' },
+			{ ' ', ' ', ' ', 'r', 'E', ' ', 'E', 'r' },
+			{ ' ', ' ', ' ', ' ', ' ', 'E', ' ', ' ' },
+			{ 'r', 'e', ' ', 'E', 'e', 'r', ' ', ' ' },
+			{ 'E', 'r', ' ', 'R', 'e', ' ', ' ', ' ' }, }, 0);
+
 	@Test
-	public void testBasicPullUp(){
+	public void testBasicPullUp() {
 		Game g = new Game(pullTestingBoard);
 		assertTrue(g.pull(5, 5, 6, 5, 0));
-		assertTrue(g.getSpace(5, 5).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(5, 5).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(4, 5).equals(
+				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 	}
-	
+
 	@Test
-	public void testBasicPullRight(){
+	public void testBasicPullRight() {
 		Game g = new Game(pullTestingBoard);
 		assertTrue(g.pull(4, 4, 4, 3, 1));
-		assertTrue(g.getSpace(4, 4).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(4, 4).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(4, 5).equals(
+				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 	}
-	
+
 	@Test
-	public void testBasicPullDown(){
+	public void testBasicPullDown() {
 		Game g = new Game(pullTestingBoard);
 		assertTrue(g.pull(3, 5, 2, 5, 2));
-		assertTrue(g.getSpace(3, 5).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(3, 5).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(4, 5).equals(
+				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 	}
-	
+
 	@Test
-	public void testBasicPullLeft(){
+	public void testBasicPullLeft() {
 		Game g = new Game(pullTestingBoard);
 		assertTrue(g.pull(4, 6, 4, 7, 3));
-		assertTrue(g.getSpace(4, 6).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
-		assertTrue(g.getSpace(4, 5).equals(new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+		assertTrue(g.getSpace(4, 6).equals(
+				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+		assertTrue(g.getSpace(4, 5).equals(
+				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
 	}
-	
+
 	@Test
-	public void testPullWithNullPiece(){
+	public void testPullWithNullPiece() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(0, 4, 0, 5, 3));
 	}
-	
+
 	@Test
-	public void testPullUpOffBoard(){
+	public void testPullUpOffBoard() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(0, 7, 1, 7, 0));
 	}
-	
+
 	@Test
-	public void testPullRightOffBoard(){
+	public void testPullRightOffBoard() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(0, 7, 0, 6, 1));
 	}
-	
+
 	@Test
-	public void testPullDownOffBoard(){
+	public void testPullDownOffBoard() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(7, 0, 6, 0, 2));
 	}
-	
+
 	@Test
-	public void testPullLeftOffBoard(){
+	public void testPullLeftOffBoard() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(7, 0, 7, 1, 3));
 	}
-	
+
 	@Test
-	public void testPullUpIntoOccupiedSpace(){
+	public void testPullUpIntoOccupiedSpace() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(2, 2, 3, 2, 0));
 	}
-	
+
 	@Test
-	public void testPullRightIntoOccupiedSpace(){
+	public void testPullRightIntoOccupiedSpace() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 1, 1, 0, 1));
 	}
-	
+
 	@Test
-	public void testPullDownIntoOccupiedSpace(){
+	public void testPullDownIntoOccupiedSpace() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 1, 0, 1, 2));
 	}
-	
+
 	@Test
-	public void testPullLeftIntoOccupiedSpace(){
+	public void testPullLeftIntoOccupiedSpace() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(2, 2, 2, 3, 3));
 	}
-	
+
 	@Test
-	public void testPullNothingUp(){
+	public void testPullNothingUp() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 4, 2, 4, 0));
 	}
-	
+
 	@Test
-	public void testPullNothingRight(){
+	public void testPullNothingRight() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 4, 1, 3, 1));
 	}
-	
+
 	@Test
-	public void testPullNothingDown(){
+	public void testPullNothingDown() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 4, 0, 4, 2));
 	}
-	
+
 	@Test
-	public void testPullNothingLeft(){
+	public void testPullNothingLeft() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 4, 1, 5, 3));
 	}
-	
+
 	@Test
-	public void testPullOwnPieceUp(){
-		Game g= new Game(pullTestingBoard);
+	public void testPullOwnPieceUp() {
+		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(6, 1, 7, 1, 0));
-		assertTrue(g.getSpace(5, 1)==null);
+		assertTrue(g.getSpace(5, 1) == null);
 	}
-	
+
 	@Test
-	public void testPullOwnPieceRight(){
-		Game g= new Game(pullTestingBoard);
+	public void testPullOwnPieceRight() {
+		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(6, 1, 6, 0, 1));
-		assertTrue(g.getSpace(6, 2)==null);
+		assertTrue(g.getSpace(6, 2) == null);
 	}
-	
+
 	@Test
-	public void testPullOwnPieceDown(){
-		Game g= new Game(pullTestingBoard);
+	public void testPullOwnPieceDown() {
+		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 6, 0, 6, 2));
-		assertTrue(g.getSpace(2, 6)==null);
+		assertTrue(g.getSpace(2, 6) == null);
 	}
-	
+
 	@Test
-	public void testPullOwnPieceLeft(){
-		Game g= new Game(pullTestingBoard);
+	public void testPullOwnPieceLeft() {
+		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(1, 6, 1, 7, 3));
-		assertTrue(g.getSpace(1, 5)==null);
+		assertTrue(g.getSpace(1, 5) == null);
 	}
-	
+
 	@Test
-	public void testBidirectionalPullUpRight(){
+	public void testBidirectionalPullUpRight() {
 		Game g = new Game(pullTestingBoard);
 		Piece p1 = g.getSpace(4, 4);
 		Piece p2 = g.getSpace(4, 3);
@@ -467,9 +507,9 @@ public class TestGame {
 		assertTrue(g.getSpace(3, 4).equals(p1));
 		assertTrue(g.getSpace(4, 4).equals(p2));
 	}
-	
+
 	@Test
-	public void testBidirectionalPullRightDown(){
+	public void testBidirectionalPullRightDown() {
 		Game g = new Game(pullTestingBoard);
 		Piece p1 = g.getSpace(3, 5);
 		Piece p2 = g.getSpace(2, 5);
@@ -477,9 +517,9 @@ public class TestGame {
 		assertTrue(g.getSpace(3, 6).equals(p1));
 		assertTrue(g.getSpace(3, 5).equals(p2));
 	}
-	
+
 	@Test
-	public void testBidirectionalPullDownLeft(){
+	public void testBidirectionalPullDownLeft() {
 		Game g = new Game(pullTestingBoard);
 		Piece p1 = g.getSpace(4, 6);
 		Piece p2 = g.getSpace(4, 7);
@@ -487,9 +527,9 @@ public class TestGame {
 		assertTrue(g.getSpace(5, 6).equals(p1));
 		assertTrue(g.getSpace(4, 6).equals(p2));
 	}
-	
+
 	@Test
-	public void testBidirectionalPullLeftUp(){
+	public void testBidirectionalPullLeftUp() {
 		Game g = new Game(pullTestingBoard);
 		Piece p1 = g.getSpace(5, 5);
 		Piece p2 = g.getSpace(6, 5);
@@ -497,47 +537,47 @@ public class TestGame {
 		assertTrue(g.getSpace(5, 4).equals(p1));
 		assertTrue(g.getSpace(5, 5).equals(p2));
 	}
-	
+
 	@Test
-	public void testPullPieceOfGreaterStrength(){
+	public void testPullPieceOfGreaterStrength() {
 		Game g = new Game(pullTestingBoard);
 		assertFalse(g.pull(7, 3, 7, 4, 3));
 	}
 
-	//Testing getDirection
+	// Testing getDirection
 	@Test
-	public void testGetDirectionUp(){
+	public void testGetDirectionUp() {
 		Game g = new Game();
 		assertEquals(0, g.getDirection(1, 1, 0, 1));
 	}
-	
+
 	@Test
-	public void testGetDirectionRight(){
+	public void testGetDirectionRight() {
 		Game g = new Game();
 		assertEquals(1, g.getDirection(1, 1, 1, 2));
 	}
-	
+
 	@Test
-	public void testGetDirectionDown(){
+	public void testGetDirectionDown() {
 		Game g = new Game();
 		assertEquals(2, g.getDirection(1, 1, 2, 1));
 	}
-	
+
 	@Test
-	public void testGetDirectionLeft(){
+	public void testGetDirectionLeft() {
 		Game g = new Game();
 		assertEquals(3, g.getDirection(1, 1, 1, 0));
 	}
-	
+
 	@Test
-	public void testGetDirectionNonAdjacent(){
+	public void testGetDirectionNonAdjacent() {
 		Game g = new Game();
 		assertEquals(-1, g.getDirection(1, 1, 7, 7));
 	}
-	
-	//Testing saveFile
+
+	// Testing saveFile
 	@Test
-	public void testSaveFile() throws IOException{
+	public void testSaveFile() throws IOException {
 		FileWriter fw = null;
 		File saveFile = new File("Resources/SaveTest1.txt");
 		try {
@@ -549,135 +589,140 @@ public class TestGame {
 		Game g = new Game(b);
 		assertTrue(g.saveFile(fw));
 	}
-	
-	//Testing loadFile
+
+	// Testing loadFile
 	@Test
-	public void testLoadFileLoadsBoardState() throws FileNotFoundException{
+	public void testLoadFileLoadsBoardState() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		BoardState board = new BoardState(new char[][] {
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				}, 0);
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, }, 0);
 		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
-		for(int i=0; i<8; i++){
-			for(int k=0; k<8; k++){
-				assertEquals(board.getBoardArray()[i][k], g.currentBoard.getBoardArray()[i][k]);
+		for (int i = 0; i < 8; i++) {
+			for (int k = 0; k < 8; k++) {
+				assertEquals(board.getBoardArray()[i][k],
+						g.currentBoard.getBoardArray()[i][k]);
 			}
 		}
 	}
-	
+
 	@Test
-	public void testLoadFileLoadsTurnCounter() throws FileNotFoundException{
+	public void testLoadFileLoadsTurnCounter() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		int turnCounter = 7;
 		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(turnCounter, g.getTurnCounter());
 	}
-	
+
 	@Test
-	public void testLoadFileLoadsPlayer1Name() throws FileNotFoundException{
+	public void testLoadFileLoadsPlayer1Name() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		String name = "Jesse";
 		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(name, g.getP1Name());
 	}
-	
+
 	@Test
-	public void testLoadFileLoadsPlayer2Name() throws FileNotFoundException{
+	public void testLoadFileLoadsPlayer2Name() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		String name = "Tayler";
 		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(name, g.getP2Name());
 	}
-	
+
 	@Test
-	public void testLoadFileReturnsFalseOnFailure1() throws FileNotFoundException{
+	public void testLoadFileReturnsFalseOnFailure1()
+			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure1.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 	}
-	
+
 	@Test
-	public void testLoadFileReturnsFalseOnFailure2() throws FileNotFoundException{
+	public void testLoadFileReturnsFalseOnFailure2()
+			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure2.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 	}
-	
+
 	@Test
-	public void testLoadFileReturnsFalseOnFailure3() throws FileNotFoundException{
+	public void testLoadFileReturnsFalseOnFailure3()
+			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure3.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 	}
-	
+
 	@Test
-	public void testLoadFileReturnsFalseOnFailure4() throws FileNotFoundException{
+	public void testLoadFileReturnsFalseOnFailure4()
+			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure4.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 	}
-	
+
 	@Test
-	public void testLoadFileInvalidBoardCharacters1() throws FileNotFoundException{
-		Scanner scanner = new Scanner(new File("resources/LoadInvalidBoard1.txt"));
+	public void testLoadFileInvalidBoardCharacters1()
+			throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File(
+				"resources/LoadInvalidBoard1.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 	}
-	
+
 	@Test
-	public void testLoadFileInvalidBoardCharacters2() throws FileNotFoundException{
-		Scanner scanner = new Scanner(new File("resources/LoadInvalidBoard2.txt"));
+	public void testLoadFileInvalidBoardCharacters2()
+			throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File(
+				"resources/LoadInvalidBoard2.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 	}
-	
-	
-	
-	//Testing remove piece checks
+
+	// Testing remove piece checks
 	BoardState removeBoard = new BoardState(new char[][] {
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ','C',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ','k',' ',' ',' '},
-			{' ',' ',' ','C','E','d',' ',' '},
-			{' ',' ',' ',' ','r',' ',' ',' '},
-			{' ',' ',' ','D',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ','r','K','R'},
-			}, 0);
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', 'C', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', 'r', 'K', 'R' }, }, 0);
 	BoardState removeBoard2 = new BoardState(new char[][] {
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ','D',' ',' '},
-			{' ',' ','C',' ',' ','C',' ',' '},
-			{' ',' ',' ',' ','k',' ',' ',' '},
-			{' ',' ',' ','C','E','d',' ',' '},
-			{' ',' ',' ',' ','r',' ',' ',' '},
-			{' ',' ',' ','D',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ','r','K','R'},
-			}, 0);
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', 'D', ' ', ' ' },
+			{ ' ', ' ', 'C', ' ', ' ', 'C', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', 'r', 'K', 'R' }, }, 0);
+
 	@Test
-	public void testRemovePieceValid(){
+	public void testRemovePieceValid() {
 		Game g = new Game(removeBoard);
 		g.move(3, 4, 0);
 		assertEquals(null, g.getSpace(2, 2));
 	}
+
 	@Test
-	public void testRemovePiece2(){
+	public void testRemovePiece2() {
 		Game g = new Game(removeBoard2);
 		g.move(2, 2, 0);
 		assertEquals(g.getSpace(2, 5), g.getSpace(2, 5));
 		g.move(1, 5, 0);
-		assertEquals(null,g.getSpace(2, 5));
-	} 
+		assertEquals(null, g.getSpace(2, 5));
+	}
 }
-

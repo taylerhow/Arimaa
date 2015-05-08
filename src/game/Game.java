@@ -1,4 +1,5 @@
 package game;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
@@ -6,36 +7,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
 public class Game {
-	//fields
-	ArrayList<BoardState> boards= new ArrayList<BoardState>();
-	public BoardState currentBoard=null;
-	int numMovesLeft =0;
-	int moveTimer =0;
-	int p1TimeBank=0;
-	int p2TimeBank =0;
+	// fields
+	ArrayList<BoardState> boards = new ArrayList<BoardState>();
+	public BoardState currentBoard = null;
+	int numMovesLeft = 0;
+	int moveTimer = 0;
+	int p1TimeBank = 0;
+	int p2TimeBank = 0;
 	int turnCounter = 0;
 	String p1Name;
 	String p2Name;
-	
+
 	public Game(BoardState b) {
 		currentBoard = b;
 	}
+
 	/**
 	 * Creates a board with a default starting layout
 	 */
-	public Game(){
-		currentBoard=new BoardState(new char[][]{
-				{'K','D','H','C','E','H','D','K'},
-				{'R','R','R','R','R','R','R','R'},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{'r','r','r','r','r','r','r','r'},
-				{'k','d','h','c','e','h','d','k'},
-		},0);
+	public Game() {
+		currentBoard = new BoardState(new char[][] {
+				{ 'K', 'D', 'H', 'C', 'E', 'H', 'D', 'K' },
+				{ 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r' },
+				{ 'k', 'd', 'h', 'c', 'e', 'h', 'd', 'k' }, }, 0);
 	}
 
 	/**
@@ -44,53 +44,62 @@ public class Game {
 	 * @param y
 	 * @return
 	 */
-	public Piece getSpace(int row, int column){
-		if(row < 0 || row > 7 || column < 0 || column > 7) return null;
-		if(currentBoard.getBoardArray()[row][column]==' ')
+	public Piece getSpace(int row, int column) {
+		if (row < 0 || row > 7 || column < 0 || column > 7)
+			return null;
+		if (currentBoard.getBoardArray()[row][column] == ' ')
 			return null;
 		return new Piece(currentBoard.getBoardArray()[row][column]);
-		
+
 	}
+
 	/**
 	 * 
 	 * @param row
 	 * @param column
-	 * @param dir 0: up, 1: right, 2: down, 3: left
+	 * @param dir
+	 *            0: up, 1: right, 2: down, 3: left
 	 * @return
 	 */
-	public boolean move(int row, int column, int dir){
-		if(getSpace(row,column) == null) return false;
-		//This may cause issues when we implement undo/redo if we try invalid moves before we undo
+	public boolean move(int row, int column, int dir) {
+		if (getSpace(row, column) == null)
+			return false;
+		// This may cause issues when we implement undo/redo if we try invalid
+		// moves before we undo
 		boards.add(currentBoard);
-		currentBoard=currentBoard.clone();
-		switch(dir){
+		currentBoard = currentBoard.clone();
+		switch (dir) {
 		case 0:
-			//Moving UP
-			if (row - 1 >= 0 && currentBoard.getBoardArray()[row-1][column] == ' ') {
-				switchPiece(row, column, row-1, column);
+			// Moving UP
+			if (row - 1 >= 0
+					&& currentBoard.getBoardArray()[row - 1][column] == ' ') {
+				switchPiece(row, column, row - 1, column);
 				endMove();
 				return true;
 			}
 			return false;
 		case 1:
-			//Moving RIGHT
-			if (column + 1 <= 7 && currentBoard.getBoardArray()[row][column+1] == ' ') {
-				switchPiece(row, column, row, column+1);
+			// Moving RIGHT
+			if (column + 1 <= 7
+					&& currentBoard.getBoardArray()[row][column + 1] == ' ') {
+				switchPiece(row, column, row, column + 1);
 				endMove();
 				return true;
 			}
 			return false;
 		case 2:
-			//Moving DOWN
-			if (row + 1 <= 7 && currentBoard.getBoardArray()[row+1][column] == ' ') {
+			// Moving DOWN
+			if (row + 1 <= 7
+					&& currentBoard.getBoardArray()[row + 1][column] == ' ') {
 				switchPiece(row, column, row + 1, column);
 				endMove();
 				return true;
 			}
 			return false;
 		case 3:
-			//Moving LEFT
-			if (column - 1 >= 0 && currentBoard.getBoardArray()[row][column-1] == ' ') {
+			// Moving LEFT
+			if (column - 1 >= 0
+					&& currentBoard.getBoardArray()[row][column - 1] == ' ') {
 				switchPiece(row, column, row, column - 1);
 				endMove();
 				return true;
@@ -100,52 +109,63 @@ public class Game {
 			return false;
 		}
 	}
+
 	/**
-	 * This methods checks piece death and victory conditions 
+	 * This methods checks piece death and victory conditions
 	 */
 	private void endMove() {
-		checkDeaths();
-		
+		// check(2,2)
+		checkDeaths(2, 2);
+		checkDeaths(2, 5);
+		checkDeaths(5, 2);
+		checkDeaths(5, 5);
 	}
-	
+
 	/**
-	 * Piece death occurs when pieces are on the squares (2,2), (2,5), (5,2), (5,5)
+	 * Piece death occurs when pieces are on the squares (2,2), (2,5), (5,2),
+	 * (5,5)
 	 */
-	private void checkDeaths() {
-		char[][] temp=this.currentBoard.getBoardArray();
-		temp[2][2]=' ';
+	private void checkDeaths(int row, int col) {
+		char[][] temp = this.currentBoard.getBoardArray();
+
 		this.currentBoard.setBoardArray(temp);
-		Arrays.deepToString(temp);
+		// Arrays.deepToString(temp);
 	}
-	//helper for move
+
+	// helper for move
 	private void switchPiece(int row1, int column1, int row2, int column2) {
 		char[][] boardArray = currentBoard.getBoardArray();
 		char temp = boardArray[row1][column1];
 
-		boardArray[row1][column1]=boardArray[row2][column2];
-		boardArray[row2][column2]=temp;
+		boardArray[row1][column1] = boardArray[row2][column2];
+		boardArray[row2][column2] = temp;
 
 		currentBoard.setBoardArray(boardArray);
 	}
+
 	/**
 	 * 0: up, 1: right, 2: down, 3: left
+	 * 
 	 * @param row
 	 * @param column
-	 * @param dir1 the direction the pushing piece will move
-	 * @param dir2 the direction the pushed piece will move
+	 * @param dir1
+	 *            the direction the pushing piece will move
+	 * @param dir2
+	 *            the direction the pushed piece will move
 	 * @return
 	 */
-	public boolean push(int row, int column, int dir1, int dir2){
-		if (getSpace(row, column) == null){
+	public boolean push(int row, int column, int dir1, int dir2) {
+		if (getSpace(row, column) == null) {
 			return false; // trying to push with an empty square
 		}
-		
+
 		switch (dir1) {
 		case 0:
 			if (row - 1 >= 0) {
 				Piece pushingPiece = getSpace(row, column);
 				Piece pushedPiece = getSpace(row - 1, column);
-				if (pushedPiece != null&& pushingPiece.isStrongerThan(pushedPiece)) {
+				if (pushedPiece != null
+						&& pushingPiece.isStrongerThan(pushedPiece)) {
 					if (pushingPiece.getOwner() != pushedPiece.getOwner()
 							&& move(row - 1, column, dir2)) {
 						// should always be true
@@ -158,7 +178,8 @@ public class Game {
 			if (column + 1 <= 7) {
 				Piece pushingPiece2 = getSpace(row, column);
 				Piece pushedPiece2 = getSpace(row, column + 1);
-				if (pushedPiece2 != null&& pushingPiece2.isStrongerThan(pushedPiece2)) {
+				if (pushedPiece2 != null
+						&& pushingPiece2.isStrongerThan(pushedPiece2)) {
 					if (pushingPiece2.getOwner() != pushedPiece2.getOwner()
 							&& move(row, column + 1, dir2)) {
 						// should always be true
@@ -171,7 +192,7 @@ public class Game {
 			if (row + 1 <= 7) {
 				Piece pushingPiece3 = getSpace(row, column);
 				Piece pushedPiece3 = getSpace(row + 1, column);
-				if(pushingPiece3.isStrongerThan(pushedPiece3)){
+				if (pushingPiece3.isStrongerThan(pushedPiece3)) {
 					if (pushingPiece3.getOwner() != pushedPiece3.getOwner()
 							&& move(row + 1, column, dir2)) {
 						// should always be true
@@ -184,7 +205,7 @@ public class Game {
 			if (column - 1 >= 0) {
 				Piece pushingPiece4 = getSpace(row, column);
 				Piece pushedPiece4 = getSpace(row, column - 1);
-				if(pushingPiece4.isStrongerThan(pushedPiece4)){
+				if (pushingPiece4.isStrongerThan(pushedPiece4)) {
 					if (pushingPiece4.getOwner() != pushedPiece4.getOwner()
 							&& move(row, column - 1, dir2)) {
 						// should always be true
@@ -196,50 +217,62 @@ public class Game {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 0: up, 1: right, 2: down, 3: left
-	 * @param row: row that contains the pulling piece
-	 * @param column: column that contains the pulling piece
-	 * @param direction1: direction the pulling piece will move
-	 * @param direction2: direction the piece being pulled will move
+	 * 
+	 * @param row
+	 *            : row that contains the pulling piece
+	 * @param column
+	 *            : column that contains the pulling piece
+	 * @param direction1
+	 *            : direction the pulling piece will move
+	 * @param direction2
+	 *            : direction the piece being pulled will move
 	 * @return True if pull succeeds, False if it fails
 	 */
-	public boolean pull(int row1, int column1, int row2, int column2, int direction1){
-		//Check that both pieces exist
-		if(getSpace(row1, column1)==null || getSpace(row2, column2)==null) return false;
-		
-		//Check that pulling piece is strong than other piece
-		if(!getSpace(row1, column1).isStrongerThan(getSpace(row2, column2))) return false;
-				
-		//Get direction that pulled piece will move
+	public boolean pull(int row1, int column1, int row2, int column2,
+			int direction1) {
+		// Check that both pieces exist
+		if (getSpace(row1, column1) == null || getSpace(row2, column2) == null)
+			return false;
+
+		// Check that pulling piece is strong than other piece
+		if (!getSpace(row1, column1).isStrongerThan(getSpace(row2, column2)))
+			return false;
+
+		// Get direction that pulled piece will move
 		int direction2 = getDirection(row2, column2, row1, column1);
-		
-		//Check that getDirection didn't fail
-//		if(direction2 == -1) return false;
-		
-		//Attempt to perform move operations on both pieces
-		switch(direction1){
+
+		// Check that getDirection didn't fail
+		// if(direction2 == -1) return false;
+
+		// Attempt to perform move operations on both pieces
+		switch (direction1) {
 		case 0:
-			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2).getOwner() && move(row1, column1, direction1)) {
+			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
+					.getOwner() && move(row1, column1, direction1)) {
 				move(row2, column2, direction2);
 				return true;
 			}
 			break;
 		case 1:
-			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2).getOwner() && move(row1, column1, direction1)) {
+			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
+					.getOwner() && move(row1, column1, direction1)) {
 				move(row2, column2, direction2);
 				return true;
 			}
 			break;
 		case 2:
-			if(getSpace(row1, column1).getOwner() != getSpace(row2, column2).getOwner() && move(row1, column1, direction1)){
+			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
+					.getOwner() && move(row1, column1, direction1)) {
 				move(row2, column2, direction2);
 				return true;
 			}
 			break;
 		case 3:
-			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2).getOwner() && move(row1, column1, direction1)) {
+			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
+					.getOwner() && move(row1, column1, direction1)) {
 				move(row2, column2, direction2);
 				return true;
 			}
@@ -247,47 +280,56 @@ public class Game {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 0: up, 1: right, 2: down, 3: left
-	 * @param row1: row of space1
-	 * @param column1: column of space1
-	 * @param row2: row of space2
-	 * @param column2: column of space2
-	 * @return integer representing the direction required to move from space1 to space2
+	 * 
+	 * @param row1
+	 *            : row of space1
+	 * @param column1
+	 *            : column of space1
+	 * @param row2
+	 *            : row of space2
+	 * @param column2
+	 *            : column of space2
+	 * @return integer representing the direction required to move from space1
+	 *         to space2
 	 */
-	public int getDirection(int row1, int column1, int row2, int column2){
-		if(row1 == row2){
-			if(column1 - 1 == column2) return 3;
-			else if(column1 + 1 == column2) return 1;
+	public int getDirection(int row1, int column1, int row2, int column2) {
+		if (row1 == row2) {
+			if (column1 - 1 == column2)
+				return 3;
+			else if (column1 + 1 == column2)
+				return 1;
 		}
-		if(column1 == column2){
-			if(row1 - 1 == row2) return 0;
-			else if(row1 + 1 == row2) return 2;
+		if (column1 == column2) {
+			if (row1 - 1 == row2)
+				return 0;
+			else if (row1 + 1 == row2)
+				return 2;
 		}
 		return -1;
 	}
-	
-	public boolean loadFile(Scanner scanner){
+
+	public boolean loadFile(Scanner scanner) {
 		scanner.useDelimiter(",");
 		BoardState boardToSet = new BoardState(new char[][] {
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				{' ',' ',' ',' ',' ',' ',' ',' '},
-				}, 0);
-		for(int i=0; i<8; i++){
-			for(int k=0; k<8; k++){
-				if(!scanner.hasNext()){
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, }, 0);
+		for (int i = 0; i < 8; i++) {
+			for (int k = 0; k < 8; k++) {
+				if (!scanner.hasNext()) {
 					scanner.close();
 					return false;
 				}
 				String next = scanner.next();
-				if(next.equals("Q")||next.equals("K")){
+				if (next.equals("Q") || next.equals("K")) {
 					scanner.close();
 					return false;
 				}
@@ -295,18 +337,18 @@ public class Game {
 			}
 		}
 		this.currentBoard = boardToSet;
-		
-		if(!scanner.hasNext()){
+
+		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
 		this.turnCounter = scanner.nextInt();
-		if(!scanner.hasNext()){
+		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
 		this.p1Name = scanner.next();
-		if(!scanner.hasNext()){
+		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
@@ -314,10 +356,10 @@ public class Game {
 		scanner.close();
 		return true;
 	}
-	
+
 	public boolean saveFile(FileWriter fw) {
-		for(int i=0; i<8; i++){
-			for(int j=0; j<8; j++){
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
 				String s = "" + this.currentBoard.getBoardArray()[i][j] + ",";
 				try {
 					fw.write(s);
@@ -327,7 +369,7 @@ public class Game {
 			}
 		}
 		String s2 = "" + this.turnCounter;
-		
+
 		try {
 			fw.write(s2);
 			fw.close();
@@ -336,19 +378,19 @@ public class Game {
 		}
 		return true;
 	}
-	
-	//Getters & Setters
-	
-	public int getTurnCounter(){
+
+	// Getters & Setters
+
+	public int getTurnCounter() {
 		return this.turnCounter;
 	}
-	
-	public String getP1Name(){
+
+	public String getP1Name() {
 		return this.p1Name;
 	}
-	
-	public String getP2Name(){
+
+	public String getP2Name() {
 		return this.p2Name;
 	}
-	
+
 }
