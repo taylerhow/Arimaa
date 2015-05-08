@@ -115,7 +115,7 @@ public class Game {
 		char[][] temp=this.currentBoard.getBoardArray();
 		temp[2][2]=' ';
 		this.currentBoard.setBoardArray(temp);
-		
+		Arrays.deepToString(temp);
 	}
 	//helper for move
 	private void switchPiece(int row1, int column1, int row2, int column2) {
