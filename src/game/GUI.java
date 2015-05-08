@@ -543,6 +543,7 @@ public class GUI {
 			p2Label.setFont(new Font(p2Font.getName(), 4, 22));
 			p2Label.setSize(110, 25);
 			gameBoardPanel.add(p2Label);
+			p2Label.setLocation(675, 550);
 			p2Label.setVisible(true);
 			
 			// Set Up Player2 name Label
@@ -551,7 +552,9 @@ public class GUI {
 			p2NameLabel.setForeground(Color.BLACK);
 			Font p2NameFont = p2NameLabel.getFont();
 			p2NameLabel.setFont(new Font(p2NameFont.getName(), 4, 18));
+			p2NameLabel.setSize(110, 100);
 			gameBoardPanel.add(p2NameLabel);
+			p2NameLabel.setLocation(675, 550);
 			p2NameLabel.setVisible(true);
 
 			// Set up Save Game Button
