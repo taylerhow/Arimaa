@@ -26,10 +26,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.ImageIcon;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
 
 public class GUI {
-	private String p1name;
-	private String p2name;
+	private String p1Name;
+	private String p2Name;
+	private JTextField p1TextField;
+	private JTextField p2TextField;
 	private ArrayList<JFrame> activeFrames;
 	private Game game;
 	private ImagePanel gameBoardPanel = null;
@@ -38,8 +43,10 @@ public class GUI {
 	//private int playerTurn;
 
 	public GUI() {
-		this.p1name = "Player 1";
-		this.p2name = "Player 2";
+		this.p1Name = "Player 1";
+		this.p2Name = "Player 2";
+		p2TextField = null;
+		p1TextField = null;
 		this.game = new Game();
 		this.boardPieces = new ImagePanel[8][8];
 		this.activeFrames = new ArrayList<JFrame>();
@@ -93,19 +100,19 @@ public class GUI {
 	}
 
 	public String getP1name() {
-		return p1name;
+		return p1Name;
 	}
 
 	public void setP1name(String p1name) {
-		this.p1name = p1name;
+		this.p1Name = p1name;
 	}
 
 	public String getP2name() {
-		return p2name;
+		return p2Name;
 	}
 
 	public void setP2name(String p2name) {
-		this.p2name = p2name;
+		this.p2Name = p2name;
 	}
 
 	public ArrayList<JFrame> getActiveFrames() {
@@ -306,6 +313,7 @@ public class GUI {
 			p1NameLabel.setLocation(
 					panel.getWidth() / 2 - p1NameLabel.getWidth(),
 					panel.getHeight() / 2 - p1NameLabel.getHeight() * 2);
+			 
 			p1NameLabel.setVisible(true);
 
 			JTextField p1NameField = new JTextField();
@@ -315,6 +323,7 @@ public class GUI {
 			panel.add(p1NameField);
 			p1NameField.setLocation(panel.getWidth() / 2, panel.getHeight() / 2
 					- p1NameField.getHeight() * 2);
+			p1TextField = p1NameField;
 			p1NameField.setVisible(true);
 
 			// Set up Player 2 Name Label and Text Field
@@ -337,6 +346,7 @@ public class GUI {
 			panel.add(p2NameField);
 			p2NameField.setLocation(panel.getWidth() / 2, panel.getHeight() / 2
 					- p2NameField.getHeight());
+			p2TextField = p2NameField;
 			p2NameField.setVisible(true);
 
 			// Set up Turn Timer Label and Text Field
@@ -455,6 +465,50 @@ public class GUI {
 			activeFrames.get(0).setBackground(Color.BLACK);
 
 			gameFrame.setVisible(true);
+			
+			// Set Up Player1 Label
+			JLabel p1Label = new JLabel();
+			p1Label.setText("<html> <b>Player 1: </b></html>");
+			p1Label.setForeground(Color.BLACK);
+			Font p1Font = p1Label.getFont();
+			p1Label.setFont(new Font(p1Font.getName(), 4, 22));
+			p1Label.setSize(110, 25);
+			gameBoardPanel.add(p1Label);
+			p1Label.setLocation(675, 20);
+			p1Label.setVisible(true);
+
+			// Set Up Player1 name Label
+			JLabel p1NameLabel = new JLabel();
+			p1NameLabel.setText("<html> <b>" + game.p1Name + "</b></html>");
+			p1NameLabel.setForeground(Color.BLACK);
+			Font p1NameFont = p1NameLabel.getFont();
+			p1NameLabel.setFont(new Font(p1NameFont.getName(), 4, 18));
+			p1NameLabel.setSize(110, 100);
+			gameBoardPanel.add(p1NameLabel);
+			p1NameLabel.setLocation(675, 20);
+			p1NameLabel.setVisible(true);
+
+			// Set Up Player2 Label
+			JLabel p2Label = new JLabel();
+			p2Label.setText("<html> <b>Player 2: </b></html>");
+			p2Label.setForeground(Color.BLACK);
+			Font p2Font = p2Label.getFont();
+			p2Label.setFont(new Font(p2Font.getName(), 4, 22));
+			p2Label.setSize(110, 25);
+			gameBoardPanel.add(p2Label);
+			p2Label.setLocation(675, 550);
+			p2Label.setVisible(true);
+
+			// Set Up Player2 name Label
+			JLabel p2NameLabel = new JLabel();
+			p2NameLabel.setText("<html> <b>" + game.p2Name + "</b></html>");
+			p2NameLabel.setForeground(Color.BLACK);
+			Font p2NameFont = p2NameLabel.getFont();
+			p2NameLabel.setFont(new Font(p2NameFont.getName(), 4, 18));
+			p2NameLabel.setSize(110, 100);
+			gameBoardPanel.add(p2NameLabel);
+			p2NameLabel.setLocation(675, 550);
+			p2NameLabel.setVisible(true);
 
 			// Set up Save Game Button
 			JButton saveGameButton = new JButton();
@@ -488,6 +542,9 @@ public class GUI {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			game.p1Name = p1TextField.getText();
+			game.p2Name = p2TextField.getText();
+			
 			JFrame settings = activeFrames.get(1);
 			activeFrames.remove(1);
 			settings.dispose();
@@ -526,7 +583,7 @@ public class GUI {
 			
 			// Set Up Player1 name Label
 			JLabel p1NameLabel = new JLabel();
-			p1NameLabel.setText("<html> <b>Sample Name</b></html>");
+			p1NameLabel.setText("<html> <b>" + game.p1Name + "</b></html>");
 			p1NameLabel.setForeground(Color.BLACK);
 			Font p1NameFont = p1NameLabel.getFont();
 			p1NameLabel.setFont(new Font(p1NameFont.getName(), 4, 18));
@@ -548,7 +605,7 @@ public class GUI {
 			
 			// Set Up Player2 name Label
 			JLabel p2NameLabel = new JLabel();
-			p2NameLabel.setText("<html> <b>Sample Name</b></html>");
+			p2NameLabel.setText("<html> <b>" + game.p2Name + "</b></html>");
 			p2NameLabel.setForeground(Color.BLACK);
 			Font p2NameFont = p2NameLabel.getFont();
 			p2NameLabel.setFont(new Font(p2NameFont.getName(), 4, 18));
