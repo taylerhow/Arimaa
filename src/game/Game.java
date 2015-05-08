@@ -5,9 +5,7 @@ import game.Piece.PieceType;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
@@ -166,8 +164,7 @@ public class Game {
 			}
 		}
 		//noone has won
-		if(winner!=0)
-		System.out.println("Winner: "+ winner);
+		if(winner!=0) System.out.println("Winner: "+ winner);
 	}
 
 	/**
@@ -544,6 +541,10 @@ public class Game {
 
 	public String getP2Name() {
 		return this.p2Name;
+	}
+	
+	public void setWinner(int winner){
+		this.winner = winner;
 	}
 
 	/**

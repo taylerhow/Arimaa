@@ -26,9 +26,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.ImageIcon;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.BadLocationException;
 
 public class GUI {
 	private String p1Name;
@@ -373,29 +370,29 @@ public class GUI {
 					panel.getHeight() / 2);
 			turnTimerComboBox.setVisible(true);
 
-			// Set up Turn Timer Label and Text Field
-			JLabel timeBankLabel = new JLabel();
-			timeBankLabel.setText("<html> <b>Time Bank Cap:</b></html>");
-			timeBankLabel.setForeground(Color.WHITE);
-			Font timeBankFont = timeBankLabel.getFont();
-			timeBankLabel.setFont(new Font(timeBankFont.getName(), 4, 14));
-			timeBankLabel.setSize(110, 25);
-			panel.add(timeBankLabel);
-			timeBankLabel.setLocation(
-					panel.getWidth() / 2 - timeBankLabel.getWidth(),
-					panel.getHeight() / 2 + timeBankLabel.getHeight());
-			timeBankLabel.setVisible(true);
-
-			String[] timeBankPresets = { "0:30", "0:45", "1:00", "1:15",
-					"1:30", "1:45", "2:00", "M:SS" };
-			JComboBox<String> timeBankComboBox = new JComboBox<String>(
-					timeBankPresets);
-			timeBankComboBox.setEditable(true);
-			timeBankComboBox.setSize(110, 25);
-			panel.add(timeBankComboBox);
-			timeBankComboBox.setLocation(panel.getWidth() / 2,
-					panel.getHeight() / 2 + timeBankComboBox.getHeight());
-			timeBankComboBox.setVisible(true);
+			// Set up Time Bank Label and Text Field
+//			JLabel timeBankLabel = new JLabel();
+//			timeBankLabel.setText("<html> <b>Time Bank Cap:</b></html>");
+//			timeBankLabel.setForeground(Color.WHITE);
+//			Font timeBankFont = timeBankLabel.getFont();
+//			timeBankLabel.setFont(new Font(timeBankFont.getName(), 4, 14));
+//			timeBankLabel.setSize(110, 25);
+//			panel.add(timeBankLabel);
+//			timeBankLabel.setLocation(
+//					panel.getWidth() / 2 - timeBankLabel.getWidth(),
+//					panel.getHeight() / 2 + timeBankLabel.getHeight());
+//			timeBankLabel.setVisible(true);
+//
+//			String[] timeBankPresets = { "0:30", "0:45", "1:00", "1:15",
+//					"1:30", "1:45", "2:00", "M:SS" };
+//			JComboBox<String> timeBankComboBox = new JComboBox<String>(
+//					timeBankPresets);
+//			timeBankComboBox.setEditable(true);
+//			timeBankComboBox.setSize(110, 25);
+//			panel.add(timeBankComboBox);
+//			timeBankComboBox.setLocation(panel.getWidth() / 2,
+//					panel.getHeight() / 2 + timeBankComboBox.getHeight());
+//			timeBankComboBox.setVisible(true);
 
 			// Set up Start Game Button
 			JButton startGameButton = new JButton();

@@ -4,10 +4,8 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import game.*;
@@ -174,7 +172,7 @@ public class TestGame {
 		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
 				g.getSpace(0, 1));
 	}
-
+	
 	@Test
 	public void testEmptyCreateConstructor() {
 		Game g = new Game();
