@@ -537,7 +537,6 @@ public class TestGame {
 	//Testing loadFile
 	@Test
 	public void testLoadFileLoadsBoardState() throws FileNotFoundException{
-//		FileReader r = new FileReader("resources/LoadTest1.txt");
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		BoardState board = new BoardState(new char[][] {
 				{' ',' ',' ',' ',' ',' ',' ',' '},
@@ -556,6 +555,15 @@ public class TestGame {
 				assertEquals(board.getBoardArray()[i][k], g.currentBoard.getBoardArray()[i][k]);
 			}
 		}
+	}
+	
+	@Test
+	public void testLoadFileLoadsTurnCounter() throws FileNotFoundException{
+		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
+		int turnCounter = 7;
+		Game g = new Game();
+		g.loadFile(scanner);
+		assertEquals(turnCounter, g.getTurnCounter());
 	}
 	
 	//Testing remove piece checks
