@@ -512,6 +512,47 @@ public class GUI {
 			activeFrames.get(0).setBackground(Color.BLACK);
 
 			gameFrame.setVisible(true);
+			
+			// Set Up Player1 Label
+			JLabel p1Label = new JLabel();
+			p1Label.setText("<html> <b>Player 1: </b></html>");
+			p1Label.setForeground(Color.BLACK);
+			Font p1Font = p1Label.getFont();
+			p1Label.setFont(new Font(p1Font.getName(), 4, 22));
+			p1Label.setSize(110, 25);
+			gameBoardPanel.add(p1Label);
+			p1Label.setLocation(675, 20);
+			p1Label.setVisible(true);
+			
+			// Set Up Player1 name Label
+			JLabel p1NameLabel = new JLabel();
+			p1NameLabel.setText("<html> <b>Sample Name</b></html>");
+			p1NameLabel.setForeground(Color.BLACK);
+			Font p1NameFont = p1NameLabel.getFont();
+			p1NameLabel.setFont(new Font(p1NameFont.getName(), 4, 18));
+			p1NameLabel.setSize(110, 100);
+			gameBoardPanel.add(p1NameLabel);
+			p1NameLabel.setLocation(675, 20);
+			p1NameLabel.setVisible(true);
+
+			// Set Up Player2 Label
+			JLabel p2Label = new JLabel();
+			p2Label.setText("<html> <b>Player 2: </b></html>");
+			p2Label.setForeground(Color.BLACK);
+			Font p2Font = p2Label.getFont();
+			p2Label.setFont(new Font(p2Font.getName(), 4, 22));
+			p2Label.setSize(110, 25);
+			gameBoardPanel.add(p2Label);
+			p2Label.setVisible(true);
+			
+			// Set Up Player2 name Label
+			JLabel p2NameLabel = new JLabel();
+			p2NameLabel.setText("<html> <b>Sample Name</b></html>");
+			p2NameLabel.setForeground(Color.BLACK);
+			Font p2NameFont = p2NameLabel.getFont();
+			p2NameLabel.setFont(new Font(p2NameFont.getName(), 4, 18));
+			gameBoardPanel.add(p2NameLabel);
+			p2NameLabel.setVisible(true);
 
 			// Set up Save Game Button
 			JButton saveGameButton = new JButton();
