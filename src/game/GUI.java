@@ -434,7 +434,7 @@ public class GUI {
 
 		private void loadGame(File file) throws FileNotFoundException {
 			Scanner scanner = new Scanner(file);
-			game.loadFile(scanner);
+			if(game.loadFile(scanner)){
 			JFrame mainMenu = activeFrames.get(0);
 			activeFrames.remove(0);
 			mainMenu.dispose();
@@ -467,6 +467,10 @@ public class GUI {
 			saveGameButton.setVisible(true);
 
 			renderInitialBoard();
+			}
+			else {
+				System.out.println("Invalid game state");
+			}
 		}
 	}
 
