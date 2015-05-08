@@ -1,4 +1,5 @@
 package game;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,6 +12,9 @@ public class Game {
 	int moveTimer =0;
 	int p1TimeBank=0;
 	int p2TimeBank =0;
+	int turnCounter = 0;
+	String p1Name;
+	String p2Name;
 	
 	public Game(BoardState b) {
 		currentBoard = b;
@@ -259,5 +263,23 @@ public class Game {
 			else if(row1 + 1 == row2) return 2;
 		}
 		return -1;
+	}
+	
+	public void loadFile(Reader file){
+		
+	}
+	
+	//Getters & Setters
+	
+	public int getTurnCounter(){
+		return this.turnCounter;
+	}
+	
+	public String getP1Name(){
+		return this.p1Name;
+	}
+	
+	public String getP2Name(){
+		return this.p2Name;
 	}
 }

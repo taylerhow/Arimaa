@@ -1,5 +1,9 @@
 package testing;
 import static org.junit.Assert.*;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import game.*;
 import game.Piece.PieceType;
 
@@ -525,6 +529,32 @@ public class TestGame {
 	public void testGetDirectionNonAdjacent(){
 		Game g = new Game();
 		assertEquals(-1, g.getDirection(1, 1, 7, 7));
+	}
+	
+	//Testing loadFile
+	@Test
+	public void testLoadFile1() throws FileNotFoundException{
+		FileReader r = new FileReader("resources/LoadTest1.txt");
+		BoardState board = new BoardState(new char[][] {
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				}, 0);
+		int turnCounter = 7;
+		String p1name = "Jesse";
+		String p2name = "Tayler";
+		
+		Game g = new Game();
+		g.loadFile(r);
+		assertEquals(board, g.currentBoard);
+		assertEquals(turnCounter, g.getTurnCounter());
+		assertEquals(p1name, g.getP1Name());
+		assertEquals(p2name, g.getP2Name());
 	}
 	
 	//Testing remove piece checks
