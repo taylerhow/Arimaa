@@ -109,7 +109,7 @@ public class Game {
 	}
 	
 	/**
-	 * Piece death occurs when pieces are on the squares (2,2), (2,6), (6,2), (6,6)
+	 * Piece death occurs when pieces are on the squares (2,2), (2,5), (5,2), (5,5)
 	 */
 	private void checkDeaths() {
 		char[][] temp=this.currentBoard.getBoardArray();

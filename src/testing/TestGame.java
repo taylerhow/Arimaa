@@ -645,7 +645,7 @@ public class TestGame {
 	
 	
 	//Testing remove piece checks
-	BoardState b3 = new BoardState(new char[][] {
+	BoardState removeBoard = new BoardState(new char[][] {
 			{' ',' ',' ',' ',' ',' ',' ',' '},
 			{' ',' ',' ',' ',' ',' ',' ',' '},
 			{' ',' ','C',' ',' ',' ',' ',' '},
@@ -655,12 +655,29 @@ public class TestGame {
 			{' ',' ',' ','D',' ',' ',' ',' '},
 			{' ',' ',' ',' ',' ','r','K','R'},
 			}, 0);
-	
+	BoardState removeBoard2 = new BoardState(new char[][] {
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ','D',' ',' '},
+			{' ',' ','C',' ',' ','C',' ',' '},
+			{' ',' ',' ',' ','k',' ',' ',' '},
+			{' ',' ',' ','C','E','d',' ',' '},
+			{' ',' ',' ',' ','r',' ',' ',' '},
+			{' ',' ',' ','D',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ','r','K','R'},
+			}, 0);
 	@Test
 	public void testRemovePieceValid(){
-		Game g = new Game(b3);
+		Game g = new Game(removeBoard);
 		g.move(3, 4, 0);
 		assertEquals(null, g.getSpace(2, 2));
 	}
+	@Test
+	public void testRemovePiece2(){
+		Game g = new Game(removeBoard2);
+		g.move(2, 2, 0);
+		assertEquals(g.getSpace(2, 5), g.getSpace(2, 5));
+		g.move(1, 5, 0);
+		assertEquals(null,g.getSpace(2, 5));
+	} 
 }
 
