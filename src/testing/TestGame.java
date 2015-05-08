@@ -542,7 +542,7 @@ public class TestGame {
 	@Test
 	public void testRemovePieceValid(){
 		Game g = new Game(b3);
-		assertEquals(g.getSpace(2, 2),null);
+		assertEquals(null, g.getSpace(2, 2));
 	}
 }
 

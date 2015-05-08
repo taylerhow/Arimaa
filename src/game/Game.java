@@ -53,6 +53,7 @@ public class Game {
 	 */
 	public boolean move(int row, int column, int dir){
 		if(getSpace(row,column) == null) return false;
+		//This may cause issues when we implement undo/redo if we try invalid moves before we undo
 		boards.add(currentBoard);
 		currentBoard=currentBoard.clone();
 		switch(dir){
@@ -60,7 +61,7 @@ public class Game {
 			//Moving UP
 			if (row - 1 >= 0 && currentBoard.getBoardArray()[row-1][column] == ' ') {
 				switchPiece(row, column, row-1, column);
-				checkDeaths();
+				endMove();
 				return true;
 			}
 			return false;
@@ -68,6 +69,7 @@ public class Game {
 			//Moving RIGHT
 			if (column + 1 <= 7 && currentBoard.getBoardArray()[row][column+1] == ' ') {
 				switchPiece(row, column, row, column+1);
+				endMove();
 				return true;
 			}
 			return false;
@@ -75,6 +77,7 @@ public class Game {
 			//Moving DOWN
 			if (row + 1 <= 7 && currentBoard.getBoardArray()[row+1][column] == ' ') {
 				switchPiece(row, column, row + 1, column);
+				endMove();
 				return true;
 			}
 			return false;
@@ -82,6 +85,7 @@ public class Game {
 			//Moving LEFT
 			if (column - 1 >= 0 && currentBoard.getBoardArray()[row][column-1] == ' ') {
 				switchPiece(row, column, row, column - 1);
+				endMove();
 				return true;
 			}
 			return false;
@@ -90,10 +94,20 @@ public class Game {
 		}
 	}
 	/**
-	 * This methods checks piece death and victory conditions
+	 * This methods checks piece death and victory conditions 
+	 */
+	private void endMove() {
+		checkDeaths();
+		
+	}
+	
+	/**
+	 * Piece death occurs when pieces are on the squares (2,2), (2,6), (6,2), (6,6)
 	 */
 	private void checkDeaths() {
-		// TODO Auto-generated method stub
+		char[][] temp=this.currentBoard.getBoardArray();
+		temp[2][2]=' ';
+		this.currentBoard.setBoardArray(temp);
 		
 	}
 	//helper for move
