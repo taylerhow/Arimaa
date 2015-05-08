@@ -269,6 +269,7 @@ public class Game {
 	}
 	
 	public boolean loadFile(Scanner scanner){
+		//Setup for scanning .txt file
 		scanner.useDelimiter(",");
 		BoardState boardToSet = new BoardState(new char[][] {
 				{' ',' ',' ',' ',' ',' ',' ',' '},
@@ -285,6 +286,8 @@ public class Game {
 		for(String s : validBoardCharactersArray){
 			vbc.add(s);
 		}
+		
+		//Read BoardState, return false in the case of a parsing error
 		for(int i=0; i<8; i++){
 			for(int k=0; k<8; k++){
 				if(!scanner.hasNext()){
@@ -299,24 +302,30 @@ public class Game {
 				boardToSet.setBoardSpace(i, k, next);
 			}
 		}
-		this.currentBoard = boardToSet;
 		
+		//Read turnCounter, p1Name, p2Name, return false in the case of a parsing error
 		if(!scanner.hasNext()){
 			scanner.close();
 			return false;
 		}
-		this.turnCounter = scanner.nextInt();
+		int turnCounter = scanner.nextInt();
 		if(!scanner.hasNext()){
 			scanner.close();
 			return false;
 		}
-		this.p1Name = scanner.next();
+		String p1name = scanner.next();
 		if(!scanner.hasNext()){
 			scanner.close();
 			return false;
 		}
-		this.p2Name = scanner.next();
+		String p2name = scanner.next();
+		
+		//Successful load! Push all changes to game
 		scanner.close();
+		this.currentBoard = boardToSet;
+		this.turnCounter = turnCounter;
+		this.p1Name = p1name;
+		this.p2Name = p2name;
 		return true;
 	}
 	
