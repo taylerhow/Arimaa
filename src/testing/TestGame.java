@@ -213,6 +213,7 @@ public class TestGame {
 		Game g = new Game(b2);
 		assertTrue(g.push(4, 4, 0, 0));
 		assertTrue(g.push(3, 4, 0, 0));
+		g.setPlayerTurn(1);
 		assertTrue(g.push(2, 4, 0, 0));
 		assertFalse(g.push(1, 4, 0, 0));
 	}
@@ -240,8 +241,10 @@ public class TestGame {
 		Game g = new Game(b2);
 		assertTrue(g.push(7, 6, 3, 3));
 		assertTrue(g.push(7, 5, 3, 3));
+		g.setPlayerTurn(1);
 		assertTrue(g.push(7, 4, 3, 3));
 		assertTrue(g.push(7, 3, 3, 3));
+		g.setPlayerTurn(1);
 		assertTrue(g.push(7, 2, 3, 3));
 		assertFalse(g.push(7, 1, 3, 3));
 	}
@@ -528,9 +531,9 @@ public class TestGame {
 		Game g = new Game(pullTestingBoard);
 		Piece p1 = g.getSpace(4, 6);
 		Piece p2 = g.getSpace(4, 7);
-		g.currentBoard.printBoard();
+		//g.currentBoard.printBoard();
 		assertTrue(g.pull(4, 6, 4, 7, 0));
-		g.currentBoard.printBoard();
+		//g.currentBoard.printBoard();
 		assertTrue(g.getSpace(3, 6).equals(p1));
 		assertTrue(g.getSpace(4, 6).equals(p2));
 	}
@@ -722,7 +725,9 @@ public class TestGame {
 	@Test
 	public void testRemovePieceValid() {
 		Game g = new Game(removeBoard);
-		g.move(3, 4, 0);
+		g.currentBoard.printBoard();
+		assertTrue(g.move(6, 3, 0));
+		g.currentBoard.printBoard();
 		assertEquals(null, g.getSpace(2, 2));
 	}
 
@@ -750,6 +755,7 @@ public class TestGame {
 	@Test
 	public void testPlayer2Win(){
 		Game g= new Game(winBoardState);
+		g.setPlayerTurn(2);
 		assertTrue(g.move(1,1,0));
 		assertEquals(2,g.getWinner());
 	}
