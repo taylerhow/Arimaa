@@ -1,4 +1,5 @@
 package game;
+
 /**
  * This class represents the states of the board.
  * 
@@ -6,11 +7,11 @@ package game;
  *
  */
 public class BoardState {
-	//Fields
-	private char[][] boardArray; //Represents the current state of the board
+	// Fields
+	private char[][] boardArray; // Represents the current state of the board
 	private int turnNumber;
-	
-	public BoardState(char[][] map, int turnNumber){
+
+	public BoardState(char[][] map, int turnNumber) {
 		this.boardArray = map;
 		this.turnNumber = turnNumber;
 	}
@@ -22,8 +23,8 @@ public class BoardState {
 	public void setBoardArray(char[][] boardArray) {
 		this.boardArray = boardArray;
 	}
-	
-	public void setBoardSpace(int row, int column, String piece){
+
+	public void setBoardSpace(int row, int column, String piece) {
 		this.boardArray[row][column] = piece.charAt(0);
 	}
 
@@ -34,11 +35,12 @@ public class BoardState {
 	public void setTurnNumber(int turnNumber) {
 		this.turnNumber = turnNumber;
 	}
-	
-	public void incrementTurn(){
+
+	public void incrementTurn() {
 		this.turnNumber++;
 	}
-	public BoardState clone(){
+
+	public BoardState clone() {
 		return new BoardState(boardArray, turnNumber);
 	}
 }
