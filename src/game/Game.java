@@ -270,13 +270,28 @@ public class Game {
 	
 	public boolean loadFile(Scanner scanner){
 		scanner.useDelimiter(",");
+		BoardState boardToSet = new BoardState(new char[][] {
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				{' ',' ',' ',' ',' ',' ',' ',' '},
+				}, 0);
 		for(int i=0; i<8; i++){
 			for(int k=0; k<8; k++){
+				if(!scanner.hasNext()){
+					scanner.close();
+					return false;
+				}
 				String next = scanner.next();
 				System.out.println("["+next+"]");
-				this.currentBoard.setBoardSpace(i, k, next);
+				boardToSet.setBoardSpace(i, k, next);
 			}
 		}
+		this.currentBoard = boardToSet;
 		this.turnCounter = scanner.nextInt();
 		this.p1Name = scanner.next();
 		this.p2Name = scanner.next();
