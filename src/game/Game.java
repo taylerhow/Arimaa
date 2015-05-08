@@ -287,6 +287,10 @@ public class Game {
 					return false;
 				}
 				String next = scanner.next();
+				if(next.equals("Q")){
+					scanner.close();
+					return false;
+				}
 				boardToSet.setBoardSpace(i, k, next);
 			}
 		}
