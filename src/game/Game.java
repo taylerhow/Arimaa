@@ -287,12 +287,15 @@ public class Game {
 					return false;
 				}
 				String next = scanner.next();
-				System.out.println("["+next+"]");
 				boardToSet.setBoardSpace(i, k, next);
 			}
 		}
 		this.currentBoard = boardToSet;
 		this.turnCounter = scanner.nextInt();
+		if(!scanner.hasNext()){
+			scanner.close();
+			return false;
+		}
 		this.p1Name = scanner.next();
 		if(!scanner.hasNext()){
 			scanner.close();
