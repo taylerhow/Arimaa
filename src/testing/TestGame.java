@@ -606,6 +606,13 @@ public class TestGame {
 		assertFalse(g.loadFile(scanner));
 	}
 	
+	@Test
+	public void testLoadFileReturnsFalseOnFailure2() throws FileNotFoundException{
+		Scanner scanner = new Scanner(new File("resources/LoadFailure2.txt"));
+		Game g = new Game();
+		assertFalse(g.loadFile(scanner));
+	}
+	
 	//Testing remove piece checks
 	BoardState b3 = new BoardState(new char[][] {
 			{' ',' ',' ',' ',' ',' ',' ',' '},
