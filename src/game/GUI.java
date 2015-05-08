@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -447,6 +449,7 @@ public class GUI {
 			activeFrames.add(gameFrame);
 			gameFrame.setTitle("Let's Play!");
 			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
 
 			ImagePanel panel = new ImagePanel(new ImageIcon(
 					"resources/BoardStoneBig.jpg").getImage());
@@ -454,11 +457,41 @@ public class GUI {
 			activeFrames.get(0).pack();
 			panel.setVisible(true);
 			gameBoardPanel = panel;
+			gameFrame.setSize(850, 695);
 			gameBoardPanel.addMouseListener(new MovementListener());
 	
 			gameFrame.setVisible(true);
+			
+			//Set up Save Game Button
+			JButton saveGameButton = new JButton();
+			saveGameButton.setSize(110, 75);
+			saveGameButton.setText("Save");
+			saveGameButton.setLocation(690, gameFrame.getHeight()/2 - 75/2);
+			gameBoardPanel.add(saveGameButton);
+			saveGameButton.addActionListener(new SaveGameListener());
+			saveGameButton.setVisible(true);
 
 			renderInitialBoard();
+		}
+	}
+	private class SaveGameListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			File selectedFile = null;
+			JFileChooser fileChooser = new JFileChooser();
+			int result = fileChooser.showOpenDialog(gameBoardPanel);
+			if (result == JFileChooser.APPROVE_OPTION) {
+				selectedFile = fileChooser.getSelectedFile();
+				FileWriter fw = null;
+				try {
+					fw = new FileWriter(selectedFile);
+				} catch (IOException e) {
+					// shouldnt happen
+					e.printStackTrace();
+				}
+				game.saveFile(fw);
+			}
 		}
 	}
 	

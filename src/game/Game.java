@@ -16,8 +16,8 @@ public class Game {
 	int p1TimeBank=0;
 	int p2TimeBank =0;
 	int turnCounter = 0;
-	String p1Name;
-	String p2Name;
+	String p1Name = "";
+	String p2Name = "";
 	
 	public Game(BoardState b) {
 		currentBoard = b;
@@ -343,7 +343,9 @@ public class Game {
 		String s2 = "" + this.turnCounter;
 		
 		try {
-			fw.write(s2);
+			fw.write(s2 + ",");
+			fw.write(this.p1Name + ",");
+			fw.write(this.p2Name);
 			fw.close();
 		} catch (IOException e) {
 			return false;
