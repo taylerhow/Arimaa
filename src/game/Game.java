@@ -277,6 +277,7 @@ public class Game {
 			}
 		}
 		this.turnCounter = scanner.nextInt();
+		this.p1Name = scanner.next();
 		scanner.close();
 	}
 	
