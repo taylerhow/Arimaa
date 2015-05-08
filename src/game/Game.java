@@ -60,6 +60,7 @@ public class Game {
 			//Moving UP
 			if (row - 1 >= 0 && currentBoard.getBoardArray()[row-1][column] == ' ') {
 				switchPiece(row, column, row-1, column);
+				checkDeaths();
 				return true;
 			}
 			return false;
@@ -87,6 +88,13 @@ public class Game {
 		default:
 			return false;
 		}
+	}
+	/**
+	 * This methods checks piece death and victory conditions
+	 */
+	private void checkDeaths() {
+		// TODO Auto-generated method stub
+		
 	}
 	//helper for move
 	private void switchPiece(int row1, int column1, int row2, int column2) {

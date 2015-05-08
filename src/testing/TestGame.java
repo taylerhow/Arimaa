@@ -526,5 +526,23 @@ public class TestGame {
 		Game g = new Game();
 		assertEquals(-1, g.getDirection(1, 1, 7, 7));
 	}
+	
+	//Testing remove piece checks
+	BoardState b3 = new BoardState(new char[][] {
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ',' ',' ',' '},
+			{' ',' ','C',' ',' ',' ',' ',' '},
+			{' ',' ',' ',' ','k',' ',' ',' '},
+			{' ',' ',' ','C','E','d',' ',' '},
+			{' ',' ',' ',' ','r',' ',' ',' '},
+			{' ',' ',' ','D',' ',' ',' ',' '},
+			{' ',' ',' ',' ',' ','r','K','R'},
+			}, 0);
+	
+	@Test
+	public void testRemovePieceValid(){
+		Game g = new Game(b3);
+		assertEquals(g.getSpace(2, 2),null);
+	}
 }
 
