@@ -14,7 +14,7 @@ public class Game {
 	// fields
 	ArrayList<BoardState> boards = new ArrayList<BoardState>();
 	public BoardState currentBoard = null;
-	int numMovesLeft = 0;
+	//int numMovesLeft = 0;
 	int moveTimer = 0;
 	int p1TimeBank = 0;
 	int p2TimeBank = 0;
@@ -263,6 +263,8 @@ public class Game {
 	 * @return
 	 */
 	public boolean push(int row, int column, int dir1, int dir2) {
+		if(numMoves<=1)
+			return false; //can't push/pull with only one move
 		if (getSpace(row, column) == null) {
 			return false; // trying to push with an empty square
 		}
@@ -347,6 +349,8 @@ public class Game {
 	 */ 
 	public boolean pull(int row1, int column1, int row2, int column2,
 			int direction1) {
+		if(numMoves<2)
+			return false; //can't push/pull with only one move
 		// Check that both pieces exist
 		if (getSpace(row1, column1) == null || getSpace(row2, column2) == null){
 			//System.out.println("Null piece");
