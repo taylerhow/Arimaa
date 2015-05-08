@@ -69,15 +69,8 @@ public class Game {
 	 * @return
 	 */
 	public boolean move(int row, int column, int dir) {
-		if (getSpace(row, column) == null)
+		if(!isValidMoveFromSquare(row, column))
 			return false;
-		// This may cause issues when we implement undo/redo if we try invalid
-		// moves before we undo
-		if(getSpace(row, column).getOwner()!=Owner.values()[(getPlayerTurn()-1)]&&!isPushPull)
-			return false;//not your turn
-		
-		if((checkStrongerAdjacent(row, column)&&!checkFriendlyAdjacent(row, column))&&!isPushPull)
-			return false;//can't move
 		boards.add(currentBoard);
 		currentBoard = currentBoard.clone();
 		switch (dir) {
@@ -116,6 +109,19 @@ public class Game {
 		default:
 			return false;
 		}
+	}
+
+	private boolean isValidMoveFromSquare(int row, int column) {
+		if (getSpace(row, column) == null)
+			return false;
+		// This may cause issues when we implement undo/redo if we try invalid
+		// moves before we undo
+		if(getSpace(row, column).getOwner()!=Owner.values()[(getPlayerTurn()-1)]&&!isPushPull)
+			return false;//not your turn
+		
+		if((checkStrongerAdjacent(row, column)&&!checkFriendlyAdjacent(row, column))&&!isPushPull)
+			return false;//can't move
+		return true;
 	}
 
 	private boolean isValidMoveSquare(int row, int column) {
