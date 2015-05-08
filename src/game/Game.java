@@ -291,6 +291,11 @@ public class Game {
 			}
 		}
 		this.currentBoard = boardToSet;
+		
+		if(!scanner.hasNext()){
+			scanner.close();
+			return false;
+		}
 		this.turnCounter = scanner.nextInt();
 		if(!scanner.hasNext()){
 			scanner.close();
