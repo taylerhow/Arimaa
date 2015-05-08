@@ -549,7 +549,7 @@ public class TestGame {
 				{' ',' ',' ',' ',' ',' ',' ',' '},
 				}, 0);
 		Game g = new Game();
-		g.loadFile(scanner);
+		assertTrue(g.loadFile(scanner));
 		for(int i=0; i<8; i++){
 			for(int k=0; k<8; k++){
 				assertEquals(board.getBoardArray()[i][k], g.currentBoard.getBoardArray()[i][k]);
@@ -562,7 +562,7 @@ public class TestGame {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		int turnCounter = 7;
 		Game g = new Game();
-		g.loadFile(scanner);
+		assertTrue(g.loadFile(scanner));
 		assertEquals(turnCounter, g.getTurnCounter());
 	}
 	
@@ -571,7 +571,7 @@ public class TestGame {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		String name = "Jesse";
 		Game g = new Game();
-		g.loadFile(scanner);
+		assertTrue(g.loadFile(scanner));
 		assertEquals(name, g.getP1Name());
 	}
 	
@@ -580,7 +580,7 @@ public class TestGame {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		String name = "Tayler";
 		Game g = new Game();
-		g.loadFile(scanner);
+		assertTrue(g.loadFile(scanner));
 		assertEquals(name, g.getP2Name());
 	}
 	

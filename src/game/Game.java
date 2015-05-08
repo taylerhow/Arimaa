@@ -267,7 +267,7 @@ public class Game {
 		return -1;
 	}
 	
-	public void loadFile(Scanner scanner){
+	public boolean loadFile(Scanner scanner){
 		scanner.useDelimiter(",");
 		for(int i=0; i<8; i++){
 			for(int k=0; k<8; k++){
@@ -280,6 +280,7 @@ public class Game {
 		this.p1Name = scanner.next();
 		this.p2Name = scanner.next();
 		scanner.close();
+		return true;
 	}
 	
 	//Getters & Setters
