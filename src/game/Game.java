@@ -1,7 +1,9 @@
 package game;
+import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class Game {
@@ -265,8 +267,19 @@ public class Game {
 		return -1;
 	}
 	
-	public void loadFile(Reader file){
-		
+	public void loadFile(Scanner scanner){
+		scanner.useDelimiter(",");
+		for(int i=0; i<8; i++){
+			for(int k=0; k<8; k++){
+				String next = scanner.next();
+				System.out.println("["+next+"]");
+				this.currentBoard.setBoardSpace(i, k, next);
+			}
+		}
+		this.turnCounter = scanner.nextInt();
+		this.p1Name = scanner.next();
+		this.p2Name = scanner.next();
+		scanner.close();
 	}
 	
 	//Getters & Setters

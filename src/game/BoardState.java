@@ -22,6 +22,10 @@ public class BoardState {
 	public void setBoardArray(char[][] boardArray) {
 		this.boardArray = boardArray;
 	}
+	
+	public void setBoardSpace(int row, int column, String piece){
+		this.boardArray[row][column] = piece.charAt(0);
+	}
 
 	public int getTurnNumber() {
 		return turnNumber;
