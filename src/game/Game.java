@@ -83,8 +83,7 @@ public class Game {
 		switch (dir) {
 		case 0:
 			// Moving UP
-			if (row - 1 >= 0
-					&& currentBoard.getBoardArray()[row - 1][column] == ' ') {
+			if (isValidMoveSquare(row-1, column)) {
 				switchPiece(row, column, row - 1, column);
 				endMove();
 				return true;
@@ -92,8 +91,7 @@ public class Game {
 			return false;
 		case 1:
 			// Moving RIGHT
-			if (column + 1 <= 7
-					&& currentBoard.getBoardArray()[row][column + 1] == ' ') {
+			if (isValidMoveSquare(row, column+1)) {
 				switchPiece(row, column, row, column + 1);
 				endMove();
 				return true;
@@ -101,8 +99,7 @@ public class Game {
 			return false;
 		case 2:
 			// Moving DOWN
-			if (row + 1 <= 7
-					&& currentBoard.getBoardArray()[row + 1][column] == ' ') {
+			if (isValidMoveSquare(row+1, column)) {
 				switchPiece(row, column, row + 1, column);
 				endMove();
 				return true;
@@ -110,8 +107,7 @@ public class Game {
 			return false;
 		case 3:
 			// Moving LEFT
-			if (column - 1 >= 0
-					&& currentBoard.getBoardArray()[row][column - 1] == ' ') {
+			if (isValidMoveSquare(row, column-1)) {
 				switchPiece(row, column, row, column - 1);
 				endMove();
 				return true;
@@ -120,6 +116,12 @@ public class Game {
 		default:
 			return false;
 		}
+	}
+
+	private boolean isValidMoveSquare(int row, int column) {
+		if(row >= 0&&row<8&&column>=0&&column<8&&currentBoard.getBoardArray()[row][column] == ' ')
+			return true;
+		return false;
 	}
 
 	/**
