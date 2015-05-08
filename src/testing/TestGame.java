@@ -734,4 +734,30 @@ public class TestGame {
 		g.move(1, 5, 0);
 		assertEquals(null, g.getSpace(2, 5));
 	}
+	
+	
+	//Testing win checks
+	BoardState winBoardState = new BoardState(new char[][] {
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', 'r', ' ', ' ', ' ', 'D', ' ', ' ' },
+			{ ' ', ' ', 'C', ' ', ' ', 'C', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
+			{ ' ', 'R', ' ', 'D', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', ' ' }, }, 0);
+	
+	@Test
+	public void testPlayer2Win(){
+		Game g= new Game(winBoardState);
+		assertTrue(g.move(1,1,0));
+		assertEquals(2,g.getWinner());
+	}
+	
+	@Test
+	public void testPlayer1Win(){
+		Game g = new Game(winBoardState);
+		assertTrue(g.move(6,1,2));
+		assertEquals(1, g.getWinner());
+	}
 }
