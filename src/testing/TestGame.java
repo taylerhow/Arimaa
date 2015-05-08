@@ -575,6 +575,15 @@ public class TestGame {
 		assertEquals(name, g.getP1Name());
 	}
 	
+	@Test
+	public void testLoadFileLoadsPlayer2Name() throws FileNotFoundException{
+		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
+		String name = "Tayler";
+		Game g = new Game();
+		g.loadFile(scanner);
+		assertEquals(name, g.getP2Name());
+	}
+	
 	//Testing remove piece checks
 	BoardState b3 = new BoardState(new char[][] {
 			{' ',' ',' ',' ',' ',' ',' ',' '},
