@@ -413,24 +413,61 @@ public class GUI {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			File selectedFile = null;
 			JFileChooser fileChooser = new JFileChooser();
 			fileChooser.setCurrentDirectory(new File(System
 					.getProperty("user.home")));
 			int result = fileChooser.showOpenDialog(activeFrames.get(0));
 			if (result == JFileChooser.APPROVE_OPTION) {
-				selectedFile = fileChooser.getSelectedFile();
+				File selectedFile = fileChooser.getSelectedFile();
 				System.out.println("Selected file: "
 						+ selectedFile.getAbsolutePath());
-			}
-			try {
-				Scanner scanner = new Scanner(selectedFile);
-				game.loadFile(scanner);
-			} catch (FileNotFoundException e1) {
-				//wont happen
-				e1.printStackTrace();
+				try {
+					loadGame(selectedFile);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+					System.out.println("Load game failed!");
+				}
 			}
 		}
+		
+		private void loadGame(File file) throws FileNotFoundException{
+			Scanner scanner = new Scanner(file);
+			game.loadFile(scanner);
+			JFrame mainMenu = activeFrames.get(0);
+			activeFrames.remove(0);
+			mainMenu.dispose();
+
+			JFrame gameFrame = new JFrame();
+			activeFrames.add(gameFrame);
+			gameFrame.setTitle("Let's Play!");
+			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+
+			ImagePanel panel = new ImagePanel(new ImageIcon(
+					"resources/board.jpg").getImage());
+			activeFrames.get(0).getContentPane().add(panel);
+			activeFrames.get(0).pack();
+			panel.setVisible(true);
+			gameBoardPanel = panel;
+
+			gameBoardPanel.addMouseListener(new MovementListener());
+			activeFrames.get(0).setBackground(Color.BLACK);
+	
+			gameFrame.setVisible(true);
+			
+			
+			//Set up Save Game Button
+			JButton saveGameButton = new JButton();
+			saveGameButton.setSize(100, 75);
+			saveGameButton.setText("Save");
+			saveGameButton.setLocation(675, gameFrame.getHeight()/2 - 100/2);
+			gameBoardPanel.add(saveGameButton);
+			saveGameButton.addActionListener(new SaveGameListener());
+			saveGameButton.setVisible(true);
+
+			renderInitialBoard();
+		}	
 	}
 
 	private class cancelListener implements ActionListener {
