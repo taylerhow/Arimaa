@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -532,6 +533,20 @@ public class TestGame {
 	public void testGetDirectionNonAdjacent(){
 		Game g = new Game();
 		assertEquals(-1, g.getDirection(1, 1, 7, 7));
+	}
+	
+	//Testing saveFile
+	@Test
+	public void testSaveFile(){
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(new File("resources/SaveTest1.txt"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Game g = new Game();
+		assertTrue(g.saveFile(fw));
 	}
 	
 	//Testing loadFile

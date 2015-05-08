@@ -1,4 +1,5 @@
 package game;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -283,6 +284,10 @@ public class Game {
 		return true;
 	}
 	
+	public boolean saveFile(FileWriter fw) {
+		return false;
+	}
+	
 	//Getters & Setters
 	
 	public int getTurnCounter(){
@@ -296,4 +301,5 @@ public class Game {
 	public String getP2Name(){
 		return this.p2Name;
 	}
+	
 }
