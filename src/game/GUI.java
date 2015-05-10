@@ -36,8 +36,9 @@ public class GUI {
 	private Game game;
 	private ImagePanel gameBoardPanel = null;
 	private ImagePanel[][] boardPieces;
-	//private int numMoves;
-	//private int playerTurn;
+
+	// private int numMoves;
+	// private int playerTurn;
 
 	public GUI() {
 		this.p1Name = "Player 1";
@@ -51,8 +52,8 @@ public class GUI {
 		this.activeFrames.add(mainMenuFrame);
 		mainMenuFrame.setTitle("Welcome to Arimaa!");
 		mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		this.playerTurn = 1;
-//		this.numMoves = 4;
+		// this.playerTurn = 1;
+		// this.numMoves = 4;
 	}
 
 	public static void main(String[] args) {
@@ -310,7 +311,7 @@ public class GUI {
 			p1NameLabel.setLocation(
 					panel.getWidth() / 2 - p1NameLabel.getWidth(),
 					panel.getHeight() / 2 - p1NameLabel.getHeight() * 2);
-			 
+
 			p1NameLabel.setVisible(true);
 
 			JTextField p1NameField = new JTextField();
@@ -371,28 +372,28 @@ public class GUI {
 			turnTimerComboBox.setVisible(true);
 
 			// Set up Time Bank Label and Text Field
-//			JLabel timeBankLabel = new JLabel();
-//			timeBankLabel.setText("<html> <b>Time Bank Cap:</b></html>");
-//			timeBankLabel.setForeground(Color.WHITE);
-//			Font timeBankFont = timeBankLabel.getFont();
-//			timeBankLabel.setFont(new Font(timeBankFont.getName(), 4, 14));
-//			timeBankLabel.setSize(110, 25);
-//			panel.add(timeBankLabel);
-//			timeBankLabel.setLocation(
-//					panel.getWidth() / 2 - timeBankLabel.getWidth(),
-//					panel.getHeight() / 2 + timeBankLabel.getHeight());
-//			timeBankLabel.setVisible(true);
-//
-//			String[] timeBankPresets = { "0:30", "0:45", "1:00", "1:15",
-//					"1:30", "1:45", "2:00", "M:SS" };
-//			JComboBox<String> timeBankComboBox = new JComboBox<String>(
-//					timeBankPresets);
-//			timeBankComboBox.setEditable(true);
-//			timeBankComboBox.setSize(110, 25);
-//			panel.add(timeBankComboBox);
-//			timeBankComboBox.setLocation(panel.getWidth() / 2,
-//					panel.getHeight() / 2 + timeBankComboBox.getHeight());
-//			timeBankComboBox.setVisible(true);
+			// JLabel timeBankLabel = new JLabel();
+			// timeBankLabel.setText("<html> <b>Time Bank Cap:</b></html>");
+			// timeBankLabel.setForeground(Color.WHITE);
+			// Font timeBankFont = timeBankLabel.getFont();
+			// timeBankLabel.setFont(new Font(timeBankFont.getName(), 4, 14));
+			// timeBankLabel.setSize(110, 25);
+			// panel.add(timeBankLabel);
+			// timeBankLabel.setLocation(
+			// panel.getWidth() / 2 - timeBankLabel.getWidth(),
+			// panel.getHeight() / 2 + timeBankLabel.getHeight());
+			// timeBankLabel.setVisible(true);
+			//
+			// String[] timeBankPresets = { "0:30", "0:45", "1:00", "1:15",
+			// "1:30", "1:45", "2:00", "M:SS" };
+			// JComboBox<String> timeBankComboBox = new JComboBox<String>(
+			// timeBankPresets);
+			// timeBankComboBox.setEditable(true);
+			// timeBankComboBox.setSize(110, 25);
+			// panel.add(timeBankComboBox);
+			// timeBankComboBox.setLocation(panel.getWidth() / 2,
+			// panel.getHeight() / 2 + timeBankComboBox.getHeight());
+			// timeBankComboBox.setVisible(true);
 
 			// Set up Start Game Button
 			JButton startGameButton = new JButton();
@@ -441,85 +442,84 @@ public class GUI {
 
 		private void loadGame(File file) throws FileNotFoundException {
 			Scanner scanner = new Scanner(file);
-			if(game.loadFile(scanner)){
-			JFrame mainMenu = activeFrames.get(0);
-			activeFrames.remove(0);
-			mainMenu.dispose();
+			if (game.loadFile(scanner)) {
+				JFrame mainMenu = activeFrames.get(0);
+				activeFrames.remove(0);
+				mainMenu.dispose();
 
-			JFrame gameFrame = new JFrame();
-			activeFrames.add(gameFrame);
-			gameFrame.setTitle("Let's Play!");
-			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				JFrame gameFrame = new JFrame();
+				activeFrames.add(gameFrame);
+				gameFrame.setTitle("Let's Play!");
+				gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-			ImagePanel panel = new ImagePanel(new ImageIcon(
-					"resources/board.jpg").getImage());
-			activeFrames.get(0).getContentPane().add(panel);
-			activeFrames.get(0).pack();
-			panel.setVisible(true);
-			gameBoardPanel = panel;
+				ImagePanel panel = new ImagePanel(new ImageIcon(
+						"resources/board.jpg").getImage());
+				activeFrames.get(0).getContentPane().add(panel);
+				activeFrames.get(0).pack();
+				panel.setVisible(true);
+				gameBoardPanel = panel;
 
-			gameBoardPanel.addMouseListener(new MovementListener());
-			activeFrames.get(0).setBackground(Color.BLACK);
+				gameBoardPanel.addMouseListener(new MovementListener());
+				activeFrames.get(0).setBackground(Color.BLACK);
 
-			gameFrame.setVisible(true);
-			
-			// Set Up Player1 Label
-			JLabel p1Label = new JLabel();
-			p1Label.setText("<html> <b>Player 1: </b></html>");
-			p1Label.setForeground(Color.BLACK);
-			Font p1Font = p1Label.getFont();
-			p1Label.setFont(new Font(p1Font.getName(), 4, 22));
-			p1Label.setSize(110, 25);
-			gameBoardPanel.add(p1Label);
-			p1Label.setLocation(675, 20);
-			p1Label.setVisible(true);
+				gameFrame.setVisible(true);
 
-			// Set Up Player1 name Label
-			JLabel p1NameLabel = new JLabel();
-			p1NameLabel.setText("<html> <b>" + game.p1Name + "</b></html>");
-			p1NameLabel.setForeground(Color.BLACK);
-			Font p1NameFont = p1NameLabel.getFont();
-			p1NameLabel.setFont(new Font(p1NameFont.getName(), 4, 18));
-			p1NameLabel.setSize(110, 100);
-			gameBoardPanel.add(p1NameLabel);
-			p1NameLabel.setLocation(675, 20);
-			p1NameLabel.setVisible(true);
+				// Set Up Player1 Label
+				JLabel p1Label = new JLabel();
+				p1Label.setText("<html> <b>Player 1: </b></html>");
+				p1Label.setForeground(Color.BLACK);
+				Font p1Font = p1Label.getFont();
+				p1Label.setFont(new Font(p1Font.getName(), 4, 22));
+				p1Label.setSize(110, 25);
+				gameBoardPanel.add(p1Label);
+				p1Label.setLocation(675, 20);
+				p1Label.setVisible(true);
 
-			// Set Up Player2 Label
-			JLabel p2Label = new JLabel();
-			p2Label.setText("<html> <b>Player 2: </b></html>");
-			p2Label.setForeground(Color.BLACK);
-			Font p2Font = p2Label.getFont();
-			p2Label.setFont(new Font(p2Font.getName(), 4, 22));
-			p2Label.setSize(110, 25);
-			gameBoardPanel.add(p2Label);
-			p2Label.setLocation(675, 550);
-			p2Label.setVisible(true);
+				// Set Up Player1 name Label
+				JLabel p1NameLabel = new JLabel();
+				p1NameLabel.setText("<html> <b>" + game.p1Name + "</b></html>");
+				p1NameLabel.setForeground(Color.BLACK);
+				Font p1NameFont = p1NameLabel.getFont();
+				p1NameLabel.setFont(new Font(p1NameFont.getName(), 4, 18));
+				p1NameLabel.setSize(110, 100);
+				gameBoardPanel.add(p1NameLabel);
+				p1NameLabel.setLocation(675, 20);
+				p1NameLabel.setVisible(true);
 
-			// Set Up Player2 name Label
-			JLabel p2NameLabel = new JLabel();
-			p2NameLabel.setText("<html> <b>" + game.p2Name + "</b></html>");
-			p2NameLabel.setForeground(Color.BLACK);
-			Font p2NameFont = p2NameLabel.getFont();
-			p2NameLabel.setFont(new Font(p2NameFont.getName(), 4, 18));
-			p2NameLabel.setSize(110, 100);
-			gameBoardPanel.add(p2NameLabel);
-			p2NameLabel.setLocation(675, 550);
-			p2NameLabel.setVisible(true);
+				// Set Up Player2 Label
+				JLabel p2Label = new JLabel();
+				p2Label.setText("<html> <b>Player 2: </b></html>");
+				p2Label.setForeground(Color.BLACK);
+				Font p2Font = p2Label.getFont();
+				p2Label.setFont(new Font(p2Font.getName(), 4, 22));
+				p2Label.setSize(110, 25);
+				gameBoardPanel.add(p2Label);
+				p2Label.setLocation(675, 550);
+				p2Label.setVisible(true);
 
-			// Set up Save Game Button
-			JButton saveGameButton = new JButton();
-			saveGameButton.setSize(100, 75);
-			saveGameButton.setText("Save");
-			saveGameButton
-					.setLocation(675, gameFrame.getHeight() / 2 - 100 / 2);
-			gameBoardPanel.add(saveGameButton);
-			saveGameButton.addActionListener(new SaveGameListener());
-			saveGameButton.setVisible(true);
+				// Set Up Player2 name Label
+				JLabel p2NameLabel = new JLabel();
+				p2NameLabel.setText("<html> <b>" + game.p2Name + "</b></html>");
+				p2NameLabel.setForeground(Color.BLACK);
+				Font p2NameFont = p2NameLabel.getFont();
+				p2NameLabel.setFont(new Font(p2NameFont.getName(), 4, 18));
+				p2NameLabel.setSize(110, 100);
+				gameBoardPanel.add(p2NameLabel);
+				p2NameLabel.setLocation(675, 550);
+				p2NameLabel.setVisible(true);
 
-			renderInitialBoard();
-			}
-			else {
+				// Set up Save Game Button
+				JButton saveGameButton = new JButton();
+				saveGameButton.setSize(100, 75);
+				saveGameButton.setText("Save");
+				saveGameButton.setLocation(675,
+						gameFrame.getHeight() / 2 - 100 / 2);
+				gameBoardPanel.add(saveGameButton);
+				saveGameButton.addActionListener(new SaveGameListener());
+				saveGameButton.setVisible(true);
+
+				renderInitialBoard();
+			} else {
 				System.out.println("Invalid game state");
 			}
 		}
@@ -541,10 +541,12 @@ public class GUI {
 		public void actionPerformed(ActionEvent e) {
 			game.p1Name = p1TextField.getText();
 			game.p2Name = p2TextField.getText();
-			
-			if(game.p1Name.equals("")) game.p1Name = "Player 1";
-			if(game.p2Name.equals("")) game.p2Name = "Player 2";
-			
+
+			if (game.p1Name.equals(""))
+				game.p1Name = "Player 1";
+			if (game.p2Name.equals(""))
+				game.p2Name = "Player 2";
+
 			JFrame settings = activeFrames.get(1);
 			activeFrames.remove(1);
 			settings.dispose();
@@ -569,7 +571,7 @@ public class GUI {
 			activeFrames.get(0).setBackground(Color.BLACK);
 
 			gameFrame.setVisible(true);
-			
+
 			// Set Up Player1 Label
 			JLabel p1Label = new JLabel();
 			p1Label.setText("<html> <b>Player 1: </b></html>");
@@ -580,7 +582,7 @@ public class GUI {
 			gameBoardPanel.add(p1Label);
 			p1Label.setLocation(675, 20);
 			p1Label.setVisible(true);
-			
+
 			// Set Up Player1 name Label
 			JLabel p1NameLabel = new JLabel();
 			p1NameLabel.setText("<html> <b>" + game.p1Name + "</b></html>");
@@ -602,7 +604,7 @@ public class GUI {
 			gameBoardPanel.add(p2Label);
 			p2Label.setLocation(675, 550);
 			p2Label.setVisible(true);
-			
+
 			// Set Up Player2 name Label
 			JLabel p2NameLabel = new JLabel();
 			p2NameLabel.setText("<html> <b>" + game.p2Name + "</b></html>");
@@ -700,8 +702,10 @@ public class GUI {
 
 				// If a piece is selected and an empty space is clicked
 				// AKA move
-				else if (noSelectedPieceAndEmptySpaceClicked(rowClicked, columnClicked)) {
-					int calculatedDirection = moveDirection(selectedPiece, rowClicked, columnClicked);
+				else if (noSelectedPieceAndEmptySpaceClicked(rowClicked,
+						columnClicked)) {
+					int calculatedDirection = moveDirection(selectedPiece,
+							rowClicked, columnClicked);
 					// Using move to check for valid move
 					if (game.move(selectedPiece.getRow(),
 							selectedPiece.getColumn(), calculatedDirection)) {
@@ -713,34 +717,40 @@ public class GUI {
 				}
 
 				// Piece already selected, clicked a second piece
-				else if (pieceSelectedAndSecondPieceClicked(rowClicked, columnClicked)) {
+				else if (pieceSelectedAndSecondPieceClicked(rowClicked,
+						columnClicked)) {
 					this.secondSelectedPiece = boardPieces[rowClicked][columnClicked];
 
 					// Piece selected, Second piece selected, empty square
 					// selected
-				} else if (twoPieceSelectedAndEmptySapceClicked(rowClicked, columnClicked)) {
+				} else if (twoPieceSelectedAndEmptySapceClicked(rowClicked,
+						columnClicked)) {
 
 					if (checkForPull(rowClicked, columnClicked)) {
-						int calculatedDirection = moveDirection(selectedPiece, rowClicked, columnClicked);
+						int calculatedDirection = moveDirection(selectedPiece,
+								rowClicked, columnClicked);
 
 						// Do these lines do anything??
-						
-//						if (secondSelectedPiece.getRow() == selectedPiece
-//								.getRow()) {
-//							if (secondSelectedPiece.getColumn() - 1 == selectedPiece
-//									.getColumn()) {
-//							} else if (secondSelectedPiece.getColumn() + 1 == selectedPiece
-//									.getColumn()) {
-//							}
-//						}
-//						if (secondSelectedPiece.getColumn() == selectedPiece
-//								.getColumn()) {
-//							if (secondSelectedPiece.getRow() - 1 == selectedPiece
-//									.getRow()) {
-//							} else if (secondSelectedPiece.getRow() + 1 == selectedPiece
-//									.getRow()) {
-//							}
-//						}
+
+						// if (secondSelectedPiece.getRow() == selectedPiece
+						// .getRow()) {
+						// if (secondSelectedPiece.getColumn() - 1 ==
+						// selectedPiece
+						// .getColumn()) {
+						// } else if (secondSelectedPiece.getColumn() + 1 ==
+						// selectedPiece
+						// .getColumn()) {
+						// }
+						// }
+						// if (secondSelectedPiece.getColumn() == selectedPiece
+						// .getColumn()) {
+						// if (secondSelectedPiece.getRow() - 1 == selectedPiece
+						// .getRow()) {
+						// } else if (secondSelectedPiece.getRow() + 1 ==
+						// selectedPiece
+						// .getRow()) {
+						// }
+						// }
 
 						if (game.pull(this.selectedPiece.getRow(),
 								this.selectedPiece.getColumn(),
@@ -748,20 +758,22 @@ public class GUI {
 								this.secondSelectedPiece.getColumn(),
 								calculatedDirection)) {
 							renderBoard();
-							
+
 						}
 						this.selectedPiece = null;
 						this.secondSelectedPiece = null;
 					} else if (checkForPush(rowClicked, columnClicked)) {
-						int calculatedDirection1 = moveDirectionOnePush(selectedPiece, secondSelectedPiece);
+						int calculatedDirection1 = moveDirectionOnePush(
+								selectedPiece, secondSelectedPiece);
 
-						int calculatedDirection2 = moveDirectionTwoPush(secondSelectedPiece, rowClicked, columnClicked);
+						int calculatedDirection2 = moveDirectionTwoPush(
+								secondSelectedPiece, rowClicked, columnClicked);
 
 						if (game.push(this.selectedPiece.getRow(),
 								this.selectedPiece.getColumn(),
 								calculatedDirection1, calculatedDirection2)) {
 							renderBoard();
-							
+
 						}
 						this.selectedPiece = null;
 						this.secondSelectedPiece = null;
@@ -774,7 +786,7 @@ public class GUI {
 					this.secondSelectedPiece = null;
 				}
 			}
-			
+
 		}
 
 		private int moveDirectionTwoPush(ImagePanel secondSelectedPiece2,
@@ -791,32 +803,28 @@ public class GUI {
 			else if (secondSelectedPiece.getColumn() - 1 == columnClicked
 					&& secondSelectedPiece.getRow() == rowClicked)
 				return 3;
-			return -1; //Shouldn't ever happen
+			return -1; // Shouldn't ever happen
 		}
 
 		private int moveDirectionOnePush(ImagePanel selectedPiece2,
 				ImagePanel secondSelectedPiece2) {
-			if (selectedPiece.getRow() - 1 == secondSelectedPiece
-					.getRow()
+			if (selectedPiece.getRow() - 1 == secondSelectedPiece.getRow()
 					&& selectedPiece.getColumn() == secondSelectedPiece
 							.getColumn())
 				return 0;
 			else if (selectedPiece.getColumn() + 1 == secondSelectedPiece
 					.getColumn()
-					&& selectedPiece.getRow() == secondSelectedPiece
-							.getRow())
+					&& selectedPiece.getRow() == secondSelectedPiece.getRow())
 				return 1;
-			else if (selectedPiece.getRow() + 1 == secondSelectedPiece
-					.getRow()
+			else if (selectedPiece.getRow() + 1 == secondSelectedPiece.getRow()
 					&& selectedPiece.getColumn() == secondSelectedPiece
 							.getColumn())
 				return 2;
 			else if (selectedPiece.getColumn() - 1 == secondSelectedPiece
 					.getColumn()
-					&& selectedPiece.getRow() == secondSelectedPiece
-							.getRow())
+					&& selectedPiece.getRow() == secondSelectedPiece.getRow())
 				return 3;
-			return -1; //Shouldn't ever happen
+			return -1; // Shouldn't ever happen
 		}
 
 		private boolean twoPieceSelectedAndEmptySapceClicked(int rowClicked,
@@ -848,7 +856,7 @@ public class GUI {
 			else if (selectedPiece.getColumn() - 1 == columnClicked
 					&& selectedPiece.getRow() == rowClicked)
 				return 3;
-			return -1; //Please never happen...
+			return -1; // Please never happen...
 		}
 
 		private boolean noSelectedPieceAndEmptySpaceClicked(int rowClicked,
