@@ -230,6 +230,7 @@ public class Game {
 		Piece down = this.getSpace(row + 1, col);
 		Piece left = this.getSpace(row, col - 1);
 		Piece right = this.getSpace(row, col + 1);
+		@SuppressWarnings("unused")
 		Owner own = cen.getOwner();
 		boolean foo = false;
 		if (up != null) {

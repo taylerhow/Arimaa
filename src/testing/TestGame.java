@@ -593,7 +593,6 @@ public class TestGame {
 		try {
 			fw = new FileWriter(saveFile);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Game g = new Game(b);
@@ -621,6 +620,7 @@ public class TestGame {
 						g.currentBoard.getBoardArray()[i][k]);
 			}
 		}
+		scanner.close();
 	}
 
 	@Test
@@ -630,6 +630,7 @@ public class TestGame {
 		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(turnCounter, g.getTurnCounter());
+		scanner.close();
 	}
 
 	@Test
@@ -639,6 +640,7 @@ public class TestGame {
 		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(name, g.getP1Name());
+		scanner.close();
 	}
 
 	@Test
@@ -648,6 +650,7 @@ public class TestGame {
 		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(name, g.getP2Name());
+		scanner.close();
 	}
 
 	@Test
@@ -656,6 +659,7 @@ public class TestGame {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure1.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
+		scanner.close();
 	}
 
 	@Test
@@ -664,6 +668,7 @@ public class TestGame {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure2.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
+		scanner.close();
 	}
 
 	@Test
@@ -672,6 +677,7 @@ public class TestGame {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure3.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
+		scanner.close();
 	}
 
 	@Test
@@ -680,6 +686,7 @@ public class TestGame {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure4.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
+		scanner.close();
 	}
 
 	@Test
@@ -689,6 +696,7 @@ public class TestGame {
 				"resources/LoadInvalidBoard1.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
+		scanner.close();
 	}
 
 	@Test
@@ -698,6 +706,7 @@ public class TestGame {
 				"resources/LoadInvalidBoard2.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
+		scanner.close();
 	}
 
 	// Testing remove piece checks

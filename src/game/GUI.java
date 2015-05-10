@@ -433,7 +433,6 @@ public class GUI {
 				try {
 					loadGame(selectedFile);
 				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
 					// e1.printStackTrace();
 					System.out.println("Load game failed!");
 				}
@@ -762,6 +761,7 @@ public class GUI {
 						}
 						this.selectedPiece = null;
 						this.secondSelectedPiece = null;
+						
 					} else if (checkForPush(rowClicked, columnClicked)) {
 						int calculatedDirection1 = moveDirectionOnePush(
 								selectedPiece, secondSelectedPiece);
