@@ -433,7 +433,6 @@ public class GUI {
 				try {
 					loadGame(selectedFile);
 				} catch (FileNotFoundException e1) {
-					// e1.printStackTrace();
 					System.out.println("Load game failed!");
 				}
 			}
@@ -644,8 +643,8 @@ public class GUI {
 				try {
 					fw = new FileWriter(selectedFile);
 				} catch (IOException e) {
-					// shouldnt happen
-					e.printStackTrace();
+					// Shouldn't ever happen...
+					System.out.println("No file selected!");
 				}
 				game.saveFile(fw);
 			}
@@ -728,28 +727,6 @@ public class GUI {
 					if (checkForPull(rowClicked, columnClicked)) {
 						int calculatedDirection = moveDirection(selectedPiece,
 								rowClicked, columnClicked);
-
-						// Do these lines do anything??
-
-						// if (secondSelectedPiece.getRow() == selectedPiece
-						// .getRow()) {
-						// if (secondSelectedPiece.getColumn() - 1 ==
-						// selectedPiece
-						// .getColumn()) {
-						// } else if (secondSelectedPiece.getColumn() + 1 ==
-						// selectedPiece
-						// .getColumn()) {
-						// }
-						// }
-						// if (secondSelectedPiece.getColumn() == selectedPiece
-						// .getColumn()) {
-						// if (secondSelectedPiece.getRow() - 1 == selectedPiece
-						// .getRow()) {
-						// } else if (secondSelectedPiece.getRow() + 1 ==
-						// selectedPiece
-						// .getRow()) {
-						// }
-						// }
 
 						if (game.pull(this.selectedPiece.getRow(),
 								this.selectedPiece.getColumn(),
