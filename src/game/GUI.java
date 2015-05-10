@@ -691,35 +691,17 @@ public class GUI {
 
 			// Beginning movement, nothing yet selected
 			// Selecting piece to interact with
-			if (rowClicked <= 7 && rowClicked >= 0 && columnClicked <= 7
-					&& columnClicked >= 0) {
+			if (clickOnBoard(rowClicked, columnClicked)) {
 
 				// No piece has been selected yet
-				if (boardPieces[rowClicked][columnClicked] != null
-						&& this.selectedPiece == null
-						&& this.secondSelectedPiece == null) {
+				if (noPieceSelectedAndPieceClicked(rowClicked, columnClicked)) {
 					this.selectedPiece = boardPieces[rowClicked][columnClicked];
 				}
 
 				// If a piece is selected and an empty space is clicked
 				// AKA move
-				else if (this.selectedPiece != null
-						&& this.secondSelectedPiece == null
-						&& boardPieces[rowClicked][columnClicked] == null) {
-					int calculatedDirection = -1;
-					if (selectedPiece.getRow() - 1 == rowClicked
-							&& selectedPiece.getColumn() == columnClicked)
-						calculatedDirection = 0;
-					else if (selectedPiece.getColumn() + 1 == columnClicked
-							&& selectedPiece.getRow() == rowClicked)
-						calculatedDirection = 1;
-					else if (selectedPiece.getRow() + 1 == rowClicked
-							&& selectedPiece.getColumn() == columnClicked)
-						calculatedDirection = 2;
-					else if (selectedPiece.getColumn() - 1 == columnClicked
-							&& selectedPiece.getRow() == rowClicked)
-						calculatedDirection = 3;
-
+				else if (noSelectedPieceAndEmptySpaceClicked(rowClicked, columnClicked)) {
+					int calculatedDirection = moveDirection(selectedPiece, rowClicked, columnClicked);
 					// Using move to check for valid move
 					if (game.move(selectedPiece.getRow(),
 							selectedPiece.getColumn(), calculatedDirection)) {
@@ -731,49 +713,34 @@ public class GUI {
 				}
 
 				// Piece already selected, clicked a second piece
-				else if (this.selectedPiece != null
-						&& this.secondSelectedPiece == null
-						&& boardPieces[rowClicked][columnClicked] != null
-						&& this.selectedPiece != boardPieces[rowClicked][columnClicked]) {
+				else if (pieceSelectedAndSecondPieceClicked(rowClicked, columnClicked)) {
 					this.secondSelectedPiece = boardPieces[rowClicked][columnClicked];
 
 					// Piece selected, Second piece selected, empty square
 					// selected
-				} else if (this.selectedPiece != null
-						&& this.secondSelectedPiece != null
-						&& boardPieces[rowClicked][columnClicked] == null) {
+				} else if (twoPieceSelectedAndEmptySapceClicked(rowClicked, columnClicked)) {
 
 					if (checkForPull(rowClicked, columnClicked)) {
-						int calculatedDirection = -1;
-						if (selectedPiece.getRow() - 1 == rowClicked
-								&& selectedPiece.getColumn() == columnClicked)
-							calculatedDirection = 0;
-						else if (selectedPiece.getColumn() + 1 == columnClicked
-								&& selectedPiece.getRow() == rowClicked)
-							calculatedDirection = 1;
-						else if (selectedPiece.getRow() + 1 == rowClicked
-								&& selectedPiece.getColumn() == columnClicked)
-							calculatedDirection = 2;
-						else if (selectedPiece.getColumn() - 1 == columnClicked
-								&& selectedPiece.getRow() == rowClicked)
-							calculatedDirection = 3;
+						int calculatedDirection = moveDirection(selectedPiece, rowClicked, columnClicked);
 
-						if (secondSelectedPiece.getRow() == selectedPiece
-								.getRow()) {
-							if (secondSelectedPiece.getColumn() - 1 == selectedPiece
-									.getColumn()) {
-							} else if (secondSelectedPiece.getColumn() + 1 == selectedPiece
-									.getColumn()) {
-							}
-						}
-						if (secondSelectedPiece.getColumn() == selectedPiece
-								.getColumn()) {
-							if (secondSelectedPiece.getRow() - 1 == selectedPiece
-									.getRow()) {
-							} else if (secondSelectedPiece.getRow() + 1 == selectedPiece
-									.getRow()) {
-							}
-						}
+						// Do these lines do anything??
+						
+//						if (secondSelectedPiece.getRow() == selectedPiece
+//								.getRow()) {
+//							if (secondSelectedPiece.getColumn() - 1 == selectedPiece
+//									.getColumn()) {
+//							} else if (secondSelectedPiece.getColumn() + 1 == selectedPiece
+//									.getColumn()) {
+//							}
+//						}
+//						if (secondSelectedPiece.getColumn() == selectedPiece
+//								.getColumn()) {
+//							if (secondSelectedPiece.getRow() - 1 == selectedPiece
+//									.getRow()) {
+//							} else if (secondSelectedPiece.getRow() + 1 == selectedPiece
+//									.getRow()) {
+//							}
+//						}
 
 						if (game.pull(this.selectedPiece.getRow(),
 								this.selectedPiece.getColumn(),
@@ -786,41 +753,9 @@ public class GUI {
 						this.selectedPiece = null;
 						this.secondSelectedPiece = null;
 					} else if (checkForPush(rowClicked, columnClicked)) {
-						int calculatedDirection1 = -1;
-						if (selectedPiece.getRow() - 1 == secondSelectedPiece
-								.getRow()
-								&& selectedPiece.getColumn() == secondSelectedPiece
-										.getColumn())
-							calculatedDirection1 = 0;
-						else if (selectedPiece.getColumn() + 1 == secondSelectedPiece
-								.getColumn()
-								&& selectedPiece.getRow() == secondSelectedPiece
-										.getRow())
-							calculatedDirection1 = 1;
-						else if (selectedPiece.getRow() + 1 == secondSelectedPiece
-								.getRow()
-								&& selectedPiece.getColumn() == secondSelectedPiece
-										.getColumn())
-							calculatedDirection1 = 2;
-						else if (selectedPiece.getColumn() - 1 == secondSelectedPiece
-								.getColumn()
-								&& selectedPiece.getRow() == secondSelectedPiece
-										.getRow())
-							calculatedDirection1 = 3;
+						int calculatedDirection1 = moveDirectionOnePush(selectedPiece, secondSelectedPiece);
 
-						int calculatedDirection2 = -1;
-						if (secondSelectedPiece.getRow() - 1 == rowClicked
-								&& secondSelectedPiece.getColumn() == columnClicked)
-							calculatedDirection2 = 0;
-						else if (secondSelectedPiece.getColumn() + 1 == columnClicked
-								&& secondSelectedPiece.getRow() == rowClicked)
-							calculatedDirection2 = 1;
-						else if (secondSelectedPiece.getRow() + 1 == rowClicked
-								&& secondSelectedPiece.getColumn() == columnClicked)
-							calculatedDirection2 = 2;
-						else if (secondSelectedPiece.getColumn() - 1 == columnClicked
-								&& secondSelectedPiece.getRow() == rowClicked)
-							calculatedDirection2 = 3;
+						int calculatedDirection2 = moveDirectionTwoPush(secondSelectedPiece, rowClicked, columnClicked);
 
 						if (game.push(this.selectedPiece.getRow(),
 								this.selectedPiece.getColumn(),
@@ -840,6 +775,99 @@ public class GUI {
 				}
 			}
 			
+		}
+
+		private int moveDirectionTwoPush(ImagePanel secondSelectedPiece2,
+				int rowClicked, int columnClicked) {
+			if (secondSelectedPiece.getRow() - 1 == rowClicked
+					&& secondSelectedPiece.getColumn() == columnClicked)
+				return 0;
+			else if (secondSelectedPiece.getColumn() + 1 == columnClicked
+					&& secondSelectedPiece.getRow() == rowClicked)
+				return 1;
+			else if (secondSelectedPiece.getRow() + 1 == rowClicked
+					&& secondSelectedPiece.getColumn() == columnClicked)
+				return 2;
+			else if (secondSelectedPiece.getColumn() - 1 == columnClicked
+					&& secondSelectedPiece.getRow() == rowClicked)
+				return 3;
+			return -1; //Shouldn't ever happen
+		}
+
+		private int moveDirectionOnePush(ImagePanel selectedPiece2,
+				ImagePanel secondSelectedPiece2) {
+			if (selectedPiece.getRow() - 1 == secondSelectedPiece
+					.getRow()
+					&& selectedPiece.getColumn() == secondSelectedPiece
+							.getColumn())
+				return 0;
+			else if (selectedPiece.getColumn() + 1 == secondSelectedPiece
+					.getColumn()
+					&& selectedPiece.getRow() == secondSelectedPiece
+							.getRow())
+				return 1;
+			else if (selectedPiece.getRow() + 1 == secondSelectedPiece
+					.getRow()
+					&& selectedPiece.getColumn() == secondSelectedPiece
+							.getColumn())
+				return 2;
+			else if (selectedPiece.getColumn() - 1 == secondSelectedPiece
+					.getColumn()
+					&& selectedPiece.getRow() == secondSelectedPiece
+							.getRow())
+				return 3;
+			return -1; //Shouldn't ever happen
+		}
+
+		private boolean twoPieceSelectedAndEmptySapceClicked(int rowClicked,
+				int columnClicked) {
+			return this.selectedPiece != null
+					&& this.secondSelectedPiece != null
+					&& boardPieces[rowClicked][columnClicked] == null;
+		}
+
+		private boolean pieceSelectedAndSecondPieceClicked(int rowClicked,
+				int columnClicked) {
+			return this.selectedPiece != null
+					&& this.secondSelectedPiece == null
+					&& boardPieces[rowClicked][columnClicked] != null
+					&& this.selectedPiece != boardPieces[rowClicked][columnClicked];
+		}
+
+		private int moveDirection(ImagePanel selectedPiece2, int rowClicked,
+				int columnClicked) {
+			if (selectedPiece.getRow() - 1 == rowClicked
+					&& selectedPiece.getColumn() == columnClicked)
+				return 0;
+			else if (selectedPiece.getColumn() + 1 == columnClicked
+					&& selectedPiece.getRow() == rowClicked)
+				return 1;
+			else if (selectedPiece.getRow() + 1 == rowClicked
+					&& selectedPiece.getColumn() == columnClicked)
+				return 2;
+			else if (selectedPiece.getColumn() - 1 == columnClicked
+					&& selectedPiece.getRow() == rowClicked)
+				return 3;
+			return -1; //Please never happen...
+		}
+
+		private boolean noSelectedPieceAndEmptySpaceClicked(int rowClicked,
+				int columnClicked) {
+			return this.selectedPiece != null
+					&& this.secondSelectedPiece == null
+					&& boardPieces[rowClicked][columnClicked] == null;
+		}
+
+		private boolean noPieceSelectedAndPieceClicked(int rowClicked,
+				int columnClicked) {
+			return boardPieces[rowClicked][columnClicked] != null
+					&& this.selectedPiece == null
+					&& this.secondSelectedPiece == null;
+		}
+
+		private boolean clickOnBoard(int rowClicked, int columnClicked) {
+			return rowClicked <= 7 && rowClicked >= 0 && columnClicked <= 7
+					&& columnClicked >= 0;
 		}
 
 		private boolean checkForPush(int rowClicked, int columnClicked) {
