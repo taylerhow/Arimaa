@@ -367,7 +367,55 @@ public class Game {
 	 */
 	public boolean pull(int row1, int column1, int row2, int column2,
 			int direction1) {
-		if (numMoves < 2)
+		if(!isValidSquaretoPullFrom(row1, column1, row2, column2))
+			return false;
+		// Get direction that pulled piece will move
+		int direction2 = getDirection(row2, column2, row1, column1);
+
+		// Check that getDirection didn't fail
+		// if(direction2 == -1) return false;
+		isPushPull = true;
+		// Attempt to perform move operations on both pieces
+		switch (direction1) {
+		case 0:
+			if (tryPull(getSpace(row1,column1),getSpace(row2, column2),row1, column1, direction1)) {//pieceCanPush(getSpace(row1, column1),getSpace(row2, column2))&& move(row1, column1, direction1)
+				move(row2, column2, direction2);
+				isPushPull = false;
+				return true;
+			}
+			break;
+		case 1:
+			if (tryPull(getSpace(row1, column1),getSpace(row2, column2),row1, column1, direction1)) {
+				move(row2, column2, direction2);
+				isPushPull = false;
+				return true;
+			}
+			break;
+		case 2:
+			if (tryPull(getSpace(row1, column1), getSpace(row2, column2),row1, column1, direction1)) {
+				move(row2, column2, direction2);
+				isPushPull = false;
+				return true;
+			}
+			break;
+		case 3:
+			if (tryPull(getSpace(row1, column1),getSpace(row2, column2),row1, column1, direction1)) {
+				move(row2, column2, direction2);
+				isPushPull = false;
+				return true;
+			}
+			break;
+		}
+		return false;
+	}
+
+	private boolean tryPull(Piece space, Piece space2, int row1, int column1,
+			int direction1) {
+		return pieceCanPush(space,space2)&& move(row1, column1, direction1);
+	}
+
+	private boolean isValidSquaretoPullFrom(int row1, int column1, int row2, int column2) {
+		if (numMoves <=1)
 			return false; // can't push/pull with only one move
 		// Check that both pieces exist
 		if (getSpace(row1, column1) == null || getSpace(row2, column2) == null) {
@@ -383,49 +431,9 @@ public class Game {
 
 		if (getSpace(row1, column1).getOwner() != Owner.values()[(getPlayerTurn() - 1)]
 				&& !isPushPull)
+			
 			return false;// not your turn
-		// Get direction that pulled piece will move
-		int direction2 = getDirection(row2, column2, row1, column1);
-
-		// Check that getDirection didn't fail
-		// if(direction2 == -1) return false;
-		isPushPull = true;
-		// Attempt to perform move operations on both pieces
-		switch (direction1) {
-		case 0:
-			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
-					.getOwner() && move(row1, column1, direction1)) {
-				move(row2, column2, direction2);
-				isPushPull = false;
-				return true;
-			}
-			break;
-		case 1:
-			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
-					.getOwner() && move(row1, column1, direction1)) {
-				move(row2, column2, direction2);
-				isPushPull = false;
-				return true;
-			}
-			break;
-		case 2:
-			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
-					.getOwner() && move(row1, column1, direction1)) {
-				move(row2, column2, direction2);
-				isPushPull = false;
-				return true;
-			}
-			break;
-		case 3:
-			if (getSpace(row1, column1).getOwner() != getSpace(row2, column2)
-					.getOwner() && move(row1, column1, direction1)) {
-				move(row2, column2, direction2);
-				isPushPull = false;
-				return true;
-			}
-			break;
-		}
-		return false;
+		return true;
 	}
 
 	/**

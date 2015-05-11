@@ -1,0 +1,989 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Metrics scope="Arimaa" type="Project" date="2015-05-08" xmlns="http://metrics.sourceforge.net/2003/Metrics-First-Flat">
+   <Metric id = "PAR" description ="Number of Parameters" max ="5" hint ="Move invoked method or pass an object">
+      <Values per = "method" avg = "0.525" stddev = "0.98" max = "5">
+         <Value name="pull" source ="Game.java" package ="game" value ="5"/>
+         <Value name="tryPull" source ="Game.java" package ="game" value ="5"/>
+         <Value name="getDirection" source ="Game.java" package ="game" value ="4"/>
+         <Value name="isValidSquaretoPullFrom" source ="Game.java" package ="game" value ="4"/>
+         <Value name="push" source ="Game.java" package ="game" value ="4"/>
+         <Value name="switchPiece" source ="Game.java" package ="game" value ="4"/>
+         <Value name="setBoardSpace" source ="BoardState.java" package ="game" value ="3"/>
+         <Value name="move" source ="Game.java" package ="game" value ="3"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="3"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="2"/>
+         <Value name="checkForPull" source ="GUI.java" package ="game" value ="2"/>
+         <Value name="checkForPush" source ="GUI.java" package ="game" value ="2"/>
+         <Value name="checkDeaths" source ="Game.java" package ="game" value ="2"/>
+         <Value name="checkFriendlyAdjacent" source ="Game.java" package ="game" value ="2"/>
+         <Value name="checkStrongerAdjacent" source ="Game.java" package ="game" value ="2"/>
+         <Value name="checkStrong" source ="Game.java" package ="game" value ="2"/>
+         <Value name="getSpace" source ="Game.java" package ="game" value ="2"/>
+         <Value name="isValidMoveFromSquare" source ="Game.java" package ="game" value ="2"/>
+         <Value name="isValidMoveSquare" source ="Game.java" package ="game" value ="2"/>
+         <Value name="isValidSquareToPushFrom" source ="Game.java" package ="game" value ="2"/>
+         <Value name="pieceCanPush" source ="Game.java" package ="game" value ="2"/>
+         <Value name="setBoardArray" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="setTurnNumber" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="mouseClicked" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseEntered" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseExited" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mousePressed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseReleased" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="loadGame" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="main" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setActiveFrames" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setP1name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setP2name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="paintComponent" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setColumn" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setRow" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="1"/>
+         <Value name="loadFile" source ="Game.java" package ="game" value ="1"/>
+         <Value name="saveFile" source ="Game.java" package ="game" value ="1"/>
+         <Value name="setPlayerTurn" source ="Game.java" package ="game" value ="1"/>
+         <Value name="setWinner" source ="Game.java" package ="game" value ="1"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="createP1Piece" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="createP2Piece" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="equals" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="isStrongerThan" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setImg" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setOwner" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setRank" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setType" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="main" source ="AllTests.java" package ="testing" value ="1"/>
+         <Value name="clone" source ="BoardState.java" package ="game" value ="0"/>
+         <Value name="getBoardArray" source ="BoardState.java" package ="game" value ="0"/>
+         <Value name="getTurnNumber" source ="BoardState.java" package ="game" value ="0"/>
+         <Value name="incrementTurn" source ="BoardState.java" package ="game" value ="0"/>
+         <Value name="printBoard" source ="BoardState.java" package ="game" value ="0"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="getActiveFrames" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="getP1name" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="getP2name" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="renderBoard" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="renderInitialBoard" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="getColumn" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="getPixelX" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="getPixelY" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="getRow" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="0"/>
+         <Value name="checkWin" source ="Game.java" package ="game" value ="0"/>
+         <Value name="endMove" source ="Game.java" package ="game" value ="0"/>
+         <Value name="getP1Name" source ="Game.java" package ="game" value ="0"/>
+         <Value name="getP2Name" source ="Game.java" package ="game" value ="0"/>
+         <Value name="getPlayerTurn" source ="Game.java" package ="game" value ="0"/>
+         <Value name="getTurnCounter" source ="Game.java" package ="game" value ="0"/>
+         <Value name="getWinner" source ="Game.java" package ="game" value ="0"/>
+         <Value name="getImage" source ="Piece.java" package ="game" value ="0"/>
+         <Value name="getOwner" source ="Piece.java" package ="game" value ="0"/>
+         <Value name="getRank" source ="Piece.java" package ="game" value ="0"/>
+         <Value name="getType" source ="Piece.java" package ="game" value ="0"/>
+         <Value name="testInializesWithCorrectValuesUsingBoardState" source ="TestBoardState.java" package ="testing" value ="0"/>
+         <Value name="testInitializes" source ="TestBoardState.java" package ="testing" value ="0"/>
+         <Value name="testTurnNumberIncrements" source ="TestBoardState.java" package ="testing" value ="0"/>
+         <Value name="testBasicPullDown" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testBasicPullLeft" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testBasicPullRight" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testBasicPullUp" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testBidirectionalPullDownLeft" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testBidirectionalPullLeftUp" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testBidirectionalPullRightDown" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testBidirectionalPullUpRight" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testCannotMoveDownIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testCannotMoveLeftIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testCannotMoveRightIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testCannotMoveUpIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testEmptyCreateConstructor" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetDirectionDown" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetDirectionLeft" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetDirectionNonAdjacent" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetDirectionRight" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetDirectionUp" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetPieceExists" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetPieceExistsAgain" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetPieceNotExists" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetSpaceInvalidColumn1" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetSpaceInvalidColumn2" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetSpaceInvalidRow1" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testGetSpaceInvalidRow2" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testInitializes" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testInitializesWithBoardState" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testLoadFileInvalidBoardCharacters1" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testLoadFileInvalidBoardCharacters2" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testLoadFileLoadsBoardState" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testLoadFileLoadsPlayer1Name" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testLoadFileLoadsPlayer2Name" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testLoadFileLoadsTurnCounter" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testLoadFileReturnsFalseOnFailure1" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testLoadFileReturnsFalseOnFailure2" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testLoadFileReturnsFalseOnFailure3" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testLoadFileReturnsFalseOnFailure4" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testMoveIllegalDown" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testMoveIllegalLeft" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testMoveIllegalRight" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testMoveIllegalUp" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testMoveLegal" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testNullMove" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPlayer1Win" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPlayer2Win" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullDownIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullDownOffBoard" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullLeftIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullLeftOffBoard" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullNothingDown" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullNothingLeft" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullNothingRight" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullNothingUp" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullOwnPieceDown" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullOwnPieceLeft" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullOwnPieceRight" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullOwnPieceUp" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullPieceOfGreaterStrength" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullRightIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullRightOffBoard" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullUpIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullUpOffBoard" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPullWithNullPiece" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPushDown" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPushDownWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPushInvalid" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPushLeft" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPushLeftWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPushRight" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPushRightWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPushUp" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPushUpWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testPushWithDifferentDirections" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testRemovePiece2" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testRemovePieceValid" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testSaveFile" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testThatPiecesMustBeStrongerToPushDown" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testThatPiecesMustBeStrongerToPushLeft" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testThatPiecesMustBeStrongerToPushRight" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testThatPiecesMustBeStrongerToPushUp" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="testComparatorChecksOwners" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testIsCamelStrongerThanCamel" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testIsCamelStrongerThanHorse" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testIsDogStrongerThanDog" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testIsElephantStrongerThanCamel" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testIsElephantStrongerThanElephant" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testIsHorseStrongerThanDog" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testThatImageCanBeGotten" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testThatImageCanBeSet" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testThatOwnerCanBeSetAndGotten" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testThatPieceInitializes" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testThatPieceInitializesWithValues" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testThatTypeCanBeGotten" source ="TestPiece.java" package ="testing" value ="0"/>
+         <Value name="testThatTypeCanBeSet" source ="TestPiece.java" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NSF" description ="Number of Static Attributes">
+      <Values per = "type" total = "1" avg = "0.067" stddev = "0.249" max = "1">
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="0"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="SaveGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="cancelListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="loadGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="newGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="startGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="0"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="0"/>
+         <Value name="AllTests" source ="AllTests.java" package ="testing" value ="0"/>
+         <Value name="TestBoardState" source ="TestBoardState.java" package ="testing" value ="0"/>
+         <Value name="TestGame" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="TestPiece" source ="TestPiece.java" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "CE" description ="Efferent Coupling">
+      <Values per = "packageFragment" avg = "2.5" stddev = "1.5" max = "4">
+         <Value name="testing" package ="testing" value ="4"/>
+         <Value name="game" package ="game" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "SIX" description ="Specialization Index">
+      <Values per = "type" avg = "0.049" stddev = "0.139" max = "0.556">
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="0.556"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="0.111"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="0.071"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="SaveGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="cancelListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="loadGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="newGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="startGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="0"/>
+         <Value name="AllTests" source ="AllTests.java" package ="testing" value ="0"/>
+         <Value name="TestBoardState" source ="TestBoardState.java" package ="testing" value ="0"/>
+         <Value name="TestGame" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="TestPiece" source ="TestPiece.java" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOC" description ="Number of Classes">
+      <Values per = "packageFragment" total = "15" avg = "7.5" stddev = "3.5" max = "11">
+         <Value name="game" package ="game" value ="11"/>
+         <Value name="testing" package ="testing" value ="4"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOF" description ="Number of Attributes">
+      <Values per = "type" total = "39" avg = "2.6" stddev = "3.555" max = "12">
+         <Value name="Game" source ="Game.java" package ="game" value ="12"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="8"/>
+         <Value name="TestGame" source ="TestGame.java" package ="testing" value ="7"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="4"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="2"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="2"/>
+         <Value name="TestBoardState" source ="TestBoardState.java" package ="testing" value ="1"/>
+         <Value name="SaveGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="cancelListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="loadGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="newGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="startGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="AllTests" source ="AllTests.java" package ="testing" value ="0"/>
+         <Value name="TestPiece" source ="TestPiece.java" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "RMA" description ="Abstractness">
+      <Values per = "packageFragment" avg = "0" stddev = "0" max = "0">
+         <Value name="game" package ="game" value ="0"/>
+         <Value name="testing" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "RMD" description ="Normalized Distance">
+      <Values per = "packageFragment" avg = "0.375" stddev = "0.375" max = "0.75">
+         <Value name="game" package ="game" value ="0.75"/>
+         <Value name="testing" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NSM" description ="Number of Static Methods">
+      <Values per = "type" total = "2" avg = "0.133" stddev = "0.34" max = "1">
+         <Value name="GUI" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="AllTests" source ="AllTests.java" package ="testing" value ="1"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="0"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="SaveGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="cancelListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="loadGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="newGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="startGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="0"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="0"/>
+         <Value name="TestBoardState" source ="TestBoardState.java" package ="testing" value ="0"/>
+         <Value name="TestGame" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="TestPiece" source ="TestPiece.java" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOI" description ="Number of Interfaces">
+      <Values per = "packageFragment" total = "0" avg = "0" stddev = "0" max = "0">
+         <Value name="game" package ="game" value ="0"/>
+         <Value name="testing" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "TLOC" description ="Total Lines of Code">
+      <Value value="2186"/>
+   </Metric>
+   <Metric id = "WMC" description ="Weighted methods per Class">
+      <Values per = "type" total = "408" avg = "27.2" stddev = "39.042" max = "134">
+         <Value name="Game" source ="Game.java" package ="game" value ="134"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="84"/>
+         <Value name="TestGame" source ="TestGame.java" package ="testing" value ="83"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="30"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="27"/>
+         <Value name="TestPiece" source ="TestPiece.java" package ="testing" value ="14"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="10"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="9"/>
+         <Value name="loadGameListener" source ="GUI.java" package ="game" value ="5"/>
+         <Value name="SaveGameListener" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="startGameListener" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="TestBoardState" source ="TestBoardState.java" package ="testing" value ="3"/>
+         <Value name="cancelListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="newGameListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="AllTests" source ="AllTests.java" package ="testing" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOM" description ="Number of Methods">
+      <Values per = "type" total = "181" avg = "12.067" stddev = "19.618" max = "80">
+         <Value name="TestGame" source ="TestGame.java" package ="testing" value ="80"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="29"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="14"/>
+         <Value name="TestPiece" source ="TestPiece.java" package ="testing" value ="14"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="9"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="9"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="9"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="8"/>
+         <Value name="TestBoardState" source ="TestBoardState.java" package ="testing" value ="3"/>
+         <Value name="loadGameListener" source ="GUI.java" package ="game" value ="2"/>
+         <Value name="SaveGameListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="cancelListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="newGameListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="startGameListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="AllTests" source ="AllTests.java" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "DIT" description ="Depth of Inheritance Tree">
+      <Values per = "type" avg = "1.267" stddev = "0.998" max = "5">
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="5"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="SaveGameListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="cancelListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="loadGameListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="newGameListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="startGameListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="1"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="AllTests" source ="AllTests.java" package ="testing" value ="1"/>
+         <Value name="TestBoardState" source ="TestBoardState.java" package ="testing" value ="1"/>
+         <Value name="TestGame" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="TestPiece" source ="TestPiece.java" package ="testing" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "NOP" description ="Number of Packages">
+      <Value value="2"/>
+   </Metric>
+   <Metric id = "RMI" description ="Instability">
+      <Values per = "packageFragment" avg = "0.625" stddev = "0.375" max = "1">
+         <Value name="testing" package ="testing" value ="1"/>
+         <Value name="game" package ="game" value ="0.25"/>
+      </Values>
+   </Metric>
+   <Metric id = "VG" description ="McCabe Cyclomatic Complexity" max ="10" hint ="use Extract-method to split the method up">
+      <Values per = "method" avg = "2.23" stddev = "5.031" max = "61" maxinrange="false">
+         <Value name="mousePressed" source ="GUI.java" package ="game" value ="61" inrange="false"/>
+         <Value name="push" source ="Game.java" package ="game" value ="19" inrange="false"/>
+         <Value name="renderInitialBoard" source ="GUI.java" package ="game" value ="15" inrange="false"/>
+         <Value name="move" source ="Game.java" package ="game" value ="10"/>
+         <Value name="pull" source ="Game.java" package ="game" value ="10"/>
+         <Value name="checkForPull" source ="GUI.java" package ="game" value ="9"/>
+         <Value name="checkForPush" source ="GUI.java" package ="game" value ="9"/>
+         <Value name="checkFriendlyAdjacent" source ="Game.java" package ="game" value ="9"/>
+         <Value name="checkWin" source ="Game.java" package ="game" value ="8"/>
+         <Value name="loadFile" source ="Game.java" package ="game" value ="8"/>
+         <Value name="getDirection" source ="Game.java" package ="game" value ="7"/>
+         <Value name="isValidMoveFromSquare" source ="Game.java" package ="game" value ="7"/>
+         <Value name="isValidSquaretoPullFrom" source ="Game.java" package ="game" value ="7"/>
+         <Value name="createP1Piece" source ="Piece.java" package ="game" value ="7"/>
+         <Value name="createP2Piece" source ="Piece.java" package ="game" value ="7"/>
+         <Value name="getSpace" source ="Game.java" package ="game" value ="6"/>
+         <Value name="isValidMoveSquare" source ="Game.java" package ="game" value ="6"/>
+         <Value name="saveFile" source ="Game.java" package ="game" value ="6"/>
+         <Value name="checkStrongerAdjacent" source ="Game.java" package ="game" value ="5"/>
+         <Value name="isValidSquareToPushFrom" source ="Game.java" package ="game" value ="5"/>
+         <Value name="renderBoard" source ="GUI.java" package ="game" value ="4"/>
+         <Value name="equals" source ="Piece.java" package ="game" value ="4"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="checkDeaths" source ="Game.java" package ="game" value ="3"/>
+         <Value name="checkStrong" source ="Game.java" package ="game" value ="3"/>
+         <Value name="endMove" source ="Game.java" package ="game" value ="3"/>
+         <Value name="testLoadFileLoadsBoardState" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="printBoard" source ="BoardState.java" package ="game" value ="2"/>
+         <Value name="loadGame" source ="GUI.java" package ="game" value ="2"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="2"/>
+         <Value name="testSaveFile" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="clone" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="getBoardArray" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="getTurnNumber" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="incrementTurn" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="setBoardArray" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="setBoardSpace" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="setTurnNumber" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseClicked" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseEntered" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseExited" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseReleased" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getActiveFrames" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getP1name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getP2name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="main" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setActiveFrames" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setP1name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setP2name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getColumn" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getPixelX" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getPixelY" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getRow" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="paintComponent" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setColumn" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setRow" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="1"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getP1Name" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getP2Name" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getPlayerTurn" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getTurnCounter" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getWinner" source ="Game.java" package ="game" value ="1"/>
+         <Value name="pieceCanPush" source ="Game.java" package ="game" value ="1"/>
+         <Value name="setPlayerTurn" source ="Game.java" package ="game" value ="1"/>
+         <Value name="setWinner" source ="Game.java" package ="game" value ="1"/>
+         <Value name="switchPiece" source ="Game.java" package ="game" value ="1"/>
+         <Value name="tryPull" source ="Game.java" package ="game" value ="1"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getImage" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getOwner" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getRank" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getType" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="isStrongerThan" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setImg" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setOwner" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setRank" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setType" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="main" source ="AllTests.java" package ="testing" value ="1"/>
+         <Value name="testInializesWithCorrectValuesUsingBoardState" source ="TestBoardState.java" package ="testing" value ="1"/>
+         <Value name="testInitializes" source ="TestBoardState.java" package ="testing" value ="1"/>
+         <Value name="testTurnNumberIncrements" source ="TestBoardState.java" package ="testing" value ="1"/>
+         <Value name="testBasicPullDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBasicPullLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBasicPullRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBasicPullUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBidirectionalPullDownLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBidirectionalPullLeftUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBidirectionalPullRightDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBidirectionalPullUpRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testCannotMoveDownIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testCannotMoveLeftIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testCannotMoveRightIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testCannotMoveUpIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testEmptyCreateConstructor" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetDirectionDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetDirectionLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetDirectionNonAdjacent" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetDirectionRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetDirectionUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetPieceExists" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetPieceExistsAgain" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetPieceNotExists" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetSpaceInvalidColumn1" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetSpaceInvalidColumn2" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetSpaceInvalidRow1" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetSpaceInvalidRow2" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testInitializes" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testInitializesWithBoardState" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileInvalidBoardCharacters1" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileInvalidBoardCharacters2" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileLoadsPlayer1Name" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileLoadsPlayer2Name" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileLoadsTurnCounter" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileReturnsFalseOnFailure1" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileReturnsFalseOnFailure2" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileReturnsFalseOnFailure3" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileReturnsFalseOnFailure4" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testMoveIllegalDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testMoveIllegalLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testMoveIllegalRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testMoveIllegalUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testMoveLegal" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testNullMove" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPlayer1Win" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPlayer2Win" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullDownIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullDownOffBoard" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullLeftIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullLeftOffBoard" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullNothingDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullNothingLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullNothingRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullNothingUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullOwnPieceDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullOwnPieceLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullOwnPieceRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullOwnPieceUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullPieceOfGreaterStrength" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullRightIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullRightOffBoard" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullUpIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullUpOffBoard" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullWithNullPiece" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushDownWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushInvalid" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushLeftWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushRightWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushUpWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushWithDifferentDirections" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testRemovePiece2" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testRemovePieceValid" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testThatPiecesMustBeStrongerToPushDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testThatPiecesMustBeStrongerToPushLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testThatPiecesMustBeStrongerToPushRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testThatPiecesMustBeStrongerToPushUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testComparatorChecksOwners" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsCamelStrongerThanCamel" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsCamelStrongerThanHorse" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsDogStrongerThanDog" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsElephantStrongerThanCamel" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsElephantStrongerThanElephant" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsHorseStrongerThanDog" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatImageCanBeGotten" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatImageCanBeSet" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatOwnerCanBeSetAndGotten" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatPieceInitializes" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatPieceInitializesWithValues" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatTypeCanBeGotten" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatTypeCanBeSet" source ="TestPiece.java" package ="testing" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "NBD" description ="Nested Block Depth" max ="5" hint ="use Extract-method to split the method up">
+      <Values per = "method" avg = "1.24" stddev = "0.707" max = "6" maxinrange="false">
+         <Value name="mousePressed" source ="GUI.java" package ="game" value ="6" inrange="false"/>
+         <Value name="checkWin" source ="Game.java" package ="game" value ="4"/>
+         <Value name="loadFile" source ="Game.java" package ="game" value ="4"/>
+         <Value name="push" source ="Game.java" package ="game" value ="4"/>
+         <Value name="saveFile" source ="Game.java" package ="game" value ="4"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="renderBoard" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="renderInitialBoard" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="endMove" source ="Game.java" package ="game" value ="3"/>
+         <Value name="equals" source ="Piece.java" package ="game" value ="3"/>
+         <Value name="testLoadFileLoadsBoardState" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="printBoard" source ="BoardState.java" package ="game" value ="2"/>
+         <Value name="checkForPull" source ="GUI.java" package ="game" value ="2"/>
+         <Value name="checkForPush" source ="GUI.java" package ="game" value ="2"/>
+         <Value name="loadGame" source ="GUI.java" package ="game" value ="2"/>
+         <Value name="checkDeaths" source ="Game.java" package ="game" value ="2"/>
+         <Value name="checkFriendlyAdjacent" source ="Game.java" package ="game" value ="2"/>
+         <Value name="checkStrongerAdjacent" source ="Game.java" package ="game" value ="2"/>
+         <Value name="getDirection" source ="Game.java" package ="game" value ="2"/>
+         <Value name="isValidSquareToPushFrom" source ="Game.java" package ="game" value ="2"/>
+         <Value name="isValidSquaretoPullFrom" source ="Game.java" package ="game" value ="2"/>
+         <Value name="move" source ="Game.java" package ="game" value ="2"/>
+         <Value name="pull" source ="Game.java" package ="game" value ="2"/>
+         <Value name="testSaveFile" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="clone" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="getBoardArray" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="getTurnNumber" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="incrementTurn" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="setBoardArray" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="setBoardSpace" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="setTurnNumber" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseClicked" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseEntered" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseExited" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="mouseReleased" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getActiveFrames" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getP1name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getP2name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="main" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setActiveFrames" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setP1name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setP2name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getColumn" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getPixelX" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getPixelY" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getRow" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="paintComponent" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setColumn" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setRow" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="1"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="1"/>
+         <Value name="checkStrong" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getP1Name" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getP2Name" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getPlayerTurn" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getSpace" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getTurnCounter" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getWinner" source ="Game.java" package ="game" value ="1"/>
+         <Value name="isValidMoveFromSquare" source ="Game.java" package ="game" value ="1"/>
+         <Value name="isValidMoveSquare" source ="Game.java" package ="game" value ="1"/>
+         <Value name="pieceCanPush" source ="Game.java" package ="game" value ="1"/>
+         <Value name="setPlayerTurn" source ="Game.java" package ="game" value ="1"/>
+         <Value name="setWinner" source ="Game.java" package ="game" value ="1"/>
+         <Value name="switchPiece" source ="Game.java" package ="game" value ="1"/>
+         <Value name="tryPull" source ="Game.java" package ="game" value ="1"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="createP1Piece" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="createP2Piece" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getImage" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getOwner" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getRank" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getType" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="isStrongerThan" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setImg" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setOwner" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setRank" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setType" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="main" source ="AllTests.java" package ="testing" value ="1"/>
+         <Value name="testInializesWithCorrectValuesUsingBoardState" source ="TestBoardState.java" package ="testing" value ="1"/>
+         <Value name="testInitializes" source ="TestBoardState.java" package ="testing" value ="1"/>
+         <Value name="testTurnNumberIncrements" source ="TestBoardState.java" package ="testing" value ="1"/>
+         <Value name="testBasicPullDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBasicPullLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBasicPullRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBasicPullUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBidirectionalPullDownLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBidirectionalPullLeftUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBidirectionalPullRightDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testBidirectionalPullUpRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testCannotMoveDownIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testCannotMoveLeftIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testCannotMoveRightIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testCannotMoveUpIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testEmptyCreateConstructor" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetDirectionDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetDirectionLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetDirectionNonAdjacent" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetDirectionRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetDirectionUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetPieceExists" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetPieceExistsAgain" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetPieceNotExists" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetSpaceInvalidColumn1" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetSpaceInvalidColumn2" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetSpaceInvalidRow1" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testGetSpaceInvalidRow2" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testInitializes" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testInitializesWithBoardState" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileInvalidBoardCharacters1" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileInvalidBoardCharacters2" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileLoadsPlayer1Name" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileLoadsPlayer2Name" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileLoadsTurnCounter" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileReturnsFalseOnFailure1" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileReturnsFalseOnFailure2" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileReturnsFalseOnFailure3" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testLoadFileReturnsFalseOnFailure4" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testMoveIllegalDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testMoveIllegalLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testMoveIllegalRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testMoveIllegalUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testMoveLegal" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testNullMove" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPlayer1Win" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPlayer2Win" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullDownIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullDownOffBoard" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullLeftIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullLeftOffBoard" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullNothingDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullNothingLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullNothingRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullNothingUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullOwnPieceDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullOwnPieceLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullOwnPieceRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullOwnPieceUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullPieceOfGreaterStrength" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullRightIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullRightOffBoard" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullUpIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullUpOffBoard" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPullWithNullPiece" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushDownWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushInvalid" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushLeftWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushRightWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushUpWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testPushWithDifferentDirections" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testRemovePiece2" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testRemovePieceValid" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testThatPiecesMustBeStrongerToPushDown" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testThatPiecesMustBeStrongerToPushLeft" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testThatPiecesMustBeStrongerToPushRight" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testThatPiecesMustBeStrongerToPushUp" source ="TestGame.java" package ="testing" value ="1"/>
+         <Value name="testComparatorChecksOwners" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsCamelStrongerThanCamel" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsCamelStrongerThanHorse" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsDogStrongerThanDog" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsElephantStrongerThanCamel" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsElephantStrongerThanElephant" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testIsHorseStrongerThanDog" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatImageCanBeGotten" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatImageCanBeSet" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatOwnerCanBeSetAndGotten" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatPieceInitializes" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatPieceInitializesWithValues" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatTypeCanBeGotten" source ="TestPiece.java" package ="testing" value ="1"/>
+         <Value name="testThatTypeCanBeSet" source ="TestPiece.java" package ="testing" value ="1"/>
+      </Values>
+   </Metric>
+   <Metric id = "LCOM" description ="Lack of Cohesion of Methods">
+      <Values per = "type" avg = "0.323" stddev = "0.374" max = "0.925">
+         <Value name="Game" source ="Game.java" package ="game" value ="0.925"/>
+         <Value name="TestGame" source ="TestGame.java" package ="testing" value ="0.875"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="0.844"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="0.762"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="0.675"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="0.438"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="0.333"/>
+         <Value name="SaveGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="cancelListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="loadGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="newGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="startGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="AllTests" source ="AllTests.java" package ="testing" value ="0"/>
+         <Value name="TestBoardState" source ="TestBoardState.java" package ="testing" value ="0"/>
+         <Value name="TestPiece" source ="TestPiece.java" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "MLOC" description ="Method Lines of Code">
+      <Values per = "method" total = "1502" avg = "8.208" stddev = "18.101" max = "145">
+         <Value name="renderInitialBoard" source ="GUI.java" package ="game" value ="145"/>
+         <Value name="mousePressed" source ="GUI.java" package ="game" value ="130"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="89"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="68"/>
+         <Value name="loadGame" source ="GUI.java" package ="game" value ="67"/>
+         <Value name="loadFile" source ="Game.java" package ="game" value ="56"/>
+         <Value name="push" source ="Game.java" package ="game" value ="48"/>
+         <Value name="move" source ="Game.java" package ="game" value ="36"/>
+         <Value name="pull" source ="Game.java" package ="game" value ="35"/>
+         <Value name="createP1Piece" source ="Piece.java" package ="game" value ="34"/>
+         <Value name="createP2Piece" source ="Piece.java" package ="game" value ="34"/>
+         <Value name="main" source ="GUI.java" package ="game" value ="27"/>
+         <Value name="checkFriendlyAdjacent" source ="Game.java" package ="game" value ="23"/>
+         <Value name="saveFile" source ="Game.java" package ="game" value ="22"/>
+         <Value name="checkStrongerAdjacent" source ="Game.java" package ="game" value ="20"/>
+         <Value name="checkWin" source ="Game.java" package ="game" value ="18"/>
+         <Value name="testLoadFileLoadsBoardState" source ="TestGame.java" package ="testing" value ="18"/>
+         <Value name="checkForPull" source ="GUI.java" package ="game" value ="17"/>
+         <Value name="checkForPush" source ="GUI.java" package ="game" value ="17"/>
+         <Value name="endMove" source ="Game.java" package ="game" value ="16"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="15"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="14"/>
+         <Value name="getDirection" source ="Game.java" package ="game" value ="13"/>
+         <Value name="isValidSquaretoPullFrom" source ="Game.java" package ="game" value ="12"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="11"/>
+         <Value name="testInializesWithCorrectValuesUsingBoardState" source ="TestBoardState.java" package ="testing" value ="11"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="9"/>
+         <Value name="isValidMoveFromSquare" source ="Game.java" package ="game" value ="9"/>
+         <Value name="isValidSquareToPushFrom" source ="Game.java" package ="game" value ="9"/>
+         <Value name="testPushLeft" source ="TestGame.java" package ="testing" value ="9"/>
+         <Value name="testSaveFile" source ="TestGame.java" package ="testing" value ="9"/>
+         <Value name="testThatPiecesMustBeStrongerToPushDown" source ="TestGame.java" package ="testing" value ="9"/>
+         <Value name="testThatPiecesMustBeStrongerToPushLeft" source ="TestGame.java" package ="testing" value ="9"/>
+         <Value name="renderBoard" source ="GUI.java" package ="game" value ="8"/>
+         <Value name="checkDeaths" source ="Game.java" package ="game" value ="8"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="7"/>
+         <Value name="equals" source ="Piece.java" package ="game" value ="7"/>
+         <Value name="testMoveLegal" source ="TestGame.java" package ="testing" value ="7"/>
+         <Value name="testBasicPullDown" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testBasicPullLeft" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testBasicPullRight" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testBasicPullUp" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testBidirectionalPullDownLeft" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testBidirectionalPullLeftUp" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testBidirectionalPullRightDown" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testBidirectionalPullUpRight" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testCannotMoveDownIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testCannotMoveLeftIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testCannotMoveRightIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testCannotMoveUpIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testPushDownWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testPushLeftWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testPushRightWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testPushUp" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testPushUpWithSamePlayersPieces" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testPushWithDifferentDirections" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testThatPiecesMustBeStrongerToPushRight" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="testThatPiecesMustBeStrongerToPushUp" source ="TestGame.java" package ="testing" value ="6"/>
+         <Value name="getSpace" source ="Game.java" package ="game" value ="5"/>
+         <Value name="switchPiece" source ="Game.java" package ="game" value ="5"/>
+         <Value name="testTurnNumberIncrements" source ="TestBoardState.java" package ="testing" value ="5"/>
+         <Value name="testGetPieceExistsAgain" source ="TestGame.java" package ="testing" value ="5"/>
+         <Value name="testInitializesWithBoardState" source ="TestGame.java" package ="testing" value ="5"/>
+         <Value name="testLoadFileLoadsPlayer1Name" source ="TestGame.java" package ="testing" value ="5"/>
+         <Value name="testLoadFileLoadsPlayer2Name" source ="TestGame.java" package ="testing" value ="5"/>
+         <Value name="testLoadFileLoadsTurnCounter" source ="TestGame.java" package ="testing" value ="5"/>
+         <Value name="testPushDown" source ="TestGame.java" package ="testing" value ="5"/>
+         <Value name="testPushRight" source ="TestGame.java" package ="testing" value ="5"/>
+         <Value name="testRemovePiece2" source ="TestGame.java" package ="testing" value ="5"/>
+         <Value name="testRemovePieceValid" source ="TestGame.java" package ="testing" value ="5"/>
+         <Value name="testIsHorseStrongerThanDog" source ="TestPiece.java" package ="testing" value ="5"/>
+         <Value name="testThatImageCanBeSet" source ="TestPiece.java" package ="testing" value ="5"/>
+         <Value name="testThatPieceInitializesWithValues" source ="TestPiece.java" package ="testing" value ="5"/>
+         <Value name="printBoard" source ="BoardState.java" package ="game" value ="4"/>
+         <Value name="isValidMoveSquare" source ="Game.java" package ="game" value ="4"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="4"/>
+         <Value name="testLoadFileInvalidBoardCharacters1" source ="TestGame.java" package ="testing" value ="4"/>
+         <Value name="testLoadFileInvalidBoardCharacters2" source ="TestGame.java" package ="testing" value ="4"/>
+         <Value name="testPlayer2Win" source ="TestGame.java" package ="testing" value ="4"/>
+         <Value name="testPushInvalid" source ="TestGame.java" package ="testing" value ="4"/>
+         <Value name="testThatOwnerCanBeSetAndGotten" source ="TestPiece.java" package ="testing" value ="4"/>
+         <Value name="testThatTypeCanBeSet" source ="TestPiece.java" package ="testing" value ="4"/>
+         <Value name="actionPerformed" source ="GUI.java" package ="game" value ="3"/>
+         <Value name="checkStrong" source ="Game.java" package ="game" value ="3"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="3"/>
+         <Value name="testEmptyCreateConstructor" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testGetPieceExists" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testLoadFileReturnsFalseOnFailure1" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testLoadFileReturnsFalseOnFailure2" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testLoadFileReturnsFalseOnFailure3" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testLoadFileReturnsFalseOnFailure4" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testPlayer1Win" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testPullOwnPieceDown" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testPullOwnPieceLeft" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testPullOwnPieceRight" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testPullOwnPieceUp" source ="TestGame.java" package ="testing" value ="3"/>
+         <Value name="testIsCamelStrongerThanCamel" source ="TestPiece.java" package ="testing" value ="3"/>
+         <Value name="testIsCamelStrongerThanHorse" source ="TestPiece.java" package ="testing" value ="3"/>
+         <Value name="testIsDogStrongerThanDog" source ="TestPiece.java" package ="testing" value ="3"/>
+         <Value name="testIsElephantStrongerThanCamel" source ="TestPiece.java" package ="testing" value ="3"/>
+         <Value name="testIsElephantStrongerThanElephant" source ="TestPiece.java" package ="testing" value ="3"/>
+         <Value name="testThatImageCanBeGotten" source ="TestPiece.java" package ="testing" value ="3"/>
+         <Value name="testThatTypeCanBeGotten" source ="TestPiece.java" package ="testing" value ="3"/>
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="2"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="2"/>
+         <Value name="pieceCanPush" source ="Game.java" package ="game" value ="2"/>
+         <Value name="testInitializes" source ="TestBoardState.java" package ="testing" value ="2"/>
+         <Value name="testGetDirectionDown" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testGetDirectionLeft" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testGetDirectionNonAdjacent" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testGetDirectionRight" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testGetDirectionUp" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testGetPieceNotExists" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testGetSpaceInvalidColumn1" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testGetSpaceInvalidColumn2" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testGetSpaceInvalidRow1" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testGetSpaceInvalidRow2" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testInitializes" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testMoveIllegalDown" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testMoveIllegalLeft" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testMoveIllegalRight" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testMoveIllegalUp" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testNullMove" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullDownIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullDownOffBoard" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullLeftIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullLeftOffBoard" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullNothingDown" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullNothingLeft" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullNothingRight" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullNothingUp" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullPieceOfGreaterStrength" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullRightIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullRightOffBoard" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullUpIntoOccupiedSpace" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullUpOffBoard" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testPullWithNullPiece" source ="TestGame.java" package ="testing" value ="2"/>
+         <Value name="testComparatorChecksOwners" source ="TestPiece.java" package ="testing" value ="2"/>
+         <Value name="testThatPieceInitializes" source ="TestPiece.java" package ="testing" value ="2"/>
+         <Value name="clone" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="getBoardArray" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="getTurnNumber" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="incrementTurn" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="setBoardArray" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="setBoardSpace" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="setTurnNumber" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="getActiveFrames" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getP1name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getP2name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setActiveFrames" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setP1name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setP2name" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getColumn" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getPixelX" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getPixelY" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="getRow" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="paintComponent" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setColumn" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="setRow" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getP1Name" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getP2Name" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getPlayerTurn" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getTurnCounter" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getWinner" source ="Game.java" package ="game" value ="1"/>
+         <Value name="setPlayerTurn" source ="Game.java" package ="game" value ="1"/>
+         <Value name="setWinner" source ="Game.java" package ="game" value ="1"/>
+         <Value name="tryPull" source ="Game.java" package ="game" value ="1"/>
+         <Value name="getImage" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getOwner" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getRank" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="getType" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="isStrongerThan" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setImg" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setOwner" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setRank" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="setType" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="main" source ="AllTests.java" package ="testing" value ="1"/>
+         <Value name="mouseClicked" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="mouseEntered" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="mouseExited" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="mouseReleased" source ="GUI.java" package ="game" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NORM" description ="Number of Overridden Methods">
+      <Values per = "type" total = "3" avg = "0.2" stddev = "0.4" max = "1">
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="1"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="1"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="1"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="SaveGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="cancelListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="loadGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="newGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="startGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="0"/>
+         <Value name="AllTests" source ="AllTests.java" package ="testing" value ="0"/>
+         <Value name="TestBoardState" source ="TestBoardState.java" package ="testing" value ="0"/>
+         <Value name="TestGame" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="TestPiece" source ="TestPiece.java" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "CA" description ="Afferent Coupling">
+      <Values per = "packageFragment" avg = "1.5" stddev = "1.5" max = "3">
+         <Value name="game" package ="game" value ="3"/>
+         <Value name="testing" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   <Metric id = "NSC" description ="Number of Children">
+      <Values per = "type" total = "0" avg = "0" stddev = "0" max = "0">
+         <Value name="BoardState" source ="BoardState.java" package ="game" value ="0"/>
+         <Value name="GUI" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="MovementListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="SaveGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="cancelListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="loadGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="newGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="startGameListener" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="ImagePanel" source ="GUI.java" package ="game" value ="0"/>
+         <Value name="Game" source ="Game.java" package ="game" value ="0"/>
+         <Value name="Piece" source ="Piece.java" package ="game" value ="0"/>
+         <Value name="AllTests" source ="AllTests.java" package ="testing" value ="0"/>
+         <Value name="TestBoardState" source ="TestBoardState.java" package ="testing" value ="0"/>
+         <Value name="TestGame" source ="TestGame.java" package ="testing" value ="0"/>
+         <Value name="TestPiece" source ="TestPiece.java" package ="testing" value ="0"/>
+      </Values>
+   </Metric>
+   </Metrics>
