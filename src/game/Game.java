@@ -178,6 +178,7 @@ public class Game {
 		// noone has won
 		if (winner != 0)
 			System.out.println("Winner: " + winner);
+		
 	}
 
 	/**
@@ -373,7 +374,6 @@ public class Game {
 		int direction2 = getDirection(row2, column2, row1, column1);
 
 		// Check that getDirection didn't fail
-		// if(direction2 == -1) return false;
 		isPushPull = true;
 		// Attempt to perform move operations on both pieces
 		switch (direction1) {
@@ -419,13 +419,11 @@ public class Game {
 			return false; // can't push/pull with only one move
 		// Check that both pieces exist
 		if (getSpace(row1, column1) == null || getSpace(row2, column2) == null) {
-			// System.out.println("Null piece");
 			return false;
 		}
 
 		// Check that pulling piece is strong than other piece
 		if (!getSpace(row1, column1).isStrongerThan(getSpace(row2, column2))) {
-			// System.out.println("Weak piece");
 			return false;
 		}
 

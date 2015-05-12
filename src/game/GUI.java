@@ -122,6 +122,7 @@ public class GUI {
 	}
 
 	private void renderInitialBoard() {
+		if(game.getWinner() != 0) createWinWindow();
 		char[][] boardArray = this.game.currentBoard.getBoardArray();
 		for (int row = 0; row < 8; row++) {
 			for (int column = 0; column < 8; column++) {
@@ -428,8 +429,6 @@ public class GUI {
 			int result = fileChooser.showOpenDialog(activeFrames.get(0));
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File selectedFile = fileChooser.getSelectedFile();
-				System.out.println("Selected file: "
-						+ selectedFile.getAbsolutePath());
 				try {
 					loadGame(selectedFile);
 				} catch (FileNotFoundException e1) {
@@ -901,6 +900,37 @@ public class GUI {
 			}
 			return false;
 		}
+	}
+
+	public void createWinWindow() {
+		String playerName = "";
+		if(this.game.getWinner() == 1) playerName = this.p1Name;
+		else playerName = this.p2Name;
+		
+		JFrame f1 = new JFrame();
+		f1.setTitle("Winner!");
+		f1.setSize(300, 300);
+		f1.setLocation(200, 200);
+		f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f1.setVisible(true);
+		
+		
+		ImagePanel panel = new ImagePanel(new ImageIcon(
+						"resources/BoardStoneBig.jpg").getImage());
+//		JPanel panel = new JPanel();
+		panel.setVisible(true);
+		f1.add(panel);
+		
+		JLabel winnerLabel = new JLabel();
+		winnerLabel.setText("<html><b>" + playerName +  " Wins!</b></html>");
+		panel.add(winnerLabel);
+		winnerLabel.setLocation(150, 200);
+		winnerLabel.setVisible(true);
+		
+		JButton closeButton = new JButton();
+		closeButton.setText("OK");
+		panel.add(closeButton);
+		closeButton.setVisible(true);
 	}
 }
 
