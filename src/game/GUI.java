@@ -914,23 +914,22 @@ public class GUI {
 		f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f1.setVisible(true);
 		
-		
 		ImagePanel panel = new ImagePanel(new ImageIcon(
 						"resources/BoardStoneBig.jpg").getImage());
-//		JPanel panel = new JPanel();
 		panel.setVisible(true);
 		f1.add(panel);
 		
-		JLabel winnerLabel = new JLabel();
-		winnerLabel.setText("<html><b>" + playerName +  " Wins!</b></html>");
-		panel.add(winnerLabel);
-		winnerLabel.setLocation(150, 200);
-		winnerLabel.setVisible(true);
 		
-		JButton closeButton = new JButton();
-		closeButton.setText("OK");
-		panel.add(closeButton);
-		closeButton.setVisible(true);
+		// Set Up winner name Label
+		JLabel winnerLabel = new JLabel();
+		winnerLabel.setText("<html> <b>" + playerName + " Wins!" +  "</b></html>");
+		winnerLabel.setForeground(Color.WHITE);
+		Font winnerFont = winnerLabel.getFont();
+		winnerLabel.setFont(new Font(winnerFont.getName(), 4, 24));
+		winnerLabel.setSize(150, 150);
+		panel.add(winnerLabel);
+		winnerLabel.setLocation(f1.getWidth()/2 - 40, f1.getHeight()/3 - 40);
+		winnerLabel.setVisible(true);
 	}
 }
 
