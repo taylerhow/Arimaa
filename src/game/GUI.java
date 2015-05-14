@@ -431,6 +431,8 @@ public class GUI {
 				File selectedFile = fileChooser.getSelectedFile();
 				try {
 					loadGame(selectedFile);
+					p1Name = game.getP1Name();
+					p2Name = game.getP2Name();
 				} catch (FileNotFoundException e1) {
 					System.out.println("Load game failed!");
 				}
@@ -904,8 +906,8 @@ public class GUI {
 
 	public void createWinWindow() {
 		String playerName = "";
-		if(this.game.getWinner() == 1) playerName = game.getP1Name();
-		else if(this.game.getWinner()==2) playerName = game.getP2Name();
+		if(this.game.getWinner() == 1) playerName = this.p1Name;
+		else if(this.game.getWinner()==2) playerName = this.p2Name;
 		
 		JFrame f1 = new JFrame();
 		f1.setTitle("Winner!");
