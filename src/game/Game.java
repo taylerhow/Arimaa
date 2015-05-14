@@ -2,7 +2,6 @@ package game;
 
 import game.Piece.Owner;
 import game.Piece.PieceType;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -303,7 +302,6 @@ public class Game {
 					isPushPull = false;
 					// should always be true
 					return move(row, column, dir1);
-
 				}
 			}
 			break;
@@ -523,8 +521,10 @@ public class Game {
 		this.turnCounter = turnCounter;
 		this.p1Name = p1name;
 		this.p2Name = p2name;
-		if(this.turnCounter % 2 == 0) this.playerTurn =2;
-		else this.playerTurn=1;
+		
+		//TODO: Fix this. I'm struggling how TurnCounter works
+//		if(this.turnCounter % 2 == 0) this.playerTurn =2;
+//		else this.playerTurn=1;
 		return true;
 	}
 

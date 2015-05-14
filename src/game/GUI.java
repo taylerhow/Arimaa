@@ -937,12 +937,11 @@ public class GUI {
 
 class ImagePanel extends JPanel {
 
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L; // No idea what this
-														// does...but it makes
-														// eclipse happy
+	private static final long serialVersionUID = -7315460075240330922L;
 	private Image img;
 	private int row;
 	private int column;
