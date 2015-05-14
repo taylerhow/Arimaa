@@ -151,6 +151,7 @@ public class Game {
 			}
 			System.out.println(" to " + getPlayerTurn());
 			numMoves = 4;
+			turnCounter++;
 		}
 	}
 
@@ -522,7 +523,6 @@ public class Game {
 		this.p1Name = p1name;
 		this.p2Name = p2name;
 		
-		//TODO: Fix this. I'm struggling how TurnCounter works
 		if(this.turnCounter % 2 == 1) {
 			this.playerTurn = 2;
 			System.out.println("It's player 2's turn");
