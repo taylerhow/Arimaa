@@ -529,6 +529,7 @@ public class Game {
 		// Successful load! Push all changes to game permanently
 		this.currentBoard = boardToSet;
 		this.turnCounter = turnCounter;
+		this.moveTimer = turnTimer;
 		this.p1Name = p1name;
 		this.p2Name = p2name;
 		
@@ -560,6 +561,7 @@ public class Game {
 
 		try {
 			fw.write(s2);
+			fw.write(this.moveTimer + ",");
 			fw.write(this.p1Name + ",");
 			fw.write(this.p2Name);
 			fw.close();
