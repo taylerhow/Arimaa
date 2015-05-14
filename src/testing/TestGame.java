@@ -632,6 +632,16 @@ public class TestGame {
 		assertEquals(turnCounter, g.getTurnCounter());
 		scanner.close();
 	}
+	
+	@Test
+	public void testLoadFileLoadsTurnTimer() throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
+		int turnTimer = 120;
+		Game g = new Game();
+		assertTrue(g.loadFile(scanner));
+		assertEquals(turnTimer, g.getTurnTimer());
+		scanner.close();
+	}
 
 	@Test
 	public void testLoadFileLoadsPlayer1Name() throws FileNotFoundException {

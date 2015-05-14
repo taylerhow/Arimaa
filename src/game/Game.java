@@ -505,16 +505,25 @@ public class Game {
 			return false;
 		}
 		int turnCounter = scanner.nextInt();
+		
+		if (!scanner.hasNext()) {
+			scanner.close();
+			return false;
+		}
+		int turnTimer = scanner.nextInt();
+		
 		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
 		String p1name = scanner.next();
+		
 		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
 		String p2name = scanner.next();
+		
 		scanner.close();
 
 		// Successful load! Push all changes to game permanently
@@ -576,6 +585,14 @@ public class Game {
 
 	public void setWinner(int winner) {
 		this.winner = winner;
+	}
+	
+	public int getNumMoves() {
+		return numMoves;
+	}
+	
+	public int getTurnTimer() {
+		return moveTimer;
 	}
 
 	/**

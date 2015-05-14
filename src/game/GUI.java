@@ -32,6 +32,7 @@ public class GUI {
 	private String p2Name;
 	private JTextField p1TextField;
 	private JTextField p2TextField;
+	private JComboBox<Integer> timerComboBox;
 	private ArrayList<JFrame> activeFrames;
 	private Game game;
 	private ImagePanel gameBoardPanel = null;
@@ -39,7 +40,12 @@ public class GUI {
 
 	// private int numMoves;
 	// private int playerTurn;
-
+	
+	private JLabel moveCountLabel;
+	private JLabel turnCountLabel;
+	private JLabel turnIndicatorLabel;
+	private JLabel timerLabel;
+	
 	public GUI() {
 		this.p1Name = "Player 1";
 		this.p2Name = "Player 2";
@@ -278,6 +284,13 @@ public class GUI {
 				this.boardPieces[i][k] = null;
 			}
 		}
+		moveCountLabel.setText("<html> <b>" + "Moves Left: \n" + game.getNumMoves() + "</b></html>");
+		turnCountLabel.setText("<html> <b>" + "Turn: " + game.getTurnCounter() + "</b></html>");
+		if(game.getPlayerTurn()==1){
+			turnIndicatorLabel.setText("<html> <b>" + game.getP1Name() + "'s turn" + "</b></html>");
+		} else {
+			turnIndicatorLabel.setText("<html> <b>" + game.getP2Name() + "'s turn" + "</b></html>");
+		}
 		renderInitialBoard();
 	}
 
@@ -361,11 +374,12 @@ public class GUI {
 					panel.getHeight() / 2);
 			turnTimerLabel.setVisible(true);
 
-			String[] turnTimerPresets = { "0:30", "0:45", "1:00", "1:15",
-					"1:30", "1:45", "2:00", "M:SS" };
-			JComboBox<String> turnTimerComboBox = new JComboBox<String>(
+			Integer[] turnTimerPresets = { 30, 45, 60, 75,
+					90, 105, 120, 135, 150, 165, 180 };
+			JComboBox<Integer> turnTimerComboBox = new JComboBox<Integer>(
 					turnTimerPresets);
-			turnTimerComboBox.setEditable(true);
+			timerComboBox = turnTimerComboBox;
+			turnTimerComboBox.setEditable(false);
 			turnTimerComboBox.setSize(110, 25);
 			panel.add(turnTimerComboBox);
 			turnTimerComboBox.setLocation(panel.getWidth() / 2,
@@ -471,7 +485,7 @@ public class GUI {
 				p1Label.setFont(new Font(p1Font.getName(), 4, 22));
 				p1Label.setSize(110, 25);
 				gameBoardPanel.add(p1Label);
-				p1Label.setLocation(675, 20);
+				p1Label.setLocation(675, 25);
 				p1Label.setVisible(true);
 
 				// Set Up Player1 name Label
@@ -482,7 +496,7 @@ public class GUI {
 				p1NameLabel.setFont(new Font(p1NameFont.getName(), 4, 18));
 				p1NameLabel.setSize(110, 100);
 				gameBoardPanel.add(p1NameLabel);
-				p1NameLabel.setLocation(675, 20);
+				p1NameLabel.setLocation(675, 25);
 				p1NameLabel.setVisible(true);
 
 				// Set Up Player2 Label
@@ -506,13 +520,65 @@ public class GUI {
 				gameBoardPanel.add(p2NameLabel);
 				p2NameLabel.setLocation(675, 550);
 				p2NameLabel.setVisible(true);
+				
+				//Set up Turn Counter label
+				JLabel turnCounterLabel = new JLabel();
+				turnCountLabel = turnCounterLabel;
+				turnCounterLabel.setText("<html> <b>" + "Turn: " + game.getTurnCounter() + "</b></html>");
+				turnCounterLabel.setForeground(Color.BLACK);
+				Font turnCounterFont = turnCounterLabel.getFont();
+				turnCounterLabel.setFont(new Font(turnCounterFont.getName(), 4, 18));
+				turnCounterLabel.setSize(110, 25);
+				gameBoardPanel.add(turnCounterLabel);
+				turnCounterLabel.setLocation(675, 130);
+				turnCounterLabel.setVisible(true);
+				
+				//Set up Player Turn label
+				JLabel playerTurnLabel = new JLabel();
+				turnIndicatorLabel = playerTurnLabel;
+				if(game.getPlayerTurn()==1){
+					playerTurnLabel.setText("<html> <b>" + game.getP1Name() + "'s turn" + "</b></html>");
+				} else {
+					playerTurnLabel.setText("<html> <b>" + game.getP2Name() + "'s turn" + "</b></html>");
+				}
+				playerTurnLabel.setForeground(Color.BLACK);
+				Font playerTurnFont = playerTurnLabel.getFont();
+				playerTurnLabel.setFont(new Font(playerTurnFont.getName(), 4, 18));
+				playerTurnLabel.setSize(110, 25);
+				gameBoardPanel.add(playerTurnLabel);
+				playerTurnLabel.setLocation(675, 200);
+				playerTurnLabel.setVisible(true);
+				
+				//Set up move counter label
+				JLabel moveCounterLabel = new JLabel();
+				moveCountLabel = moveCounterLabel;
+				moveCounterLabel.setText("<html> <b>" + "Moves Left: \n" + game.getNumMoves() + "</b></html>");
+				moveCounterLabel.setForeground(Color.BLACK);
+				Font moveCounterFont = moveCounterLabel.getFont();
+				moveCounterLabel.setFont(new Font(moveCounterFont.getName(), 4, 18));
+				moveCounterLabel.setSize(110, 50);
+				gameBoardPanel.add(moveCounterLabel);
+				moveCounterLabel.setLocation(675, 370);
+				moveCounterLabel.setVisible(true);
+				
+				//Set up turn timer label
+				JLabel turnTimerLabel = new JLabel();
+				timerLabel = turnTimerLabel;
+				turnTimerLabel.setText("<html> <b>" + "Turn Time: \n" + (game.getTurnTimer()/60) + ":" + (game.getTurnTimer()%60) + "</b></html>");
+				turnTimerLabel.setForeground(Color.BLACK);
+				Font turnTimerFont = turnTimerLabel.getFont();
+				turnTimerLabel.setFont(new Font(turnTimerFont.getName(), 4, 18));
+				turnTimerLabel.setSize(110, 50);
+				gameBoardPanel.add(turnTimerLabel);
+				turnTimerLabel.setLocation(675, 450);
+				turnTimerLabel.setVisible(true);
 
 				// Set up Save Game Button
 				JButton saveGameButton = new JButton();
 				saveGameButton.setSize(100, 75);
 				saveGameButton.setText("Save");
-				saveGameButton.setLocation(675,
-						gameFrame.getHeight() / 2 - 100 / 2);
+				saveGameButton
+						.setLocation(675, gameFrame.getHeight() / 2 - 75);
 				gameBoardPanel.add(saveGameButton);
 				saveGameButton.addActionListener(new SaveGameListener());
 				saveGameButton.setVisible(true);
@@ -540,6 +606,7 @@ public class GUI {
 		public void actionPerformed(ActionEvent e) {
 			game.p1Name = p1TextField.getText();
 			game.p2Name = p2TextField.getText();
+			game.moveTimer = (int) timerComboBox.getSelectedItem();
 
 			if (game.p1Name.equals(""))
 				game.p1Name = "Player 1";
@@ -579,7 +646,7 @@ public class GUI {
 			p1Label.setFont(new Font(p1Font.getName(), 4, 22));
 			p1Label.setSize(110, 25);
 			gameBoardPanel.add(p1Label);
-			p1Label.setLocation(675, 20);
+			p1Label.setLocation(675, 25);
 			p1Label.setVisible(true);
 
 			// Set Up Player1 name Label
@@ -590,7 +657,7 @@ public class GUI {
 			p1NameLabel.setFont(new Font(p1NameFont.getName(), 4, 18));
 			p1NameLabel.setSize(110, 100);
 			gameBoardPanel.add(p1NameLabel);
-			p1NameLabel.setLocation(675, 20);
+			p1NameLabel.setLocation(675, 25);
 			p1NameLabel.setVisible(true);
 
 			// Set Up Player2 Label
@@ -614,13 +681,65 @@ public class GUI {
 			gameBoardPanel.add(p2NameLabel);
 			p2NameLabel.setLocation(675, 550);
 			p2NameLabel.setVisible(true);
+			
+			//Set up Turn Counter label
+			JLabel turnCounterLabel = new JLabel();
+			turnCountLabel = turnCounterLabel;
+			turnCounterLabel.setText("<html> <b>" + "Turn: " + game.getTurnCounter() + "</b></html>");
+			turnCounterLabel.setForeground(Color.BLACK);
+			Font turnCounterFont = turnCounterLabel.getFont();
+			turnCounterLabel.setFont(new Font(turnCounterFont.getName(), 4, 18));
+			turnCounterLabel.setSize(110, 25);
+			gameBoardPanel.add(turnCounterLabel);
+			turnCounterLabel.setLocation(675, 130);
+			turnCounterLabel.setVisible(true);
+			
+			//Set up Player Turn label
+			JLabel playerTurnLabel = new JLabel();
+			turnIndicatorLabel = playerTurnLabel;
+			if(game.getPlayerTurn()==1){
+				playerTurnLabel.setText("<html> <b>" + game.getP1Name() + "'s turn" + "</b></html>");
+			} else {
+				playerTurnLabel.setText("<html> <b>" + game.getP2Name() + "'s turn" + "</b></html>");
+			}
+			playerTurnLabel.setForeground(Color.BLACK);
+			Font playerTurnFont = playerTurnLabel.getFont();
+			playerTurnLabel.setFont(new Font(playerTurnFont.getName(), 4, 18));
+			playerTurnLabel.setSize(110, 25);
+			gameBoardPanel.add(playerTurnLabel);
+			playerTurnLabel.setLocation(675, 200);
+			playerTurnLabel.setVisible(true);
+			
+			//Set up move counter label
+			JLabel moveCounterLabel = new JLabel();
+			moveCountLabel = moveCounterLabel;
+			moveCounterLabel.setText("<html> <b>" + "Moves Left: \n" + game.getNumMoves() + "</b></html>");
+			moveCounterLabel.setForeground(Color.BLACK);
+			Font moveCounterFont = moveCounterLabel.getFont();
+			moveCounterLabel.setFont(new Font(moveCounterFont.getName(), 4, 18));
+			moveCounterLabel.setSize(110, 50);
+			gameBoardPanel.add(moveCounterLabel);
+			moveCounterLabel.setLocation(675, 370);
+			moveCounterLabel.setVisible(true);
+			
+			//Set up turn timer label
+			JLabel turnTimerLabel = new JLabel();
+			timerLabel = turnTimerLabel;
+			turnTimerLabel.setText("<html> <b>" + "Turn Time: \n" + (game.getTurnTimer()/60) + ":" + (game.getTurnTimer()%60) + "</b></html>");
+			turnTimerLabel.setForeground(Color.BLACK);
+			Font turnTimerFont = turnTimerLabel.getFont();
+			turnTimerLabel.setFont(new Font(turnTimerFont.getName(), 4, 18));
+			turnTimerLabel.setSize(110, 50);
+			gameBoardPanel.add(turnTimerLabel);
+			turnTimerLabel.setLocation(675, 450);
+			turnTimerLabel.setVisible(true);
 
 			// Set up Save Game Button
 			JButton saveGameButton = new JButton();
 			saveGameButton.setSize(100, 75);
 			saveGameButton.setText("Save");
 			saveGameButton
-					.setLocation(675, gameFrame.getHeight() / 2 - 100 / 2);
+					.setLocation(675, gameFrame.getHeight() / 2 - 75);
 			gameBoardPanel.add(saveGameButton);
 			saveGameButton.addActionListener(new SaveGameListener());
 			saveGameButton.setVisible(true);
