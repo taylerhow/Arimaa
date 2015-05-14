@@ -175,11 +175,11 @@ public class Game {
 				}
 			}
 		}
-		//Removed this now that we have a pop up box - Jesse
-		
+		// Removed this now that we have a pop up box - Jesse
+
 		// noone has won
-//		if (winner != 0)
-//			System.out.println("Winner: " + winner);	
+		// if (winner != 0)
+		// System.out.println("Winner: " + winner);
 	}
 
 	/**
@@ -287,7 +287,8 @@ public class Game {
 			if (row - 1 >= 0) {
 				Piece pushingPiece = getSpace(row, column);
 				Piece pushedPiece = getSpace(row - 1, column);
-				if (pieceCanPush(pushingPiece, pushedPiece)&& move(row - 1, column, dir2)) {
+				if (pieceCanPush(pushingPiece, pushedPiece)
+						&& move(row - 1, column, dir2)) {
 					isPushPull = false;
 					// should always be true
 					return move(row, column, dir1);
@@ -299,7 +300,8 @@ public class Game {
 			if (column + 1 <= 7) {
 				Piece pushingPiece2 = getSpace(row, column);
 				Piece pushedPiece2 = getSpace(row, column + 1);
-				if (pieceCanPush(pushingPiece2, pushedPiece2)&& move(row, column + 1, dir2)) {
+				if (pieceCanPush(pushingPiece2, pushedPiece2)
+						&& move(row, column + 1, dir2)) {
 					isPushPull = false;
 					// should always be true
 					return move(row, column, dir1);
@@ -311,7 +313,8 @@ public class Game {
 				Piece pushingPiece3 = getSpace(row, column);
 				Piece pushedPiece3 = getSpace(row + 1, column);
 				if (pushingPiece3.isStrongerThan(pushedPiece3)) {
-					if (pieceCanPush(pushingPiece3, pushedPiece3)&& move(row + 1, column, dir2)) {
+					if (pieceCanPush(pushingPiece3, pushedPiece3)
+							&& move(row + 1, column, dir2)) {
 						isPushPull = false;
 						// should always be true
 						return move(row, column, dir1);
@@ -324,7 +327,8 @@ public class Game {
 			if (column - 1 >= 0) {
 				Piece pushingPiece4 = getSpace(row, column);
 				Piece pushedPiece4 = getSpace(row, column - 1);
-				if (pieceCanPush(pushingPiece4, pushedPiece4)&& move(row, column - 1, dir2)) {
+				if (pieceCanPush(pushingPiece4, pushedPiece4)
+						&& move(row, column - 1, dir2)) {
 					isPushPull = false;
 					// should always be true
 					return move(row, column, dir1);
@@ -368,7 +372,7 @@ public class Game {
 	 */
 	public boolean pull(int row1, int column1, int row2, int column2,
 			int direction1) {
-		if(!isValidSquaretoPullFrom(row1, column1, row2, column2))
+		if (!isValidSquaretoPullFrom(row1, column1, row2, column2))
 			return false;
 		// Get direction that pulled piece will move
 		int direction2 = getDirection(row2, column2, row1, column1);
@@ -378,28 +382,35 @@ public class Game {
 		// Attempt to perform move operations on both pieces
 		switch (direction1) {
 		case 0:
-			if (tryPull(getSpace(row1,column1),getSpace(row2, column2),row1, column1, direction1)) {//pieceCanPush(getSpace(row1, column1),getSpace(row2, column2))&& move(row1, column1, direction1)
+			if (tryPull(getSpace(row1, column1), getSpace(row2, column2), row1,
+					column1, direction1)) {// pieceCanPush(getSpace(row1,
+											// column1),getSpace(row2,
+											// column2))&& move(row1, column1,
+											// direction1)
 				move(row2, column2, direction2);
 				isPushPull = false;
 				return true;
 			}
 			break;
 		case 1:
-			if (tryPull(getSpace(row1, column1),getSpace(row2, column2),row1, column1, direction1)) {
+			if (tryPull(getSpace(row1, column1), getSpace(row2, column2), row1,
+					column1, direction1)) {
 				move(row2, column2, direction2);
 				isPushPull = false;
 				return true;
 			}
 			break;
 		case 2:
-			if (tryPull(getSpace(row1, column1), getSpace(row2, column2),row1, column1, direction1)) {
+			if (tryPull(getSpace(row1, column1), getSpace(row2, column2), row1,
+					column1, direction1)) {
 				move(row2, column2, direction2);
 				isPushPull = false;
 				return true;
 			}
 			break;
 		case 3:
-			if (tryPull(getSpace(row1, column1),getSpace(row2, column2),row1, column1, direction1)) {
+			if (tryPull(getSpace(row1, column1), getSpace(row2, column2), row1,
+					column1, direction1)) {
 				move(row2, column2, direction2);
 				isPushPull = false;
 				return true;
@@ -411,11 +422,12 @@ public class Game {
 
 	private boolean tryPull(Piece space, Piece space2, int row1, int column1,
 			int direction1) {
-		return pieceCanPush(space,space2)&& move(row1, column1, direction1);
+		return pieceCanPush(space, space2) && move(row1, column1, direction1);
 	}
 
-	private boolean isValidSquaretoPullFrom(int row1, int column1, int row2, int column2) {
-		if (numMoves <=1)
+	private boolean isValidSquaretoPullFrom(int row1, int column1, int row2,
+			int column2) {
+		if (numMoves <= 1)
 			return false; // can't push/pull with only one move
 		// Check that both pieces exist
 		if (getSpace(row1, column1) == null || getSpace(row2, column2) == null) {
@@ -429,7 +441,7 @@ public class Game {
 
 		if (getSpace(row1, column1).getOwner() != Owner.values()[(getPlayerTurn() - 1)]
 				&& !isPushPull)
-			
+
 			return false;// not your turn
 		return true;
 	}
@@ -505,25 +517,25 @@ public class Game {
 			return false;
 		}
 		int turnCounter = scanner.nextInt();
-		
+
 		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
 		int turnTimer = scanner.nextInt();
-		
+
 		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
 		String p1name = scanner.next();
-		
+
 		if (!scanner.hasNext()) {
 			scanner.close();
 			return false;
 		}
 		String p2name = scanner.next();
-		
+
 		scanner.close();
 
 		// Successful load! Push all changes to game permanently
@@ -532,14 +544,13 @@ public class Game {
 		this.moveTimer = turnTimer;
 		this.p1Name = p1name;
 		this.p2Name = p2name;
-		
-		if(this.turnCounter % 2 == 1) {
+
+		if (this.turnCounter % 2 == 1) {
 			this.playerTurn = 2;
-//			System.out.println("It's player 2's turn");
-		}
-		else {
+			// System.out.println("It's player 2's turn");
+		} else {
 			this.playerTurn = 1;
-//			System.out.println("It's player 1's turn");
+			// System.out.println("It's player 1's turn");
 		}
 		return true;
 	}
@@ -588,11 +599,11 @@ public class Game {
 	public void setWinner(int winner) {
 		this.winner = winner;
 	}
-	
+
 	public int getNumMoves() {
 		return numMoves;
 	}
-	
+
 	public int getTurnTimer() {
 		return moveTimer;
 	}

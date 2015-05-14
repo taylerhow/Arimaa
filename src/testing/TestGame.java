@@ -172,7 +172,7 @@ public class TestGame {
 		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
 				g.getSpace(0, 1));
 	}
-	
+
 	@Test
 	public void testEmptyCreateConstructor() {
 		Game g = new Game();
@@ -377,9 +377,9 @@ public class TestGame {
 	@Test
 	public void testBasicPullDown() {
 		Game g = new Game(pullTestingBoard);
-		//g.currentBoard.printBoard();
+		// g.currentBoard.printBoard();
 		assertTrue(g.pull(3, 5, 2, 5, 2));
-		//g.currentBoard.printBoard();		
+		// g.currentBoard.printBoard();
 		assertTrue(g.getSpace(3, 5).equals(
 				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(
@@ -491,9 +491,9 @@ public class TestGame {
 	@Test
 	public void testPullOwnPieceDown() {
 		Game g = new Game(pullTestingBoard);
-		//g.currentBoard.printBoard();
+		// g.currentBoard.printBoard();
 		assertFalse(g.pull(1, 6, 0, 6, 2));
-		//g.currentBoard.printBoard();
+		// g.currentBoard.printBoard();
 		assertFalse(g.getSpace(2, 6) == null);
 	}
 
@@ -529,9 +529,9 @@ public class TestGame {
 		Game g = new Game(pullTestingBoard);
 		Piece p1 = g.getSpace(4, 6);
 		Piece p2 = g.getSpace(4, 7);
-		//g.currentBoard.printBoard();
+		// g.currentBoard.printBoard();
 		assertTrue(g.pull(4, 6, 4, 7, 0));
-		//g.currentBoard.printBoard();
+		// g.currentBoard.printBoard();
 		assertTrue(g.getSpace(3, 6).equals(p1));
 		assertTrue(g.getSpace(4, 6).equals(p2));
 	}
@@ -539,11 +539,11 @@ public class TestGame {
 	@Test
 	public void testBidirectionalPullLeftUp() {
 		Game g = new Game(pullTestingBoard);
-		//g.currentBoard.printBoard();
+		// g.currentBoard.printBoard();
 		Piece p1 = g.getSpace(5, 5);
 		Piece p2 = g.getSpace(6, 5);
 		assertTrue(g.pull(5, 5, 6, 5, 3));
-		//g.currentBoard.printBoard();
+		// g.currentBoard.printBoard();
 		assertTrue(g.getSpace(5, 4).equals(p1));
 		assertTrue(g.getSpace(5, 5).equals(p2));
 	}
@@ -632,7 +632,7 @@ public class TestGame {
 		assertEquals(turnCounter, g.getTurnCounter());
 		scanner.close();
 	}
-	
+
 	@Test
 	public void testLoadFileLoadsTurnTimer() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
@@ -756,9 +756,8 @@ public class TestGame {
 		g.move(1, 5, 0);
 		assertEquals(null, g.getSpace(2, 5));
 	}
-	
-	
-	//Testing win checks
+
+	// Testing win checks
 	BoardState winBoardState = new BoardState(new char[][] {
 			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 			{ ' ', 'r', ' ', ' ', ' ', 'D', ' ', ' ' },
@@ -768,19 +767,19 @@ public class TestGame {
 			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
 			{ ' ', 'R', ' ', 'D', ' ', ' ', ' ', ' ' },
 			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', ' ' }, }, 0);
-	
+
 	@Test
-	public void testPlayer2Win(){
-		Game g= new Game(winBoardState);
-		g.setPlayerTurn(2);
-		assertTrue(g.move(1,1,0));
-		assertEquals(2,g.getWinner());
-	}
-	
-	@Test
-	public void testPlayer1Win(){
+	public void testPlayer2Win() {
 		Game g = new Game(winBoardState);
-		assertTrue(g.move(6,1,2));
+		g.setPlayerTurn(2);
+		assertTrue(g.move(1, 1, 0));
+		assertEquals(2, g.getWinner());
+	}
+
+	@Test
+	public void testPlayer1Win() {
+		Game g = new Game(winBoardState);
+		assertTrue(g.move(6, 1, 2));
 		assertEquals(1, g.getWinner());
 	}
 }

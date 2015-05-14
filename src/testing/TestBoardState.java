@@ -11,24 +11,23 @@ import org.junit.Test;
  */
 public class TestBoardState {
 	BoardState b = new BoardState(new char[][] {
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ','C','E',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ',' ',' '},
-			{' ',' ',' ','D',' ',' ',' ',' '},
-			{' ',' ',' ',' ',' ',' ','K','R'},
-			}, 0);
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'C', 'E', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', 'R' }, }, 0);
 
 	@Test
 	public void testInitializes() {
 		BoardState bs = new BoardState(new char[1][1], 0);
 		assertNotNull(bs);
 	}
-	
-	@Test 
-	public void testInializesWithCorrectValuesUsingBoardState(){
+
+	@Test
+	public void testInializesWithCorrectValuesUsingBoardState() {
 		char[][] map = new char[7][7];
 		map[1][1] = 'E';
 		map[2][2] = 'C';
@@ -41,9 +40,9 @@ public class TestBoardState {
 		assertEquals('c', bs.getBoardArray()[4][4]);
 		assertEquals(1, bs.getTurnNumber());
 	}
-	
+
 	@Test
-	public void testTurnNumberIncrements(){
+	public void testTurnNumberIncrements() {
 		b.incrementTurn();
 		assertEquals(1, b.getTurnNumber());
 		b.incrementTurn();
