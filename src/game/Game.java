@@ -19,7 +19,7 @@ public class Game {
 	int turnCounter = 0;
 	String p1Name = "";
 	String p2Name = "";
-	// 0 is noone, 1 is player1, 2 is player2
+	// 0 is nobody, 1 is player1, 2 is player2
 	private int winner = 0;
 	private int numMoves = 4;
 	private int playerTurn = 1;

@@ -928,7 +928,7 @@ public class GUI {
 		winnerLabel.setFont(new Font(winnerFont.getName(), 4, 24));
 		winnerLabel.setSize(150, 150);
 		panel.add(winnerLabel);
-		winnerLabel.setLocation(f1.getWidth()/2 - 40, f1.getHeight()/3 - 40);
+		winnerLabel.setLocation(f1.getWidth()/2 - 40, f1.getHeight()/3 - 50);
 		winnerLabel.setVisible(true);
 	}
 }
