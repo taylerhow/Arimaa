@@ -175,10 +175,11 @@ public class Game {
 				}
 			}
 		}
-		// noone has won
-		if (winner != 0)
-			System.out.println("Winner: " + winner);
+		//Removed this now that we have a pop up box - Jesse
 		
+		// noone has won
+//		if (winner != 0)
+//			System.out.println("Winner: " + winner);	
 	}
 
 	/**
