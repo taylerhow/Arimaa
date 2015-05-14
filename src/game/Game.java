@@ -525,11 +525,11 @@ public class Game {
 		
 		if(this.turnCounter % 2 == 1) {
 			this.playerTurn = 2;
-			System.out.println("It's player 2's turn");
+//			System.out.println("It's player 2's turn");
 		}
 		else {
 			this.playerTurn = 1;
-			System.out.println("It's player 1's turn");
+//			System.out.println("It's player 1's turn");
 		}
 		return true;
 	}
