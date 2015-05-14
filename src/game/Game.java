@@ -16,8 +16,8 @@ public class Game {
 	int p1TimeBank = 0;
 	int p2TimeBank = 0;
 	int turnCounter = 0;
-	String p1Name = "";
-	String p2Name = "";
+	String p1Name = "Player1";
+	String p2Name = "Player2";
 	// 0 is nobody, 1 is player1, 2 is player2
 	private int winner = 0;
 	private int numMoves = 4;
