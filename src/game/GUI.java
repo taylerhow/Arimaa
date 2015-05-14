@@ -904,8 +904,8 @@ public class GUI {
 
 	public void createWinWindow() {
 		String playerName = "";
-		if(this.game.getWinner() == 1) playerName = this.p1Name;
-		else playerName = this.p2Name;
+		if(this.game.getWinner() == 1) playerName = game.getP1Name();
+		else if(this.game.getWinner()==2) playerName = game.getP2Name();
 		
 		JFrame f1 = new JFrame();
 		f1.setTitle("Winner!");
