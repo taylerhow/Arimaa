@@ -523,8 +523,14 @@ public class Game {
 		this.p2Name = p2name;
 		
 		//TODO: Fix this. I'm struggling how TurnCounter works
-//		if(this.turnCounter % 2 == 0) this.playerTurn =2;
-//		else this.playerTurn=1;
+		if(this.turnCounter % 2 == 1) {
+			this.playerTurn = 2;
+			System.out.println("It's player 2's turn");
+		}
+		else {
+			this.playerTurn = 1;
+			System.out.println("It's player 1's turn");
+		}
 		return true;
 	}
 
