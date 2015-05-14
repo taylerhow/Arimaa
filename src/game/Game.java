@@ -489,13 +489,11 @@ public class Game {
 			for (int k = 0; k < 8; k++) {
 				if (!scanner.hasNext()) {
 					scanner.close();
-					System.out.println("1");
 					return false;
 				}
 				String next = scanner.next();
 				if (!vbc.contains(next)) {
 					scanner.close();
-					System.out.println("2");
 					return false;
 				}
 				boardToSet.setBoardSpace(i, k, next);
@@ -505,19 +503,16 @@ public class Game {
 		// Parse turnCounter, p1Name, p2Name
 		if (!scanner.hasNext()) {
 			scanner.close();
-			System.out.println("3");
 			return false;
 		}
 		int turnCounter = scanner.nextInt();
 		if (!scanner.hasNext()) {
 			scanner.close();
-			System.out.println("4");
 			return false;
 		}
 		String p1name = scanner.next();
 		if (!scanner.hasNext()) {
 			scanner.close();
-			System.out.println("5");
 			return false;
 		}
 		String p2name = scanner.next();
@@ -528,6 +523,8 @@ public class Game {
 		this.turnCounter = turnCounter;
 		this.p1Name = p1name;
 		this.p2Name = p2name;
+		if(this.turnCounter % 2 == 0) this.playerTurn =2;
+		else this.playerTurn=1;
 		return true;
 	}
 
