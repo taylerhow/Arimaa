@@ -644,7 +644,7 @@ public class GUI {
 			activeFrames.get(0).setBackground(Color.BLACK);
 
 			gameFrame.setVisible(true);
-
+			gameFrame.add(new TimePanel());
 			// Set Up Player1 Label
 			JLabel p1Label = new JLabel();
 			p1Label.setText("<html> <b>Player 1: </b></html>");
