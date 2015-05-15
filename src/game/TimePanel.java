@@ -16,7 +16,7 @@ public class TimePanel extends JPanel{
 	JLabel time;
     Timer t ;
     JButton start ;
-    public TimePanel(){
+    public TimePanel(int startTime){
 
         t= new Timer();
 
@@ -29,12 +29,12 @@ public class TimePanel extends JPanel{
 
         java.util.Timer updateTimer= new java.util.Timer();
         updateTimer.scheduleAtFixedRate(new TimerTask() {
-        	int s=0;
+        	int s=startTime;
         	
         @Override
         public void run() {
             //update Panel text
-        	s++;
+        	s--;
         	int displays,m;
         	m=s/60;
         	displays=s%60;
@@ -46,7 +46,7 @@ public class TimePanel extends JPanel{
     public void update(int s, int minute){
         String sec = Integer.toString(s);
         String min = Integer.toString(minute);
-        if (s<=10){
+        if (s<10){
             sec="0"+sec;
         }
 

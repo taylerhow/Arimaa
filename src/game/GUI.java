@@ -644,7 +644,6 @@ public class GUI {
 			activeFrames.get(0).setBackground(Color.BLACK);
 
 			gameFrame.setVisible(true);
-			gameFrame.add(new TimePanel());
 			// Set Up Player1 Label
 			JLabel p1Label = new JLabel();
 			p1Label.setText("<html> <b>Player 1: </b></html>");
@@ -666,7 +665,10 @@ public class GUI {
 			gameBoardPanel.add(p1NameLabel);
 			p1NameLabel.setLocation(675, 25);
 			p1NameLabel.setVisible(true);
-
+			TimePanel p1Time=new TimePanel((int) timerComboBox.getSelectedItem());
+			gameBoardPanel.add(p1Time);
+			p1Time.setLocation(675, 100);
+			p1Time.setVisible(true);
 			// Set Up Player2 Label
 			JLabel p2Label = new JLabel();
 			p2Label.setText("<html> <b>Player 2: </b></html>");
