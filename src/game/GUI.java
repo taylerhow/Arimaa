@@ -270,7 +270,7 @@ public class GUI {
 		}
 	}
 
-	private void renderBoard() {
+	protected void renderBoard() {
 		for (int i = 0; i < 8; i++) {
 			for (int k = 0; k < 8; k++) {
 				if (boardPieces[i][k] != null)
@@ -642,6 +642,7 @@ public class GUI {
 
 			gameBoardPanel.addMouseListener(new MovementListener());
 			activeFrames.get(0).setBackground(Color.BLACK);
+			
 
 			gameFrame.setVisible(true);
 			// Set Up Player1 Label
@@ -665,10 +666,8 @@ public class GUI {
 			gameBoardPanel.add(p1NameLabel);
 			p1NameLabel.setLocation(675, 25);
 			p1NameLabel.setVisible(true);
-			TimePanel p1Time=new TimePanel((int) timerComboBox.getSelectedItem());
-			gameBoardPanel.add(p1Time);
-			p1Time.setLocation(675, 100);
-			p1Time.setVisible(true);
+			
+			
 			// Set Up Player2 Label
 			JLabel p2Label = new JLabel();
 			p2Label.setText("<html> <b>Player 2: </b></html>");
@@ -737,20 +736,8 @@ public class GUI {
 			moveCounterLabel.setLocation(675, 370);
 			moveCounterLabel.setVisible(true);
 
-			// Set up turn timer label
-			JLabel turnTimerLabel = new JLabel();
-			timerLabel = turnTimerLabel;
-			turnTimerLabel.setText("<html> <b>" + "Turn Time: \n"
-					+ (game.getTurnTimer() / 60) + ":"
-					+ (game.getTurnTimer() % 60) + "</b></html>");
-			turnTimerLabel.setForeground(Color.BLACK);
-			Font turnTimerFont = turnTimerLabel.getFont();
-			turnTimerLabel.setFont(new Font(turnTimerFont.getName(), 4, 18));
-			turnTimerLabel.setSize(110, 50);
-			gameBoardPanel.add(turnTimerLabel);
-			turnTimerLabel.setLocation(675, 450);
-			turnTimerLabel.setVisible(true);
-
+			
+			
 			// Set up Save Game Button
 			JButton saveGameButton = new JButton();
 			saveGameButton.setSize(100, 75);
@@ -760,6 +747,14 @@ public class GUI {
 			saveGameButton.addActionListener(new SaveGameListener());
 			saveGameButton.setVisible(true);
 
+			//P1 Time Panel
+			TimePanel p1Time=new TimePanel(GUI.this,game,(int) timerComboBox.getSelectedItem());
+			
+			gameBoardPanel.setSize(110, 50);
+			gameBoardPanel.add(p1Time);
+			p1Time.setLocation(675, 450);
+			p1Time.setVisible(true);
+			p1Time.validate();
 			renderInitialBoard();
 		}
 	}
