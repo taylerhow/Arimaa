@@ -175,6 +175,32 @@ public class Game {
 				}
 			}
 		}
+		
+		//check if rabbits exits
+		boolean p1RabbitExists=false;
+		for(int i=0;i<8;i++){
+			for(int j=0;j<8;j++){
+				//and short circuits if null preventing nullpointerexception
+				if(getSpace(i,j)!=null&&getSpace(i, j).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1))){
+					p1RabbitExists=true;
+				}
+			}
+		}
+		if(!p1RabbitExists){
+			winner=2;
+		}
+		
+		boolean p2RabbitExists=false;
+		for(int i=0;i<8;i++){
+			for(int j=0;j<8;j++){
+				if(getSpace(i,j)!=null&&getSpace(i, j).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2))){
+					p2RabbitExists=true;
+				}
+			}
+		}
+		if(!p2RabbitExists){
+			winner=1;
+		}
 		// Removed this now that we have a pop up box - Jesse
 
 		// noone has won
