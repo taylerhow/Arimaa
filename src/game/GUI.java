@@ -592,7 +592,7 @@ public class GUI {
 
 				renderInitialBoard();
 			} else {
-				System.out.println("Invalid game state");
+				System.err.println("Invalid game state");
 			}
 		}
 	}
