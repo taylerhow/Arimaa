@@ -813,7 +813,6 @@ public class TestGame {
 	
 	@Test
 	public void testUndoThreeMoves() {
-		Game standardStart = new Game();
 		Game g = new Game();
 		g.move(1, 0, 2);
 		g.move(2, 0, 2);
