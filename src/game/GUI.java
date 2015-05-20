@@ -38,6 +38,7 @@ public class GUI {
 	private JLabel turnCountLabel;
 	private JLabel turnIndicatorLabel;
 	private JLabel timerLabel;
+	private TimePanel timer;
 
 	public GUI() {
 		this.p1Name = "Player 1";
@@ -594,8 +595,9 @@ public class GUI {
 				turnTimerLabel.setVisible(true);
 
 				// P1 Time Panel
-				TimePanel time = new TimePanel(GUI.this, game,
+				TimePanel timePanel = new TimePanel(GUI.this, game,
 						game.getTurnTimer(), timerLabel);
+				timer = timePanel;
 
 				// Set up Save Game Button
 				JButton saveGameButton = new JButton();
@@ -786,8 +788,9 @@ public class GUI {
 			turnTimerLabel.setVisible(true);
 
 			// P1 Time Panel
-			TimePanel time = new TimePanel(GUI.this, game,
+			TimePanel timePanel = new TimePanel(GUI.this, game,
 					(int) timerComboBox.getSelectedItem(), timerLabel);
+			timer = timePanel;
 
 			// Set up Save Game Button
 			JButton saveGameButton = new JButton();
