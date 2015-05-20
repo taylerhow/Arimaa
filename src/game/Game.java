@@ -69,8 +69,12 @@ public class Game {
 	public boolean move(int row, int column, int dir) {
 		if (!isValidMoveFromSquare(row, column))
 			return false;
-		boards.add(currentBoard);
-		currentBoard = currentBoard.clone();
+		//TODO: up here too
+		BoardState boardToAdd = new BoardState(currentBoard.getBoardArray(), currentBoard.getTurnNumber());
+		boards.add(boardToAdd);
+//		currentBoard = currentBoard.clone();
+		System.out.println("Print 1");
+		currentBoard.printBoard();
 		switch (dir) {
 		case 0:
 			// Moving UP
@@ -143,13 +147,11 @@ public class Game {
 		checkWin();
 		numMoves--;
 		if (numMoves <= 0) {
-			System.out.print("Switched player move from " + getPlayerTurn());
 			if (getPlayerTurn() == 1) {
 				setPlayerTurn(2);
 			} else {
 				setPlayerTurn(1);
 			}
-			System.out.println(" to " + getPlayerTurn());
 			numMoves = 4;
 			turnCounter++;
 		}
@@ -501,6 +503,18 @@ public class Game {
 		}
 		return -1;
 	}
+	
+	public void undoMove(){
+		//TODO: quit losing your place
+//		currentBoard.printBoard();
+		System.out.println("Print 2");
+		System.out.println(this.boards.size());
+		this.boards.get(0).printBoard();
+		this.currentBoard = this.boards.get(boards.size()-1);
+		currentBoard.printBoard();
+		this.boards.remove(this.boards.size()-1);
+		System.out.println(boards.isEmpty());
+	}
 
 	public boolean loadFile(Scanner scanner) {
 		// Setup to use Scanner
@@ -635,7 +649,7 @@ public class Game {
 	}
 
 	/**
-	 * @return the winner: 0 is noone, 1 is player1, 2 is player2
+	 * @return the winner: 0 is nobody, 1 is player1, 2 is player2
 	 */
 	public int getWinner() {
 		return winner;
@@ -654,10 +668,6 @@ public class Game {
 	 */
 	public void setPlayerTurn(int playerTurn) {
 		this.playerTurn = playerTurn;
-	}
-	
-	public void undoMove(){
-		
 	}
 
 }
