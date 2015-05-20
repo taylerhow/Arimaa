@@ -601,6 +601,8 @@ public class Game {
 	}
 
 	public boolean saveFile(FileWriter fw) {
+		if (fw == null)
+			return false;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				String s = "" + this.currentBoard.getBoardArray()[i][j] + ",";
@@ -611,8 +613,7 @@ public class Game {
 				}
 			}
 		}
-		if (fw == null)
-			return false;
+		
 		String s2 = "" + this.turnCounter + ",";
 
 		try {
