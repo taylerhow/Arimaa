@@ -820,6 +820,5 @@ public class TestGame {
 		g.move(1, 0, 2);
 		g.undoMove();
 		assertEquals(4, g.getNumMoves());
-		
 	}
 }

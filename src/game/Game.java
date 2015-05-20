@@ -504,9 +504,23 @@ public class Game {
 	public void undoMove(){
 		//TODO: quit losing your place
 		if(this.numMoves == 4) return;
+		
+		if(this.numMoves == 3) {
 		this.currentBoard = this.boards.get(boards.size()-1);
 		this.boards.remove(this.boards.size()-1);
-		this.numMoves++;
+		}
+		
+		if(this.numMoves == 2) {
+			this.currentBoard = this.boards.get(boards.size()-2);
+			this.boards.remove(this.boards.size()-2);
+		}
+		
+		if(this.numMoves == 1) {
+			this.currentBoard = this.boards.get(boards.size()-3);
+			this.boards.remove(this.boards.size()-3);
+		}
+		
+		this.numMoves = 4;
 	}
 
 	public boolean loadFile(Scanner scanner) {
