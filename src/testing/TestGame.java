@@ -195,6 +195,12 @@ public class TestGame {
 		Game g = new Game();
 		assertFalse(g.move(4, 4, 0));
 	}
+	
+	@Test 
+	public void testInvalidMoveDirection(){
+		Game g = new Game();
+		assertFalse(g.move(1,0,5));
+	}
 
 	// Testing push method
 
