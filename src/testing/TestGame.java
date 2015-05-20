@@ -805,12 +805,11 @@ public class TestGame {
 	
 	@Test
 	public void testThatUndoCantCrossTurns(){
-		Game standardStart = new Game();
 		Game g = new Game();
-		g.move(1, 0, 2);
-		g.move(2,0,2);
-		g.move(3, 0, 2);
-		g.move(4, 0, 2);
+		System.out.println(g.move(1, 0, 2));
+		System.out.println(g.move(2, 0, 2));
+		System.out.println(g.move(3, 0, 2));
+		System.out.println(g.move(4, 0, 2));
 		g.undoMove();
 		assertEquals(new Piece('R'), g.getSpace(5,0));
 	}

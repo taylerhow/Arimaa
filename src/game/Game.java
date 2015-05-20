@@ -503,6 +503,7 @@ public class Game {
 	
 	public void undoMove(){
 		//TODO: quit losing your place
+		if(this.numMoves == 4) return;
 		this.currentBoard = this.boards.get(boards.size()-1);
 		this.boards.remove(this.boards.size()-1);
 	}
