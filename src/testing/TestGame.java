@@ -608,6 +608,12 @@ public class TestGame {
 		Game g = new Game(b);
 		assertTrue(g.saveFile(fw));
 	}
+	
+	@Test
+	public void testSaveFile2() throws IOException{
+		Game g = new Game();
+		assertFalse(g.saveFile(null));
+	}
 
 	// Testing loadFile
 	@Test
