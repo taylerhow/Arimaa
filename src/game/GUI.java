@@ -547,7 +547,7 @@ public class GUI {
 				Font playerTurnFont = playerTurnLabel.getFont();
 				playerTurnLabel.setFont(new Font(playerTurnFont.getName(), 4,
 						18));
-				playerTurnLabel.setSize(110, 25);
+				playerTurnLabel.setSize(110, 50);
 				gameBoardPanel.add(playerTurnLabel);
 				playerTurnLabel.setLocation(675, 200);
 				playerTurnLabel.setVisible(true);
@@ -566,20 +566,33 @@ public class GUI {
 				moveCounterLabel.setLocation(675, 370);
 				moveCounterLabel.setVisible(true);
 
-				// Set up turn timer label
+				// Set up turn timer name label
+				JLabel turnTimerNameLabel = new JLabel();
+				turnTimerNameLabel.setText("<html> <b>" + "Turn Time:" + "</b></html>");
+				turnTimerNameLabel.setForeground(Color.BLACK);
+				Font turnTimerNameFont = turnTimerNameLabel.getFont();
+				turnTimerNameLabel
+						.setFont(new Font(turnTimerNameFont.getName(), 4, 18));
+				turnTimerNameLabel.setSize(110, 25);
+				gameBoardPanel.add(turnTimerNameLabel);
+				turnTimerNameLabel.setLocation(675, 450);
+				turnTimerNameLabel.setVisible(true);
+				
+				// Set up actual timer label
 				JLabel turnTimerLabel = new JLabel();
 				timerLabel = turnTimerLabel;
-				turnTimerLabel.setText("<html> <b>" + "Turn Time: \n"
-						+ (game.getTurnTimer() / 60) + ":"
-						+ (game.getTurnTimer() % 60) + "</b></html>");
+//				turnTimerLabel.setText("<html> <b>" + "Turn Time:" + "</b></html>");
 				turnTimerLabel.setForeground(Color.BLACK);
 				Font turnTimerFont = turnTimerLabel.getFont();
 				turnTimerLabel
 						.setFont(new Font(turnTimerFont.getName(), 4, 18));
-				turnTimerLabel.setSize(110, 50);
+				turnTimerLabel.setSize(110, 25);
 				gameBoardPanel.add(turnTimerLabel);
-				turnTimerLabel.setLocation(675, 450);
+				turnTimerLabel.setLocation(675, 475);
 				turnTimerLabel.setVisible(true);
+				
+				//P1 Time Panel
+				TimePanel p1Time=new TimePanel(GUI.this,game,game.getTurnTimer(), timerLabel);
 
 				// Set up Save Game Button
 				JButton saveGameButton = new JButton();
@@ -717,7 +730,7 @@ public class GUI {
 			playerTurnLabel.setForeground(Color.BLACK);
 			Font playerTurnFont = playerTurnLabel.getFont();
 			playerTurnLabel.setFont(new Font(playerTurnFont.getName(), 4, 18));
-			playerTurnLabel.setSize(110, 25);
+			playerTurnLabel.setSize(110, 50);
 			gameBoardPanel.add(playerTurnLabel);
 			playerTurnLabel.setLocation(675, 200);
 			playerTurnLabel.setVisible(true);
@@ -736,7 +749,33 @@ public class GUI {
 			moveCounterLabel.setLocation(675, 370);
 			moveCounterLabel.setVisible(true);
 
+			// Set up turn timer name label
+			JLabel turnTimerNameLabel = new JLabel();
+			turnTimerNameLabel.setText("<html> <b>" + "Turn Time:" + "</b></html>");
+			turnTimerNameLabel.setForeground(Color.BLACK);
+			Font turnTimerNameFont = turnTimerNameLabel.getFont();
+			turnTimerNameLabel
+					.setFont(new Font(turnTimerNameFont.getName(), 4, 18));
+			turnTimerNameLabel.setSize(110, 25);
+			gameBoardPanel.add(turnTimerNameLabel);
+			turnTimerNameLabel.setLocation(675, 450);
+			turnTimerNameLabel.setVisible(true);
 			
+			// Set up actual timer label
+			JLabel turnTimerLabel = new JLabel();
+			timerLabel = turnTimerLabel;
+//			turnTimerLabel.setText("<html> <b>" + "Turn Time:" + "</b></html>");
+			turnTimerLabel.setForeground(Color.BLACK);
+			Font turnTimerFont = turnTimerLabel.getFont();
+			turnTimerLabel
+					.setFont(new Font(turnTimerFont.getName(), 4, 18));
+			turnTimerLabel.setSize(110, 25);
+			gameBoardPanel.add(turnTimerLabel);
+			turnTimerLabel.setLocation(675, 475);
+			turnTimerLabel.setVisible(true);
+			
+			//P1 Time Panel
+			TimePanel p1Time=new TimePanel(GUI.this,game,(int) timerComboBox.getSelectedItem(), timerLabel);
 			
 			// Set up Save Game Button
 			JButton saveGameButton = new JButton();
@@ -746,15 +785,7 @@ public class GUI {
 			gameBoardPanel.add(saveGameButton);
 			saveGameButton.addActionListener(new SaveGameListener());
 			saveGameButton.setVisible(true);
-
-			//P1 Time Panel
-			TimePanel p1Time=new TimePanel(GUI.this,game,(int) timerComboBox.getSelectedItem());
 			
-			gameBoardPanel.setSize(110, 50);
-			gameBoardPanel.add(p1Time);
-			p1Time.setLocation(675, 450);
-			p1Time.setVisible(true);
-			p1Time.validate();
 			renderInitialBoard();
 		}
 	}

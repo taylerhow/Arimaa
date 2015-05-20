@@ -3,7 +3,6 @@
  */
 package game;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
@@ -18,21 +17,23 @@ public class TimePanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;//We aren't serializing, but Eclipse thinks we might
 	JLabel time;
-    Timer t ;
+    Timer t;
     int playerTurn;
     //JButton start ;
-    public TimePanel(GUI gui, Game game, int startTime){
+    public TimePanel(GUI gui, Game game, int startTime, JLabel timerLabel){
 
         t= new Timer();
         playerTurn =game.getPlayerTurn();
-        time = new JLabel("Time goes here", JLabel.CENTER);
-        time.setForeground(Color.BLACK);
-        time.setVisible(true);
+//        time = new JLabel("Time goes here", JLabel.CENTER);
+//        time.setForeground(Color.BLACK);
+//        time.setVisible(true);
         //start = new JButton ("Start");
 
         //start.addActionListener(new TimeListener());
-        add(time);
+//        add(time);
         //add(start);
+        
+        time = timerLabel;
 
         java.util.Timer updateTimer= new java.util.Timer();
         updateTimer.scheduleAtFixedRate(new TimerTask() {
@@ -74,8 +75,8 @@ public class TimePanel extends JPanel{
             sec="0"+sec;
         }
 
-        System.out.println(min+":"+sec);
-        time.setText(min+":"+sec);
+//        System.out.println(min+":"+sec);
+        time.setText("<html> <b>"+min+":"+sec+"</b> </html>");
     }
 
 
