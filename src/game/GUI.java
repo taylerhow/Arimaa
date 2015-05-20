@@ -568,20 +568,22 @@ public class GUI {
 
 				// Set up turn timer name label
 				JLabel turnTimerNameLabel = new JLabel();
-				turnTimerNameLabel.setText("<html> <b>" + "Turn Time:" + "</b></html>");
+				turnTimerNameLabel.setText("<html> <b>" + "Turn Time:"
+						+ "</b></html>");
 				turnTimerNameLabel.setForeground(Color.BLACK);
 				Font turnTimerNameFont = turnTimerNameLabel.getFont();
-				turnTimerNameLabel
-						.setFont(new Font(turnTimerNameFont.getName(), 4, 18));
+				turnTimerNameLabel.setFont(new Font(
+						turnTimerNameFont.getName(), 4, 18));
 				turnTimerNameLabel.setSize(110, 25);
 				gameBoardPanel.add(turnTimerNameLabel);
 				turnTimerNameLabel.setLocation(675, 450);
 				turnTimerNameLabel.setVisible(true);
-				
+
 				// Set up actual timer label
 				JLabel turnTimerLabel = new JLabel();
 				timerLabel = turnTimerLabel;
-//				turnTimerLabel.setText("<html> <b>" + "Turn Time:" + "</b></html>");
+				// turnTimerLabel.setText("<html> <b>" + "Turn Time:" +
+				// "</b></html>");
 				turnTimerLabel.setForeground(Color.BLACK);
 				Font turnTimerFont = turnTimerLabel.getFont();
 				turnTimerLabel
@@ -590,9 +592,10 @@ public class GUI {
 				gameBoardPanel.add(turnTimerLabel);
 				turnTimerLabel.setLocation(675, 475);
 				turnTimerLabel.setVisible(true);
-				
-				//P1 Time Panel
-				TimePanel p1Time=new TimePanel(GUI.this,game,game.getTurnTimer(), timerLabel);
+
+				// P1 Time Panel
+				TimePanel time = new TimePanel(GUI.this, game,
+						game.getTurnTimer(), timerLabel);
 
 				// Set up Save Game Button
 				JButton saveGameButton = new JButton();
@@ -611,7 +614,7 @@ public class GUI {
 				gameBoardPanel.add(undoButton);
 				undoButton.addActionListener(new UndoListener());
 				undoButton.setVisible(true);
-			
+
 				renderInitialBoard();
 			} else {
 				System.err.println("Invalid game state");
@@ -664,7 +667,6 @@ public class GUI {
 
 			gameBoardPanel.addMouseListener(new MovementListener());
 			activeFrames.get(0).setBackground(Color.BLACK);
-			
 
 			gameFrame.setVisible(true);
 			// Set Up Player1 Label
@@ -688,8 +690,7 @@ public class GUI {
 			gameBoardPanel.add(p1NameLabel);
 			p1NameLabel.setLocation(675, 25);
 			p1NameLabel.setVisible(true);
-			
-			
+
 			// Set Up Player2 Label
 			JLabel p2Label = new JLabel();
 			p2Label.setText("<html> <b>Player 2: </b></html>");
@@ -760,32 +761,34 @@ public class GUI {
 
 			// Set up turn timer name label
 			JLabel turnTimerNameLabel = new JLabel();
-			turnTimerNameLabel.setText("<html> <b>" + "Turn Time:" + "</b></html>");
+			turnTimerNameLabel.setText("<html> <b>" + "Turn Time:"
+					+ "</b></html>");
 			turnTimerNameLabel.setForeground(Color.BLACK);
 			Font turnTimerNameFont = turnTimerNameLabel.getFont();
-			turnTimerNameLabel
-					.setFont(new Font(turnTimerNameFont.getName(), 4, 18));
+			turnTimerNameLabel.setFont(new Font(turnTimerNameFont.getName(), 4,
+					18));
 			turnTimerNameLabel.setSize(110, 25);
 			gameBoardPanel.add(turnTimerNameLabel);
 			turnTimerNameLabel.setLocation(675, 450);
 			turnTimerNameLabel.setVisible(true);
-			
+
 			// Set up actual timer label
 			JLabel turnTimerLabel = new JLabel();
 			timerLabel = turnTimerLabel;
-//			turnTimerLabel.setText("<html> <b>" + "Turn Time:" + "</b></html>");
+			// turnTimerLabel.setText("<html> <b>" + "Turn Time:" +
+			// "</b></html>");
 			turnTimerLabel.setForeground(Color.BLACK);
 			Font turnTimerFont = turnTimerLabel.getFont();
-			turnTimerLabel
-					.setFont(new Font(turnTimerFont.getName(), 4, 18));
+			turnTimerLabel.setFont(new Font(turnTimerFont.getName(), 4, 18));
 			turnTimerLabel.setSize(110, 25);
 			gameBoardPanel.add(turnTimerLabel);
 			turnTimerLabel.setLocation(675, 475);
 			turnTimerLabel.setVisible(true);
-			
-			//P1 Time Panel
-			TimePanel p1Time=new TimePanel(GUI.this,game,(int) timerComboBox.getSelectedItem(), timerLabel);
-			
+
+			// P1 Time Panel
+			TimePanel time = new TimePanel(GUI.this, game,
+					(int) timerComboBox.getSelectedItem(), timerLabel);
+
 			// Set up Save Game Button
 			JButton saveGameButton = new JButton();
 			saveGameButton.setSize(65, 75);
@@ -794,7 +797,7 @@ public class GUI {
 			gameBoardPanel.add(saveGameButton);
 			saveGameButton.addActionListener(new SaveGameListener());
 			saveGameButton.setVisible(true);
-			
+
 			// Set up Undo Button
 			JButton undoButton = new JButton();
 			undoButton.setSize(65, 75);
@@ -803,7 +806,7 @@ public class GUI {
 			gameBoardPanel.add(undoButton);
 			undoButton.addActionListener(new UndoListener());
 			undoButton.setVisible(true);
-			
+
 			renderInitialBoard();
 		}
 	}
@@ -830,7 +833,7 @@ public class GUI {
 			}
 		}
 	}
-	
+
 	private class UndoListener implements ActionListener {
 
 		@Override
