@@ -838,4 +838,11 @@ public class TestGame {
 		g.undoMove();
 		assertEquals(4, g.getNumMoves());
 	}
+	
+	@Test
+	public void testSetWinner(){
+		Game g = new Game();
+		g.setWinner(1);
+		assertEquals(1,g.getWinner());
+	}
 }
