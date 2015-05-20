@@ -575,7 +575,7 @@ public class GUI {
 				JButton saveGameButton = new JButton();
 				saveGameButton.setSize(65, 75);
 				saveGameButton.setText("Save");
-				saveGameButton.setLocation(675, gameFrame.getHeight() / 2 - 75);
+				saveGameButton.setLocation(660, gameFrame.getHeight() / 2 - 75);
 				gameBoardPanel.add(saveGameButton);
 				saveGameButton.addActionListener(new SaveGameListener());
 				saveGameButton.setVisible(true);
