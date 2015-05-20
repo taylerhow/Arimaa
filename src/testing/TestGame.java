@@ -804,6 +804,24 @@ public class TestGame {
 	}
 	
 	@Test
+	public void testUndoTwoMoves() {
+		Game g = new Game();
+		g.move(1, 0, 2);
+		g.move(2, 0, 2);
+		g.undoMove();
+		assertEquals(new Piece('R'), g.getSpace(1,0));	}
+	
+	@Test
+	public void testUndoThreeMoves() {
+		Game standardStart = new Game();
+		Game g = new Game();
+		g.move(1, 0, 2);
+		g.move(2, 0, 2);
+		g.move(3, 0, 2);
+		g.undoMove();
+		assertEquals(new Piece('R'), g.getSpace(1,0));	}
+	
+	@Test
 	public void testThatUndoCantCrossTurns(){
 		Game g = new Game();
 		g.move(1, 0, 2);
