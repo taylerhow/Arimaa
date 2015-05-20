@@ -8,7 +8,7 @@ import java.util.TimerTask;
 import javax.swing.JLabel;
 
 public class TimePanel {
-	JLabel timerLabel;
+	private JLabel timerLabel;
 	Timer timer;
 	int playerTurn;
 
@@ -16,7 +16,7 @@ public class TimePanel {
 
 		timer = new Timer();
 		playerTurn = game.getPlayerTurn();
-		timerLabel = label;
+		setTimerLabel(label);
 
 		java.util.Timer updateTimer = new java.util.Timer();
 		updateTimer.scheduleAtFixedRate(new TimerTask() {
@@ -57,6 +57,14 @@ public class TimePanel {
 			sec = "0" + sec;
 		}
 
-		timerLabel.setText("<html> <b>" + min + ":" + sec + "</b> </html>");
+		getTimerLabel().setText("<html> <b>" + min + ":" + sec + "</b> </html>");
+	}
+
+	public JLabel getTimerLabel() {
+		return timerLabel;
+	}
+
+	public void setTimerLabel(JLabel timerLabel) {
+		this.timerLabel = timerLabel;
 	}
 }
