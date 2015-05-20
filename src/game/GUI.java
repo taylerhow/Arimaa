@@ -839,6 +839,7 @@ public class GUI {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			game.undoMove();
+			renderBoard();
 		}
 	}
 
