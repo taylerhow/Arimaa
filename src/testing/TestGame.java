@@ -634,9 +634,19 @@ public class TestGame {
 	}
 
 	@Test
-	public void testLoadFileLoadsTurnCounter() throws FileNotFoundException {
+	public void testLoadFileLoadsTurnCounter1() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		int turnCounter = 7;
+		Game g = new Game();
+		assertTrue(g.loadFile(scanner));
+		assertEquals(turnCounter, g.getTurnCounter());
+		scanner.close();
+	}
+	
+	@Test
+	public void testLoadFileLoadsTurnCounter2() throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File("resources/LoadTest2.txt"));
+		int turnCounter = 10;
 		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(turnCounter, g.getTurnCounter());
@@ -704,6 +714,33 @@ public class TestGame {
 	public void testLoadFileReturnsFalseOnFailure4()
 			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure4.txt"));
+		Game g = new Game();
+		assertFalse(g.loadFile(scanner));
+		scanner.close();
+	}
+	
+	@Test
+	public void testLoadFileReturnsFalseOnFailure5()
+			throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File("resources/LoadFailure5.txt"));
+		Game g = new Game();
+		assertFalse(g.loadFile(scanner));
+		scanner.close();
+	}
+	
+	@Test
+	public void testLoadFileReturnsFalseOnFailure6()
+			throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File("resources/LoadFailure6.txt"));
+		Game g = new Game();
+		assertFalse(g.loadFile(scanner));
+		scanner.close();
+	}
+	
+	@Test
+	public void testLoadFileReturnsFalseOnFailure7()
+			throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File("resources/LoadFailure7.txt"));
 		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 		scanner.close();
