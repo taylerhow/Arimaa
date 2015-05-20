@@ -22,7 +22,7 @@ public class TestBoardState {
 
 	@Test
 	public void testInitializes() {
-		BoardState bs = new BoardState(new char[1][1], 0);
+		BoardState bs = new BoardState(new char[8][8], 0);
 		assertNotNull(bs);
 	}
 
