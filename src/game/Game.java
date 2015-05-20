@@ -69,9 +69,8 @@ public class Game {
 	public boolean move(int row, int column, int dir) {
 		if (!isValidMoveFromSquare(row, column))
 			return false;
-		//TODO: up here too
-		BoardState boardToAdd = new BoardState(currentBoard.getBoardArray(), currentBoard.getTurnNumber());
-		boards.add(boardToAdd);
+		boards.add(currentBoard);
+		currentBoard = currentBoard.clone();
 		switch (dir) {
 		case 0:
 			// Moving UP
@@ -502,7 +501,6 @@ public class Game {
 	}
 	
 	public void undoMove(){
-		//TODO: quit losing your place
 		if(this.numMoves == 4) return;
 		
 		if(this.numMoves == 3) {

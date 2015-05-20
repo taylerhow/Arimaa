@@ -46,6 +46,7 @@ public class BoardState {
 		this.turnNumber++;
 	}
 
+	@Override
 	public BoardState clone() {
 		return new BoardState(boardArray, turnNumber);
 	}
