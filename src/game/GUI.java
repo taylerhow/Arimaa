@@ -1100,7 +1100,7 @@ public class GUI {
 		winnerLabel.setSize(150, 150);
 		panel.add(winnerLabel);
 		winnerLabel
-				.setLocation(winnerFrame.getWidth() / 2 - 75, winnerFrame.getHeight() / 2 - 75);
+				.setLocation(winnerFrame.getWidth() / 2 - 75, winnerFrame.getHeight() / 2 - 87);
 		winnerLabel.setVisible(true);
 	}
 }
