@@ -802,4 +802,16 @@ public class TestGame {
 		g.undoMove();
 		assertEquals(standardStart.getSpace(1, 0), g.getSpace(1,0));
 	}
+	
+	@Test
+	public void testThatUndoCantCrossTurns(){
+		Game standardStart = new Game();
+		Game g = new Game();
+		g.move(1, 0, 2);
+		g.move(2,0,2);
+		g.move(3, 0, 2);
+		g.move(4, 0, 2);
+		g.undoMove();
+		assertEquals(new Piece('R'), g.getSpace(5,0));
+	}
 }
