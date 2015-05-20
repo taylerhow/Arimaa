@@ -2,7 +2,6 @@ package testing;
 
 import static org.junit.Assert.*;
 import game.BoardState;
-
 import org.junit.Test;
 
 /**
@@ -48,6 +47,12 @@ public class TestBoardState {
 		b.incrementTurn();
 		b.incrementTurn();
 		assertEquals(3, b.getTurnNumber());
+	}
+	
+	@Test
+	public void testSetTurnNumber(){
+		b.setTurnNumber(5);
+		assertEquals(5, b.getTurnNumber());
 	}
 
 }

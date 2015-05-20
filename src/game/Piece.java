@@ -94,7 +94,7 @@ public class Piece {
 			break;
 
 		default:
-			System.err.println("Invalud char used in Piece constuctor");
+			System.err.println("Invalid char used in Piece constuctor");
 		}
 	}
 

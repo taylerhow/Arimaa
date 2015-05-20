@@ -107,8 +107,6 @@ public class TestPiece {
 	public void testIsHorseStrongerThanDog() {
 		Piece p1 = new Piece('H');
 		Piece p2 = new Piece('d');
-		System.out.println(p1.getRank());
-		System.out.println(p2.getRank());
 		assertTrue(p1.isStrongerThan(p2));
 	}
 
@@ -117,5 +115,26 @@ public class TestPiece {
 		Piece p1 = new Piece('D');
 		Piece p2 = new Piece('d');
 		assertFalse(p1.isStrongerThan(p2));
+	}
+	
+	@Test
+	public void testThatConstructorHandlesDefaultCase(){
+		Piece p = new Piece('g');
+		assertEquals(null, p.getOwner());
+		assertEquals(null, p.getType());
+	}
+	
+	@Test
+	public void testThatConstructorHandlesDefaultCase2(){
+		Piece p = new Piece('G');
+		assertEquals(null, p.getOwner());
+		assertEquals(null, p.getType());
+	}
+	
+	@Test
+	public void testSetRank(){
+		Piece p = new Piece('C');
+		p.setRank(1);
+		assertEquals(1, p.getRank());
 	}
 }
