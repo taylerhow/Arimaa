@@ -33,6 +33,16 @@ public class TestGame {
 			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
 			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
 			{ ' ', ' ', ' ', ' ', ' ', 'r', 'K', 'R' }, }, 0);
+	
+	BoardState standard = new BoardState(new char[][] {
+			{ 'K', 'D', 'H', 'C', 'E', 'H', 'D', 'K' },
+			{ 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r' },
+			{ 'k', 'd', 'h', 'c', 'e', 'h', 'd', 'k' }, }, 0);
 
 	@Test
 	public void testInitializes() {
@@ -781,5 +791,15 @@ public class TestGame {
 		Game g = new Game(winBoardState);
 		assertTrue(g.move(6, 1, 2));
 		assertEquals(1, g.getWinner());
+	}
+	
+	//Testing undoMove
+	@Test
+	public void testBaseUndoCase(){
+		Game standardStart = new Game();
+		Game g = new Game();
+		g.move(1, 0, 2);
+		g.undoMove();
+		assertEquals(standardStart.getSpace(1, 0), g.getSpace(1,0));
 	}
 }
