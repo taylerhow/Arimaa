@@ -52,8 +52,6 @@ public class GUI {
 		this.activeFrames.add(mainMenuFrame);
 		mainMenuFrame.setTitle("Welcome to Arimaa!");
 		mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// this.playerTurn = 1;
-		// this.numMoves = 4;
 	}
 
 	public static void main(String[] args) {
@@ -385,30 +383,6 @@ public class GUI {
 					panel.getHeight() / 2);
 			turnTimerComboBox.setVisible(true);
 
-			// Set up Time Bank Label and Text Field
-			// JLabel timeBankLabel = new JLabel();
-			// timeBankLabel.setText("<html> <b>Time Bank Cap:</b></html>");
-			// timeBankLabel.setForeground(Color.WHITE);
-			// Font timeBankFont = timeBankLabel.getFont();
-			// timeBankLabel.setFont(new Font(timeBankFont.getName(), 4, 14));
-			// timeBankLabel.setSize(110, 25);
-			// panel.add(timeBankLabel);
-			// timeBankLabel.setLocation(
-			// panel.getWidth() / 2 - timeBankLabel.getWidth(),
-			// panel.getHeight() / 2 + timeBankLabel.getHeight());
-			// timeBankLabel.setVisible(true);
-			//
-			// String[] timeBankPresets = { "0:30", "0:45", "1:00", "1:15",
-			// "1:30", "1:45", "2:00", "M:SS" };
-			// JComboBox<String> timeBankComboBox = new JComboBox<String>(
-			// timeBankPresets);
-			// timeBankComboBox.setEditable(true);
-			// timeBankComboBox.setSize(110, 25);
-			// panel.add(timeBankComboBox);
-			// timeBankComboBox.setLocation(panel.getWidth() / 2,
-			// panel.getHeight() / 2 + timeBankComboBox.getHeight());
-			// timeBankComboBox.setVisible(true);
-
 			// Set up Start Game Button
 			JButton startGameButton = new JButton();
 			startGameButton.setSize(110, 25);
@@ -583,8 +557,6 @@ public class GUI {
 				// Set up actual timer label
 				JLabel turnTimerLabel = new JLabel();
 				timerLabel = turnTimerLabel;
-				// turnTimerLabel.setText("<html> <b>" + "Turn Time:" +
-				// "</b></html>");
 				turnTimerLabel.setForeground(Color.BLACK);
 				Font turnTimerFont = turnTimerLabel.getFont();
 				turnTimerLabel
@@ -777,8 +749,6 @@ public class GUI {
 			// Set up actual timer label
 			JLabel turnTimerLabel = new JLabel();
 			timerLabel = turnTimerLabel;
-			// turnTimerLabel.setText("<html> <b>" + "Turn Time:" +
-			// "</b></html>");
 			turnTimerLabel.setForeground(Color.BLACK);
 			Font turnTimerFont = turnTimerLabel.getFont();
 			turnTimerLabel.setFont(new Font(turnTimerFont.getName(), 4, 18));
@@ -1101,25 +1071,28 @@ public class GUI {
 	public void createWinWindow() {
 		String playerName = "";
 		if (this.game.getWinner() == 1)
-			playerName = this.p1Name;
+			playerName = game.getP1Name();
 		else if (this.game.getWinner() == 2)
-			playerName = this.p2Name;
+			playerName = game.getP2Name();
 
-		JFrame f1 = new JFrame();
-		f1.setTitle("Winner!");
-		f1.setSize(300, 300);
-		f1.setLocation(200, 200);
-		f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f1.setVisible(true);
+		JFrame winnerFrame = new JFrame();
+		activeFrames.add(winnerFrame);
+		winnerFrame.setTitle("Winner!");
+		winnerFrame.setLocation(650 / 2 - 324 / 2 + 5, 650 / 2 - 324 / 2
+				+ 44);
+		winnerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		winnerFrame.setVisible(true);
 
 		ImagePanel panel = new ImagePanel(new ImageIcon(
-				"resources/BoardStoneBig.jpg").getImage());
+				"resources/BoardStoneBigCropped.jpg").getImage());
+		winnerFrame.getContentPane().add(panel);
+		winnerFrame.pack();
 		panel.setVisible(true);
-		f1.add(panel);
+
 
 		// Set Up winner name Label
 		JLabel winnerLabel = new JLabel();
-		winnerLabel.setText("<html> <b>" + playerName + " Wins!"
+		winnerLabel.setText("<html> <div style=\"text-align: center;\"> <b>" + playerName + " Wins!"
 				+ "</b></html>");
 		winnerLabel.setForeground(Color.WHITE);
 		Font winnerFont = winnerLabel.getFont();
@@ -1127,7 +1100,7 @@ public class GUI {
 		winnerLabel.setSize(150, 150);
 		panel.add(winnerLabel);
 		winnerLabel
-				.setLocation(f1.getWidth() / 2 - 30, f1.getHeight() / 3 - 50);
+				.setLocation(winnerFrame.getWidth() / 2 - 75, winnerFrame.getHeight() / 2 - 75);
 		winnerLabel.setVisible(true);
 	}
 }
