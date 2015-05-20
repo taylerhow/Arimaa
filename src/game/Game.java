@@ -655,5 +655,9 @@ public class Game {
 	public void setPlayerTurn(int playerTurn) {
 		this.playerTurn = playerTurn;
 	}
+	
+	public void undoMove(){
+		
+	}
 
 }

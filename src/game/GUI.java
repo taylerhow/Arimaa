@@ -603,6 +603,15 @@ public class GUI {
 				saveGameButton.addActionListener(new SaveGameListener());
 				saveGameButton.setVisible(true);
 
+				// Set up Undo Button
+				JButton undoButton = new JButton();
+				undoButton.setSize(65, 75);
+				undoButton.setText("Undo");
+				undoButton.setLocation(730, gameFrame.getHeight() / 2 - 75);
+				gameBoardPanel.add(undoButton);
+				undoButton.addActionListener(new UndoListener());
+				undoButton.setVisible(true);
+			
 				renderInitialBoard();
 			} else {
 				System.err.println("Invalid game state");
@@ -779,12 +788,21 @@ public class GUI {
 			
 			// Set up Save Game Button
 			JButton saveGameButton = new JButton();
-			saveGameButton.setSize(100, 75);
+			saveGameButton.setSize(65, 75);
 			saveGameButton.setText("Save");
-			saveGameButton.setLocation(675, gameFrame.getHeight() / 2 - 75);
+			saveGameButton.setLocation(660, gameFrame.getHeight() / 2 - 75);
 			gameBoardPanel.add(saveGameButton);
 			saveGameButton.addActionListener(new SaveGameListener());
 			saveGameButton.setVisible(true);
+			
+			// Set up Undo Button
+			JButton undoButton = new JButton();
+			undoButton.setSize(65, 75);
+			undoButton.setText("Undo");
+			undoButton.setLocation(730, gameFrame.getHeight() / 2 - 75);
+			gameBoardPanel.add(undoButton);
+			undoButton.addActionListener(new UndoListener());
+			undoButton.setVisible(true);
 			
 			renderInitialBoard();
 		}
@@ -810,6 +828,14 @@ public class GUI {
 				}
 				game.saveFile(fw);
 			}
+		}
+	}
+	
+	private class UndoListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			game.undoMove();
 		}
 	}
 
