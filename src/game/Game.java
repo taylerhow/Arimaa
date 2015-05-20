@@ -72,9 +72,6 @@ public class Game {
 		//TODO: up here too
 		BoardState boardToAdd = new BoardState(currentBoard.getBoardArray(), currentBoard.getTurnNumber());
 		boards.add(boardToAdd);
-//		currentBoard = currentBoard.clone();
-		System.out.println("Print 1");
-		currentBoard.printBoard();
 		switch (dir) {
 		case 0:
 			// Moving UP
@@ -506,14 +503,8 @@ public class Game {
 	
 	public void undoMove(){
 		//TODO: quit losing your place
-//		currentBoard.printBoard();
-		System.out.println("Print 2");
-		System.out.println(this.boards.size());
-		this.boards.get(0).printBoard();
 		this.currentBoard = this.boards.get(boards.size()-1);
-		currentBoard.printBoard();
 		this.boards.remove(this.boards.size()-1);
-		System.out.println(boards.isEmpty());
 	}
 
 	public boolean loadFile(Scanner scanner) {
