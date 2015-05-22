@@ -930,4 +930,17 @@ public class TestGame {
 		Game g = new Game(win2BoardState);
 		assertTrue(g.move(1,5,1));		
 	}
+	
+	@Test
+	public void testEndMove(){
+		Game g = new Game();
+		assertTrue(g.move(1,0,2));
+		assertTrue(g.move(2,0,2));
+		assertTrue(g.move(3,0,2));
+		assertTrue(g.move(4,0,2));
+		assertTrue(g.move(6,1,0));
+		assertTrue(g.move(5,1,0));
+		assertTrue(g.move(4,1,0));
+		assertTrue(g.move(3,1,0));
+	}
 }
