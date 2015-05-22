@@ -2,6 +2,8 @@ package testing;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Field;
+
 import javax.swing.JLabel;
 
 import game.GUI;
@@ -40,4 +42,40 @@ public class TestTimePanel {
 		assertEquals(1, game.getWinner());
 	}
 
+	@Test
+	public void testSwitchMove(){
+		GUI gui=new GUI();
+		Game game=new Game();
+		TimePanel tp= new TimePanel(gui, game, 9, new JLabel());
+
+		game.setPlayerTurn(2);
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		Field playerTurn = null;
+		try {
+			playerTurn = TimePanel.class.getDeclaredField("playerTurn");
+		} catch (NoSuchFieldException | SecurityException e1) {
+			// TODO Auto-generated catch block
+			//e1.printStackTrace();
+		}
+		playerTurn.setAccessible(true);
+		int fieldValue = 0;
+		try {
+			fieldValue = (int)playerTurn.get(tp);
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		assertEquals(2,  fieldValue);
+	}
 }
