@@ -23,7 +23,13 @@ public class TestTimePanel {
 	@Test
 	public void testUpdate() {
 		TimePanel tp = new TimePanel(new GUI(), new Game(), 15, new JLabel());
-		tp.update(5, 0);
+		//tp.update(5, 0);
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals("<html> <b>" + 0 + ":" + 14 + "</b> </html>", tp.getTimerLabel().getText());
 	}
 	
