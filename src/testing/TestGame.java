@@ -106,6 +106,7 @@ public class TestGame {
 		assertNull(g.getSpace(0, 8));
 	}
 
+	//testing Move
 	@Test
 	public void testMoveLegal() {
 		Game g = new Game(b);
@@ -181,6 +182,28 @@ public class TestGame {
 		assertFalse(g.move(0, 1, 3));
 		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
 				g.getSpace(0, 1));
+	}
+	
+	BoardState freezingBoard = new BoardState(new char[][] {
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'R', 'E', ' ', ' ' },
+			{ ' ', ' ', ' ', 'R', 'c', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', 'R' }, }, 0);
+	
+	@Test
+	public void testCannotMoveIfFrozenByStrongerOpposingPiece(){
+		Game g = new Game(freezingBoard);
+		assertFalse(g.move(4, 3, 0));
+	}
+	
+	@Test
+	public void testCanMoveIfFrozenByStrongerOpposingPieceButThawedByFriendlyPiece(){
+		Game g = new Game(freezingBoard);
+		assertTrue(g.move(3, 4, 0));
 	}
 
 	@Test
