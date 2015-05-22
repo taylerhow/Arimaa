@@ -596,9 +596,21 @@ public class TestGame {
 	}
 
 	@Test
-	public void testGetDirectionNonAdjacent() {
+	public void testGetDirectionNonAdjacent1() {
 		Game g = new Game();
 		assertEquals(-1, g.getDirection(1, 1, 7, 7));
+	}
+	
+	@Test
+	public void testGetDirectionNonAdjacent2() {
+		Game g = new Game();
+		assertEquals(-1, g.getDirection(1, 1, 1, 7));
+	}
+	
+	@Test
+	public void testGetDirectionNonAdjacent3() {
+		Game g = new Game();
+		assertEquals(-1, g.getDirection(1, 1, 7, 1));
 	}
 
 	// Testing saveFile

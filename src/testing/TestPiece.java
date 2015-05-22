@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import game.Piece;
 import game.Piece.Owner;
@@ -129,6 +130,13 @@ public class TestPiece {
 		Piece p = new Piece('G');
 		assertEquals(null, p.getOwner());
 		assertEquals(null, p.getType());
+	}
+	
+	@Test
+	public void testEqualsReturnsFalseForOtherObject(){
+		Piece p = new Piece('E');
+		ArrayList<Integer> notAPiece = new ArrayList<Integer>();
+		assertFalse(p.equals(notAPiece));
 	}
 	
 	@Test
