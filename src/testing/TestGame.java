@@ -836,9 +836,9 @@ public class TestGame {
 	@Test
 	public void testRemovePieceValid() {
 		Game g = new Game(removeBoard);
-		g.currentBoard.printBoard();
+//		g.currentBoard.printBoard();
 		assertTrue(g.move(6, 3, 0));
-		g.currentBoard.printBoard();
+//		g.currentBoard.printBoard();
 		assertEquals(null, g.getSpace(2, 2));
 	}
 
