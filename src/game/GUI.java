@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -45,6 +47,15 @@ public class GUI {
 		this.p2Name = "Player 2";
 		p2TextField = null;
 		p1TextField = null;
+//		BoardState b=new BoardState(new char[][] {
+//				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+//				{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
+//				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+//				{ ' ', 'R', ' ', ' ', ' ', ' ', ' ', ' ' },
+//				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+//				{ ' ', 'R', ' ', 'E', ' ', ' ', 'r', ' ' },
+//				{ ' ', 'e', ' ', ' ', ' ', ' ', 'C', ' ' },
+//				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, }, 0);
 		this.game = new Game();
 		this.boardPieces = new ImagePanel[8][8];
 		this.activeFrames = new ArrayList<JFrame>();
