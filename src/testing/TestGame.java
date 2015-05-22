@@ -897,7 +897,7 @@ public class TestGame {
 	
 	BoardState win2BoardState = new BoardState(new char[][] {
 			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', 'C', ' ', ' ', ' ', 'D', ' ', ' ' },
+			{ ' ', 'C', ' ', ' ', 'e', 'D', ' ', ' ' },
 			{ ' ', ' ', 'C', ' ', ' ', 'C', ' ', ' ' },
 			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
 			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
@@ -911,5 +911,11 @@ public class TestGame {
 		Game g = new Game(win2BoardState);
 		g.move(1,1,2);
 		assertEquals(2, g.getWinner());
+	}
+	
+	@Test
+	public void testCheckFriendlyAdjacentDownCase(){
+		Game g = new Game(win2BoardState);
+		assertTrue(g.move(1,5,1));		
 	}
 }
