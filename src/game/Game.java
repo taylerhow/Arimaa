@@ -112,15 +112,19 @@ public class Game {
 	private boolean isValidMoveFromSquare(int row, int column) {
 		if (getSpace(row, column) == null)
 			return false;
+		//System.out.println("isPushPull: "+isPushPull);
 		// This may cause issues when we implement undo/redo if we try invalid
 		// moves before we undo
 		if (getSpace(row, column).getOwner() != Owner.values()[(getPlayerTurn() - 1)]
-				&& !isPushPull)
+				&& !isPushPull){
+			//System.out.println("Not your turn: "+isPushPull);
 			return false;// not your turn
-
+		}
 		if ((checkStrongerAdjacent(row, column) && !checkFriendlyAdjacent(row,
-				column)) && !isPushPull)
+				column)) && !isPushPull){
+			//System.out.println("Can't move "+isPushPull);
 			return false;// can't move
+			}
 		return true;
 	}
 
@@ -361,6 +365,7 @@ public class Game {
 
 			break;
 		}
+		isPushPull=false;
 		return false;
 	}
 
