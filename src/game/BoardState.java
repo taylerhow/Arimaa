@@ -50,11 +50,4 @@ public class BoardState {
 	public BoardState clone() {
 		return new BoardState(boardArray, turnNumber);
 	}
-
-	public void printBoard() {
-		for (int i = 0; i < 8; i++) {
-			System.out.println(i + ": " + Arrays.toString(boardArray[i]));
-		}
-		System.out.println();
-	}
 }

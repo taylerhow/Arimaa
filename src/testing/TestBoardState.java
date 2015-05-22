@@ -54,5 +54,10 @@ public class TestBoardState {
 		b.setTurnNumber(5);
 		assertEquals(5, b.getTurnNumber());
 	}
+	
+	@Test
+	public void testPrintBoard(){
+		
+	}
 
 }
