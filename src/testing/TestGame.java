@@ -894,4 +894,22 @@ public class TestGame {
 		g.setWinner(1);
 		assertEquals(1,g.getWinner());
 	}
+	
+	BoardState win2BoardState = new BoardState(new char[][] {
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', 'C', ' ', ' ', ' ', 'D', ' ', ' ' },
+			{ ' ', ' ', 'C', ' ', ' ', 'C', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', ' ' }, }, 0);
+	
+	
+	@Test 
+	public void testWinWhenP1HasNoRabbits(){
+		Game g = new Game(win2BoardState);
+		g.move(1,1,2);
+		assertEquals(2, g.getWinner());
+	}
 }

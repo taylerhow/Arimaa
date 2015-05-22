@@ -188,6 +188,7 @@ public class Game {
 				}
 			}
 		}
+
 		if(!p1RabbitExists){
 			winner=2;
 		}
@@ -200,6 +201,7 @@ public class Game {
 				}
 			}
 		}
+		
 		if(!p2RabbitExists){
 			winner=1;
 		}
