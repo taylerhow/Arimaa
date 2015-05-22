@@ -943,4 +943,24 @@ public class TestGame {
 		assertTrue(g.move(4,1,0));
 		assertTrue(g.move(3,1,0));
 	}
+	
+	BoardState pushPullTestBoardState = new BoardState(new char[][] {
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+			{ ' ', 'C', ' ', 'r', ' ', ' ', ' ', 'D' },
+			{ ' ', ' ', 'C', ' ', ' ', 'C', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', ' ' }, }, 0);
+	
+	@Test
+	public void testCantPushPullWith1Move(){
+		Game g = new Game(pushPullTestBoardState);
+		g.setPlayerTurn(1);
+		assertTrue(g.move(1, 7, 3));
+		assertTrue(g.move(1, 6, 3));
+		assertTrue(g.move(1, 5, 3));
+		assertFalse(g.pull(1, 4, 1, 3, 1));
+	}
 }
