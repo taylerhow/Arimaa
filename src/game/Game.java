@@ -382,8 +382,7 @@ public class Game {
 		if (getSpace(row, column) == null) {
 			return false; // trying to push with an empty square
 		}
-		if (getSpace(row, column).getOwner() != Owner.values()[(getPlayerTurn() - 1)]
-				&& !isPushPull)
+		if (getSpace(row, column).getOwner() != Owner.values()[(getPlayerTurn() - 1)])
 			return false;// not your turn
 		return true;
 	}
@@ -470,9 +469,7 @@ public class Game {
 			return false;
 		}
 
-		if (getSpace(row1, column1).getOwner() != Owner.values()[(getPlayerTurn() - 1)]
-				&& !isPushPull)
-
+		if (getSpace(row1, column1).getOwner() != Owner.values()[(getPlayerTurn() - 1)])
 			return false;// not your turn
 		return true;
 	}

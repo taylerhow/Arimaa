@@ -117,12 +117,18 @@ public class TestGame {
 				g.getSpace(6, 7));
 		assertEquals(null, g.getSpace(7, 7));
 	}
+	
+	@Test
+	public void testMoveIllegalNotYourTurn() {
+		Game g = new Game();
+		assertFalse(g.move(7, 7, 2));
+	}
 
 	@Test
 	public void testMoveIllegalDown() {
 		Game g = new Game();
+		g.setPlayerTurn(2);
 		assertFalse(g.move(7, 7, 2));
-
 	}
 
 	@Test
@@ -135,6 +141,7 @@ public class TestGame {
 	@Test
 	public void testMoveIllegalRight() {
 		Game g = new Game();
+		g.setPlayerTurn(2);
 		assertFalse(g.move(7, 7, 1));
 	}
 
@@ -205,7 +212,7 @@ public class TestGame {
 		Game g = new Game(freezingBoard);
 		assertTrue(g.move(3, 4, 0));
 	}
-
+	
 	@Test
 	public void testEmptyCreateConstructor() {
 		Game g = new Game();
@@ -236,6 +243,15 @@ public class TestGame {
 			{ ' ', ' ', ' ', 'C', ' ', 'k', ' ', ' ' },
 			{ 'r', ' ', 'C', 'r', 'C', ' ', ' ', ' ' },
 			{ 'E', 'r', ' ', 'C', ' ', ' ', ' ', ' ' }, }, 0);
+	
+	@Test
+	public void testPushNotEnoughMoves() {
+		Game g = new Game(pushTestingBoard);
+		assertTrue(g.move(1, 7, 2));
+		assertTrue(g.move(2, 7, 2));
+		assertTrue(g.move(3, 7, 2));
+		assertFalse(g.push(4, 5, 0, 0));
+	}
 
 	@Test
 	public void testPushInvalid() {
