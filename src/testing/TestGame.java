@@ -986,4 +986,14 @@ public class TestGame {
 		assertTrue(g.move(1, 5, 3));
 		assertFalse(g.pull(1, 4, 1, 3, 1));
 	}
+	
+	@Test
+	public void testCantPushPullWith1Move2(){
+		Game g = new Game(pushPullTestBoardState);
+		g.setPlayerTurn(1);
+		assertTrue(g.move(1, 7, 3));
+		assertTrue(g.move(1, 6, 3));
+		assertTrue(g.move(1, 5, 3));
+		assertFalse(g.push(1, 4, 3, 3));
+	}
 }
