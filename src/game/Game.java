@@ -504,9 +504,16 @@ public class Game {
 		return -1;
 	}
 	
+	//EDITED 2015-12-09: Changed functionality so undo only reverts one move at a time, not the player's whole turn.
 	public void undoMove(){
 		if(this.numMoves == 4) return;
 		
+		this.currentBoard = this.boards.get(boards.size()-1);
+		this.boards.remove(this.boards.size()-1);
+		
+		this.numMoves += 1;
+		
+		/*
 		if(this.numMoves == 3) {
 		this.currentBoard = this.boards.get(boards.size()-1);
 		this.boards.remove(this.boards.size()-1);
@@ -523,6 +530,7 @@ public class Game {
 		}
 		
 		this.numMoves = 4;
+		*/
 	}
 
 	public boolean loadFile(Scanner scanner) {
