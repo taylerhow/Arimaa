@@ -1,7 +1,5 @@
 package game;
 
-import java.util.Arrays;
-
 /**
  * This class represents the states of the board.
  * 
