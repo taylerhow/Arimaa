@@ -123,7 +123,7 @@ public class Game {
 		if ((checkStrongerAdjacent(row, column) && !checkFriendlyAdjacent(row,
 				column)) && !isPushPull){
 			//System.out.println("Can't move "+isPushPull);
-			return false;// can't move
+			return false;// can't move 
 			}
 		return true;
 	}
