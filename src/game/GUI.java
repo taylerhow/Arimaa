@@ -66,6 +66,7 @@ public class GUI {
 	}
 
 	public static void main(String[] args) {
+		//TODO: Long method, possible refactoring?
 		GUI g = new GUI();
 
 		// Add MAIN MENU panel with appropriate background image
@@ -130,6 +131,7 @@ public class GUI {
 		this.activeFrames = frames;
 	}
 
+	//TODO: Long method, bad switch statement. Refactor?
 	private void renderInitialBoard() {
 		if (game.getWinner() != 0)
 			createWinWindow();
@@ -303,6 +305,7 @@ public class GUI {
 	}
 
 	// ACTION LISTENERS
+	//TODO Extract?
 	private class newGameListener implements ActionListener {
 
 		@Override
@@ -417,6 +420,7 @@ public class GUI {
 		}
 	}
 
+	//TODO Extract?
 	private class loadGameListener implements ActionListener {
 
 		@Override
@@ -617,8 +621,10 @@ public class GUI {
 		}
 	}
 
+	//TODO Extract to another class?
 	private class startGameListener implements ActionListener {
 
+		//TODO long method, possible refactor?
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			game.p1Name = p1TextField.getText();
@@ -795,6 +801,7 @@ public class GUI {
 		}
 	}
 
+	//TODO Extract to another class?
 	private class SaveGameListener implements ActionListener {
 
 		@Override
@@ -826,7 +833,8 @@ public class GUI {
 			renderBoard();
 		}
 	}
-
+	
+	//TODO Extract to seperate class?
 	private class MovementListener implements MouseListener {
 		ImagePanel selectedPiece;
 		ImagePanel secondSelectedPiece;
@@ -856,6 +864,7 @@ public class GUI {
 			// Not needed
 		}
 
+		//TODO Possible refactor, method long and complicated
 		@Override
 		public void mousePressed(MouseEvent e) {
 			int sourceX = (int) e.getPoint().getX();
@@ -1116,6 +1125,7 @@ public class GUI {
 	}
 }
 
+//TODO: Extract this to another class?
 class ImagePanel extends JPanel {
 
 	/**
