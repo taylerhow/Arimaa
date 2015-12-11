@@ -67,6 +67,9 @@ public class Game {
 	 * @return
 	 */
 	public boolean move(int row, int column, int dir) {
+		if(numMoves<=0){
+			return false;
+		}
 		if (!isValidMoveFromSquare(row, column))
 			return false;
 		boards.add(currentBoard);
@@ -146,15 +149,16 @@ public class Game {
 		checkDeaths(5, 5);
 		checkWin();
 		numMoves--;
-		if (numMoves <= 0) {
-			if (getPlayerTurn() == 1) {
-				setPlayerTurn(2);
-			} else {
-				setPlayerTurn(1);
-			}
-			numMoves = 4;
-			turnCounter++;
+	}
+	
+	public void endTurn() {
+		if (getPlayerTurn() == 1) {
+			setPlayerTurn(2);
+		} else {
+			setPlayerTurn(1);
 		}
+		numMoves = 4;
+		turnCounter++;
 	}
 
 	// This method checks both rows for rabbits of the opposite side

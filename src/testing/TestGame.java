@@ -266,6 +266,7 @@ public class TestGame {
 		Game g = new Game(b2);
 		assertTrue(g.push(4, 4, 0, 0));
 		assertTrue(g.push(3, 4, 0, 0));
+		g.endTurn();
 		g.setPlayerTurn(1);
 		assertTrue(g.push(2, 4, 0, 0));
 		assertFalse(g.push(1, 4, 0, 0));
@@ -294,9 +295,11 @@ public class TestGame {
 		Game g = new Game(b2);
 		assertTrue(g.push(7, 6, 3, 3));
 		assertTrue(g.push(7, 5, 3, 3));
+		g.endTurn();
 		g.setPlayerTurn(1);
 		assertTrue(g.push(7, 4, 3, 3));
 		assertTrue(g.push(7, 3, 3, 3));
+		g.endTurn();
 		g.setPlayerTurn(1);
 		assertTrue(g.push(7, 2, 3, 3));
 		assertFalse(g.push(7, 1, 3, 3));
@@ -909,6 +912,7 @@ public class TestGame {
 		g.move(1, 0, 2);
 		g.move(2, 0, 2);
 		g.undoMove();
+		g.undoMove();
 		assertEquals(new Piece('R'), g.getSpace(1,0));	}
 	
 	@Test
@@ -917,6 +921,8 @@ public class TestGame {
 		g.move(1, 0, 2);
 		g.move(2, 0, 2);
 		g.move(3, 0, 2);
+		g.undoMove();
+		g.undoMove();
 		g.undoMove();
 		assertEquals(new Piece('R'), g.getSpace(1,0));	}
 	
@@ -927,6 +933,7 @@ public class TestGame {
 		g.move(2, 0, 2);
 		g.move(3, 0, 2);
 		g.move(4, 0, 2);
+		g.endTurn();
 		g.undoMove();
 		assertEquals(new Piece('R'), g.getSpace(5,0));
 	}
@@ -977,6 +984,7 @@ public class TestGame {
 		assertTrue(g.move(2,0,2));
 		assertTrue(g.move(3,0,2));
 		assertTrue(g.move(4,0,2));
+		g.endTurn();
 		assertTrue(g.move(6,1,0));
 		assertTrue(g.move(5,1,0));
 		assertTrue(g.move(4,1,0));

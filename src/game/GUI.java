@@ -588,21 +588,30 @@ public class GUI {
 
 				// Set up Save Game Button
 				JButton saveGameButton = new JButton();
-				saveGameButton.setSize(65, 75);
+				saveGameButton.setSize(65, 50);
 				saveGameButton.setText("Save");
-				saveGameButton.setLocation(660, gameFrame.getHeight() / 2 - 75);
+				saveGameButton.setLocation(657, gameFrame.getHeight() / 2 - 90);
 				gameBoardPanel.add(saveGameButton);
 				saveGameButton.addActionListener(new SaveGameListener());
 				saveGameButton.setVisible(true);
 
 				// Set up Undo Button
 				JButton undoButton = new JButton();
-				undoButton.setSize(65, 75);
+				undoButton.setSize(65, 50);
 				undoButton.setText("Undo");
-				undoButton.setLocation(730, gameFrame.getHeight() / 2 - 75);
+				undoButton.setLocation(727, gameFrame.getHeight() / 2 - 90);
 				gameBoardPanel.add(undoButton);
 				undoButton.addActionListener(new UndoListener());
 				undoButton.setVisible(true);
+				
+				// Set up End Turn Button
+				JButton endTurnButton = new JButton();
+				endTurnButton.setSize(135, 50);
+				endTurnButton.setText("End Turn");
+				endTurnButton.setLocation(657, gameFrame.getHeight() / 2 - 37);
+				gameBoardPanel.add(endTurnButton);
+				endTurnButton.addActionListener(new EndTurnListener());
+				endTurnButton.setVisible(true);
 
 				renderInitialBoard();
 			} else {
@@ -781,21 +790,30 @@ public class GUI {
 
 			// Set up Save Game Button
 			JButton saveGameButton = new JButton();
-			saveGameButton.setSize(65, 75);
+			saveGameButton.setSize(65, 50);
 			saveGameButton.setText("Save");
-			saveGameButton.setLocation(660, gameFrame.getHeight() / 2 - 75);
+			saveGameButton.setLocation(657, gameFrame.getHeight() / 2 - 90);
 			gameBoardPanel.add(saveGameButton);
 			saveGameButton.addActionListener(new SaveGameListener());
 			saveGameButton.setVisible(true);
 
 			// Set up Undo Button
 			JButton undoButton = new JButton();
-			undoButton.setSize(65, 75);
+			undoButton.setSize(65, 50);
 			undoButton.setText("Undo");
-			undoButton.setLocation(730, gameFrame.getHeight() / 2 - 75);
+			undoButton.setLocation(727, gameFrame.getHeight() / 2 - 90);
 			gameBoardPanel.add(undoButton);
 			undoButton.addActionListener(new UndoListener());
 			undoButton.setVisible(true);
+			
+			// Set up End Turn Button
+			JButton endTurnButton = new JButton();
+			endTurnButton.setSize(137, 50);
+			endTurnButton.setText("End Turn");
+			endTurnButton.setLocation(655, gameFrame.getHeight() / 2 - 37);
+			gameBoardPanel.add(endTurnButton);
+			endTurnButton.addActionListener(new EndTurnListener());
+			endTurnButton.setVisible(true);
 
 			renderInitialBoard();
 		}
@@ -830,6 +848,15 @@ public class GUI {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			game.undoMove();
+			renderBoard();
+		}
+	}
+	
+	private class EndTurnListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			game.endTurn();
 			renderBoard();
 		}
 	}
