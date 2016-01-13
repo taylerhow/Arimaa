@@ -40,7 +40,6 @@ public class GUI {
 	private JLabel turnCountLabel;
 	private JLabel turnIndicatorLabel;
 	private JLabel timerLabel;
-	private TimePanel timer;
 
 	public GUI() {
 		this.p1Name = "Player 1";
@@ -355,9 +354,7 @@ public class GUI {
 		gameBoardPanel.add(timerLabel);
 
 		// P1 Time Panel
-		// TODO: null point on timer combo box when loading game
 		TimePanel timePanel = new TimePanel(GUI.this, game, game.getTurnTimer(), timerLabel);
-		timer = timePanel;
 
 		// Set up Save Game Button
 		JButton saveButton = createButton("Save", 1, 12, 65, 50, 657, gameFrame.getHeight() / 2 - 90,
@@ -378,6 +375,8 @@ public class GUI {
 	}
 
 	// Label & Button create for convenience in Action Listeners
+	// DOCME: Long Parameter List bad smell, decided against making a parameter
+	// object, since this code is unlikely to change much in the futures
 	public JLabel createLabel(String text, Color fontColor, int fontSize, int width, int height, int x, int y) {
 		JLabel label = new JLabel();
 		label.setText(text);
@@ -563,7 +562,7 @@ public class GUI {
 			JFrame settings = activeFrames.get(1);
 			activeFrames.remove(1);
 			settings.dispose();
-			
+
 			game.setTurnTimer((int) timerComboBox.getSelectedItem());
 			setupForGame();
 		}
@@ -662,13 +661,21 @@ public class GUI {
 				// If a piece is selected and an empty space is clicked
 				// AKA move
 				else if (noSelectedPieceAndEmptySpaceClicked(rowClicked, columnClicked)) {
-					int calculatedDirection = moveDirection(selectedPiece, rowClicked, columnClicked);
-					// Using move to check for valid move
-					if (game.move(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection)) {
-						renderBoard();
+					Integer calculatedDirection = null;
+					try {
+						calculatedDirection = moveDirection(selectedPiece, rowClicked, columnClicked);
+					} catch (ArimaaException e1) {
+						e1.printStackTrace();
+						System.err.println("Arimaa Exception: " + e1.getMessage());
 					}
-					this.selectedPiece = null;
-					this.secondSelectedPiece = null;
+					// Using move to check for valid move
+					if (calculatedDirection != null) {
+						if (game.move(selectedPiece.getRow(), selectedPiece.getColumn(), calculatedDirection)) {
+							renderBoard();
+						}
+						this.selectedPiece = null;
+						this.secondSelectedPiece = null;
+					}
 
 				}
 
@@ -681,29 +688,43 @@ public class GUI {
 				} else if (twoPieceSelectedAndEmptySpaceClicked(rowClicked, columnClicked)) {
 
 					if (checkForPull(rowClicked, columnClicked)) {
-						int calculatedDirection = moveDirection(selectedPiece, rowClicked, columnClicked);
-
-						if (game.pull(this.selectedPiece.getRow(), this.selectedPiece.getColumn(),
-								this.secondSelectedPiece.getRow(), this.secondSelectedPiece.getColumn(),
-								calculatedDirection)) {
-							renderBoard();
-
+						Integer calculatedDirection = null;
+						try {
+							calculatedDirection = moveDirection(selectedPiece, rowClicked, columnClicked);
+						} catch (ArimaaException e1) {
+							e1.printStackTrace();
+							System.err.println("Arimaa Exception: " + e1.getMessage());
 						}
-						this.selectedPiece = null;
-						this.secondSelectedPiece = null;
+
+						if (calculatedDirection != null) {
+							if (game.pull(this.selectedPiece.getRow(), this.selectedPiece.getColumn(),
+									this.secondSelectedPiece.getRow(), this.secondSelectedPiece.getColumn(),
+									calculatedDirection)) {
+								renderBoard();
+							}
+							this.selectedPiece = null;
+							this.secondSelectedPiece = null;
+						}
 
 					} else if (checkForPush(rowClicked, columnClicked)) {
-						int calculatedDirection1 = moveDirectionOnePush(selectedPiece, secondSelectedPiece);
-
-						int calculatedDirection2 = moveDirectionTwoPush(secondSelectedPiece, rowClicked, columnClicked);
-
-						if (game.push(this.selectedPiece.getRow(), this.selectedPiece.getColumn(), calculatedDirection1,
-								calculatedDirection2)) {
-							renderBoard();
-
+						Integer calculatedDirection1 = null;
+						Integer calculatedDirection2 = null;
+						try {
+							calculatedDirection1 = moveDirectionOnePush(selectedPiece, secondSelectedPiece);
+							calculatedDirection2 = moveDirectionTwoPush(secondSelectedPiece, rowClicked, columnClicked);
+						} catch (ArimaaException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
-						this.selectedPiece = null;
-						this.secondSelectedPiece = null;
+
+						if (calculatedDirection1 != null && calculatedDirection2 != null) {
+							if (game.push(this.selectedPiece.getRow(), this.selectedPiece.getColumn(),
+									calculatedDirection1, calculatedDirection2)) {
+								renderBoard();
+							}
+							this.selectedPiece = null;
+							this.secondSelectedPiece = null;
+						}
 					}
 				}
 
@@ -716,7 +737,8 @@ public class GUI {
 
 		}
 
-		private int moveDirectionTwoPush(ImagePanel secondSelectedPiece2, int rowClicked, int columnClicked) {
+		private int moveDirectionTwoPush(ImagePanel secondSelectedPiece2, int rowClicked, int columnClicked)
+				throws ArimaaException {
 			if (secondSelectedPiece.getRow() - 1 == rowClicked && secondSelectedPiece.getColumn() == columnClicked)
 				return 0;
 			else if (secondSelectedPiece.getColumn() + 1 == columnClicked && secondSelectedPiece.getRow() == rowClicked)
@@ -725,10 +747,13 @@ public class GUI {
 				return 2;
 			else if (secondSelectedPiece.getColumn() - 1 == columnClicked && secondSelectedPiece.getRow() == rowClicked)
 				return 3;
-			return -1; // Shouldn't ever happen
+			else {
+				throw new ArimaaException("GUI.moveDirectionTwoPush(): Invalid push movement :(");
+			}
 		}
 
-		private int moveDirectionOnePush(ImagePanel selectedPiece2, ImagePanel secondSelectedPiece2) {
+		private int moveDirectionOnePush(ImagePanel selectedPiece2, ImagePanel secondSelectedPiece2)
+				throws ArimaaException {
 			if (selectedPiece.getRow() - 1 == secondSelectedPiece.getRow()
 					&& selectedPiece.getColumn() == secondSelectedPiece.getColumn())
 				return 0;
@@ -741,7 +766,9 @@ public class GUI {
 			else if (selectedPiece.getColumn() - 1 == secondSelectedPiece.getColumn()
 					&& selectedPiece.getRow() == secondSelectedPiece.getRow())
 				return 3;
-			return -1; // Shouldn't ever happen
+			else {
+				throw new ArimaaException("GUI.moveDirectionOnePush(): Invalid push movement :(");
+			}
 		}
 
 		private boolean twoPieceSelectedAndEmptySpaceClicked(int rowClicked, int columnClicked) {
@@ -755,7 +782,7 @@ public class GUI {
 					&& this.selectedPiece != boardPieces[rowClicked][columnClicked];
 		}
 
-		private int moveDirection(ImagePanel selectedPiece2, int rowClicked, int columnClicked) {
+		private int moveDirection(ImagePanel selectedPiece2, int rowClicked, int columnClicked) throws ArimaaException {
 			if (selectedPiece.getRow() - 1 == rowClicked && selectedPiece.getColumn() == columnClicked)
 				return 0;
 			else if (selectedPiece.getColumn() + 1 == columnClicked && selectedPiece.getRow() == rowClicked)
@@ -764,7 +791,9 @@ public class GUI {
 				return 2;
 			else if (selectedPiece.getColumn() - 1 == columnClicked && selectedPiece.getRow() == rowClicked)
 				return 3;
-			return -1; // Please never happen...
+			else {
+				throw new ArimaaException("GUI.moveDirection(): Invalid direction :(");
+			}
 		}
 
 		private boolean noSelectedPieceAndEmptySpaceClicked(int rowClicked, int columnClicked) {
