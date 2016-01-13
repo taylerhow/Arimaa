@@ -267,7 +267,7 @@ public class GUI {
 		JFrame winnerFrame = new JFrame();
 		activeFrames.add(winnerFrame);
 		winnerFrame.setTitle("Winner!");
-		winnerFrame.setLocation(650 / 2 - 324 / 2 + 5, 650 / 2 - 324 / 2 + 44);
+		winnerFrame.setLocation(650 / 2 - 324 / 2 + 75, 650 / 2 - 324 / 2 + 0);
 		winnerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		winnerFrame.setVisible(true);
 
@@ -355,7 +355,8 @@ public class GUI {
 		gameBoardPanel.add(timerLabel);
 
 		// P1 Time Panel
-		TimePanel timePanel = new TimePanel(GUI.this, game, (int) timerComboBox.getSelectedItem(), timerLabel);
+		// TODO: null point on timer combo box when loading game
+		TimePanel timePanel = new TimePanel(GUI.this, game, game.getTurnTimer(), timerLabel);
 		timer = timePanel;
 
 		// Set up Save Game Button
@@ -562,7 +563,8 @@ public class GUI {
 			JFrame settings = activeFrames.get(1);
 			activeFrames.remove(1);
 			settings.dispose();
-
+			
+			game.setTurnTimer((int) timerComboBox.getSelectedItem());
 			setupForGame();
 		}
 	}
