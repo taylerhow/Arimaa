@@ -67,6 +67,9 @@ public class Game {
 	 * @return
 	 */
 	public boolean move(int row, int column, int dir) {
+		if(numMoves<=0){
+			return false;
+		}
 		if (!isValidMoveFromSquare(row, column))
 			return false;
 		boards.add(currentBoard);
@@ -123,7 +126,7 @@ public class Game {
 		if ((checkStrongerAdjacent(row, column) && !checkFriendlyAdjacent(row,
 				column)) && !isPushPull){
 			//System.out.println("Can't move "+isPushPull);
-			return false;// can't move
+			return false;// can't move 
 			}
 		return true;
 	}
@@ -146,15 +149,16 @@ public class Game {
 		checkDeaths(5, 5);
 		checkWin();
 		numMoves--;
-		if (numMoves <= 0) {
-			if (getPlayerTurn() == 1) {
-				setPlayerTurn(2);
-			} else {
-				setPlayerTurn(1);
-			}
-			numMoves = 4;
-			turnCounter++;
+	}
+	
+	public void endTurn() {
+		if (getPlayerTurn() == 1) {
+			setPlayerTurn(2);
+		} else {
+			setPlayerTurn(1);
 		}
+		numMoves = 4;
+		turnCounter++;
 	}
 
 	// This method checks both rows for rabbits of the opposite side
@@ -504,9 +508,16 @@ public class Game {
 		return -1;
 	}
 	
+	//EDITED 2015-12-09: Changed functionality so undo only reverts one move at a time, not the player's whole turn.
 	public void undoMove(){
 		if(this.numMoves == 4) return;
 		
+		this.currentBoard = this.boards.get(boards.size()-1);
+		this.boards.remove(this.boards.size()-1);
+		
+		this.numMoves += 1;
+		
+		/*
 		if(this.numMoves == 3) {
 		this.currentBoard = this.boards.get(boards.size()-1);
 		this.boards.remove(this.boards.size()-1);
@@ -523,6 +534,7 @@ public class Game {
 		}
 		
 		this.numMoves = 4;
+		*/
 	}
 
 	public boolean loadFile(Scanner scanner) {
@@ -656,6 +668,10 @@ public class Game {
 
 	public int getTurnTimer() {
 		return moveTimer;
+	}
+	
+	public void setTurnTimer(int time) {
+		this.moveTimer = time;
 	}
 
 	/**

@@ -27,7 +27,6 @@ public class TestTimePanel {
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertEquals("<html> <b>" + 0 + ":" + 14 + "</b> </html>", tp.getTimerLabel().getText());
@@ -42,7 +41,6 @@ public class TestTimePanel {
 		try {
 			Thread.sleep(3500);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertEquals(1, game.getWinner());
@@ -58,20 +56,17 @@ public class TestTimePanel {
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			//e.printStackTrace();
 		}
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			//e.printStackTrace();
 		}
 		Field playerTurn = null;
 		try {
 			playerTurn = TimePanel.class.getDeclaredField("playerTurn");
 		} catch (NoSuchFieldException | SecurityException e1) {
-			// TODO Auto-generated catch block
 			//e1.printStackTrace();
 		}
 		playerTurn.setAccessible(true);
@@ -79,7 +74,6 @@ public class TestTimePanel {
 		try {
 			fieldValue = (int)playerTurn.get(tp);
 		} catch (IllegalArgumentException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			//e.printStackTrace();
 		}
 		assertEquals(2,  fieldValue);
