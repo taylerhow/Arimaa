@@ -11,11 +11,29 @@ public class Game {
 	// fields
 	ArrayList<BoardState> boards = new ArrayList<BoardState>();
 	public BoardState currentBoard = null;
+
+	public int getMoveTimer() {
+		return moveTimer;
+	}
+
+	public void setMoveTimer(int moveTimer) {
+		this.moveTimer = moveTimer;
+	}
+
 	// int numMovesLeft = 0;
 	int moveTimer = 0;
 	int p1TimeBank = 0;
 	int p2TimeBank = 0;
 	int turnCounter = 0;
+
+	public void setP1Name(String p1Name) {
+		this.p1Name = p1Name;
+	}
+
+	public void setP2Name(String p2Name) {
+		this.p2Name = p2Name;
+	}
+
 	String p1Name = "Player1";
 	String p2Name = "Player2";
 	// 0 is nobody, 1 is player1, 2 is player2
