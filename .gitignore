@@ -4,11 +4,11 @@ docs/~$oblem Statement.docx
 *.~vsdx
 /bin/
 /codecover/
-
-/codecover/
 docs/~$nal Report.docx
 docs/~WRL0005.tmp
 .idea/*
 Arimaa.iml
 .project
-.metadata
+.metadata/*
+/out/*
+/out/
