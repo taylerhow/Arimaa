@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import game.*;
+import piece.Owner;
 import piece.Piece;
 import piece.Piece.PieceType;
 
@@ -65,7 +66,7 @@ public class TestGame {
 	public void testGetPieceExists() {
 		Game g = new Game(b);
 		assertEquals(g.getSpace(4, 3), new Piece(PieceType.Camel, null,
-				Piece.Owner.Player1));
+				Owner.Player1));
 	}
 
 	@Test
@@ -78,9 +79,9 @@ public class TestGame {
 	public void testGetPieceExistsAgain() {
 		Game g = new Game(b);
 		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null,
-				Piece.Owner.Player1));
+				Owner.Player1));
 		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null,
-				Piece.Owner.Player1));
+				Owner.Player1));
 	}
 
 	@Test
@@ -111,10 +112,10 @@ public class TestGame {
 	@Test
 	public void testMoveLegal() {
 		Game g = new Game(b);
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
 				g.getSpace(7, 7));
 		assertTrue(g.move(7, 7, 0));
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
 				g.getSpace(6, 7));
 		assertEquals(null, g.getSpace(7, 7));
 	}
@@ -155,40 +156,40 @@ public class TestGame {
 	@Test
 	public void testCannotMoveUpIntoOccupiedSpace() {
 		Game g = new Game();
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
 				g.getSpace(1, 0));
 		assertFalse(g.move(1, 0, 0));
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
 				g.getSpace(1, 0));
 	}
 
 	@Test
 	public void testCannotMoveRightIntoOccupiedSpace() {
 		Game g = new Game();
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
 				g.getSpace(0, 1));
 		assertFalse(g.move(0, 1, 1));
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
 				g.getSpace(0, 1));
 	}
 
 	@Test
 	public void testCannotMoveDownIntoOccupiedSpace() {
 		Game g = new Game();
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
 				g.getSpace(0, 1));
 		assertFalse(g.move(0, 1, 2));
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
 				g.getSpace(0, 1));
 	}
 
 	@Test
 	public void testCannotMoveLeftIntoOccupiedSpace() {
 		Game g = new Game();
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
 				g.getSpace(0, 1));
 		assertFalse(g.move(0, 1, 3));
-		assertEquals(new Piece(PieceType.Dog, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
 				g.getSpace(0, 1));
 	}
 	
@@ -217,7 +218,7 @@ public class TestGame {
 	@Test
 	public void testEmptyCreateConstructor() {
 		Game g = new Game();
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
+		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
 				g.getSpace(1, 1));
 	}
 
@@ -308,9 +309,9 @@ public class TestGame {
 		Game g = new Game(pushTestingBoard);
 		assertTrue(g.push(4, 5, 1, 0));
 		assertTrue(g.getSpace(4, 6).equals(
-				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Elephant, null, Owner.Player1)));
 		assertTrue(g.getSpace(3, 6).equals(
-				new Piece(PieceType.Camel, null, Piece.Owner.Player2)));
+				new Piece(PieceType.Camel, null, Owner.Player2)));
 	}
 
 	@Test
@@ -318,9 +319,9 @@ public class TestGame {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(2, 2, 0, 0));
 		assertTrue(g.getSpace(2, 2).equals(
-				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Elephant, null, Owner.Player1)));
 		assertTrue(g.getSpace(1, 2).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Rabbit, null, Owner.Player1)));
 	}
 
 	@Test
@@ -328,9 +329,9 @@ public class TestGame {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(2, 2, 1, 1));
 		assertTrue(g.getSpace(2, 2).equals(
-				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Elephant, null, Owner.Player1)));
 		assertTrue(g.getSpace(2, 3).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Rabbit, null, Owner.Player1)));
 	}
 
 	@Test
@@ -338,9 +339,9 @@ public class TestGame {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(2, 2, 2, 2));
 		assertTrue(g.getSpace(2, 2).equals(
-				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Elephant, null, Owner.Player1)));
 		assertTrue(g.getSpace(3, 2).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Rabbit, null, Owner.Player1)));
 	}
 
 	@Test
@@ -348,9 +349,9 @@ public class TestGame {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(2, 2, 3, 3));
 		assertTrue(g.getSpace(2, 2).equals(
-				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Elephant, null, Owner.Player1)));
 		assertTrue(g.getSpace(2, 1).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Rabbit, null, Owner.Player1)));
 	}
 
 	@Test
@@ -358,9 +359,9 @@ public class TestGame {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(6, 3, 0, 0));
 		assertTrue(g.getSpace(6, 3).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+				new Piece(PieceType.Rabbit, null, Owner.Player2)));
 		assertTrue(g.getSpace(5, 3).equals(
-				new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Camel, null, Owner.Player1)));
 	}
 
 	@Test
@@ -368,9 +369,9 @@ public class TestGame {
 		Game g = new Game(pushTestingBoard);
 		assertFalse(g.push(6, 3, 1, 1));
 		assertTrue(g.getSpace(6, 3).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+				new Piece(PieceType.Rabbit, null, Owner.Player2)));
 		assertTrue(g.getSpace(6, 4).equals(
-				new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Camel, null, Owner.Player1)));
 	}
 
 	@Test
@@ -381,9 +382,9 @@ public class TestGame {
 		assertFalse(g.push(6, 3, 2, 2));
 		assertFalse(g.push(6, 3, 2, 3));
 		assertTrue(g.getSpace(6, 3).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+				new Piece(PieceType.Rabbit, null, Owner.Player2)));
 		assertTrue(g.getSpace(7, 3).equals(
-				new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Camel, null, Owner.Player1)));
 	}
 
 	@Test
@@ -394,9 +395,9 @@ public class TestGame {
 		assertFalse(g.push(6, 3, 3, 2));
 		assertFalse(g.push(6, 3, 3, 3));
 		assertTrue(g.getSpace(6, 3).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+				new Piece(PieceType.Rabbit, null, Owner.Player2)));
 		assertTrue(g.getSpace(6, 2).equals(
-				new Piece(PieceType.Camel, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Camel, null, Owner.Player1)));
 	}
 
 	// Testing the pull method
@@ -415,9 +416,9 @@ public class TestGame {
 		Game g = new Game(pullTestingBoard);
 		assertTrue(g.pull(5, 5, 6, 5, 0));
 		assertTrue(g.getSpace(5, 5).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+				new Piece(PieceType.Rabbit, null, Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(
-				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Elephant, null, Owner.Player1)));
 	}
 
 	@Test
@@ -425,9 +426,9 @@ public class TestGame {
 		Game g = new Game(pullTestingBoard);
 		assertTrue(g.pull(4, 4, 4, 3, 1));
 		assertTrue(g.getSpace(4, 4).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+				new Piece(PieceType.Rabbit, null, Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(
-				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Elephant, null, Owner.Player1)));
 	}
 
 	@Test
@@ -437,9 +438,9 @@ public class TestGame {
 		assertTrue(g.pull(3, 5, 2, 5, 2));
 		// g.currentBoard.printBoard();
 		assertTrue(g.getSpace(3, 5).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+				new Piece(PieceType.Rabbit, null, Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(
-				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Elephant, null, Owner.Player1)));
 	}
 
 	@Test
@@ -447,9 +448,9 @@ public class TestGame {
 		Game g = new Game(pullTestingBoard);
 		assertTrue(g.pull(4, 6, 4, 7, 3));
 		assertTrue(g.getSpace(4, 6).equals(
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2)));
+				new Piece(PieceType.Rabbit, null, Owner.Player2)));
 		assertTrue(g.getSpace(4, 5).equals(
-				new Piece(PieceType.Elephant, null, Piece.Owner.Player1)));
+				new Piece(PieceType.Elephant, null, Owner.Player1)));
 	}
 
 	@Test

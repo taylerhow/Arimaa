@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import piece.Owner;
 import piece.Piece;
-import piece.Piece.Owner;
 import piece.Piece.PieceType;
 
 public class Game {
@@ -183,7 +183,7 @@ public class Game {
 		for (int i = 0; i < 8; i++) {
 			if (getSpace(0, i) != null) {
 				if (getSpace(0, i).equals(
-						new Piece(PieceType.Rabbit, null, Piece.Owner.Player2))) {
+						new Piece(PieceType.Rabbit, null, Owner.Player2))) {
 					winner = 2;
 				}
 			}
@@ -192,7 +192,7 @@ public class Game {
 		for (int i = 0; i < 8; i++) {
 			if (getSpace(7, i) != null) {
 				if (getSpace(7, i).equals(
-						new Piece(PieceType.Rabbit, null, Piece.Owner.Player1))) {
+						new Piece(PieceType.Rabbit, null, Owner.Player1))) {
 					winner = 1;
 				}
 			}
@@ -203,7 +203,7 @@ public class Game {
 		for(int i=0;i<8;i++){
 			for(int j=0;j<8;j++){
 				//and short circuits if null preventing nullpointerexception
-				if(getSpace(i,j)!=null&&getSpace(i, j).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1))){
+				if(getSpace(i,j)!=null&&getSpace(i, j).equals(new Piece(PieceType.Rabbit, null, Owner.Player1))){
 					p1RabbitExists=true;
 				}
 			}
@@ -216,7 +216,7 @@ public class Game {
 		boolean p2RabbitExists=false;
 		for(int i=0;i<8;i++){
 			for(int j=0;j<8;j++){
-				if(getSpace(i,j)!=null&&getSpace(i, j).equals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2))){
+				if(getSpace(i,j)!=null&&getSpace(i, j).equals(new Piece(PieceType.Rabbit, null, Owner.Player2))){
 					p2RabbitExists=true;
 				}
 			}

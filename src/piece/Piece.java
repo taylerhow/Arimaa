@@ -8,10 +8,6 @@ public class Piece {
 	private Owner owner;
 	private int rank;
 
-	public enum Owner {
-		Player1, Player2
-	}
-
 	public enum PieceType {
 		Elephant, Camel, Horse, Dog, Cat, Rabbit
 	}
