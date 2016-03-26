@@ -1,11 +1,13 @@
 package game;
 
-import game.Piece.Owner;
-import game.Piece.PieceType;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import piece.Piece;
+import piece.Piece.Owner;
+import piece.Piece.PieceType;
 
 public class Game {
 	// fields

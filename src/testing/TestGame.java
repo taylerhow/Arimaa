@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import game.*;
-import game.Piece.PieceType;
+import piece.Piece;
+import piece.Piece.PieceType;
 
 import org.junit.Test;
 

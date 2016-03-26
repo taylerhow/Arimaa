@@ -6,11 +6,11 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import game.Piece;
-import game.Piece.Owner;
-import game.Piece.PieceType;
-
 import org.junit.Test;
+
+import piece.Piece;
+import piece.Piece.Owner;
+import piece.Piece.PieceType;
 
 public class TestPiece {
 
