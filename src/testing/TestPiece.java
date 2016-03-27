@@ -6,11 +6,11 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import game.Piece;
-import game.Piece.Owner;
-import game.Piece.PieceType;
-
 import org.junit.Test;
+
+import piece.Owner;
+import piece.Piece;
+import piece.Piece.PieceType;
 
 public class TestPiece {
 
@@ -70,10 +70,10 @@ public class TestPiece {
 
 	@Test
 	public void testComparatorChecksOwners() {
-		assertNotEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player1),
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
-		assertEquals(new Piece(PieceType.Rabbit, null, Piece.Owner.Player2),
-				new Piece(PieceType.Rabbit, null, Piece.Owner.Player2));
+		assertNotEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
+				new Piece(PieceType.Rabbit, null, Owner.Player2));
+		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player2),
+				new Piece(PieceType.Rabbit, null, Owner.Player2));
 	}
 
 	@Test
