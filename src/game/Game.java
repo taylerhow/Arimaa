@@ -5,12 +5,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import move_commands.MoveCommand;
+import move_commands.MoveDown;
+import move_commands.MoveLeft;
+import move_commands.MoveRight;
+import move_commands.MoveUp;
 import piece.Owner;
 import piece.Piece;
 import piece.Piece.PieceType;
 
 public class Game {
 	// fields
+	private ArrayList<MoveCommand> moves = new ArrayList<MoveCommand>();
 	ArrayList<BoardState> boards = new ArrayList<BoardState>();
 	public BoardState currentBoard = null;
 
@@ -84,76 +90,70 @@ public class Game {
 	 * @param column
 	 * @param dir
 	 *            0: up, 1: right, 2: down, 3: left
-	 * @return
+	 * @return returns true if the move made successfully, otherwise returns false
 	 */
+	
 	public boolean move(int row, int column, int dir) {
+		MoveCommand moveToMake;
 		if (!isValidMoveFromSquare(row, column))
 			return false;
-		boards.add(currentBoard);
-		currentBoard = currentBoard.clone();
+//		currentBoard = currentBoard.clone();
 		switch (dir) {
 		case 0:
 			// Moving UP
-			if (isValidMoveSquare(row - 1, column)) {
-				switchPiece(row, column, row - 1, column);
-				endMove();
-				return true;
-			}
-			return false;
+			moveToMake = new MoveUp(this.currentBoard);
+			return makeMove(moveToMake, row, column);
 		case 1:
 			// Moving RIGHT
-			if (isValidMoveSquare(row, column + 1)) {
-				switchPiece(row, column, row, column + 1);
-				endMove();
-				return true;
-			}
-			return false;
+			moveToMake = new MoveRight(this.currentBoard);
+			return makeMove(moveToMake, row, column);
 		case 2:
 			// Moving DOWN
-			if (isValidMoveSquare(row + 1, column)) {
-				switchPiece(row, column, row + 1, column);
-				endMove();
-				return true;
-			}
-			return false;
+			moveToMake = new MoveDown(this.currentBoard);
+			return makeMove(moveToMake, row, column);
 		case 3:
 			// Moving LEFT
-			if (isValidMoveSquare(row, column - 1)) {
-				switchPiece(row, column, row, column - 1);
-				endMove();
-				return true;
-			}
-			return false;
+			moveToMake = new MoveLeft(this.currentBoard);
+			return makeMove(moveToMake, row, column);
 		default:
 			return false;
 		}
+	}
+	
+	/**
+	 * 
+	 * @param moveToMake
+	 * @param row
+	 * @param column
+	 * @return returns true if the move made successfully, otherwise returns false
+	 */
+	
+	private boolean makeMove(MoveCommand moveToMake, int row, int column) {
+		if (moveToMake.isValidMove(row, column)) {
+			this.currentBoard = moveToMake.execute(row, column);
+			this.moves.add(moveToMake);
+			endMove();
+			return true;
+		}
+		return false;
 	}
 
 	private boolean isValidMoveFromSquare(int row, int column) {
 		if (getSpace(row, column) == null)
 			return false;
-		//System.out.println("isPushPull: "+isPushPull);
 		// This may cause issues when we implement undo/redo if we try invalid
 		// moves before we undo
 		if (getSpace(row, column).getOwner() != Owner.values()[(getPlayerTurn() - 1)]
 				&& !isPushPull){
-			//System.out.println("Not your turn: "+isPushPull);
 			return false;// not your turn
 		}
 		if ((checkStrongerAdjacent(row, column) && !checkFriendlyAdjacent(row,
 				column)) && !isPushPull){
-			//System.out.println("Can't move "+isPushPull);
 			return false;// can't move
 			}
 		return true;
 	}
 
-	private boolean isValidMoveSquare(int row, int column) {
-		if (row >= 0 && row < 8 && column >= 0 && column < 8
-				&& currentBoard.getBoardArray()[row][column] == ' ')
-			return true;
-		return false;
-	}
 
 	/**
 	 * This methods checks piece death and victory conditions
@@ -250,7 +250,7 @@ public class Game {
 		this.currentBoard.setBoardArray(temp);
 	}
 
-	private boolean checkFriendlyAdjacent(int row, int col) {
+	public boolean checkFriendlyAdjacent(int row, int col) {
 		Piece cen = this.getSpace(row, col);
 		Piece up = this.getSpace(row - 1, col);
 		Piece down = this.getSpace(row + 1, col);
@@ -276,7 +276,7 @@ public class Game {
 		return false;
 	}
 
-	private boolean checkStrongerAdjacent(int row, int col) {
+	public boolean checkStrongerAdjacent(int row, int col) {
 		Piece cen = this.getSpace(row, col);
 		Piece up = this.getSpace(row - 1, col);
 		Piece down = this.getSpace(row + 1, col);
@@ -304,17 +304,6 @@ public class Game {
 		if (one.getOwner() != two.getOwner() && one.isStrongerThan(two))
 			return true;
 		return false;
-	}
-
-	// helper for move
-	private void switchPiece(int row1, int column1, int row2, int column2) {
-		char[][] boardArray = currentBoard.getBoardArray();
-		char temp = boardArray[row1][column1];
-
-		boardArray[row1][column1] = boardArray[row2][column2];
-		boardArray[row2][column2] = temp;
-
-		currentBoard.setBoardArray(boardArray);
 	}
 
 	/**
@@ -528,18 +517,18 @@ public class Game {
 		if(this.numMoves == 4) return;
 		
 		if(this.numMoves == 3) {
-		this.currentBoard = this.boards.get(boards.size()-1);
-		this.boards.remove(this.boards.size()-1);
+		this.currentBoard = this.moves.get(this.moves.size()-1).getOriginalBoard();
+		this.moves.remove(this.moves.size()-1);
 		}
 		
 		if(this.numMoves == 2) {
-			this.currentBoard = this.boards.get(boards.size()-2);
-			this.boards.remove(this.boards.size()-2);
+			this.currentBoard = this.moves.get(this.moves.size()-2).getOriginalBoard();
+			this.moves.remove(this.moves.size()-2);
 		}
 		
 		if(this.numMoves == 1) {
-			this.currentBoard = this.boards.get(boards.size()-3);
-			this.boards.remove(this.boards.size()-3);
+			this.currentBoard = this.moves.get(this.moves.size()-3).getOriginalBoard();
+			this.moves.remove(this.moves.size()-3);
 		}
 		
 		this.numMoves = 4;
@@ -676,6 +665,10 @@ public class Game {
 
 	public int getTurnTimer() {
 		return moveTimer;
+	}
+	
+	public boolean getIsPushPull() {
+		return this.isPushPull;
 	}
 
 	/**
