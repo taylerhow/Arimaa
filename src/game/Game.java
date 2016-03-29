@@ -17,7 +17,6 @@ import piece.Piece.PieceType;
 public class Game {
 	// fields
 	private ArrayList<MoveCommand> moves = new ArrayList<MoveCommand>();
-	ArrayList<BoardState> boards = new ArrayList<BoardState>();
 	public BoardState currentBoard = null;
 
 	public int getMoveTimer() {
@@ -516,20 +515,8 @@ public class Game {
 	public void undoMove(){
 		if(this.numMoves == 4) return;
 		
-		if(this.numMoves == 3) {
-		this.currentBoard = this.moves.get(this.moves.size()-1).getOriginalBoard();
-		this.moves.remove(this.moves.size()-1);
-		}
-		
-		if(this.numMoves == 2) {
-			this.currentBoard = this.moves.get(this.moves.size()-2).getOriginalBoard();
-			this.moves.remove(this.moves.size()-2);
-		}
-		
-		if(this.numMoves == 1) {
-			this.currentBoard = this.moves.get(this.moves.size()-3).getOriginalBoard();
-			this.moves.remove(this.moves.size()-3);
-		}
+		this.currentBoard = this.moves.get(this.moves.size()- (4 - this.numMoves)).getOriginalBoard();
+		this.moves.remove(this.moves.size()-(4 - this.numMoves));
 		
 		this.numMoves = 4;
 	}
