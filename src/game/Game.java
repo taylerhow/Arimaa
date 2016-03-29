@@ -667,10 +667,6 @@ public class Game {
 		return moveTimer;
 	}
 	
-	public boolean getIsPushPull() {
-		return this.isPushPull;
-	}
-
 	/**
 	 * @return the winner: 0 is nobody, 1 is player1, 2 is player2
 	 */
