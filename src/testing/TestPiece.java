@@ -16,9 +16,12 @@ import org.junit.Test;
 
 import piece.AbstractPiece;
 import piece.Camel;
+import piece.Dog;
+import piece.Elephant;
+import piece.Horse;
 import piece.Owner;
 import piece.Piece;
-import piece.Piece.PieceType;
+import piece.Rabbit;
 
 public class TestPiece {
 
@@ -27,15 +30,6 @@ public class TestPiece {
 		AbstractPiece p = new Camel(Owner.Player1);
 		assertNotNull(p);
 	}
-
-//	@Test
-//	public void testThatPieceInitializesWithValues() {
-//		Image img = new BufferedImage(1, 1, 1);
-//		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
-//		assertNotNull(p);
-//		assertEquals(PieceType.Camel, p.getType());
-//		assertEquals(img, p.getImage());
-//	}
 
 	@Test
 	public void testThatTypeCanBeGotten() {
@@ -49,15 +43,7 @@ public class TestPiece {
 		AbstractPiece p = new Camel(Owner.Player1);
 		assertEquals(img, p.getImage());
 	}
-
-//	@Test
-//	public void testThatTypeCanBeSet() {
-//		Image img = new BufferedImage(1, 1, 1);
-//		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
-//		p.setType(PieceType.Elephant);
-//		assertEquals(PieceType.Elephant, p.getType());
-//	}
-
+	
 	@Test
 	public void testThatImageCanBeSet() {
 		Image img = new BufferedImage(1, 1, 1);
@@ -67,88 +53,69 @@ public class TestPiece {
 	}
 
 	@Test
-	public void testThatOwnerCanBeSetAndGotten() {
+	public void testThatOwnerCanBeGotten() {
 		AbstractPiece p = new Camel(Owner.Player1);
 		assertEquals(Owner.Player1, p.getOwner());
-		p.setOwner(Owner.Player2);
-		assertEquals(Owner.Player2, p.getOwner());
+	}
+
+	@Test
+	public void testGetRank() {
+		AbstractPiece p = new Elephant(Owner.Player1);
+		assertEquals(5, p.getRank());
 	}
 
 	@Test
 	public void testComparatorChecksOwners() {
-		assertNotEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
-				new Piece(PieceType.Rabbit, null, Owner.Player2));
-		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player2),
-				new Piece(PieceType.Rabbit, null, Owner.Player2));
+		assertNotEquals(new Rabbit(Owner.Player1), new Rabbit(Owner.Player2));
+		assertEquals(new Rabbit(Owner.Player2), new Rabbit(Owner.Player2));
 	}
 
 	@Test
 	public void testIsElephantStrongerThanCamel() {
-		Piece p1 = new Piece('E');
-		Piece p2 = new Piece('c');
+		AbstractPiece p1 = new Elephant(Owner.Player1);
+		AbstractPiece p2 = new Camel(Owner.Player2);
 		assertTrue(p1.isStrongerThan(p2));
 	}
 
 	@Test
 	public void testIsElephantStrongerThanElephant() {
-		Piece p1 = new Piece('E');
-		Piece p2 = new Piece('e');
+		AbstractPiece p1 = new Elephant(Owner.Player1);
+		AbstractPiece p2 = new Elephant(Owner.Player2);
 		assertFalse(p1.isStrongerThan(p2));
 	}
 
 	@Test
 	public void testIsCamelStrongerThanCamel() {
-		Piece p1 = new Piece('C');
-		Piece p2 = new Piece('c');
+		AbstractPiece p1 = new Camel(Owner.Player1);
+		AbstractPiece p2 = new Camel(Owner.Player2);
 		assertFalse(p1.isStrongerThan(p2));
 	}
 
 	@Test
 	public void testIsCamelStrongerThanHorse() {
-		Piece p1 = new Piece('C');
-		Piece p2 = new Piece('h');
+		AbstractPiece p1 = new Camel(Owner.Player1);
+		AbstractPiece p2 = new Horse(Owner.Player2);
 		assertTrue(p1.isStrongerThan(p2));
 	}
 
 	@Test
 	public void testIsHorseStrongerThanDog() {
-		Piece p1 = new Piece('H');
-		Piece p2 = new Piece('d');
+		AbstractPiece p1 = new Horse(Owner.Player1);
+		AbstractPiece p2 = new Dog(Owner.Player2);
 		assertTrue(p1.isStrongerThan(p2));
 	}
 
 	@Test
 	public void testIsDogStrongerThanDog() {
-		Piece p1 = new Piece('D');
-		Piece p2 = new Piece('d');
+		AbstractPiece p1 = new Dog(Owner.Player1);
+		AbstractPiece p2 = new Dog(Owner.Player2);
 		assertFalse(p1.isStrongerThan(p2));
 	}
-	
+
 	@Test
-	public void testThatConstructorHandlesDefaultCase(){
-		Piece p = new Piece('g');
-		assertEquals(null, p.getOwner());
-		assertEquals(null, p.getType());
-	}
-	
-	@Test
-	public void testThatConstructorHandlesDefaultCase2(){
-		Piece p = new Piece('G');
-		assertEquals(null, p.getOwner());
-		assertEquals(null, p.getType());
-	}
-	
-	@Test
-	public void testEqualsReturnsFalseForOtherObject(){
-		Piece p = new Piece('E');
+	public void testEqualsReturnsFalseForOtherObject() {
+		AbstractPiece p = new Elephant(Owner.Player1);
 		ArrayList<Integer> notAPiece = new ArrayList<Integer>();
 		assertFalse(p.equals(notAPiece));
-	}
-	
-	@Test
-	public void testSetRank(){
-		Piece p = new Piece('C');
-		p.setRank(1);
-		assertEquals(1, p.getRank());
 	}
 }
