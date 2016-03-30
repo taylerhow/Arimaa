@@ -1,13 +1,21 @@
 package testing;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import org.junit.Test;
 
+import piece.AbstractPiece;
+import piece.Camel;
 import piece.Owner;
 import piece.Piece;
 import piece.Piece.PieceType;
@@ -16,54 +24,52 @@ public class TestPiece {
 
 	@Test
 	public void testThatPieceInitializes() {
-		Piece p = new Piece(PieceType.Camel, null, Owner.Player1);
+		AbstractPiece p = new Camel(Owner.Player1);
 		assertNotNull(p);
 	}
 
-	@Test
-	public void testThatPieceInitializesWithValues() {
-		Image img = new BufferedImage(1, 1, 1);
-		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
-		assertNotNull(p);
-		assertEquals(PieceType.Camel, p.getType());
-		assertEquals(img, p.getImage());
-	}
+//	@Test
+//	public void testThatPieceInitializesWithValues() {
+//		Image img = new BufferedImage(1, 1, 1);
+//		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
+//		assertNotNull(p);
+//		assertEquals(PieceType.Camel, p.getType());
+//		assertEquals(img, p.getImage());
+//	}
 
 	@Test
 	public void testThatTypeCanBeGotten() {
-		Image img = new BufferedImage(1, 1, 1);
-		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
-		assertEquals(PieceType.Camel, p.getType());
+		AbstractPiece p = new Camel(Owner.Player1);
+		assertTrue(p instanceof Camel);
 	}
 
 	@Test
 	public void testThatImageCanBeGotten() {
-		Image img = new BufferedImage(1, 1, 1);
-		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
+		Image img = new ImageIcon("resources/White camel.png").getImage();
+		AbstractPiece p = new Camel(Owner.Player1);
 		assertEquals(img, p.getImage());
 	}
 
-	@Test
-	public void testThatTypeCanBeSet() {
-		Image img = new BufferedImage(1, 1, 1);
-		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
-		p.setType(PieceType.Elephant);
-		assertEquals(PieceType.Elephant, p.getType());
-	}
+//	@Test
+//	public void testThatTypeCanBeSet() {
+//		Image img = new BufferedImage(1, 1, 1);
+//		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
+//		p.setType(PieceType.Elephant);
+//		assertEquals(PieceType.Elephant, p.getType());
+//	}
 
 	@Test
 	public void testThatImageCanBeSet() {
 		Image img = new BufferedImage(1, 1, 1);
-		Image img2 = new BufferedImage(50, 50, 2);
-		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
-		p.setImg(img2);
-		assertEquals(img2, p.getImage());
+		AbstractPiece p = new Camel(Owner.Player1);
+		p.setImage(img);
+		assertEquals(img, p.getImage());
 	}
 
 	@Test
 	public void testThatOwnerCanBeSetAndGotten() {
-		Image img = new BufferedImage(1, 1, 1);
-		Piece p = new Piece(PieceType.Camel, img, Owner.Player1);
+		AbstractPiece p = new Camel(Owner.Player1);
+		assertEquals(Owner.Player1, p.getOwner());
 		p.setOwner(Owner.Player2);
 		assertEquals(Owner.Player2, p.getOwner());
 	}

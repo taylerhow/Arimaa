@@ -1,7 +1,5 @@
 package piece;
 
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 public class Camel extends AbstractPiece {
@@ -10,10 +8,6 @@ public class Camel extends AbstractPiece {
 		String color = owner.equals(Owner.Player1) ? "White" : "Black";
 		this.setImage(new ImageIcon("resources/" + color + " camel.png").getImage());
 
-	}
-
-	public Camel(Image image, Owner owner, int rank) {
-		super(image, owner, rank);
 	}
 
 	@Override

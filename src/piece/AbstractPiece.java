@@ -11,6 +11,7 @@ public abstract class AbstractPiece {
 		this.image = image;
 		this.owner = owner;
 		this.rank = rank;
+		this.
 	}
 
 	public Image getImage() {
