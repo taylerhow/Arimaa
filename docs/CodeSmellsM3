@@ -8,3 +8,4 @@ Conditional Complexity (lots of switch statements)
 Shotgun Surgery (everywhere...)
 Data Clumping (row/col like to be together a lot)
 Primitive Obsession
+Inappropriate Intimacy (GUI and listeners getting GUI object)
