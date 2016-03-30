@@ -16,7 +16,7 @@ public abstract class AbstractPiece {
 	public Image getImage() {
 		return image;
 	}
-
+	
 	public void setImage(Image image) {
 		this.image = image;
 	}
@@ -25,31 +25,13 @@ public abstract class AbstractPiece {
 		return owner;
 	}
 
-	public void setOwner(Owner owner) {
-		this.owner = owner;
-	}
-
 	public int getRank() {
 		return rank;
 	}
 
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
-
 	abstract public boolean equals(Object obj);
-	// public boolean equals(Object p2) {
-	// if ((p2 instanceof Piece)) {
-	// if (((Piece) p2).getType() == this.getType()
-	// && (((Piece) p2).getOwner() == this.getOwner())) {
-	// return true;
-	// }
-	// }
-	// return false;
-	//
-	// }
 
-	public boolean isStrongerThan(Piece p2) {
+	public boolean isStrongerThan(AbstractPiece p2) {
 		return (this.getRank() > p2.getRank());
 	}
 
