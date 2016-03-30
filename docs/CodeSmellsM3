@@ -1,0 +1,10 @@
+Code Smells for M3
+
+Comments (Deodorant)
+Duplicated Code
+Long Method
+Long Class 
+Conditional Complexity (lots of switch statements)
+Shotgun Surgery (everywhere...)
+Data Clumping (row/col like to be together a lot)
+Primitive Obsession
