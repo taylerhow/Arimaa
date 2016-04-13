@@ -25,8 +25,6 @@ import piece.Cat;
 import piece.Dog;
 import piece.Elephant;
 import piece.Owner;
-import piece.Piece;
-import piece.Piece.PieceType;
 import piece.Rabbit;
 
 public class TestGame {

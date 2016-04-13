@@ -12,8 +12,6 @@ import move_commands.MoveRight;
 import move_commands.MoveUp;
 import piece.AbstractPiece;
 import piece.Owner;
-import piece.Piece;
-import piece.Piece.PieceType;
 import piece.Rabbit;
 
 public class Game {
@@ -108,16 +106,6 @@ public class Game {
 	public void setPlayerTurn(int playerTurn) {
 		this.playerTurn = playerTurn;
 	}
-
-	// depercated use getBoard and then getPieceAt
-	// @Deprecated
-	// public Piece getSpace(int row, int column) {
-	// if (row < 0 || row > 7 || column < 0 || column > 7)
-	// return null;
-	// if (currentBoard.getBoardArray()[row][column] == ' ')
-	// return null;
-	// return new Piece(currentBoard.getBoardArray()[row][column]);
-	// }
 
 	@Deprecated
 	public AbstractPiece getSpace(int row, int column) {

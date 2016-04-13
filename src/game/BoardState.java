@@ -3,8 +3,6 @@ package game;
 import java.util.HashMap;
 import java.util.Random;
 
-import javax.management.RuntimeErrorException;
-
 import piece.AbstractPiece;
 import piece.Camel;
 import piece.Cat;
@@ -115,6 +113,7 @@ public class BoardState {
 		}
 	}
 
+	@Deprecated
 	public char[][] getBoardArray() {
 		return boardArray;
 	}
