@@ -2,7 +2,7 @@ package piece;
 
 import java.awt.Image;
 
-public abstract class AbstractPiece {
+public abstract class AbstractPiece implements Cloneable{
 	private Image image;
 	private Owner owner;
 	private int rank;
@@ -57,6 +57,17 @@ public abstract class AbstractPiece {
 
 	public boolean isStrongerThan(AbstractPiece p2) {
 		return (this.getRank() > p2.getRank());
+	}
+	
+	public AbstractPiece clone() {
+		try {
+			AbstractPiece clone = (AbstractPiece) super.clone();
+			return clone;
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 }
