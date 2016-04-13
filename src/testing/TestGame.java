@@ -63,6 +63,21 @@ public class TestGame {
 	}
 
 	@Test
+	public void testTurnNumberIncrements() {
+		b.incrementTurn();
+		assertEquals(1, b.getTurnNumber());
+		b.incrementTurn();
+		b.incrementTurn();
+		assertEquals(3, b.getTurnNumber());
+	}
+
+	@Test
+	public void testSetTurnNumber() {
+		b.setTurnNumber(5);
+		assertEquals(5, b.getTurnNumber());
+	}
+
+	@Test
 	public void testGetPieceExists() {
 		Game g = new Game(b);
 		assertEquals(g.getSpace(4, 3), new Piece(PieceType.Camel, null,

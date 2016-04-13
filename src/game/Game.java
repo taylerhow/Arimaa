@@ -17,6 +17,8 @@ import piece.Piece.PieceType;
 public class Game {
 	private ArrayList<MoveCommand> moves = new ArrayList<MoveCommand>();
 	public BoardState currentBoard = null;
+	private int turnNumber;
+
 
 	public int getMoveTimer() {
 		return moveTimer;
@@ -55,12 +57,19 @@ public class Game {
 	 * Creates a board with a default starting layout
 	 */
 	public Game() {
-		currentBoard = new BoardState(
-				new char[][] { { 'K', 'D', 'H', 'C', 'E', 'H', 'D', 'K' }, { 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R' },
-						{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-						{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-						{ 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r' }, { 'k', 'd', 'h', 'c', 'e', 'h', 'd', 'k' }, },
-				0);
+		currentBoard = new BoardState();
+	}
+	
+	public int getTurnNumber() {
+		return turnNumber;
+	}
+
+	public void setTurnNumber(int turnNumber) {
+		this.turnNumber = turnNumber;
+	}
+
+	public void incrementTurn() {
+		this.turnNumber++;
 	}
 
 	/**
