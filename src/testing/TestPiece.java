@@ -196,4 +196,16 @@ public class TestPiece {
 		ArrayList<Integer> notAPiece = new ArrayList<Integer>();
 		assertFalse(p.equals(notAPiece));
 	}
+	
+	@Test
+	public void testClone() {
+		AbstractPiece p1 = new Camel(Owner.Player1, new Coordinate(0, 0));
+		AbstractPiece clone = p1.clone();
+		clone.setCoordinate(new Coordinate(1, 1));
+		assertEquals(p1.getImage(), clone.getImage());
+		assertEquals(p1.getOwner(), clone.getOwner());
+		assertEquals(p1.getRank(), clone.getRank());
+		assertNotEquals(p1.getCoordinate(), clone.getCoordinate());
+		assertEquals(Camel.class, clone.getClass());
+	}
 }
