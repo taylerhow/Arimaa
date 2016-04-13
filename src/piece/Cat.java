@@ -9,13 +9,4 @@ public class Cat extends AbstractPiece {
 		this.setImage(new ImageIcon("resources/" + color + " cat.png").getImage());
 
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Cat) {
-			Cat e = (Cat) obj;
-			return this.getOwner().equals(e.getOwner()) && this.getCoordinate().equals(e.getCoordinate());
-		}
-		return false;
-	}
 }

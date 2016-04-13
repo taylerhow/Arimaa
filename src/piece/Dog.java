@@ -9,13 +9,4 @@ public class Dog extends AbstractPiece {
 		this.setImage(new ImageIcon("resources/" + color + " dog.png").getImage());
 
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Dog) {
-			Dog e = (Dog) obj;
-			return this.getOwner().equals(e.getOwner()) && this.getCoordinate().equals(e.getCoordinate());
-		}
-		return false;
-	}
 }

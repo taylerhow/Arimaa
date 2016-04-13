@@ -9,13 +9,4 @@ public class Elephant extends AbstractPiece {
 		this.setImage(new ImageIcon("resources/" + color + " elephant.png").getImage());
 
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Elephant) {
-			Elephant e = (Elephant) obj;
-			return this.getOwner().equals(e.getOwner()) && this.getCoordinate().equals(e.getCoordinate());
-		}
-		return false;
-	}
 }

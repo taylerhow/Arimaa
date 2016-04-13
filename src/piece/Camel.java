@@ -9,13 +9,4 @@ public class Camel extends AbstractPiece {
 		this.setImage(new ImageIcon("resources/" + color + " camel.png").getImage());
 
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Camel) {
-			Camel e = (Camel) obj;
-			return this.getOwner().equals(e.getOwner()) && this.getCoordinate().equals(e.getCoordinate());
-		}
-		return false;
-	}
 }
