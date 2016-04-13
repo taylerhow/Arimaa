@@ -10,6 +10,7 @@ import java.util.Arrays;
  */
 public class BoardState {
 	// Fields
+	public static final int MAX_BOARD_SIZE = 8;
 	private char[][] boardArray = new char[8][8]; // Represents the current state of the board
 	private int turnNumber;
 
