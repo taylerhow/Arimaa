@@ -3,6 +3,8 @@ package game;
 import java.util.HashMap;
 import java.util.Random;
 
+import javax.management.RuntimeErrorException;
+
 import piece.AbstractPiece;
 import piece.Camel;
 import piece.Cat;
@@ -108,8 +110,8 @@ public class BoardState {
 					System.out.println("p" + randId + ".put(new Coordinate(" + x + ", " + y + "), new " + clazz + "("
 							+ player + "));");
 				}
-
 			}
+			throw new RuntimeException("using the wrong constuctor");
 		}
 	}
 
