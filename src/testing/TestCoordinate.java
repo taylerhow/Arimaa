@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import piece.Coordinate;
+import game.Coordinate;
 
 public class TestCoordinate {
 	@Test

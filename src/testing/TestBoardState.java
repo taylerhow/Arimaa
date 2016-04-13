@@ -2,6 +2,11 @@ package testing;
 
 import static org.junit.Assert.*;
 import game.BoardState;
+import game.Coordinate;
+import piece.AbstractPiece;
+import piece.Elephant;
+import piece.Owner;
+
 import org.junit.Test;
 
 /**
@@ -54,4 +59,30 @@ public class TestBoardState {
 		b.setTurnNumber(5);
 		assertEquals(5, b.getTurnNumber());
 	}
+//	for next pull request
+//	@Test
+//	public void testGetCoordinate() {
+//		Coordinate coor = new Coordinate(0, 0);
+//		AbstractPiece p = new Elephant(Owner.Player1, coor);	
+//		assertEquals(coor, p.getCoordinate());
+//	}
+//	
+//	@Test
+//	public void canSetValidCoordinate() {
+//		AbstractPiece p = new Elephant(Owner.Player1);
+//		Coordinate newCoor = new Coordinate(1, 2);
+//		p.setCoordinate(newCoor);
+//		assertEquals(newCoor, p.getCoordinate());
+//	}
+//	
+//	@Test
+//	public void canNotSetInValidCoordinate() {
+//		Coordinate coor = new Coordinate(0, 0);
+//		AbstractPiece p = new Elephant(Owner.Player1, coor);	
+//		Coordinate newCoor = new Coordinate(-1, -2);
+//		p.setCoordinate(newCoor);
+//		assertEquals(coor, p.getCoordinate());
+//	}
+//
+
 }
