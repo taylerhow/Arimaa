@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import piece.AbstractPiece;
 import piece.Camel;
+import piece.Cat;
 import piece.Coordinate;
 import piece.Dog;
 import piece.Elephant;
@@ -63,12 +64,65 @@ public class TestPiece {
 		AbstractPiece p = new Elephant(Owner.Player1, new Coordinate(0, 0));
 		assertEquals(5, p.getRank());
 	}
+	
+	@Test
+	public void testGetCoordinate() {
+		Coordinate coor = new Coordinate(0, 0);
+		AbstractPiece p = new Elephant(Owner.Player1, coor);	
+		assertEquals(coor, p.getCoordinate());
+	}
+	
+	@Test
+	public void canSetValidCoordinate() {
+		AbstractPiece p = new Elephant(Owner.Player1, new Coordinate(0, 0));
+		Coordinate newCoor = new Coordinate(1, 2);
+		p.setCoordinate(newCoor);
+		assertEquals(newCoor, p.getCoordinate());
+	}
+	
+	@Test
+	public void canNotSetInValidCoordinate() {
+		Coordinate coor = new Coordinate(0, 0);
+		AbstractPiece p = new Elephant(Owner.Player1, coor);	
+		Coordinate newCoor = new Coordinate(-1, -2);
+		p.setCoordinate(newCoor);
+		assertEquals(coor, p.getCoordinate());
+	}
 
 	@Test
 	public void testComparatorChecksOwners() {
 		assertNotEquals(new Rabbit(Owner.Player1, new Coordinate(0, 0)), new Rabbit(Owner.Player2, new Coordinate(0, 0)));
 		assertEquals(new Rabbit(Owner.Player2, new Coordinate(0, 0)), new Rabbit(Owner.Player2, new Coordinate(0, 0)));
 	}
+
+	@Test
+	public void testComparatorChecksCoordinates() {
+		assertNotEquals(new Rabbit(Owner.Player1, new Coordinate(0, 0)), new Rabbit(Owner.Player1, new Coordinate(1, 0)));
+		assertEquals(new Rabbit(Owner.Player1, new Coordinate(0, 0)), new Rabbit(Owner.Player1, new Coordinate(0, 0)));
+	}
+	
+	@Test
+	public void testComparatorChecksType() {
+		assertNotEquals(new Rabbit(Owner.Player1, new Coordinate(0, 0)), new Camel(Owner.Player1, new Coordinate(0, 0)));
+		assertEquals(new Rabbit(Owner.Player1, new Coordinate(0, 0)), new Rabbit(Owner.Player1, new Coordinate(0, 0)));
+
+		assertNotEquals(new Cat(Owner.Player1, new Coordinate(0, 0)), new Camel(Owner.Player1, new Coordinate(0, 0)));
+		assertEquals(new Cat(Owner.Player1, new Coordinate(0, 0)), new Cat(Owner.Player1, new Coordinate(0, 0)));
+
+		assertNotEquals(new Dog(Owner.Player1, new Coordinate(0, 0)), new Camel(Owner.Player1, new Coordinate(0, 0)));
+		assertEquals(new Dog(Owner.Player1, new Coordinate(0, 0)), new Dog(Owner.Player1, new Coordinate(0, 0)));
+
+		assertNotEquals(new Elephant(Owner.Player1, new Coordinate(0, 0)), new Camel(Owner.Player1, new Coordinate(0, 0)));
+		assertEquals(new Elephant(Owner.Player1, new Coordinate(0, 0)), new Elephant(Owner.Player1, new Coordinate(0, 0)));
+
+		assertNotEquals(new Horse(Owner.Player1, new Coordinate(0, 0)), new Camel(Owner.Player1, new Coordinate(0, 0)));
+		assertEquals(new Horse(Owner.Player1, new Coordinate(0, 0)), new Horse(Owner.Player1, new Coordinate(0, 0)));
+
+		assertNotEquals(new Camel(Owner.Player1, new Coordinate(0, 0)), new Cat(Owner.Player1, new Coordinate(0, 0)));
+		assertEquals(new Camel(Owner.Player1, new Coordinate(0, 0)), new Camel(Owner.Player1, new Coordinate(0, 0)));
+}
+
+
 
 	@Test
 	public void testIsElephantStrongerThanCamel() {
