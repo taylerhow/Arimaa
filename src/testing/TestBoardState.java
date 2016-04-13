@@ -10,10 +10,10 @@ import java.util.HashMap;
 import org.junit.Test;
 
 import game.BoardState;
+import game.Coordinate;
 import piece.AbstractPiece;
 import piece.Camel;
 import piece.Cat;
-import piece.Coordinate;
 import piece.Dog;
 import piece.Horse;
 import piece.Owner;
@@ -34,20 +34,20 @@ public class TestBoardState {
 				assertTrue(b.pieceAt(x, y));
 			}
 		}
-		assertEquals(new Rabbit(Owner.Player1, new Coordinate(4, 1)), b.getPieceAt(4, 1));
-		assertEquals(new Camel(Owner.Player1, new Coordinate(3, 0)), b.getPieceAt(3, 0));
+		assertEquals(new Rabbit(Owner.Player1), b.getPieceAt(4, 1));
+		assertEquals(new Camel(Owner.Player1), b.getPieceAt(3, 0));
 
-		assertEquals(new Rabbit(Owner.Player2, new Coordinate(4, 6)), b.getPieceAt(4, 6));
-		assertEquals(new Camel(Owner.Player2, new Coordinate(3, 7)), b.getPieceAt(3, 7));
+		assertEquals(new Rabbit(Owner.Player2), b.getPieceAt(4, 6));
+		assertEquals(new Camel(Owner.Player2), b.getPieceAt(3, 7));
 	}
 	
 	@Test
 	public void testPieceAt() {
 		HashMap<Coordinate, AbstractPiece> pieces = new HashMap<Coordinate, AbstractPiece>();
-		pieces.put(new Coordinate(0, 0), new Cat(Owner.Player1, new Coordinate(0, 0)));
-		pieces.put(new Coordinate(1, 1), new Cat(Owner.Player1, new Coordinate(1, 1)));
-		pieces.put(new Coordinate(2, 2), new Cat(Owner.Player1, new Coordinate(2, 2)));
-		pieces.put(new Coordinate(3, 3), new Cat(Owner.Player2, new Coordinate(3, 3)));
+		pieces.put(new Coordinate(0, 0), new Cat(Owner.Player1));
+		pieces.put(new Coordinate(1, 1), new Cat(Owner.Player1));
+		pieces.put(new Coordinate(2, 2), new Cat(Owner.Player1));
+		pieces.put(new Coordinate(3, 3), new Cat(Owner.Player2));
 
 		BoardState b = new BoardState(pieces);
 		
@@ -66,10 +66,10 @@ public class TestBoardState {
 	@Test
 	public void testGetPieceAt() {
 		HashMap<Coordinate, AbstractPiece> pieces = new HashMap<Coordinate, AbstractPiece>();
-		AbstractPiece p1 = new Cat(Owner.Player1, new Coordinate(0, 0));
-		AbstractPiece p2 = new Camel(Owner.Player1, new Coordinate(1, 1));
-		AbstractPiece p3 = new Horse(Owner.Player2, new Coordinate(2, 2));
-		AbstractPiece p4 = new Dog(Owner.Player2, new Coordinate(3, 3));
+		AbstractPiece p1 = new Cat(Owner.Player1);
+		AbstractPiece p2 = new Camel(Owner.Player1);
+		AbstractPiece p3 = new Horse(Owner.Player2);
+		AbstractPiece p4 = new Dog(Owner.Player2);
 				
 		pieces.put(new Coordinate(0, 0), p1);
 		pieces.put(new Coordinate(1, 1), p2);
@@ -82,6 +82,30 @@ public class TestBoardState {
 		assertEquals(p3, b.getPieceAt(2, 2));
 		assertEquals(p4, b.getPieceAt(3, 3));
 	}
-	
+//	for next pull request
+//	@Test
+//	public void testGetCoordinate() {
+//		Coordinate coor = new Coordinate(0, 0);
+//		AbstractPiece p = new Elephant(Owner.Player1, coor);	
+//		assertEquals(coor, p.getCoordinate());
+//	}
+//	
+//	@Test
+//	public void canSetValidCoordinate() {
+//		AbstractPiece p = new Elephant(Owner.Player1);
+//		Coordinate newCoor = new Coordinate(1, 2);
+//		p.setCoordinate(newCoor);
+//		assertEquals(newCoor, p.getCoordinate());
+//	}
+//	
+//	@Test
+//	public void canNotSetInValidCoordinate() {
+//		Coordinate coor = new Coordinate(0, 0);
+//		AbstractPiece p = new Elephant(Owner.Player1, coor);	
+//		Coordinate newCoor = new Coordinate(-1, -2);
+//		p.setCoordinate(newCoor);
+//		assertEquals(coor, p.getCoordinate());
+//	}
+//
 
 }

@@ -1,6 +1,4 @@
-package piece;
-
-import game.BoardState;
+package game;
 
 public class Coordinate {
 	private int x;
