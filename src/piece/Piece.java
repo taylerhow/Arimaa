@@ -2,6 +2,7 @@ package piece;
 
 import java.awt.Image;
 
+@Deprecated
 public class Piece {
 	private PieceType type;
 	private Image image;

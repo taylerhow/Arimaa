@@ -1,51 +1,142 @@
 package testing;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Scanner;
 
-import game.*;
+import org.junit.Before;
+import org.junit.Test;
+
+import game.BoardState;
+import game.Coordinate;
+import game.Game;
+import piece.AbstractPiece;
+import piece.Camel;
+import piece.Cat;
+import piece.Dog;
+import piece.Elephant;
 import piece.Owner;
 import piece.Piece;
 import piece.Piece.PieceType;
-
-import org.junit.Test;
+import piece.Rabbit;
 
 public class TestGame {
-	BoardState b = new BoardState(new char[][] {
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'C', 'E', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', 'R' }, }, 0);
+	private Game g;
+	private Game g1;
+	private Game g2;
+	private Game freezingGame;
+	private Game pushingGame;
+	private Game pullingGame;
 
-	BoardState b2 = new BoardState(new char[][] {
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', 'r', 'K', 'R' }, }, 0);
+	@Before
+	public void setup() {
+		g = new Game();
+		
+		HashMap<Coordinate, AbstractPiece> p1 = new HashMap<Coordinate, AbstractPiece>();
+		p1.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		p1.put(new Coordinate(7, 0), new Rabbit(Owner.Player1));
+		p1.put(new Coordinate(3, 1), new Dog(Owner.Player1));
+		p1.put(new Coordinate(3, 3), new Camel(Owner.Player1));
+		p1.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		BoardState b1 = new BoardState(p1);
+		g1 = new Game(b1);
+		
+		HashMap<Coordinate, AbstractPiece> p2 = new HashMap<Coordinate, AbstractPiece>();
+		p2.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		p2.put(new Coordinate(7, 0), new Rabbit(Owner.Player1));
+		p2.put(new Coordinate(3, 1), new Dog(Owner.Player1));
+		p2.put(new Coordinate(3, 3), new Camel(Owner.Player1));
+		p2.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		
+		p2.put(new Coordinate(5, 0), new Rabbit(Owner.Player2));
+		p2.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
+		p2.put(new Coordinate(5, 3), new Dog(Owner.Player2));
+		p2.put(new Coordinate(4, 4), new Cat(Owner.Player2));
+		BoardState b2 = new BoardState(p1);
+		g2 = new Game(b2);
+		
+		HashMap<Coordinate, AbstractPiece> fp = new HashMap<Coordinate, AbstractPiece>();
+		fp.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		fp.put(new Coordinate(7, 0), new Rabbit(Owner.Player1));
+		fp.put(new Coordinate(3, 3), new Rabbit(Owner.Player1));
+		fp.put(new Coordinate(4, 4), new Rabbit(Owner.Player1));
+		fp.put(new Coordinate(5, 4), new Elephant(Owner.Player1));
+		fp.put(new Coordinate(4, 3), new Camel(Owner.Player2));
+		BoardState fb = new BoardState(fp);
+		freezingGame = new Game(fb);
+		
+		HashMap<Coordinate, AbstractPiece> pp = new HashMap<Coordinate, AbstractPiece>();
+		pp.put(new Coordinate(0, 0), new Elephant(Owner.Player1));
+		pp.put(new Coordinate(1, 0), new Rabbit(Owner.Player2));
+		pp.put(new Coordinate(3, 0), new Camel(Owner.Player1));
+		pp.put(new Coordinate(0, 1), new Rabbit(Owner.Player2));
+		pp.put(new Coordinate(2, 1), new Camel(Owner.Player1));
+		pp.put(new Coordinate(3, 1), new Rabbit(Owner.Player2));
+		pp.put(new Coordinate(4, 1), new Camel(Owner.Player1));
+		pp.put(new Coordinate(3, 2), new Camel(Owner.Player1));
+		pp.put(new Coordinate(5, 2), new Cat(Owner.Player2));
+		pp.put(new Coordinate(4, 3), new Cat(Owner.Player2));
+		pp.put(new Coordinate(5, 3), new Elephant(Owner.Player1));
+		pp.put(new Coordinate(6, 3), new Camel(Owner.Player2));
+		pp.put(new Coordinate(2, 4), new Rabbit(Owner.Player1));
+		pp.put(new Coordinate(5, 4), new Dog(Owner.Player2));
+		pp.put(new Coordinate(1, 5), new Rabbit(Owner.Player1));
+		pp.put(new Coordinate(2, 5), new Elephant(Owner.Player1));
+		pp.put(new Coordinate(3, 5), new Rabbit(Owner.Player1));
+		pp.put(new Coordinate(0, 6), new Rabbit(Owner.Player2));
+		pp.put(new Coordinate(2, 6), new Rabbit(Owner.Player1));
+		pp.put(new Coordinate(4, 6), new Elephant(Owner.Player1));
+		pp.put(new Coordinate(6, 6), new Elephant(Owner.Player1));
+		pp.put(new Coordinate(7, 6), new Rabbit(Owner.Player1));
+		pp.put(new Coordinate(1, 7), new Rabbit(Owner.Player2));
+		pp.put(new Coordinate(6, 7), new Rabbit(Owner.Player1));
+		pp.put(new Coordinate(7, 7), new Elephant(Owner.Player2));
+		pushingGame = new Game(new BoardState(pp));
+		
+		HashMap<Coordinate, AbstractPiece> pullp = new HashMap<Coordinate, AbstractPiece>();
+		pullp.put(new Coordinate(0, 0), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(1, 0), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(3, 0), new Rabbit(Owner.Player1));
+		pullp.put(new Coordinate(4, 0), new Elephant(Owner.Player2));
+		pullp.put(new Coordinate(0, 1), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(1, 1), new Elephant(Owner.Player2));
+		pullp.put(new Coordinate(3, 1), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(4, 1), new Elephant(Owner.Player2));
+		pullp.put(new Coordinate(5, 1), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(5, 2), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(6, 2), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(3, 3), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(6, 3), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(7, 3), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(2, 4), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(5, 4), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(1, 5), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(2, 5), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(3, 5), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(5, 5), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(6, 5), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(0, 6), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(1, 6), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(2, 6), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(4, 6), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(6, 6), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(7, 6), new Rabbit(Owner.Player1));
+		pullp.put(new Coordinate(1, 7), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(6, 7), new Rabbit(Owner.Player1));
+		pullp.put(new Coordinate(7, 7), new Elephant(Owner.Player2));
+		pullingGame = new Game(new BoardState(pullp));
+	}
 	
-	BoardState standard = new BoardState(new char[][] {
-			{ 'K', 'D', 'H', 'C', 'E', 'H', 'D', 'K' },
-			{ 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r' },
-			{ 'k', 'd', 'h', 'c', 'e', 'h', 'd', 'k' }, }, 0);
-
 	@Test
 	public void testInitializes() {
 		Game g = new Game(null);
@@ -54,618 +145,515 @@ public class TestGame {
 
 	@Test
 	public void testInitializesWithBoardState() {
-		Game g = new Game(b);
-
-		assertEquals(g.currentBoard.getBoardArray()[4][3], 'C');
-		assertEquals(g.currentBoard.getBoardArray()[4][4], 'E');
-		assertEquals(g.currentBoard.getBoardArray()[7][3], ' ');
-		assertEquals(g.currentBoard.getBoardArray()[7][7], 'R');
+		assertEquals(new Camel(Owner.Player1), g1.getSpace(3, 4));
+		assertEquals(new Elephant(Owner.Player1), g1.getSpace(4, 4));
+		assertNull(g1.getSpace(3, 7));
+		assertEquals(new Rabbit(Owner.Player1), g1.getSpace(7, 7));
 	}
 
 	@Test
 	public void testTurnNumberIncrements() {
-		b.incrementTurn();
-		assertEquals(1, b.getTurnNumber());
-		b.incrementTurn();
-		b.incrementTurn();
-		assertEquals(3, b.getTurnNumber());
+		g.incrementTurn();
+		assertEquals(1, g.getTurnNumber());
+		g.incrementTurn();
+		g.incrementTurn();
+		assertEquals(3, g.getTurnNumber());
 	}
 
 	@Test
 	public void testSetTurnNumber() {
-		b.setTurnNumber(5);
-		assertEquals(5, b.getTurnNumber());
+		g.setTurnNumber(5);
+		assertEquals(5, g.getTurnNumber());
 	}
 
 	@Test
+	@Deprecated
 	public void testGetPieceExists() {
-		Game g = new Game(b);
-		assertEquals(g.getSpace(4, 3), new Piece(PieceType.Camel, null,
-				Owner.Player1));
+		assertEquals(new Camel(Owner.Player1), g1.getSpace(3, 4));
 	}
 
 	@Test
+	@Deprecated
 	public void testGetPieceNotExists() {
-		Game g = new Game(b);
-		assertEquals(g.getSpace(0, 0), null);
+		assertEquals(g1.getSpace(0, 0), null);
 	}
 
 	@Test
+	@Deprecated
+	// what does this even do?
 	public void testGetPieceExistsAgain() {
-		Game g = new Game(b);
-		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null,
-				Owner.Player1));
-		assertEquals(g.getSpace(7, 7), new Piece(PieceType.Rabbit, null,
-				Owner.Player1));
+		assertEquals(g1.getSpace(7, 7), new Rabbit(Owner.Player1));
+		assertEquals(g1.getSpace(7, 7), new Rabbit(Owner.Player1));
 	}
 
 	@Test
+	@Deprecated
 	public void testGetSpaceInvalidRow1() {
-		Game g = new Game();
 		assertNull(g.getSpace(-1, 0));
 	}
 
 	@Test
+	@Deprecated
 	public void testGetSpaceInvalidRow2() {
-		Game g = new Game();
 		assertNull(g.getSpace(8, 0));
 	}
 
 	@Test
+	@Deprecated
 	public void testGetSpaceInvalidColumn1() {
-		Game g = new Game();
 		assertNull(g.getSpace(0, -1));
 	}
 
 	@Test
+	@Deprecated
 	public void testGetSpaceInvalidColumn2() {
-		Game g = new Game();
 		assertNull(g.getSpace(0, 8));
 	}
 
 	//testing Move
 	@Test
+	// probably depercated
 	public void testMoveLegal() {
-		Game g = new Game(b);
-		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
-				g.getSpace(7, 7));
-		assertTrue(g.move(7, 7, 0));
-		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
-				g.getSpace(6, 7));
-		assertEquals(null, g.getSpace(7, 7));
+		assertEquals(new Rabbit(Owner.Player1),
+				g1.getSpace(7, 7));
+		assertTrue(g1.move(7, 7, 0));
+		assertEquals(new Rabbit(Owner.Player1),
+				g1.getSpace(6, 7));
+		assertEquals(null, g1.getSpace(7, 7));
 	}
 	
 	@Test
 	public void testMoveIllegalNotYourTurn() {
-		Game g = new Game();
 		assertFalse(g.move(7, 7, 2));
 	}
 
 	@Test
 	public void testMoveIllegalDown() {
-		Game g = new Game();
 		g.setPlayerTurn(2);
 		assertFalse(g.move(7, 7, 2));
 	}
 
 	@Test
 	public void testMoveIllegalUp() {
-		Game g = new Game();
 		assertFalse(g.move(0, 0, 0));
 
 	}
 
 	@Test
 	public void testMoveIllegalRight() {
-		Game g = new Game();
 		g.setPlayerTurn(2);
 		assertFalse(g.move(7, 7, 1));
 	}
 
 	@Test
 	public void testMoveIllegalLeft() {
-		Game g = new Game();
 		assertFalse(g.move(0, 0, 3));
 	}
 
 	@Test
 	public void testCannotMoveUpIntoOccupiedSpace() {
-		Game g = new Game();
-		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
+		assertEquals(new Rabbit(Owner.Player1),
 				g.getSpace(1, 0));
 		assertFalse(g.move(1, 0, 0));
-		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
+		assertEquals(new Rabbit(Owner.Player1),
 				g.getSpace(1, 0));
 	}
 
 	@Test
 	public void testCannotMoveRightIntoOccupiedSpace() {
-		Game g = new Game();
-		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
+		assertEquals(new Dog(Owner.Player1),
 				g.getSpace(0, 1));
 		assertFalse(g.move(0, 1, 1));
-		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
+		assertEquals(new Dog(Owner.Player1),
 				g.getSpace(0, 1));
 	}
 
 	@Test
 	public void testCannotMoveDownIntoOccupiedSpace() {
-		Game g = new Game();
-		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
+		assertEquals(new Dog(Owner.Player1),
 				g.getSpace(0, 1));
 		assertFalse(g.move(0, 1, 2));
-		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
+		assertEquals(new Dog(Owner.Player1),
 				g.getSpace(0, 1));
 	}
 
 	@Test
 	public void testCannotMoveLeftIntoOccupiedSpace() {
-		Game g = new Game();
-		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
+		assertEquals(new Dog(Owner.Player1),
 				g.getSpace(0, 1));
 		assertFalse(g.move(0, 1, 3));
-		assertEquals(new Piece(PieceType.Dog, null, Owner.Player1),
+		assertEquals(new Dog(Owner.Player1),
 				g.getSpace(0, 1));
 	}
 	
-	BoardState freezingBoard = new BoardState(new char[][] {
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'R', 'E', ' ', ' ' },
-			{ ' ', ' ', ' ', 'R', 'c', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', 'R' }, }, 0);
-	
 	@Test
 	public void testCannotMoveIfFrozenByStrongerOpposingPiece(){
-		Game g = new Game(freezingBoard);
-		assertFalse(g.move(4, 3, 0));
+		assertFalse(freezingGame.move(4, 3, 0));
 	}
 	
 	@Test
 	public void testCanMoveIfFrozenByStrongerOpposingPieceButThawedByFriendlyPiece(){
-		Game g = new Game(freezingBoard);
-		assertTrue(g.move(3, 4, 0));
-	}
-	
-	@Test
-	public void testEmptyCreateConstructor() {
-		Game g = new Game();
-		assertEquals(new Piece(PieceType.Rabbit, null, Owner.Player1),
-				g.getSpace(1, 1));
+		assertTrue(freezingGame.move(3, 4, 0));
 	}
 
 	@Test
 	public void testNullMove() {
-		Game g = new Game();
 		assertFalse(g.move(4, 4, 0));
 	}
 	
 	@Test 
 	public void testInvalidMoveDirection(){
-		Game g = new Game();
 		assertFalse(g.move(1,0,5));
 	}
 
 	// Testing push method
-
-	BoardState pushTestingBoard = new BoardState(new char[][] {
-			{ ' ', 'r', ' ', ' ', ' ', ' ', 'R', 'e' },
-			{ 'r', ' ', 'R', ' ', 'E', ' ', 'E', 'R' },
-			{ ' ', 'R', 'E', 'R', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', 'R', ' ', ' ', 'd', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'k', 'E', 'c', ' ' },
-			{ ' ', ' ', ' ', 'C', ' ', 'k', ' ', ' ' },
-			{ 'r', ' ', 'C', 'r', 'C', ' ', ' ', ' ' },
-			{ 'E', 'r', ' ', 'C', ' ', ' ', ' ', ' ' }, }, 0);
-	
 	@Test
 	public void testPushNotEnoughMoves() {
-		Game g = new Game(pushTestingBoard);
-		assertTrue(g.move(1, 7, 2));
-		assertTrue(g.move(2, 7, 2));
-		assertTrue(g.move(3, 7, 2));
-		assertFalse(g.push(4, 5, 0, 0));
+		assertTrue(pushingGame.move(1, 7, 2));
+		assertTrue(pushingGame.move(2, 7, 2));
+		assertTrue(pushingGame.move(3, 7, 2));
+		assertFalse(pushingGame.push(4, 5, 0, 0));
 	}
 
 	@Test
 	public void testPushInvalid() {
-		Game g = new Game(b2);
-		assertFalse(g.push(3, 3, 0, 0));
-		assertFalse(g.push(4, 3, 1, 1));
-		assertFalse(g.push(4, 3, 1, 0));
+		assertFalse(g2.push(3, 3, 0, 0));
+		assertFalse(g2.push(4, 3, 1, 1));
+		assertFalse(g2.push(4, 3, 1, 0));
 	}
 
 	@Test
 	public void testPushUp() {
-		Game g = new Game(b2);
-		assertTrue(g.push(4, 4, 0, 0));
-		assertTrue(g.push(3, 4, 0, 0));
-		g.setPlayerTurn(1);
-		assertTrue(g.push(2, 4, 0, 0));
-		assertFalse(g.push(1, 4, 0, 0));
+		assertTrue(g2.push(4, 4, 0, 0));
+		assertTrue(g2.push(3, 4, 0, 0));
+		g2.setPlayerTurn(1);
+		assertTrue(g2.push(2, 4, 0, 0));
+		assertFalse(g2.push(1, 4, 0, 0));
 	}
 
 	@Test
 	public void testPushDown() {
-		Game g = new Game(b2);
-		assertTrue(g.push(4, 4, 2, 2));
-		assertTrue(g.push(5, 4, 2, 2));
-		assertFalse(g.push(6, 4, 2, 2));
-		assertFalse(g.push(7, 4, 2, 2));
+		assertTrue(g2.push(4, 4, 2, 2));
+		assertTrue(g2.push(5, 4, 2, 2));
+		assertFalse(g2.push(6, 4, 2, 2));
+		assertFalse(g2.push(7, 4, 2, 2));
 	}
 
 	@Test
-	public void testPushRight() {
-		Game g = new Game(b2);
-		assertTrue(g.push(4, 4, 1, 1));
-		assertTrue(g.push(4, 5, 1, 1));
-		assertFalse(g.push(4, 6, 1, 1));
-		assertFalse(g.push(4, 7, 1, 1));
+	public void testPushRig2ht() {
+		assertTrue(g2.push(4, 4, 1, 1));
+		assertTrue(g2.push(4, 5, 1, 1));
+		assertFalse(g2.push(4, 6, 1, 1));
+		assertFalse(g2.push(4, 7, 1, 1));
 	}
 
 	@Test
 	public void testPushLeft() {
-		Game g = new Game(b2);
-		assertTrue(g.push(7, 6, 3, 3));
-		assertTrue(g.push(7, 5, 3, 3));
-		g.setPlayerTurn(1);
-		assertTrue(g.push(7, 4, 3, 3));
-		assertTrue(g.push(7, 3, 3, 3));
-		g.setPlayerTurn(1);
-		assertTrue(g.push(7, 2, 3, 3));
-		assertFalse(g.push(7, 1, 3, 3));
+		assertTrue(g2.push(7, 6, 3, 3));
+		assertTrue(g2.push(7, 5, 3, 3));
+		g2.setPlayerTurn(1);
+		assertTrue(g2.push(7, 4, 3, 3));
+		assertTrue(g2.push(7, 3, 3, 3));
+		g2.setPlayerTurn(1);
+		assertTrue(g2.push(7, 2, 3, 3));
+		assertFalse(g2.push(7, 1, 3, 3));
 	}
 
 	@Test
 	public void testPushWithDifferentDirections() {
-		Game g = new Game(pushTestingBoard);
-		assertTrue(g.push(4, 5, 1, 0));
-		assertTrue(g.getSpace(4, 6).equals(
-				new Piece(PieceType.Elephant, null, Owner.Player1)));
-		assertTrue(g.getSpace(3, 6).equals(
-				new Piece(PieceType.Camel, null, Owner.Player2)));
+		assertTrue(pushingGame.push(4, 5, 1, 0));
+		assertTrue(pushingGame.getSpace(4, 6).equals(
+				new Elephant(Owner.Player1)));
+		assertTrue(pushingGame.getSpace(3, 6).equals(
+				new Camel(Owner.Player2)));
 	}
 
 	@Test
 	public void testPushUpWithSamePlayersPieces() {
-		Game g = new Game(pushTestingBoard);
-		assertFalse(g.push(2, 2, 0, 0));
-		assertTrue(g.getSpace(2, 2).equals(
-				new Piece(PieceType.Elephant, null, Owner.Player1)));
-		assertTrue(g.getSpace(1, 2).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player1)));
+		assertFalse(pushingGame.push(2, 2, 0, 0));
+		assertTrue(pushingGame.getSpace(2, 2).equals(
+				new Elephant(Owner.Player1)));
+		assertTrue(pushingGame.getSpace(1, 2).equals(
+				new Rabbit(Owner.Player1)));
 	}
 
 	@Test
 	public void testPushRightWithSamePlayersPieces() {
-		Game g = new Game(pushTestingBoard);
-		assertFalse(g.push(2, 2, 1, 1));
-		assertTrue(g.getSpace(2, 2).equals(
-				new Piece(PieceType.Elephant, null, Owner.Player1)));
-		assertTrue(g.getSpace(2, 3).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player1)));
+		assertFalse(pushingGame.push(2, 2, 1, 1));
+		assertTrue(pushingGame.getSpace(2, 2).equals(
+				new Elephant(Owner.Player1)));
+		assertTrue(pushingGame.getSpace(2, 3).equals(
+				new Rabbit(Owner.Player1)));
 	}
 
 	@Test
 	public void testPushDownWithSamePlayersPieces() {
-		Game g = new Game(pushTestingBoard);
-		assertFalse(g.push(2, 2, 2, 2));
-		assertTrue(g.getSpace(2, 2).equals(
-				new Piece(PieceType.Elephant, null, Owner.Player1)));
-		assertTrue(g.getSpace(3, 2).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player1)));
+		assertFalse(pushingGame.push(2, 2, 2, 2));
+		assertTrue(pushingGame.getSpace(2, 2).equals(
+				new Elephant(Owner.Player1)));
+		assertTrue(pushingGame.getSpace(3, 2).equals(
+				new Rabbit(Owner.Player1)));
 	}
 
 	@Test
 	public void testPushLeftWithSamePlayersPieces() {
-		Game g = new Game(pushTestingBoard);
-		assertFalse(g.push(2, 2, 3, 3));
-		assertTrue(g.getSpace(2, 2).equals(
-				new Piece(PieceType.Elephant, null, Owner.Player1)));
-		assertTrue(g.getSpace(2, 1).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player1)));
+		assertFalse(pushingGame.push(2, 2, 3, 3));
+		assertTrue(pushingGame.getSpace(2, 2).equals(
+				new Elephant(Owner.Player1)));
+		assertTrue(pushingGame.getSpace(2, 1).equals(
+				new Rabbit(Owner.Player1)));
 	}
 
 	@Test
-	public void testThatPiecesMustBeStrongerToPushUp() {
-		Game g = new Game(pushTestingBoard);
-		assertFalse(g.push(6, 3, 0, 0));
-		assertTrue(g.getSpace(6, 3).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player2)));
-		assertTrue(g.getSpace(5, 3).equals(
-				new Piece(PieceType.Camel, null, Owner.Player1)));
+	public void testThatPiecesMustBeStronpushingGameerToPushUp() {
+		assertFalse(pushingGame.push(6, 3, 0, 0));
+		assertTrue(pushingGame.getSpace(6, 3).equals(
+				new Rabbit(Owner.Player2)));
+		assertTrue(pushingGame.getSpace(5, 3).equals(
+				new Camel(Owner.Player1)));
 	}
 
 	@Test
-	public void testThatPiecesMustBeStrongerToPushRight() {
-		Game g = new Game(pushTestingBoard);
-		assertFalse(g.push(6, 3, 1, 1));
-		assertTrue(g.getSpace(6, 3).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player2)));
-		assertTrue(g.getSpace(6, 4).equals(
-				new Piece(PieceType.Camel, null, Owner.Player1)));
+	public void testThatPiecesMustBeStronpushingGameerToPushRipushingGameht() {
+		assertFalse(pushingGame.push(6, 3, 1, 1));
+		assertTrue(pushingGame.getSpace(6, 3).equals(
+				new Rabbit(Owner.Player2)));
+		assertTrue(pushingGame.getSpace(6, 4).equals(
+				new Camel(Owner.Player1)));
 	}
 
 	@Test
-	public void testThatPiecesMustBeStrongerToPushDown() {
-		Game g = new Game(pushTestingBoard);
-		assertFalse(g.push(6, 3, 2, 0));
-		assertFalse(g.push(6, 3, 2, 1));
-		assertFalse(g.push(6, 3, 2, 2));
-		assertFalse(g.push(6, 3, 2, 3));
-		assertTrue(g.getSpace(6, 3).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player2)));
-		assertTrue(g.getSpace(7, 3).equals(
-				new Piece(PieceType.Camel, null, Owner.Player1)));
+	public void testThatPiecesMustBeStronpushingGameerToPushDown() {
+		assertFalse(pushingGame.push(6, 3, 2, 0));
+		assertFalse(pushingGame.push(6, 3, 2, 1));
+		assertFalse(pushingGame.push(6, 3, 2, 2));
+		assertFalse(pushingGame.push(6, 3, 2, 3));
+		assertTrue(pushingGame.getSpace(6, 3).equals(
+				new Rabbit(Owner.Player2)));
+		assertTrue(pushingGame.getSpace(7, 3).equals(
+				new Camel(Owner.Player1)));
 	}
 
 	@Test
-	public void testThatPiecesMustBeStrongerToPushLeft() {
-		Game g = new Game(pushTestingBoard);
-		assertFalse(g.push(6, 3, 3, 0));
-		assertFalse(g.push(6, 3, 3, 1));
-		assertFalse(g.push(6, 3, 3, 2));
-		assertFalse(g.push(6, 3, 3, 3));
-		assertTrue(g.getSpace(6, 3).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player2)));
-		assertTrue(g.getSpace(6, 2).equals(
-				new Piece(PieceType.Camel, null, Owner.Player1)));
+	public void testThatPiecesMustBeStronpushingGameerToPushLeft() {
+		assertFalse(pushingGame.push(6, 3, 3, 0));
+		assertFalse(pushingGame.push(6, 3, 3, 1));
+		assertFalse(pushingGame.push(6, 3, 3, 2));
+		assertFalse(pushingGame.push(6, 3, 3, 3));
+		assertTrue(pushingGame.getSpace(6, 3).equals(
+				new Rabbit(Owner.Player2)));
+		assertTrue(pushingGame.getSpace(6, 2).equals(
+				new Camel(Owner.Player1)));
 	}
 
 	// Testing the pull method
-	BoardState pullTestingBoard = new BoardState(new char[][] {
-			{ ' ', 'r', ' ', ' ', ' ', ' ', 'R', 'e' },
-			{ 'r', 'E', 'E', ' ', 'E', ' ', 'E', 'R' },
-			{ ' ', 'E', 'E', 'r', ' ', 'r', 'r', ' ' },
-			{ ' ', ' ', 'r', ' ', ' ', 'E', ' ', ' ' },
-			{ ' ', ' ', ' ', 'r', 'E', ' ', 'E', 'r' },
-			{ ' ', ' ', ' ', ' ', ' ', 'E', 'r', ' ' },
-			{ 'r', 'e', ' ', 'E', 'e', 'r', ' ', ' ' },
-			{ 'E', 'r', ' ', 'R', 'e', ' ', ' ', ' ' }, }, 0);
-
 	@Test
 	public void testBasicPullUp() {
-		Game g = new Game(pullTestingBoard);
-		assertTrue(g.pull(5, 5, 6, 5, 0));
-		assertTrue(g.getSpace(5, 5).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player2)));
-		assertTrue(g.getSpace(4, 5).equals(
-				new Piece(PieceType.Elephant, null, Owner.Player1)));
+		assertTrue(pullingGame.pull(5, 5, 6, 5, 0));
+		assertTrue(pullingGame.getSpace(5, 5).equals(
+				new Rabbit(Owner.Player2)));
+		assertTrue(pullingGame.getSpace(4, 5).equals(
+				new Elephant(Owner.Player1)));
 	}
 
 	@Test
 	public void testBasicPullRight() {
-		Game g = new Game(pullTestingBoard);
-		assertTrue(g.pull(4, 4, 4, 3, 1));
-		assertTrue(g.getSpace(4, 4).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player2)));
-		assertTrue(g.getSpace(4, 5).equals(
-				new Piece(PieceType.Elephant, null, Owner.Player1)));
+		assertTrue(pullingGame.pull(4, 4, 4, 3, 1));
+		assertTrue(pullingGame.getSpace(4, 4).equals(
+				new Rabbit(Owner.Player2)));
+		assertTrue(pullingGame.getSpace(4, 5).equals(
+				new Elephant(Owner.Player1)));
 	}
 
 	@Test
 	public void testBasicPullDown() {
-		Game g = new Game(pullTestingBoard);
-		// g.currentBoard.printBoard();
-		assertTrue(g.pull(3, 5, 2, 5, 2));
-		// g.currentBoard.printBoard();
-		assertTrue(g.getSpace(3, 5).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player2)));
-		assertTrue(g.getSpace(4, 5).equals(
-				new Piece(PieceType.Elephant, null, Owner.Player1)));
+		// pullingGame.currentBoard.printBoard();
+		assertTrue(pullingGame.pull(3, 5, 2, 5, 2));
+		// pullingGame.currentBoard.printBoard();
+		assertTrue(pullingGame.getSpace(3, 5).equals(
+				new Rabbit(Owner.Player2)));
+		assertTrue(pullingGame.getSpace(4, 5).equals(
+				new Elephant(Owner.Player1)));
 	}
 
 	@Test
 	public void testBasicPullLeft() {
-		Game g = new Game(pullTestingBoard);
-		assertTrue(g.pull(4, 6, 4, 7, 3));
-		assertTrue(g.getSpace(4, 6).equals(
-				new Piece(PieceType.Rabbit, null, Owner.Player2)));
-		assertTrue(g.getSpace(4, 5).equals(
-				new Piece(PieceType.Elephant, null, Owner.Player1)));
+		assertTrue(pullingGame.pull(4, 6, 4, 7, 3));
+		assertTrue(pullingGame.getSpace(4, 6).equals(
+				new Rabbit(Owner.Player2)));
+		assertTrue(pullingGame.getSpace(4, 5).equals(
+				new Elephant(Owner.Player1)));
 	}
 
 	@Test
 	public void testPullWithNullPiece() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(0, 4, 0, 5, 3));
+		assertFalse(pullingGame.pull(0, 4, 0, 5, 3));
 	}
 
 	@Test
 	public void testPullUpOffBoard() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(0, 7, 1, 7, 0));
+		assertFalse(pullingGame.pull(0, 7, 1, 7, 0));
 	}
 
 	@Test
 	public void testPullRightOffBoard() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(0, 7, 0, 6, 1));
+		assertFalse(pullingGame.pull(0, 7, 0, 6, 1));
 	}
 
 	@Test
 	public void testPullDownOffBoard() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(7, 0, 6, 0, 2));
+		assertFalse(pullingGame.pull(7, 0, 6, 0, 2));
 	}
 
 	@Test
 	public void testPullLeftOffBoard() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(7, 0, 7, 1, 3));
+		assertFalse(pullingGame.pull(7, 0, 7, 1, 3));
 	}
 
 	@Test
 	public void testPullUpIntoOccupiedSpace() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(2, 2, 3, 2, 0));
+		assertFalse(pullingGame.pull(2, 2, 3, 2, 0));
 	}
 
 	@Test
 	public void testPullRightIntoOccupiedSpace() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 1, 1, 0, 1));
+		assertFalse(pullingGame.pull(1, 1, 1, 0, 1));
 	}
 
 	@Test
 	public void testPullDownIntoOccupiedSpace() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 1, 0, 1, 2));
+		assertFalse(pullingGame.pull(1, 1, 0, 1, 2));
 	}
 
 	@Test
 	public void testPullLeftIntoOccupiedSpace() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(2, 2, 2, 3, 3));
+		assertFalse(pullingGame.pull(2, 2, 2, 3, 3));
 	}
 
 	@Test
 	public void testPullNothingUp() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 4, 2, 4, 0));
+		assertFalse(pullingGame.pull(1, 4, 2, 4, 0));
 	}
 
 	@Test
 	public void testPullNothingRight() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 4, 1, 3, 1));
+		assertFalse(pullingGame.pull(1, 4, 1, 3, 1));
 	}
 
 	@Test
 	public void testPullNothingDown() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 4, 0, 4, 2));
+		assertFalse(pullingGame.pull(1, 4, 0, 4, 2));
 	}
 
 	@Test
 	public void testPullNothingLeft() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 4, 1, 5, 3));
+		assertFalse(pullingGame.pull(1, 4, 1, 5, 3));
 	}
 
 	@Test
 	public void testPullOwnPieceUp() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(6, 1, 7, 1, 0));
-		assertTrue(g.getSpace(5, 1) == null);
+		assertFalse(pullingGame.pull(6, 1, 7, 1, 0));
+		assertTrue(pullingGame.getSpace(5, 1) == null);
 	}
 
 	@Test
 	public void testPullOwnPieceRight() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(6, 1, 6, 0, 1));
-		assertTrue(g.getSpace(6, 2) == null);
+		assertFalse(pullingGame.pull(6, 1, 6, 0, 1));
+		assertTrue(pullingGame.getSpace(6, 2) == null);
 	}
 
 	@Test
 	public void testPullOwnPieceDown() {
-		Game g = new Game(pullTestingBoard);
-		// g.currentBoard.printBoard();
-		assertFalse(g.pull(1, 6, 0, 6, 2));
-		// g.currentBoard.printBoard();
-		assertFalse(g.getSpace(2, 6) == null);
+		// pullingGame.currentBoard.printBoard();
+		assertFalse(pullingGame.pull(1, 6, 0, 6, 2));
+		// pullingGame.currentBoard.printBoard();
+		assertFalse(pullingGame.getSpace(2, 6) == null);
 	}
 
 	@Test
 	public void testPullOwnPieceLeft() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(1, 6, 1, 7, 3));
-		assertTrue(g.getSpace(1, 5) == null);
+		assertFalse(pullingGame.pull(1, 6, 1, 7, 3));
+		assertTrue(pullingGame.getSpace(1, 5) == null);
 	}
 
 	@Test
 	public void testBidirectionalPullUpRight() {
-		Game g = new Game(pullTestingBoard);
-		Piece p1 = g.getSpace(4, 4);
-		Piece p2 = g.getSpace(4, 3);
-		assertTrue(g.pull(4, 4, 4, 3, 0));
-		assertTrue(g.getSpace(3, 4).equals(p1));
-		assertTrue(g.getSpace(4, 4).equals(p2));
+		AbstractPiece p1 = pullingGame.getSpace(4, 4);
+		AbstractPiece p2 = pullingGame.getSpace(4, 3);
+		assertTrue(pullingGame.pull(4, 4, 4, 3, 0));
+		assertTrue(pullingGame.getSpace(3, 4).equals(p1));
+		assertTrue(pullingGame.getSpace(4, 4).equals(p2));
 	}
 
 	@Test
 	public void testBidirectionalPullRightDown() {
-		Game g = new Game(pullTestingBoard);
-		Piece p1 = g.getSpace(3, 5);
-		Piece p2 = g.getSpace(2, 5);
-		assertTrue(g.pull(3, 5, 2, 5, 1));
-		assertTrue(g.getSpace(3, 6).equals(p1));
-		assertTrue(g.getSpace(3, 5).equals(p2));
+		AbstractPiece p1 = pullingGame.getSpace(3, 5);
+		AbstractPiece p2 = pullingGame.getSpace(2, 5);
+		assertTrue(pullingGame.pull(3, 5, 2, 5, 1));
+		assertTrue(pullingGame.getSpace(3, 6).equals(p1));
+		assertTrue(pullingGame.getSpace(3, 5).equals(p2));
 	}
 
 	@Test
 	public void testBidirectionalPullDownLeft() {
-		Game g = new Game(pullTestingBoard);
-		Piece p1 = g.getSpace(4, 6);
-		Piece p2 = g.getSpace(4, 7);
-		// g.currentBoard.printBoard();
-		assertTrue(g.pull(4, 6, 4, 7, 0));
-		// g.currentBoard.printBoard();
-		assertTrue(g.getSpace(3, 6).equals(p1));
-		assertTrue(g.getSpace(4, 6).equals(p2));
+		AbstractPiece p1 = pullingGame.getSpace(4, 6);
+		AbstractPiece p2 = pullingGame.getSpace(4, 7);
+		// pullingGame.currentBoard.printBoard();
+		assertTrue(pullingGame.pull(4, 6, 4, 7, 0));
+		// pullingGame.currentBoard.printBoard();
+		assertTrue(pullingGame.getSpace(3, 6).equals(p1));
+		assertTrue(pullingGame.getSpace(4, 6).equals(p2));
 	}
 
 	@Test
 	public void testBidirectionalPullLeftUp() {
-		Game g = new Game(pullTestingBoard);
-		// g.currentBoard.printBoard();
-		Piece p1 = g.getSpace(5, 5);
-		Piece p2 = g.getSpace(6, 5);
-		assertTrue(g.pull(5, 5, 6, 5, 3));
-		// g.currentBoard.printBoard();
-		assertTrue(g.getSpace(5, 4).equals(p1));
-		assertTrue(g.getSpace(5, 5).equals(p2));
+		// pullingGame.currentBoard.printBoard();
+		AbstractPiece p1 = pullingGame.getSpace(5, 5);
+		AbstractPiece p2 = pullingGame.getSpace(6, 5);
+		assertTrue(pullingGame.pull(5, 5, 6, 5, 3));
+		// pullingGame.currentBoard.printBoard();
+		assertTrue(pullingGame.getSpace(5, 4).equals(p1));
+		assertTrue(pullingGame.getSpace(5, 5).equals(p2));
 	}
 
 	@Test
 	public void testPullPieceOfGreaterStrength() {
-		Game g = new Game(pullTestingBoard);
-		assertFalse(g.pull(7, 3, 7, 4, 3));
+		assertFalse(pullingGame.pull(7, 3, 7, 4, 3));
 	}
 
 	// Testing getDirection
 	@Test
 	public void testGetDirectionUp() {
-		Game g = new Game();
 		assertEquals(0, g.getDirection(1, 1, 0, 1));
 	}
 
 	@Test
 	public void testGetDirectionRight() {
-		Game g = new Game();
 		assertEquals(1, g.getDirection(1, 1, 1, 2));
 	}
 
 	@Test
 	public void testGetDirectionDown() {
-		Game g = new Game();
 		assertEquals(2, g.getDirection(1, 1, 2, 1));
 	}
 
 	@Test
 	public void testGetDirectionLeft() {
-		Game g = new Game();
 		assertEquals(3, g.getDirection(1, 1, 1, 0));
 	}
 
 	@Test
 	public void testGetDirectionNonAdjacent1() {
-		Game g = new Game();
 		assertEquals(-1, g.getDirection(1, 1, 7, 7));
 	}
 	
 	@Test
 	public void testGetDirectionNonAdjacent2() {
-		Game g = new Game();
 		assertEquals(-1, g.getDirection(1, 1, 1, 7));
 	}
 	
 	@Test
 	public void testGetDirectionNonAdjacent3() {
-		Game g = new Game();
 		assertEquals(-1, g.getDirection(1, 1, 7, 1));
 	}
 
@@ -679,13 +667,11 @@ public class TestGame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Game g = new Game(b);
-		assertTrue(g.saveFile(fw));
+		assertTrue(g1.saveFile(fw));
 	}
 	
 	@Test
 	public void testSaveFile2() throws IOException{
-		Game g = new Game();
 		assertFalse(g.saveFile(null));
 	}
 
@@ -702,7 +688,6 @@ public class TestGame {
 				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 				{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, }, 0);
-		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		for (int i = 0; i < 8; i++) {
 			for (int k = 0; k < 8; k++) {
@@ -717,7 +702,6 @@ public class TestGame {
 	public void testLoadFileLoadsTurnCounter1() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		int turnCounter = 7;
-		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(turnCounter, g.getTurnCounter());
 		scanner.close();
@@ -727,7 +711,6 @@ public class TestGame {
 	public void testLoadFileLoadsTurnCounter2() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest2.txt"));
 		int turnCounter = 10;
-		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(turnCounter, g.getTurnCounter());
 		scanner.close();
@@ -737,7 +720,6 @@ public class TestGame {
 	public void testLoadFileLoadsTurnTimer() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		int turnTimer = 120;
-		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(turnTimer, g.getTurnTimer());
 		scanner.close();
@@ -747,7 +729,6 @@ public class TestGame {
 	public void testLoadFileLoadsPlayer1Name() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		String name = "Jesse";
-		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(name, g.getP1Name());
 		scanner.close();
@@ -757,7 +738,6 @@ public class TestGame {
 	public void testLoadFileLoadsPlayer2Name() throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadTest1.txt"));
 		String name = "Tayler";
-		Game g = new Game();
 		assertTrue(g.loadFile(scanner));
 		assertEquals(name, g.getP2Name());
 		scanner.close();
@@ -767,7 +747,6 @@ public class TestGame {
 	public void testLoadFileReturnsFalseOnFailure1()
 			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure1.txt"));
-		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 		scanner.close();
 	}
@@ -776,7 +755,6 @@ public class TestGame {
 	public void testLoadFileReturnsFalseOnFailure2()
 			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure2.txt"));
-		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 		scanner.close();
 	}
@@ -785,7 +763,6 @@ public class TestGame {
 	public void testLoadFileReturnsFalseOnFailure3()
 			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure3.txt"));
-		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 		scanner.close();
 	}
@@ -794,7 +771,6 @@ public class TestGame {
 	public void testLoadFileReturnsFalseOnFailure4()
 			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure4.txt"));
-		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 		scanner.close();
 	}
@@ -803,7 +779,6 @@ public class TestGame {
 	public void testLoadFileReturnsFalseOnFailure5()
 			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure5.txt"));
-		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 		scanner.close();
 	}
@@ -812,7 +787,6 @@ public class TestGame {
 	public void testLoadFileReturnsFalseOnFailure6()
 			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure6.txt"));
-		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 		scanner.close();
 	}
@@ -821,7 +795,6 @@ public class TestGame {
 	public void testLoadFileReturnsFalseOnFailure7()
 			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File("resources/LoadFailure7.txt"));
-		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 		scanner.close();
 	}
@@ -831,7 +804,6 @@ public class TestGame {
 			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(
 				"resources/LoadInvalidBoard1.txt"));
-		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 		scanner.close();
 	}
@@ -841,80 +813,100 @@ public class TestGame {
 			throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(
 				"resources/LoadInvalidBoard2.txt"));
-		Game g = new Game();
 		assertFalse(g.loadFile(scanner));
 		scanner.close();
 	}
 
 	// Testing remove piece checks
-	BoardState removeBoard = new BoardState(new char[][] {
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', 'C', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', 'r', 'K', 'R' }, }, 0);
-	BoardState removeBoard2 = new BoardState(new char[][] {
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', 'D', ' ', ' ' },
-			{ ' ', ' ', 'C', ' ', ' ', 'C', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', 'r', 'K', 'R' }, }, 0);
-
 	@Test
 	public void testRemovePieceValid() {
-		Game g = new Game(removeBoard);
+		HashMap<Coordinate, AbstractPiece> removeP = new HashMap<Coordinate, AbstractPiece>();
+		removeP.put(new Coordinate(5, 0), new Rabbit(Owner.Player2));
+		removeP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		removeP.put(new Coordinate(7, 0), new Rabbit(Owner.Player1));
+		removeP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
+		removeP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
+		removeP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
+		removeP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		removeP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
+		removeP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
+		removeP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
+
+		Game game = new Game(new BoardState(removeP));
 //		g.currentBoard.printBoard();
-		assertTrue(g.move(6, 3, 0));
+		assertTrue(game.move(6, 3, 0));
 //		g.currentBoard.printBoard();
-		assertEquals(null, g.getSpace(2, 2));
+		assertEquals(null, game.getSpace(2, 2));
 	}
 
 	@Test
 	public void testRemovePiece2() {
-		Game g = new Game(removeBoard2);
-		g.move(2, 2, 0);
-		assertEquals(g.getSpace(2, 5), g.getSpace(2, 5));
-		g.move(1, 5, 0);
-		assertEquals(null, g.getSpace(2, 5));
+		HashMap<Coordinate, AbstractPiece> removeP = new HashMap<Coordinate, AbstractPiece>();
+		removeP.put(new Coordinate(5, 0), new Rabbit(Owner.Player2));
+		removeP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		removeP.put(new Coordinate(7, 0), new Rabbit(Owner.Player1));
+		removeP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
+		removeP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
+		removeP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
+		removeP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		removeP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
+		removeP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
+		removeP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
+		removeP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
+		removeP.put(new Coordinate(5, 6), new Dog(Owner.Player1));
+		Game game = new Game(new BoardState(removeP));
+		game.move(2, 2, 0);
+		assertEquals(game.getSpace(2, 5), game.getSpace(2, 5));
+		game.move(1, 5, 0);
+		assertEquals(null, game.getSpace(2, 5));
 	}
 
 	// Testing win checks
-	BoardState winBoardState = new BoardState(new char[][] {
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', 'r', ' ', ' ', ' ', 'D', ' ', ' ' },
-			{ ' ', ' ', 'C', ' ', ' ', 'C', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
-			{ ' ', 'R', ' ', 'D', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', ' ' }, }, 0);
-
 	@Test
 	public void testPlayer2Win() {
-		Game g = new Game(winBoardState);
-		g.setPlayerTurn(2);
-		assertTrue(g.move(1, 1, 0));
-		assertEquals(2, g.getWinner());
+		HashMap<Coordinate, AbstractPiece> winP = new HashMap<Coordinate, AbstractPiece>();
+		winP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		winP.put(new Coordinate(1, 1), new Rabbit(Owner.Player1));
+		winP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
+		winP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
+		winP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
+		winP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		winP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
+		winP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
+		winP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
+		winP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
+		winP.put(new Coordinate(1, 6), new Rabbit(Owner.Player2));
+		winP.put(new Coordinate(5, 6), new Dog(Owner.Player1));
+		Game game = new Game(new BoardState(winP));
+		game.setPlayerTurn(2);
+		assertTrue(game.move(1, 1, 0));
+		assertEquals(2, game.getWinner());
 	}
 
 	@Test
 	public void testPlayer1Win() {
-		Game g = new Game(winBoardState);
-		assertTrue(g.move(6, 1, 2));
-		assertEquals(1, g.getWinner());
+		HashMap<Coordinate, AbstractPiece> winP = new HashMap<Coordinate, AbstractPiece>();
+		winP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		winP.put(new Coordinate(1, 1), new Rabbit(Owner.Player1));
+		winP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
+		winP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
+		winP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
+		winP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		winP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
+		winP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
+		winP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
+		winP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
+		winP.put(new Coordinate(1, 6), new Rabbit(Owner.Player2));
+		winP.put(new Coordinate(5, 6), new Dog(Owner.Player1));
+		Game game = new Game(new BoardState(winP));
+		assertTrue(game.move(6, 1, 2));
+		assertEquals(1, game.getWinner());
 	}
 	
 	//Testing undoMove
 	@Test
 	public void testBaseUndoCase(){
 		Game standardStart = new Game();
-		Game g = new Game();
 		g.move(1, 0, 2);
 		g.undoMove();
 		assertEquals(standardStart.getSpace(1, 0), g.getSpace(1,0));
@@ -922,35 +914,31 @@ public class TestGame {
 	
 	@Test
 	public void testUndoTwoMoves() {
-		Game g = new Game();
 		g.move(1, 0, 2);
 		g.move(2, 0, 2);
 		g.undoMove();
-		assertEquals(new Piece('R'), g.getSpace(1,0));	}
+		assertEquals(new Rabbit(Owner.Player1), g.getSpace(1,0));	}
 	
 	@Test
 	public void testUndoThreeMoves() {
-		Game g = new Game();
 		g.move(1, 0, 2);
 		g.move(2, 0, 2);
 		g.move(3, 0, 2);
 		g.undoMove();
-		assertEquals(new Piece('R'), g.getSpace(1,0));	}
+		assertEquals(new Rabbit(Owner.Player1), g.getSpace(1,0));	}
 	
 	@Test
 	public void testThatUndoCantCrossTurns(){
-		Game g = new Game();
 		g.move(1, 0, 2);
 		g.move(2, 0, 2);
 		g.move(3, 0, 2);
 		g.move(4, 0, 2);
 		g.undoMove();
-		assertEquals(new Piece('R'), g.getSpace(5,0));
+		assertEquals(new Rabbit(Owner.Player1), g.getSpace(5,0));
 	}
 	
 	@Test
 	public void testThatUndoGrantsMoves(){
-		Game g = new Game();
 		g.move(1, 0, 2);
 		g.undoMove();
 		assertEquals(4, g.getNumMoves());
@@ -958,38 +946,51 @@ public class TestGame {
 	
 	@Test
 	public void testSetWinner(){
-		Game g = new Game();
 		g.setWinner(1);
 		assertEquals(1,g.getWinner());
 	}
 	
-	BoardState win2BoardState = new BoardState(new char[][] {
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', 'C', ' ', ' ', 'e', 'D', ' ', ' ' },
-			{ ' ', ' ', 'C', ' ', ' ', 'C', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', ' ' }, }, 0);
-	
-	
 	@Test 
-	public void testWinWhenP1HasNoRabbits(){
-		Game g = new Game(win2BoardState);
-		g.move(1,1,2);
-		assertEquals(2, g.getWinner());
+	public void testWinWhenP1HasNoRabbits() {
+		HashMap<Coordinate, AbstractPiece> winP = new HashMap<Coordinate, AbstractPiece>();
+		winP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		winP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
+		winP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
+		winP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
+		winP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		winP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
+		winP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
+		winP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
+		winP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
+		winP.put(new Coordinate(1, 6), new Camel(Owner.Player1));
+		winP.put(new Coordinate(4, 6), new Elephant(Owner.Player2));
+		winP.put(new Coordinate(5, 6), new Dog(Owner.Player1));
+		Game game = new Game(new BoardState(winP));
+		game.move(1,1,2);
+		assertEquals(2, game.getWinner());
 	}
 	
 	@Test
-	public void testCheckFriendlyAdjacentDownCase(){
-		Game g = new Game(win2BoardState);
-		assertTrue(g.move(1,5,1));		
+	public void testCheckFriendlyAdjacentDownCase() {
+		HashMap<Coordinate, AbstractPiece> winP = new HashMap<Coordinate, AbstractPiece>();
+		winP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		winP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
+		winP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
+		winP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
+		winP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		winP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
+		winP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
+		winP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
+		winP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
+		winP.put(new Coordinate(1, 6), new Camel(Owner.Player1));
+		winP.put(new Coordinate(4, 6), new Elephant(Owner.Player2));
+		winP.put(new Coordinate(5, 6), new Dog(Owner.Player1));
+		Game game = new Game(new BoardState(winP));
+		assertTrue(game.move(1,5,1));		
 	}
 	
 	@Test
 	public void testEndMove(){
-		Game g = new Game();
 		assertTrue(g.move(1,0,2));
 		assertTrue(g.move(2,0,2));
 		assertTrue(g.move(3,0,2));
@@ -999,34 +1000,52 @@ public class TestGame {
 		assertTrue(g.move(4,1,0));
 		assertTrue(g.move(3,1,0));
 	}
-	
-	BoardState pushPullTestBoardState = new BoardState(new char[][] {
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-			{ ' ', 'C', ' ', 'r', ' ', ' ', ' ', 'D' },
-			{ ' ', ' ', 'C', ' ', ' ', 'C', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'k', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'C', 'E', 'd', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', 'r', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', 'D', ' ', ' ', ' ', ' ' },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', 'K', ' ' }, }, 0);
-	
+
 	@Test
-	public void testCantPushPullWith1Move(){
-		Game g = new Game(pushPullTestBoardState);
-		g.setPlayerTurn(1);
-		assertTrue(g.move(1, 7, 3));
-		assertTrue(g.move(1, 6, 3));
-		assertTrue(g.move(1, 5, 3));
-		assertFalse(g.pull(1, 4, 1, 3, 1));
+	public void testCantPushPullWith1Move() {
+		HashMap<Coordinate, AbstractPiece> pushPullP = new HashMap<Coordinate, AbstractPiece>();
+		pushPullP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		pushPullP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
+		pushPullP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
+		pushPullP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		pushPullP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
+		pushPullP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
+		pushPullP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(1, 6), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(3, 6), new Rabbit(Owner.Player2));
+		pushPullP.put(new Coordinate(7, 6), new Dog(Owner.Player1));
+		Game game = new Game(new BoardState(pushPullP));
+
+		game.setPlayerTurn(1);
+		assertTrue(game.move(1, 7, 3));
+		assertTrue(game.move(1, 6, 3));
+		assertTrue(game.move(1, 5, 3));
+		assertFalse(game.pull(1, 4, 1, 3, 1));
 	}
 	
 	@Test
 	public void testCantPushPullWith1Move2(){
-		Game g = new Game(pushPullTestBoardState);
-		g.setPlayerTurn(1);
-		assertTrue(g.move(1, 7, 3));
-		assertTrue(g.move(1, 6, 3));
-		assertTrue(g.move(1, 5, 3));
-		assertFalse(g.push(1, 4, 3, 3));
+		HashMap<Coordinate, AbstractPiece> pushPullP = new HashMap<Coordinate, AbstractPiece>();
+		pushPullP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
+		pushPullP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
+		pushPullP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
+		pushPullP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		pushPullP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
+		pushPullP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
+		pushPullP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(1, 6), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(3, 6), new Rabbit(Owner.Player2));
+		pushPullP.put(new Coordinate(7, 6), new Dog(Owner.Player1));
+		Game game = new Game(new BoardState(pushPullP));
+
+		game.setPlayerTurn(1);
+		assertTrue(game.move(1, 7, 3));
+		assertTrue(game.move(1, 6, 3));
+		assertTrue(game.move(1, 5, 3));
+		assertFalse(game.push(1, 4, 3, 3));
 	}
 }

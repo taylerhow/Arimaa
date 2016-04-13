@@ -24,6 +24,14 @@ public class TestCoordinate {
 		c = new Coordinate(7, 7);
 		assertTrue(c.isValid());
 	}
+	
+	@Test
+	public void testCopyConstructor() {
+		Coordinate c = new Coordinate(0, 0);
+		Coordinate copy = new Coordinate(c);
+		assertFalse(c == copy);
+		assertEquals(c, copy);
+	}
 
 	@Test
 	public void testCanGetX() {
