@@ -1,4 +1,4 @@
-package testing;
+package move_commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
