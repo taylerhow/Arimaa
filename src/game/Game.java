@@ -10,34 +10,19 @@ import move_commands.MoveDown;
 import move_commands.MoveLeft;
 import move_commands.MoveRight;
 import move_commands.MoveUp;
+import piece.AbstractPiece;
 import piece.Owner;
-import piece.Piece;
-import piece.Piece.PieceType;
+import piece.Rabbit;
 
 public class Game {
 	private ArrayList<MoveCommand> moves = new ArrayList<MoveCommand>();
 	public BoardState currentBoard = null;
-
-	public int getMoveTimer() {
-		return moveTimer;
-	}
-
-	public void setMoveTimer(int moveTimer) {
-		this.moveTimer = moveTimer;
-	}
+	private int turnNumber;
 
 	int moveTimer = 0;
 	int p1TimeBank = 0;
 	int p2TimeBank = 0;
 	int turnCounter = 0;
-
-	public void setP1Name(String p1Name) {
-		this.p1Name = p1Name;
-	}
-
-	public void setP2Name(String p2Name) {
-		this.p2Name = p2Name;
-	}
 
 	String p1Name = "Player1";
 	String p2Name = "Player2";
@@ -47,35 +32,93 @@ public class Game {
 	private int playerTurn = 1;
 	private boolean isPushPull;
 
-	public Game(BoardState b) {
-		currentBoard = b;
-	}
-
 	/**
 	 * Creates a board with a default starting layout
 	 */
 	public Game() {
-		currentBoard = new BoardState(
-				new char[][] { { 'K', 'D', 'H', 'C', 'E', 'H', 'D', 'K' }, { 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R' },
-						{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-						{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-						{ 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r' }, { 'k', 'd', 'h', 'c', 'e', 'h', 'd', 'k' }, },
-				0);
+		currentBoard = new BoardState();
 	}
 
-	/**
-	 * 
-	 * @param x
-	 * @param y
-	 * @return
-	 */
-	public Piece getSpace(int row, int column) {
-		if (row < 0 || row > 7 || column < 0 || column > 7)
-			return null;
-		if (currentBoard.getBoardArray()[row][column] == ' ')
-			return null;
-		return new Piece(currentBoard.getBoardArray()[row][column]);
+	public Game(BoardState b) {
+		currentBoard = b;
+	}
 
+	public int getMoveTimer() {
+		return moveTimer;
+	}
+
+	public void setMoveTimer(int moveTimer) {
+		this.moveTimer = moveTimer;
+	}
+
+	public void setP1Name(String p1Name) {
+		this.p1Name = p1Name;
+	}
+
+	public void setP2Name(String p2Name) {
+		this.p2Name = p2Name;
+	}
+
+	public int getTurnNumber() {
+		return turnNumber;
+	}
+
+	public void setTurnNumber(int turnNumber) {
+		this.turnNumber = turnNumber;
+	}
+
+	public void incrementTurn() {
+		this.turnNumber++;
+	}
+
+	public int getTurnCounter() {
+		return this.turnCounter;
+	}
+
+	public String getP1Name() {
+		return this.p1Name;
+	}
+
+	public String getP2Name() {
+		return this.p2Name;
+	}
+
+	public void setWinner(int winner) {
+		this.winner = winner;
+	}
+
+	public int getNumMoves() {
+		return numMoves;
+	}
+
+	public int getTurnTimer() {
+		return moveTimer;
+	}
+
+	public int getWinner() {
+		return winner;
+	}
+
+	public int getPlayerTurn() {
+		return playerTurn;
+	}
+
+	public void setPlayerTurn(int playerTurn) {
+		this.playerTurn = playerTurn;
+	}
+
+	@Deprecated
+	public AbstractPiece getSpace(int row, int column) {
+		return this.currentBoard.getPieceAt(new Coordinate(row, 7-column));
+	}
+	
+	// refactor for future pull request
+	public boolean checkCoor(int row, int column) {
+		return this.checkCoor(new Coordinate(row, 7-column));
+	}
+	
+	public boolean checkCoor(Coordinate coor) {
+		return this.currentBoard.pieceAt(coor);
 	}
 
 	/**
@@ -84,10 +127,8 @@ public class Game {
 	 * @param column
 	 * @param dir
 	 *            0: up, 1: right, 2: down, 3: left
-	 * @return returns true if the move made successfully, otherwise returns
-	 *         false
+	 * @return returns true if the move made successfully, otherwise returns false
 	 */
-
 	public boolean move(int row, int column, int dir) {
 		MoveCommand moveToMake;
 		if (!isValidMoveFromSquare(row, column))
@@ -119,8 +160,7 @@ public class Game {
 	 * @param moveToMake
 	 * @param row
 	 * @param column
-	 * @return returns true if the move made successfully, otherwise returns
-	 *         false
+	 * @return returns true if the move made successfully, otherwise returns false
 	 */
 
 	private boolean makeMove(MoveCommand moveToMake, int row, int column) {
@@ -174,14 +214,14 @@ public class Game {
 	private void checkWin() {
 		for (int i = 0; i < 8; i++) {
 			if (getSpace(0, i) != null) {
-				if (getSpace(0, i).equals(new Piece(PieceType.Rabbit, null, Owner.Player2))) {
+				if (getSpace(0, i).equals(new Rabbit(Owner.Player2))) {
 					winner = 2;
 				}
 			}
 		}
 		for (int i = 0; i < 8; i++) {
 			if (getSpace(7, i) != null) {
-				if (getSpace(7, i).equals(new Piece(PieceType.Rabbit, null, Owner.Player1))) {
+				if (getSpace(7, i).equals(new Rabbit(Owner.Player1))) {
 					winner = 1;
 				}
 			}
@@ -191,7 +231,7 @@ public class Game {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				// and short circuits if null preventing nullpointerexception
-				if (getSpace(i, j) != null && getSpace(i, j).equals(new Piece(PieceType.Rabbit, null, Owner.Player1))) {
+				if (getSpace(i, j) != null && getSpace(i, j).equals(new Rabbit(Owner.Player1))) {
 					p1RabbitExists = true;
 				}
 			}
@@ -204,7 +244,7 @@ public class Game {
 		boolean p2RabbitExists = false;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if (getSpace(i, j) != null && getSpace(i, j).equals(new Piece(PieceType.Rabbit, null, Owner.Player2))) {
+				if (getSpace(i, j) != null && getSpace(i, j).equals(new Rabbit(Owner.Player2))) {
 					p2RabbitExists = true;
 				}
 			}
@@ -216,8 +256,8 @@ public class Game {
 	}
 
 	/**
-	 * Piece death occurs when pieces are on the squares (2,2), (2,5), (5,2),
-	 * (5,5), and has no friendly adjacent pieces to it
+	 * Piece death occurs when pieces are on the squares (2,2), (2,5), (5,2), (5,5), and has no friendly adjacent pieces
+	 * to it
 	 * 
 	 */
 	private void checkDeaths(int row, int col) {
@@ -228,17 +268,18 @@ public class Game {
 			return;
 		}
 		// no adjacent friendly pieces, remove this one
-		char[][] temp = this.currentBoard.getBoardArray();
-		temp[row][col] = ' ';
-		this.currentBoard.setBoardArray(temp);
+		this.currentBoard.removePiece(new Coordinate(row, col));
+		// char[][] temp = this.currentBoard.getBoardArray();
+		// temp[row][col] = ' ';
+		// this.currentBoard.setBoardArray(temp);
 	}
 
 	public boolean checkFriendlyAdjacent(int row, int col) {
-		Piece cen = this.getSpace(row, col);
-		Piece up = this.getSpace(row - 1, col);
-		Piece down = this.getSpace(row + 1, col);
-		Piece left = this.getSpace(row, col - 1);
-		Piece right = this.getSpace(row, col + 1);
+		AbstractPiece cen = this.getSpace(row, col);
+		AbstractPiece up = this.getSpace(row - 1, col);
+		AbstractPiece down = this.getSpace(row + 1, col);
+		AbstractPiece left = this.getSpace(row, col - 1);
+		AbstractPiece right = this.getSpace(row, col + 1);
 		Owner own = cen.getOwner();
 		if (up != null) {
 			if (up.getOwner() == own)
@@ -260,11 +301,11 @@ public class Game {
 	}
 
 	public boolean checkStrongerAdjacent(int row, int col) {
-		Piece cen = this.getSpace(row, col);
-		Piece up = this.getSpace(row - 1, col);
-		Piece down = this.getSpace(row + 1, col);
-		Piece left = this.getSpace(row, col - 1);
-		Piece right = this.getSpace(row, col + 1);
+		AbstractPiece cen = this.getSpace(row, col);
+		AbstractPiece up = this.getSpace(row - 1, col);
+		AbstractPiece down = this.getSpace(row + 1, col);
+		AbstractPiece left = this.getSpace(row, col - 1);
+		AbstractPiece right = this.getSpace(row, col + 1);
 		@SuppressWarnings("unused")
 		Owner own = cen.getOwner();
 		boolean foo = false;
@@ -283,7 +324,7 @@ public class Game {
 		return foo;
 	}
 
-	private boolean checkStrong(Piece one, Piece two) {
+	private boolean checkStrong(AbstractPiece one, AbstractPiece two) {
 		if (one.getOwner() != two.getOwner() && one.isStrongerThan(two))
 			return true;
 		return false;
@@ -307,8 +348,8 @@ public class Game {
 		switch (dir1) {
 		case 0:
 			if (row - 1 >= 0) {
-				Piece pushingPiece = getSpace(row, column);
-				Piece pushedPiece = getSpace(row - 1, column);
+				AbstractPiece pushingPiece = getSpace(row, column);
+				AbstractPiece pushedPiece = getSpace(row - 1, column);
 				if (pieceCanPush(pushingPiece, pushedPiece) && move(row - 1, column, dir2)) {
 					isPushPull = false;
 					return move(row, column, dir1);
@@ -318,8 +359,8 @@ public class Game {
 			break;
 		case 1:
 			if (column + 1 <= 7) {
-				Piece pushingPiece2 = getSpace(row, column);
-				Piece pushedPiece2 = getSpace(row, column + 1);
+				AbstractPiece pushingPiece2 = getSpace(row, column);
+				AbstractPiece pushedPiece2 = getSpace(row, column + 1);
 				if (pieceCanPush(pushingPiece2, pushedPiece2) && move(row, column + 1, dir2)) {
 					isPushPull = false;
 					return move(row, column, dir1);
@@ -328,8 +369,8 @@ public class Game {
 			break;
 		case 2:
 			if (row + 1 <= 7) {
-				Piece pushingPiece3 = getSpace(row, column);
-				Piece pushedPiece3 = getSpace(row + 1, column);
+				AbstractPiece pushingPiece3 = getSpace(row, column);
+				AbstractPiece pushedPiece3 = getSpace(row + 1, column);
 				if (pushingPiece3.isStrongerThan(pushedPiece3)) {
 					if (pieceCanPush(pushingPiece3, pushedPiece3) && move(row + 1, column, dir2)) {
 						isPushPull = false;
@@ -341,8 +382,8 @@ public class Game {
 			break;
 		case 3:
 			if (column - 1 >= 0) {
-				Piece pushingPiece4 = getSpace(row, column);
-				Piece pushedPiece4 = getSpace(row, column - 1);
+				AbstractPiece pushingPiece4 = getSpace(row, column);
+				AbstractPiece pushedPiece4 = getSpace(row, column - 1);
 				if (pieceCanPush(pushingPiece4, pushedPiece4) && move(row, column - 1, dir2)) {
 					isPushPull = false;
 					return move(row, column, dir1);
@@ -355,7 +396,7 @@ public class Game {
 		return false;
 	}
 
-	private boolean pieceCanPush(Piece pushingPiece, Piece pushedPiece) {
+	private boolean pieceCanPush(AbstractPiece pushingPiece, AbstractPiece pushedPiece) {
 		return pushedPiece != null && pushingPiece.isStrongerThan(pushedPiece)
 				&& pushingPiece.getOwner() != pushedPiece.getOwner();
 	}
@@ -426,7 +467,7 @@ public class Game {
 		return false;
 	}
 
-	private boolean tryPull(Piece space, Piece space2, int row1, int column1, int direction1) {
+	private boolean tryPull(AbstractPiece space, AbstractPiece space2, int row1, int column1, int direction1) {
 		return pieceCanPush(space, space2) && move(row1, column1, direction1);
 	}
 
@@ -459,8 +500,7 @@ public class Game {
 	 *            : row of space2
 	 * @param column2
 	 *            : column of space2
-	 * @return integer representing the direction required to move from space1
-	 *         to space2
+	 * @return integer representing the direction required to move from space1 to space2
 	 */
 	public int getDirection(int row1, int column1, int row2, int column2) {
 		if (row1 == row2) {
@@ -488,14 +528,16 @@ public class Game {
 		this.numMoves = 4;
 	}
 
+	// doesn't work now, leave for another pull request
 	public boolean loadFile(Scanner scanner) {
 		scanner.useDelimiter(",");
-		BoardState boardToSet = new BoardState(
-				new char[][] { { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-						{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-						{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-						{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, },
-				0);
+		// BoardState boardToSet = new BoardState(
+		// new char[][] { { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+		// { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+		// { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+		// { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, },
+		// 0);
+		BoardState boardToSet = new BoardState(); // so it compiles
 		String[] validBoardCharactersArray = { " ", "E", "C", "H", "D", "K", "R", "e", "c", "h", "d", "k", "r" };
 		ArrayList<String> vbc = new ArrayList<String>();
 		for (String s : validBoardCharactersArray) {
@@ -513,7 +555,7 @@ public class Game {
 					scanner.close();
 					return false;
 				}
-				boardToSet.setBoardSpace(i, k, next);
+				// boardToSet.setBoardSpace(i, k, next);
 			}
 		}
 
@@ -585,51 +627,4 @@ public class Game {
 		}
 		return true;
 	}
-
-	public int getTurnCounter() {
-		return this.turnCounter;
-	}
-
-	public String getP1Name() {
-		return this.p1Name;
-	}
-
-	public String getP2Name() {
-		return this.p2Name;
-	}
-
-	public void setWinner(int winner) {
-		this.winner = winner;
-	}
-
-	public int getNumMoves() {
-		return numMoves;
-	}
-
-	public int getTurnTimer() {
-		return moveTimer;
-	}
-
-	/**
-	 * @return the winner: 0 is nobody, 1 is player1, 2 is player2
-	 */
-	public int getWinner() {
-		return winner;
-	}
-
-	/**
-	 * @return the playerTurn
-	 */
-	public int getPlayerTurn() {
-		return playerTurn;
-	}
-
-	/**
-	 * @param playerTurn
-	 *            the playerTurn to set
-	 */
-	public void setPlayerTurn(int playerTurn) {
-		this.playerTurn = playerTurn;
-	}
-
 }

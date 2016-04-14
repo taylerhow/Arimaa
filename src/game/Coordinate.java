@@ -3,14 +3,24 @@ package game;
 public class Coordinate {
 	private int x;
 	private int y;
-	private boolean valid = false;
+	private boolean valid;
 
 	public Coordinate(int x, int y) {
 		if (isValidValue(x) && isValidValue(y)) {
 			this.valid  = true;
 			this.x = x;
 			this.y = y;
+		} else {
+			this.valid = false;
+			this.x = -1;
+			this.y = -1;
 		}
+	}
+
+	public Coordinate(Coordinate coor) {
+		this.x = coor.getX();
+		this.y = coor.getY();
+		this.valid = coor.isValid();
 	}
 
 	private boolean isValidValue(int value) {
