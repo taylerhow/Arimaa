@@ -71,6 +71,7 @@ public class BoardState {
 	}
 
 	// converter
+	@Deprecated
 	public BoardState(char[][] chars, int turns) {
 		System.out.println();
 		System.out.println("****************");
