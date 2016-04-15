@@ -50,4 +50,8 @@ public class Coordinate {
 	public int hashCode() {
 		return Integer.hashCode(this.x) + Integer.hashCode(this.y) + Boolean.hashCode(this.valid);
 	}
+	
+	public String toString() {
+		return "(" + this.getX() + ", " + this.getY() + ")";
+	}
 }
