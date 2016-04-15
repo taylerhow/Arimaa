@@ -42,6 +42,10 @@ public class Game {
 	public Game(BoardState b) {
 		currentBoard = b;
 	}
+	
+	public BoardState getBoardState() {
+		return this.currentBoard;
+	}
 
 	public int getMoveTimer() {
 		return moveTimer;

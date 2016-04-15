@@ -2,6 +2,7 @@ package game;
 
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 
 import piece.AbstractPiece;
 import piece.Camel;
@@ -112,6 +113,10 @@ public class BoardState {
 			}
 			throw new RuntimeException("using the wrong constuctor");
 		}
+	}
+	
+	public Set<Coordinate> getAllCoordinates() {
+		return this.pieces.keySet();
 	}
 
 	@Deprecated
