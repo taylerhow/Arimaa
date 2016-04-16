@@ -26,37 +26,37 @@ public class TestPull {
 	@Before
 	public void setup() {
 		HashMap<Coordinate, AbstractPiece> pullp = new HashMap<Coordinate, AbstractPiece>();
-		pullp.put(new Coordinate(0, 0), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(1, 0), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(3, 0), new Rabbit(Owner.Player1));
-		pullp.put(new Coordinate(4, 0), new Elephant(Owner.Player2));
-		pullp.put(new Coordinate(0, 1), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(1, 1), new Elephant(Owner.Player2));
-		pullp.put(new Coordinate(3, 1), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(4, 1), new Elephant(Owner.Player2));
-		pullp.put(new Coordinate(5, 1), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(5, 2), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(6, 2), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(3, 3), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(6, 3), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(7, 3), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(2, 4), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(5, 4), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(1, 5), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(2, 5), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(3, 5), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(5, 5), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(6, 5), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(0, 6), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(1, 6), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(2, 6), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(4, 6), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(6, 6), new Elephant(Owner.Player1));
-		pullp.put(new Coordinate(7, 6), new Rabbit(Owner.Player1));
+		pullp.put(new Coordinate(0, 7), new Elephant(Owner.Player1));
 		pullp.put(new Coordinate(1, 7), new Rabbit(Owner.Player2));
-		pullp.put(new Coordinate(6, 7), new Rabbit(Owner.Player1));
-		pullp.put(new Coordinate(7, 7), new Elephant(Owner.Player2));
+		pullp.put(new Coordinate(3, 7), new Rabbit(Owner.Player1));
+		pullp.put(new Coordinate(4, 7), new Elephant(Owner.Player2));
+		pullp.put(new Coordinate(0, 6), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(1, 6), new Elephant(Owner.Player2));
+		pullp.put(new Coordinate(3, 6), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(4, 6), new Elephant(Owner.Player2));
+		pullp.put(new Coordinate(5, 6), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(5, 5), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(6, 5), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(3, 4), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(4, 4), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(6, 4), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(7, 4), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(2, 3), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(5, 3), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(1, 2), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(2, 2), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(3, 2), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(5, 2), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(6, 2), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(0, 1), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(1, 1), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(2, 1), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(4, 1), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(6, 1), new Elephant(Owner.Player1));
+		pullp.put(new Coordinate(7, 1), new Rabbit(Owner.Player1));
+		pullp.put(new Coordinate(1, 0), new Rabbit(Owner.Player2));
+		pullp.put(new Coordinate(6, 0), new Rabbit(Owner.Player1));
+		pullp.put(new Coordinate(7, 0), new Elephant(Owner.Player2));
 		pullingGame = new Game(new BoardState(pullp));
 	}
 
@@ -225,22 +225,22 @@ public class TestPull {
 	public void testPullPieceOfGreaterStrength() {
 		assertFalse(pullingGame.pull(7, 3, 7, 4, 3));
 	}
-	
+
 	@Test
 	public void testCantPushPullWith1Move() {
 		HashMap<Coordinate, AbstractPiece> pushPullP = new HashMap<Coordinate, AbstractPiece>();
-		pushPullP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
-		pushPullP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
-		pushPullP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
-		pushPullP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
-		pushPullP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
-		pushPullP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
-		pushPullP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
-		pushPullP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
-		pushPullP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
-		pushPullP.put(new Coordinate(1, 6), new Camel(Owner.Player1));
-		pushPullP.put(new Coordinate(3, 6), new Rabbit(Owner.Player2));
-		pushPullP.put(new Coordinate(7, 6), new Dog(Owner.Player1));
+		pushPullP.put(new Coordinate(6, 7), new Cat(Owner.Player1));
+		pushPullP.put(new Coordinate(3, 6), new Dog(Owner.Player1));
+		pushPullP.put(new Coordinate(4, 5), new Rabbit(Owner.Player2));
+		pushPullP.put(new Coordinate(3, 4), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(4, 4), new Elephant(Owner.Player1));
+		pushPullP.put(new Coordinate(5, 4), new Dog(Owner.Player2));
+		pushPullP.put(new Coordinate(4, 3), new Cat(Owner.Player2));
+		pushPullP.put(new Coordinate(2, 2), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(5, 2), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(1, 1), new Camel(Owner.Player1));
+		pushPullP.put(new Coordinate(3, 1), new Rabbit(Owner.Player2));
+		pushPullP.put(new Coordinate(7, 1), new Dog(Owner.Player1));
 		Game game = new Game(new BoardState(pushPullP));
 
 		game.setPlayerTurn(1);

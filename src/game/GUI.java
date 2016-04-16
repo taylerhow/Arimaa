@@ -122,11 +122,11 @@ public class GUI {
 			AbstractPiece piece = boardState.getPieceAt(coor);
 			ImagePanel imgPanel = new ImagePanel(piece.getImage());
 			this.gameBoardPanel.add(imgPanel);
-			imgPanel.setRow(7 - coor.getY());
+			imgPanel.setRow(coor.getY());
 			imgPanel.setColumn(coor.getX());
 			imgPanel.setLocation(imgPanel.getPixelX(), imgPanel.getPixelY());
 			imgPanel.setVisible(true);
-			this.boardPieces[7 - coor.getY()][coor.getX()] = imgPanel;
+			this.boardPieces[coor.getY()][coor.getX()] = imgPanel;
 			
 		}
 	}

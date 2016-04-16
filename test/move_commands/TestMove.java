@@ -29,12 +29,12 @@ public class TestMove {
 		g = new Game();
 
 		HashMap<Coordinate, AbstractPiece> fp = new HashMap<Coordinate, AbstractPiece>();
-		fp.put(new Coordinate(6, 0), new Cat(Owner.Player1));
-		fp.put(new Coordinate(7, 0), new Rabbit(Owner.Player1));
-		fp.put(new Coordinate(3, 3), new Rabbit(Owner.Player1));
-		fp.put(new Coordinate(4, 4), new Rabbit(Owner.Player1));
-		fp.put(new Coordinate(5, 4), new Elephant(Owner.Player1));
-		fp.put(new Coordinate(4, 3), new Camel(Owner.Player2));
+		fp.put(new Coordinate(6, 7), new Cat(Owner.Player1));
+		fp.put(new Coordinate(7, 7), new Rabbit(Owner.Player1));
+		fp.put(new Coordinate(3, 4), new Rabbit(Owner.Player1));
+		fp.put(new Coordinate(4, 3), new Rabbit(Owner.Player1));
+		fp.put(new Coordinate(5, 3), new Elephant(Owner.Player1));
+		fp.put(new Coordinate(4, 4), new Camel(Owner.Player2));
 		BoardState fb = new BoardState(fp);
 		freezingGame = new Game(fb);
 	}
@@ -42,11 +42,11 @@ public class TestMove {
 	@Test
 	public void testMoveLegal() {
 		HashMap<Coordinate, AbstractPiece> p1 = new HashMap<Coordinate, AbstractPiece>();
-		p1.put(new Coordinate(6, 0), new Cat(Owner.Player1));
-		p1.put(new Coordinate(7, 0), new Rabbit(Owner.Player1));
-		p1.put(new Coordinate(3, 1), new Dog(Owner.Player1));
-		p1.put(new Coordinate(3, 3), new Camel(Owner.Player1));
-		p1.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
+		p1.put(new Coordinate(6, 7), new Cat(Owner.Player1));
+		p1.put(new Coordinate(7, 7), new Rabbit(Owner.Player1));
+		p1.put(new Coordinate(3, 6), new Dog(Owner.Player1));
+		p1.put(new Coordinate(3, 4), new Camel(Owner.Player1));
+		p1.put(new Coordinate(4, 4), new Elephant(Owner.Player1));
 		BoardState b1 = new BoardState(p1);
 		Game g1 = new Game(b1);
 
