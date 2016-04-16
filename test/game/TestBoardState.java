@@ -10,8 +10,6 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import game.BoardState;
-import game.Coordinate;
 import piece.AbstractPiece;
 import piece.Camel;
 import piece.Cat;
@@ -37,13 +35,13 @@ public class TestBoardState {
 			}
 		}
 		
-		assertEquals(new Rabbit(Owner.Player1), b.getPieceAt(new Coordinate(4, 1)));
-		assertEquals(new Camel(Owner.Player1), b.getPieceAt(new Coordinate(3, 0)));
-		assertEquals(new Elephant(Owner.Player1), b.getPieceAt(new Coordinate(4, 0)));
+		assertEquals(new Rabbit(Owner.Player1), b.getPieceAt(new Coordinate(4, 6)));
+		assertEquals(new Camel(Owner.Player1), b.getPieceAt(new Coordinate(3, 7)));
+		assertEquals(new Elephant(Owner.Player1), b.getPieceAt(new Coordinate(4, 7)));
 
-		assertEquals(new Rabbit(Owner.Player2), b.getPieceAt(new Coordinate(4, 6)));
-		assertEquals(new Camel(Owner.Player2), b.getPieceAt(new Coordinate(3, 7)));
-		assertEquals(new Elephant(Owner.Player2), b.getPieceAt(new Coordinate(4, 7)));
+		assertEquals(new Rabbit(Owner.Player2), b.getPieceAt(new Coordinate(4, 1)));
+		assertEquals(new Camel(Owner.Player2), b.getPieceAt(new Coordinate(3, 0)));
+		assertEquals(new Elephant(Owner.Player2), b.getPieceAt(new Coordinate(4, 0)));
 	}
 
 	@Test

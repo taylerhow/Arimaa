@@ -113,12 +113,12 @@ public class Game {
 
 	@Deprecated
 	public AbstractPiece getSpace(int row, int column) {
-		return this.currentBoard.getPieceAt(new Coordinate(row, 7-column));
+		return this.currentBoard.getPieceAt(new Coordinate(row, column));
 	}
 	
 	// refactor for future pull request
 	public boolean checkCoor(int row, int column) {
-		return this.checkCoor(new Coordinate(row, 7-column));
+		return this.checkCoor(new Coordinate(row, column));
 	}
 	
 	public boolean checkCoor(Coordinate coor) {

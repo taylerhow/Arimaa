@@ -8,9 +8,6 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import game.BoardState;
-import game.Coordinate;
-import game.Game;
 import piece.AbstractPiece;
 import piece.Camel;
 import piece.Cat;
@@ -21,24 +18,39 @@ import piece.Rabbit;
 
 public class TestEndGame {
 	private Game game;
+	private Game game2;
 
 	@Before
 	public void setup() {
 		HashMap<Coordinate, AbstractPiece> winP = new HashMap<Coordinate, AbstractPiece>();
-		winP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
-		winP.put(new Coordinate(1, 1), new Rabbit(Owner.Player1));
-		winP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
-		winP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
-		winP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
-		winP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
-		winP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
-		winP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
-		winP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
-		winP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
-		winP.put(new Coordinate(1, 6), new Rabbit(Owner.Player2));
-		winP.put(new Coordinate(5, 6), new Dog(Owner.Player1));
+		winP.put(new Coordinate(6, 7), new Cat(Owner.Player1));
+		winP.put(new Coordinate(1, 6), new Rabbit(Owner.Player1));
+		winP.put(new Coordinate(3, 6), new Dog(Owner.Player1));
+		winP.put(new Coordinate(4, 5), new Rabbit(Owner.Player2));
+		winP.put(new Coordinate(3, 4), new Camel(Owner.Player1));
+		winP.put(new Coordinate(4, 4), new Elephant(Owner.Player1));
+		winP.put(new Coordinate(5, 4), new Dog(Owner.Player2));
+		winP.put(new Coordinate(4, 3), new Cat(Owner.Player2));
+		winP.put(new Coordinate(2, 2), new Camel(Owner.Player1));
+		winP.put(new Coordinate(5, 2), new Camel(Owner.Player1));
+		winP.put(new Coordinate(1, 1), new Rabbit(Owner.Player2));
+		winP.put(new Coordinate(5, 1), new Dog(Owner.Player1));
 		game = new Game(new BoardState(winP));
 		
+		HashMap<Coordinate, AbstractPiece> winP2 = new HashMap<Coordinate, AbstractPiece>();
+		winP2.put(new Coordinate(6, 7), new Cat(Owner.Player1));
+		winP2.put(new Coordinate(3, 6), new Dog(Owner.Player1));
+		winP2.put(new Coordinate(4, 5), new Rabbit(Owner.Player2));
+		winP2.put(new Coordinate(3, 4), new Camel(Owner.Player1));
+		winP2.put(new Coordinate(4, 4), new Elephant(Owner.Player1));
+		winP2.put(new Coordinate(5, 4), new Dog(Owner.Player2));
+		winP2.put(new Coordinate(4, 3), new Cat(Owner.Player2));
+		winP2.put(new Coordinate(2, 2), new Camel(Owner.Player1));
+		winP2.put(new Coordinate(5, 2), new Camel(Owner.Player1));
+		winP2.put(new Coordinate(1, 1), new Camel(Owner.Player1));
+		winP2.put(new Coordinate(4, 1), new Elephant(Owner.Player2));
+		winP2.put(new Coordinate(5, 1), new Dog(Owner.Player1));
+		game2 = new Game(new BoardState(winP2));
 	}
 	
 	@Test
@@ -50,61 +62,19 @@ public class TestEndGame {
 
 	@Test
 	public void testPlayer1Win() {
-		HashMap<Coordinate, AbstractPiece> winP = new HashMap<Coordinate, AbstractPiece>();
-		winP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
-		winP.put(new Coordinate(1, 1), new Rabbit(Owner.Player1));
-		winP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
-		winP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
-		winP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
-		winP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
-		winP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
-		winP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
-		winP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
-		winP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
-		winP.put(new Coordinate(1, 6), new Rabbit(Owner.Player2));
-		winP.put(new Coordinate(5, 6), new Dog(Owner.Player1));
-		Game game = new Game(new BoardState(winP));
 		assertTrue(game.move(6, 1, 2));
 		assertEquals(1, game.getWinner());
 	}
 
 	@Test
 	public void testWinWhenP1HasNoRabbits() {
-		HashMap<Coordinate, AbstractPiece> winP = new HashMap<Coordinate, AbstractPiece>();
-		winP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
-		winP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
-		winP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
-		winP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
-		winP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
-		winP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
-		winP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
-		winP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
-		winP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
-		winP.put(new Coordinate(1, 6), new Camel(Owner.Player1));
-		winP.put(new Coordinate(4, 6), new Elephant(Owner.Player2));
-		winP.put(new Coordinate(5, 6), new Dog(Owner.Player1));
-		Game game = new Game(new BoardState(winP));
-		game.move(1, 1, 2);
-		assertEquals(2, game.getWinner());
+		game2.move(1, 1, 2);
+		assertEquals(2, game2.getWinner());
 	}
 
 	@Test
 	public void testCheckFriendlyAdjacentDownCase() {
-		HashMap<Coordinate, AbstractPiece> winP = new HashMap<Coordinate, AbstractPiece>();
-		winP.put(new Coordinate(6, 0), new Cat(Owner.Player1));
-		winP.put(new Coordinate(3, 1), new Dog(Owner.Player1));
-		winP.put(new Coordinate(4, 2), new Rabbit(Owner.Player2));
-		winP.put(new Coordinate(3, 3), new Camel(Owner.Player1));
-		winP.put(new Coordinate(4, 3), new Elephant(Owner.Player1));
-		winP.put(new Coordinate(5, 3), new Dog(Owner.Player2));
-		winP.put(new Coordinate(4, 4), new Cat(Owner.Player2));
-		winP.put(new Coordinate(2, 5), new Camel(Owner.Player1));
-		winP.put(new Coordinate(5, 5), new Camel(Owner.Player1));
-		winP.put(new Coordinate(1, 6), new Camel(Owner.Player1));
-		winP.put(new Coordinate(4, 6), new Elephant(Owner.Player2));
-		winP.put(new Coordinate(5, 6), new Dog(Owner.Player1));
-		Game game = new Game(new BoardState(winP));
-		assertTrue(game.move(1, 5, 1));
+		assertTrue(game2.move(1, 5, 1));
 	}
 
 	@Test

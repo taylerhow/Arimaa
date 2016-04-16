@@ -1,14 +1,11 @@
 package game;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.lang.reflect.Field;
 
 import javax.swing.JLabel;
-
-import game.GUI;
-import game.Game;
-import game.TimePanel;
 
 import org.junit.Test;
 
