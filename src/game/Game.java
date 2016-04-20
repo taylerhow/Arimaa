@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
 
 import move_commands.MoveCommand;
 import move_commands.MoveDown;
@@ -216,46 +217,52 @@ public class Game {
 	 * checks both rows for rabbits of the opposite side, top row first followed by the bottom row
 	 */
 	private void checkWin() {
+		if(this.getPlayerTurn() == 0){
+			return;
+		}
+		
+		Owner lastPlayer = this.getPlayerTurn() == 1 ? Owner.Player1 : Owner.Player2;
 		for (int i = 0; i < 8; i++) {
-			if (getSpace(0, i) != null) {
-				if (getSpace(0, i).equals(new Rabbit(Owner.Player2))) {
-					winner = 2;
+			if (this.currentBoard.pieceAt(new Coordinate(i, 0))) {
+				if (this.currentBoard.getPieceAt(new Coordinate(i, 0)).equals(new Rabbit(lastPlayer))) {
+					winner = this.getPlayerTurn();
+					return;
 				}
 			}
 		}
+		
+		Owner otherPlayer = this.getPlayerTurn() == 1 ? Owner.Player2 : Owner.Player1;
 		for (int i = 0; i < 8; i++) {
-			if (getSpace(7, i) != null) {
-				if (getSpace(7, i).equals(new Rabbit(Owner.Player1))) {
-					winner = 1;
+			if (this.currentBoard.pieceAt(new Coordinate(7, i))) {
+				if (this.currentBoard.getPieceAt(new Coordinate(7, i)).equals(new Rabbit(otherPlayer))) {
+					//Mapping from 1->2, 2->1
+					winner = 3 - this.getPlayerTurn();
+					return;
 				}
 			}
 		}
-
-		boolean p1RabbitExists = false;
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				// and short circuits if null preventing nullpointerexception
-				if (getSpace(i, j) != null && getSpace(i, j).equals(new Rabbit(Owner.Player1))) {
-					p1RabbitExists = true;
+		
+		boolean lastRabbitExists = false;
+		boolean otherRabbitExists = false;
+		Set<Coordinate> coors = this.currentBoard.getAllCoordinates();
+		
+		for(Coordinate coor: coors) {
+			AbstractPiece piece = this.currentBoard.getPieceAt(coor);
+			if(piece instanceof Rabbit) {
+				if(piece.getOwner() == lastPlayer) {
+					lastRabbitExists = true;
+				} else if (piece.getOwner() == otherPlayer) {
+					otherRabbitExists = true;
 				}
 			}
+		}		
+		if (!lastRabbitExists) {
+			winner = this.getPlayerTurn();
+			return;
 		}
-
-		if (!p1RabbitExists) {
-			winner = 2;
-		}
-
-		boolean p2RabbitExists = false;
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				if (getSpace(i, j) != null && getSpace(i, j).equals(new Rabbit(Owner.Player2))) {
-					p2RabbitExists = true;
-				}
-			}
-		}
-
-		if (!p2RabbitExists) {
-			winner = 1;
+		if (!otherRabbitExists) {
+			winner = 3 - this.getPlayerTurn();
+			return;
 		}
 	}
 
