@@ -196,10 +196,10 @@ public class Game {
 	 * This methods checks piece death and victory conditions
 	 */
 	private void endMove() {
-		checkDeaths(2, 2);
-		checkDeaths(2, 5);
-		checkDeaths(5, 2);
-		checkDeaths(5, 5);
+		checkDeaths(new Coordinate(2, 2));
+		checkDeaths(new Coordinate(2, 5));
+		checkDeaths(new Coordinate(5, 2));
+		checkDeaths(new Coordinate(5, 5));
 		checkWin();
 		numMoves--;
 		if (numMoves <= 0) {
@@ -269,17 +269,16 @@ public class Game {
 	/**
 	 * Piece death occurs when pieces are on the squares (2,2), (2,5), (5,2), (5,5), and has no friendly adjacent pieces
 	 * to it
-	 * 
 	 */
-	private void checkDeaths(int row, int col) {
-		if (this.getSpace(row, col) == (null))
+	private void checkDeaths(Coordinate toCheck) {
+		if (!this.currentBoard.pieceAt((toCheck)))
 			return;// an empty piece doesn't need to be checked
 
-		if (checkFriendlyAdjacent(row, col)) {
+		if (checkFriendlyAdjacent(toCheck.getY(), toCheck.getX())) {
 			return;
 		}
 		// no adjacent friendly pieces, remove this one
-		this.currentBoard.removePiece(new Coordinate(row, col));
+		this.currentBoard.removePiece(toCheck);
 		// char[][] temp = this.currentBoard.getBoardArray();
 		// temp[row][col] = ' ';
 		// this.currentBoard.setBoardArray(temp);
